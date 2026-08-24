@@ -1,0 +1,98 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+// help_center_area
+.help_center_area{
+    position: relative;
+    padding: 0rem 0 5rem;
+    .help_area_left{
+       background: $dark;
+        padding: 1rem 0;
+        &.poss{
+            position: fixed;
+            top: 12rem;
+            width: 24%;
+        }
+        ul{
+            li{
+                padding-bottom: 0.5rem;
+               
+                a{
+                    color: $white;
+                    font-size: 2rem;
+                    &:hover{
+                        color: $red;
+                    }
+                    i{
+                        font-size: 2rem;
+                        margin-right: 0.9rem;
+                    }
+                }
+            }
+        }
+    }
+    .help_area_right{
+        .need_help{
+            @include flax_box (flex,center,none);
+            background-color: $light_dark;
+            padding: 2rem 1rem;
+            img{
+                width: 6rem;
+                margin-right: 1rem;
+            }
+            .need_cont{
+                max-width: 33rem;
+                margin-right: 3rem;
+                h2{
+                    color: $white;
+                    font-size: 2rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                }
+                p{
+                    color: $white;
+                    font-size: 1.4rem;
+                }
+            }
+            .button{
+                width: 100%;
+                text-align: center;
+            }
+        }
+        .accordion_wrapp{
+            padding-top: 3rem;
+           h3{
+            font-size: 2.6rem;
+            margin-bottom: 2rem;
+           }
+           .accordion-item{
+            margin-bottom: 2rem;
+            .accordion-header{
+                .accordion-button{
+                    font-size: 2rem;
+                    color: $white;
+                    background-color: $light-dark;
+                    font-weight: 700;
+                    padding: 1.7rem 1.4rem;
+                    border: 0.1rem solid $white;
+                    &:focus{
+                        color: $red;
+                        outline: none;
+                    }
+                    &:after {
+                        filter: brightness(0) invert(1);
+                    }
+                }
+            }
+            .accordion-body{
+                background-color: $light-dark;
+               padding: 2rem 1.4rem;
+               p{
+                color: #7a7a7a;
+                box-shadow: rgba(0, 0, 0, 0.1) .0rem 1.0rem 1.5rem -.3rem, rgba(0, 0, 0, 0.05) .0rem .4rem .6rem -.2rem;
+               }
+            }
+        }
+        }
+    }
+}

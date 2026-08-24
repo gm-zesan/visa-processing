@@ -1,0 +1,251 @@
+@media (min-width: 1600px){ 
+	.container{
+		max-width: 1170px;
+	}
+}
+@media (min-width: 1366px) and (max-width: 1599.98px){
+	html{
+		font-size: 61.43%;
+	}
+	.container{
+		max-width: 1150px;
+
+	}
+}
+@media (min-width: 1200px) and (max-width: 1366.98px){
+	html{
+		font-size: 58.76%;
+	}
+	.container{
+		max-width: 1100px;
+
+	}
+}
+@media (min-width: 992px) and (max-width: 1199.98px){
+	html{
+		font-size: 47%;
+	}
+	.container{
+		max-width: 880px;
+
+	}
+}
+@media (max-width: 991.98px) {
+	html{
+		font-size: 52%;
+	}
+	header{
+		.menu {
+			position: fixed;
+			top: 0;
+			height: 100vh;
+			width: 100%;
+			left: calc(-100%);
+			background-color: #008000;
+			text-align: left;
+			z-index: -1;
+			transition: 0.3s;
+			overflow: auto;
+			padding-top: 18rem !important;
+			padding-bottom: 2rem;
+			display: block;
+			padding-left: 5rem;
+			padding-right: 5rem;
+			>ul {
+				display: inline-block;
+				width: 100%;
+				>li {
+					padding: 5rem 0rem 0rem !important;
+					text-align: left;
+					>a {
+						display: -webkit-box;
+						display: -ms-flexbox;
+						display: flex;
+						-webkit-box-align: center;
+						-ms-flex-align: center;
+						align-items: center;
+						-webkit-box-pack: justify;
+						-ms-flex-pack: justify;
+						justify-content: space-between;
+						border-bottom: 0.1rem solid rgba(255, 255, 255, 0.5);
+						padding-bottom: 1.5rem;
+						color: #fff;
+						font-size: 3rem;
+					}
+				}
+				>li.dropdown_wrap {
+					>ul {
+						background-color: transparent;
+						padding-bottom: 0;
+						position: relative;
+						padding: 3rem 0 0rem;
+						-webkit-transition: none;
+						-o-transition: none;
+						transition: none;
+						opacity: 1;
+						pointer-events: all;
+						width: 100%;
+						display: none;
+						top: auto;
+						>li {
+							>a {
+								font-size: 2.3rem;
+								padding-left: 0;
+								padding-right: 0;
+								&:hover {
+									color: #000000;
+								}
+							}
+						}
+						>li.active {
+							>a {
+								color: #000000;
+							}
+						}
+					}
+					&:hover {
+						background-color: transparent;
+					}
+					padding-left: 0;
+					padding-right: 0;
+				}
+			}
+			&.current {
+				left: 0rem;
+			}
+		}
+	}
+	.hamburger-menu {
+		display: block;
+	}
+
+	.header_top{
+		display: none;
+	}
+	.home_area {
+		.home_area_swiper {
+			.home_wrapper {
+				height: 75vh;
+		}
+	}
+	}
+	.appointment_area {
+		.appointment_wrapper {
+			margin-top: 0;
+			.appointment_cart{
+				.appointment_number{
+					h4{
+						margin: 9.5rem 0rem 0rem 19.6rem;
+					}
+				}
+			}
+		}
+	}
+	.provider_area {
+		.choose_top {
+			h3{
+				font-size: 2.4rem;
+			}
+		}
+	}
+	.free_online_area {
+		margin-top: 4rem;
+		.free_online_wrap {
+			margin-top: 0rem ;
+			flex-wrap: wrap;
+			column-gap: 0rem;
+			padding: 3rem;
+			.free_content {
+				padding-right: 0;
+				text-align: center;
+				margin-top: 5rem;
+			}
+		}
+	}
+	.resources_area {
+		.resources_top {
+			flex-wrap: wrap;
+			text-align: center;
+			.latest_news {
+				max-width: 82rem;
+				margin: 0 auto;
+				h2{
+					font-size: 2.2rem;
+				}
+			}
+		}
+        .resources_card{
+            .resources_cont{
+                h2{
+                    margin-top: 4.5rem;
+                }
+            }
+        }
+	}
+	.service_tourists{
+		.resources_top{
+			flex-wrap: wrap;
+		}
+	}
+	.blog_list_wrappers {
+		padding: 2rem 0;
+	}
+	.poss{
+		display: none;
+	}
+}
+
+@media (max-width: 767.98px) {
+	html{
+		font-size: 40%;
+	}
+}
+
+/*Small devices (landscape phones, 575px and down)*/
+@media (max-width: 575.98px) {
+	html{
+		font-size: 1.6vw;
+	}
+	.container{
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
+	.footer_bottom {
+		.foot_bottom_wrap {
+			flex-wrap: wrap;
+		}
+	}
+	.appointment_icon:before {
+		right: 17rem;
+		height: 6.1rem;
+	}
+	.single_person_wrap {
+		.inner_person_items {
+			flex-wrap: wrap;
+			padding: 2rem;
+			 .single_person_images {
+				width: 100%;
+			 }
+			 .connt_person{
+				width: 100%;
+				margin-top: 2rem;
+			 }
+		}
+	}
+	.blog_list_wrappers {
+		padding: 2rem 0;
+	}
+	.help_center_area {
+		.help_area_right {
+			.need_help {
+				flex-wrap: wrap;
+				img{
+					width: 10rem;
+				}
+				.button{
+					margin-top: 3rem;
+				}
+			}
+		}
+	}
+}

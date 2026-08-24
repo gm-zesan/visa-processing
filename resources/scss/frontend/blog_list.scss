@@ -1,0 +1,15 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+// blog_list_wrappers
+.blog_list_wrappers{
+    padding: 2rem 7rem;
+    .resources_card{
+        .resources_cont{
+            text-align: left;
+            h2{
+                font-size: 3rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,133 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+// country_work_area
+.country_work_area{
+    padding: 1rem 0 5rem;
+    .country_left_side{
+        .country_lists{
+            a{
+                padding: 1.4rem 1.5rem 1.4rem 1.8rem;
+                background-color: #F3F6F9;
+                font-weight: 400;
+                font-size: 1.5rem;
+                transition: .3s;
+                color: #232323;
+                display: inline-flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 0.2rem;
+                &.active{
+                    background-color: $red;
+                    color: $white;
+                }
+                &.active i{
+                    color: $white;
+                }
+                &:hover{
+                    background-color: $red;
+                    color: $white;
+                }
+                &:hover i{
+                    color: $white;
+                }
+                i{
+                    font-size: 1.5rem;
+                    color: #8e8b8b;
+                }
+            }
+        }
+        .call_us_area{
+            .call_content{
+                padding: 3rem 0;
+                background-color: $light-dark;
+                text-align: center;
+                h2{
+                    color: $white;
+                    margin-bottom: 1rem;
+                    font-size: 1.7rem;
+                }
+                a{
+                    color: $white;
+                    font-weight: 700;
+                    font-size: 1.8rem;
+                    &:hover{
+                        color: $red;
+                    }
+                }
+            }
+        }
+        .request_form_area{
+            background-color: $light-dark;
+            padding: 5rem;
+            h2{
+                font-size: 2.5rem;
+                color: $white;
+                margin-bottom: 3rem;
+            }
+            input{
+                background-color: #F4F7FC;
+                padding: 1rem 2rem;
+                color: #666;
+                border-radius: 0.5rem;
+                border: none;
+                outline: none;
+                margin-top: 2rem;
+                width: 100%;
+            }
+            select{
+                background-color: #F4F7FC;
+                padding: 1rem 2rem;
+                color: #666;
+                border-radius: 0.5rem;
+                border: none;
+                outline: none;
+                margin-top: 2rem;
+                width: 100%;
+            }
+            textarea{
+                background-color: #F4F7FC;
+                padding: 1rem 2rem;
+                color: #666;
+                border-radius: 0.5rem;
+                margin-top: 2rem;
+                width: 100%;
+                min-height: 12rem;
+                resize: none;
+            }
+            .error_msg{
+                color: $white;
+                font-size: 1.5rem;
+            }
+            .button{
+                width: 100%;
+                background-color: $dark;
+                border-color: $dark;
+                font-weight: 400;
+                border-radius: 0.5rem;
+                &:hover{
+                    background-color: #bd2d10;
+                    color: $white;
+                }
+            }
+        }
+    }
+    .country_right_side{
+        img{
+            height: 47.5rem;
+            object-fit: cover;
+        }
+        .country_title{
+            margin-top: 3rem;
+            h2{
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 2rem;
+            }
+            p{
+                color: $white;
+            }
+        }
+    }
+}

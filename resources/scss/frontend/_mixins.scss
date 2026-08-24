@@ -1,0 +1,42 @@
+@import "./variables";
+
+// My_css
+@mixin flax_box ($di,$ai,$jc){
+    display: $di;
+    align-items: $ai;
+    justify-content: $jc;
+}
+
+@mixin footer_heading {
+    color: #FFFFFF;
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 5rem;
+    margin-top: 2rem;
+ 
+}
+// Flex mixin
+@function getJustifyContent($arg) {
+    $justify: (
+      'sa':space-around,
+      'sb':space-between,
+      'se':space-evenly,
+      'c':center,
+      'fs':flex-start,
+      'fe':flex-end,
+    );
+    $result: '';
+    @each $key,$value in $justify{
+      @if($key == $arg){
+        $result: $value;
+      }
+    }
+    @return $result;
+  }
+
+@mixin single-select-arrow() {
+    background-image: url('../../../image/sort-down.svg');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    -webkit-appearance: none;
+}
