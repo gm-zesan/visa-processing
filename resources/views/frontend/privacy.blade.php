@@ -4,12 +4,6 @@
 Privacy And Policy
 @endsection
 
-@push("styles")
-
-@vite(['resources/scss/frontend/privacy.scss'])
-<!-- @vite(['resources/scss/frontend/privacy-dark.scss']) -->
-@endpush
-
 
 @section('content')
     <!-- contact_page_area -->

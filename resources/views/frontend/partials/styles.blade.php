@@ -14,5 +14,5 @@
 <!-- <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
 <link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet"> -->
 
-{{-- @vite(['resources/scss/frontend/styles.scss']) --}}
-@vite(['resources/scss/frontend/styles-dark.scss'])
+@vite(['resources/scss/frontend/styles.scss'])
+{{-- @vite(['resources/scss/frontend/styles-dark.scss']) --}}

@@ -6,8 +6,8 @@ Help Center
 
 @push("styles")
 
-<!-- @vite(['resources/scss/frontend/helpcenter.scss']) -->
-@vite(['resources/scss/frontend/helpcenter-dark.scss'])
+@vite(['resources/scss/frontend/helpcenter.scss'])
+{{-- @vite(['resources/scss/frontend/helpcenter-dark.scss']) --}}
 
 @endpush
 

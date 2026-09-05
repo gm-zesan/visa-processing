@@ -89,4 +89,4 @@
 </style>
 
 {{-- <!-- Style css --> --}}
-@vite(['resources/scss/admin/style.scss', 'resources/scss/admin/table.scss', 'resources/js/app.jsx'])
+@vite(['resources/scss/admin/style.scss', 'resources/scss/admin/table.scss', 'resources/js/app.js'])

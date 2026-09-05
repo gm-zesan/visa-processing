@@ -37,6 +37,7 @@ export default defineConfig({
                 "resources/scss/frontend/helper.scss",
                 // dark mode
                 "resources/scss/frontend/styles-dark.scss",
+                "resources/scss/frontend/home-dark.scss",
                 "resources/scss/frontend/about-dark.scss",
                 "resources/scss/frontend/contact-dark.scss",
                 "resources/scss/frontend/our_service-dark.scss",

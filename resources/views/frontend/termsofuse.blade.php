@@ -4,11 +4,6 @@
 Terms of Use
 @endsection
 
-@push("styles")
-
-@vite(['resources/scss/frontend/termsofuse.scss'])
-@endpush
-
 
 @section('content')
     <!-- contact_page_area -->

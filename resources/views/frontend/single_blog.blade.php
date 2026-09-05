@@ -6,8 +6,8 @@ single Blog
 
 @push("styles")
 
-<!-- @vite(['resources/scss/frontend/single_blog.scss']) -->
-@vite(['resources/scss/frontend/single_blog-dark.scss'])
+@vite(['resources/scss/frontend/single_blog.scss'])
+{{-- @vite(['resources/scss/frontend/single_blog-dark.scss']) --}}
 @endpush
 
 

@@ -4,12 +4,6 @@
 Cookie Policy
 @endsection
 
-@push("styles")
-
-@vite(['resources/scss/frontend/cookie.scss'])
-<!-- @vite(['resources/scss/frontend/privacy-dark.scss']) -->
-@endpush
-
 
 @section('content')
     <!-- contact_page_area -->

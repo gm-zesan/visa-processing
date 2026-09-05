@@ -6,8 +6,8 @@ country
 
 @push("styles")
 
-<!-- @vite(['resources/scss/frontend/country.scss']) -->
-@vite(['resources/scss/frontend/country-dark.scss'])
+@vite(['resources/scss/frontend/country.scss'])
+{{-- @vite(['resources/scss/frontend/country-dark.scss']) --}}
 @endpush
 
 

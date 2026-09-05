@@ -5,8 +5,8 @@
 @endsection
 
 @push('styles')
-    {{-- @vite(['resources/scss/frontend/home.scss']) --}}
-    @vite(['resources/scss/frontend/home-dark.scss'])
+    @vite(['resources/scss/frontend/home.scss'])
+    {{-- @vite(['resources/scss/frontend/home-dark.scss']) --}}
 @endpush
 
 

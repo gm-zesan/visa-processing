@@ -6,8 +6,8 @@ contact
 
 @push("styles")
 
-<!-- @vite(['resources/scss/frontend/contact.scss']) -->
-@vite(['resources/scss/frontend/contact-dark.scss'])
+@vite(['resources/scss/frontend/contact.scss'])
+{{-- @vite(['resources/scss/frontend/contact-dark.scss']) --}}
 @endpush
 
 

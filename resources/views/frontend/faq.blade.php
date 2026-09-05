@@ -6,8 +6,8 @@ Faq
 
 @push("styles")
 
-<!-- @vite(['resources/scss/frontend/faq.scss']) -->
-@vite(['resources/scss/frontend/faq-dark.scss'])
+@vite(['resources/scss/frontend/faq.scss'])
+{{-- @vite(['resources/scss/frontend/faq-dark.scss']) --}}
 @endpush
 
 
