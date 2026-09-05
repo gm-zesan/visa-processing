@@ -22,7 +22,7 @@
             margin-bottom: 2rem;
             &:focus{
                 border: 0.1rem solid $red;
-                box-shadow: 0 0 0 .2rem rgba(241,42,2,.25);
+                box-shadow: 0 0 0 .2rem rgba(197, 154, 39, .25);
             }
         }
         textarea{
@@ -39,7 +39,7 @@
               }
             &:focus{
                 border: 0.1rem solid $red;
-                box-shadow: 0 0 0 .2rem rgba(241,42,2,.25);
+                box-shadow: 0 0 0 .2rem rgba(197, 154, 39, .25);
             }
         }
         .sub_btn{

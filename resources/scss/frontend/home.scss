@@ -160,7 +160,7 @@
             content: "";
             width: 45.1rem;
             height: 100%;
-            background: #FF3C00;
+            background: $red;
             position: absolute;
             z-index: -1;
             top: 2.4rem;
@@ -304,7 +304,7 @@
                 z-index: -1;
                 -webkit-transition: 0.5s;
                 transition: 0.5s;
-                background: #FF3C00;
+                background: $red;
                 border-radius: 2.0rem;
             }
             &:hover::before {
@@ -338,7 +338,7 @@
             .read_btn_2{
                 color: #616161;
                 padding-bottom: 0.8rem;
-                border-bottom: 0.1rem solid #FF3C00;
+                border-bottom: 0.1rem solid $red;
                 
             }
         }

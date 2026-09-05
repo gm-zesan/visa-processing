@@ -98,7 +98,7 @@
                 i{
                     margin-bottom: 1.5rem;
                     display: inline-block;
-                    color: #FF3C00;
+                    color: $red;
                     width: 7.0rem;
                     height: 7.0rem;
                     background: #fff;
@@ -129,7 +129,7 @@
                 position: relative;
                 font-size: 1.6rem;
                 transition: 0.5s;
-                background: linear-gradient(124deg, rgba(244,247,252,1) 80%, rgba(255,60,0,1) 80%);
+                background: linear-gradient(124deg, rgba(244,247,252,1) 80%, rgba(197,154,39,1) 80%);
                 i{
                     font-size: 1.7rem;
                     margin-left: 0.7rem;

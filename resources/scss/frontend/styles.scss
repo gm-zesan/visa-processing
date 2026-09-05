@@ -285,7 +285,7 @@ main{
 .dit-button {
     a{
      display: inline-block;
-     background: #FB3C00;
+     background: $red;
      color: $white;
      font-size: 1.5rem;
      text-transform: uppercase;
@@ -301,7 +301,7 @@ main{
          line-height: 4.0rem;
          text-align: center;
          background: $white;
-         color: red;
+         color: $red;
          display: inline-block;
          border-radius: 100%;
          position: relative;
@@ -311,7 +311,7 @@ main{
      &::before{
          position: absolute;
          content: "";
-         background: #bd2d10;
+         background: $primary_hover;
          height: 100%;
          width: 10%;
          transition: .5s;
@@ -326,7 +326,7 @@ main{
          opacity: 1
      }
      &:hover i {
-         background: #FB3C00;
+         background: $red;
          color: $white
      }
     }
@@ -347,7 +347,7 @@ main{
 		z-index: -1;
 		transform: skew(-26deg);
 		padding-left: 2.0rem;
-		background: #FF3C00;
+		background: $red;
 	}
 	 p {
 		font-size: 1.2rem;
@@ -829,7 +829,7 @@ header {
                 line-height: 5rem;
                 bottom: 0;
                 right: -1.6rem;
-                background-color: #ff3c00;
+                background-color: $red;
                 width: 5rem;
                 height: 5rem;
                 text-align: center;
@@ -853,7 +853,7 @@ header {
             margin-bottom: 2rem;
             background: linear-gradient(
                 90deg,
-                rgba(255, 60, 0, 1) 50%,
+                rgba(197, 154, 39, 1) 50%,
                 rgba(221, 221, 221, 1) 50%
             );
             width: 4rem;
@@ -1012,7 +1012,7 @@ header {
                                 transition: 0.3s all ease;
                                 border-radius: 50%;
                                 margin: 0;
-                                color: #FF3C00;
+                                color: $red;
                             }
                         }
                     }
@@ -1028,7 +1028,7 @@ header {
                     z-index: 1;
                     border-radius: 0.5rem;
                     box-shadow: 0 0 1.2rem 0 rgba(32, 46, 60, 0.06);
-                    border-bottom: 0.2rem solid #f12a02;
+                    border-bottom: 0.2rem solid $red;
                     position: relative;
                     p{
                         color: #616161;
@@ -1044,7 +1044,7 @@ header {
                         color: $black;
                         margin-bottom: 1rem;
                         &:hover{
-                            color: #FF3C00;
+                            color: $red;
                         }
                     }
                    }
