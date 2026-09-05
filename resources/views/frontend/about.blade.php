@@ -92,7 +92,7 @@ about
                                 </div>
                                 <div class="team_content">
                                     <a href="#"><h3>Angel Zara</h3></a>
-                                    <p>MIGRATION AGENT</p>
+                                    <p>RECRUITMENT SPECIALIST</p>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@ about
                                 </div>
                                 <div class="team_content">
                                     <a href="#"><h3>Angel Zara</h3></a>
-                                    <p>MIGRATION AGENT</p>
+                                    <p>RECRUITMENT SPECIALIST</p>
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ about
                                 </div>
                                 <div class="team_content">
                                     <a href="#"><h3>Angel Zara</h3></a>
-                                    <p>MIGRATION AGENT</p>
+                                    <p>RECRUITMENT SPECIALIST</p>
                                 </div>
                             </div>
                         </div>
@@ -170,7 +170,7 @@ about
                                 </div>
                                 <div class="team_content">
                                     <a href="#"><h3>Angel Zara</h3></a>
-                                    <p>MIGRATION AGENT</p>
+                                    <p>RECRUITMENT SPECIALIST</p>
                                 </div>
                             </div>
                         </div>

@@ -108,8 +108,8 @@
             <div class="row">
                 <div class="col-lg-4 securce_top mt_50">
                     <div class="choose_top">
-                        <h3>CHOOSE YOUR VISA</h3>
-                        <h2><span>{{ getSettingsData('13', 'title') }}</span>{{ getSettingsData('13', 'subtitle') }}</h2>
+                        <h3>WORK PERMIT VISAS</h3>
+                        <h2><span>{{ getSettingsData('13', 'title') }}</span> {{ getSettingsData('13', 'subtitle') }}</h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     {!! getSettingsData('13', 'description') !!}
@@ -148,8 +148,8 @@
     <div class="choose_country_area" style="background-image: url({{ asset('frontend/images/choose_country.png') }});">
         <div class="container">
             <div class="choose_top">
-                <h3>CHOOSE COUNTRY</h3>
-                <h2><span>Immigration - Choose</span> Your Country!</h2>
+                <h3>TARGET DESTINATIONS</h3>
+                <h2><span>Overseas Employment - Choose</span> Your Destination!</h2>
                 <div class="em_bar_bg"></div>
             </div>
             <div class="swiper choose_country_Swiper">

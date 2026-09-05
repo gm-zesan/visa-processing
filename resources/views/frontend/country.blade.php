@@ -1,15 +1,12 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-country
+{{ $country->country->name }} Work Permit
 @endsection
 
 @push("styles")
-
 @vite(['resources/scss/frontend/country.scss'])
-{{-- @vite(['resources/scss/frontend/country-dark.scss']) --}}
 @endpush
-
 
 @section('content')
     @if(session('success'))
@@ -21,7 +18,7 @@ country
     <div class="contact_page_area" style="background-image: url({{ asset(getSettingsData('58', 'image')) }});">
         <div class="container">
             <div class="contact_wrapper">
-                <h2>{{$country->country->name}}</h2>
+                <h2>{{$country->country->name}} Work Permit</h2>
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                   <ol class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('home')}}">HOME</a></li>
@@ -52,30 +49,30 @@ country
               </div>
               <!-- request_form -->
               <div class="request_form_area">
-                <h2>Request a<br> Appointment</h2>
+                <h2>Apply for<br> Work Permit</h2>
                 <form action="{{route('appointment.store')}}" method="POST">
                     @csrf
-                    <input type="hidden" name="country" value="{{$country->name}}">
-                    <input type="text" name="name" placeholder="Your Name">
+                    <input type="hidden" name="country" value="{{$country->country->name}}">
+                    <input type="text" name="name" placeholder="Your Full Name">
                     @if($errors->has('name'))
                         <div class="error_msg">
                             {{ $errors->first('name') }}
                         </div>
                     @endif
-                    <input type="email" name="email" placeholder="Your Email">
+                    <input type="email" name="email" placeholder="Your Email Address">
                     @if($errors->has('email'))
                         <div class="error_msg">
                             {{ $errors->first('email') }}
                         </div>
                     @endif
-                    <input type="tel" name="phone" placeholder="Your Phone">
+                    <input type="tel" name="phone" placeholder="Your Phone Number">
                     @if($errors->has('phone'))
                         <div class="error_msg">
                             {{ $errors->first('phone') }}
                         </div>
                     @endif
                     <select name="visa_type_id">
-                        <option disabled selected>Select Visa</option>
+                        <option disabled selected>Select Work Permit</option>
                         @foreach ($visa_types as $visa)
                             <option value="{{$visa->id}}">{{ $visa->name }}</option>
                         @endforeach
@@ -85,13 +82,13 @@ country
                             {{ $errors->first('visa_type_id') }}
                         </div>
                     @endif
-                    <textarea placeholder="Your Meassage" name="message"></textarea>
+                    <textarea placeholder="Your Experience / Inquiries" name="message"></textarea>
                     @if($errors->has('message'))
                         <div class="error_msg">
                             {{ $errors->first('message') }}
                         </div>
                     @endif
-                    <button type="submit" class="button">Send Request</button>
+                    <button type="submit" class="button">Submit Application</button>
                 </form>
               </div>
             </div>
@@ -100,11 +97,11 @@ country
               <div class="country_right_side">
                 <img src="{{asset($country->image)}}" alt="Image" class="w-100">
                 <div class="country_title">
-                    <h2>Why Visit {{$country->country->name}}</h2>
+                    <h2>Why Work in {{$country->country->name}}</h2>
                     <p>{!!$country->description!!}</p>
                 </div>
                 <div class="country_title">
-                  <h2>Available Visa For {{$country->country->name}}</h2>
+                  <h2>Available Work Permits For {{$country->country->name}}</h2>
                   <ul class="circle_check_list">
                         @foreach ($visa_types as $visa)
                             <li><a href="{{route('visa',['slug'=>$visa->slug])}}" style="color: inherit"> <i class="fa-regular fa-circle-check"></i>{{$visa->name}}</a></li>
@@ -120,14 +117,17 @@ country
 @push('scripts')
     <script>
         setTimeout(() => {
-            document.getElementById('success-message').style.opacity = 1;
-            document.getElementById('success-message').style.top = '30px';
-            document.getElementById('success-message').style.transition = 'all 0.3s ease-in-out';
-            setTimeout(() => {
-                document.getElementById('success-message').style.opacity = 0;
-                document.getElementById('success-message').style.top = '-20px';
-                document.getElementById('success-message').style.transition = 'all 0.3s ease-in-out';
-            }, 3000);
+            const msg = document.getElementById('success-message');
+            if (msg) {
+                msg.style.opacity = 1;
+                msg.style.top = '30px';
+                msg.style.transition = 'all 0.3s ease-in-out';
+                setTimeout(() => {
+                    msg.style.opacity = 0;
+                    msg.style.top = '-20px';
+                    msg.style.transition = 'all 0.3s ease-in-out';
+                }, 3000);
+            }
         }, 100);
     </script>    
 @endpush

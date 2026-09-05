@@ -73,7 +73,7 @@ class PageController extends Controller
     }
     public function visa($slug){
         $visa = VisaType::findBySlug($slug);
-        $available_visa = VisaType::where('country_details_id', $visa->country_details_id)->get();
-        return view('frontend.visa', ['visa' => $visa, 'visas' => $available_visa]);
+        $all_visas = VisaType::all();
+        return view('frontend.visa', ['visa' => $visa, 'visas' => $all_visas]);
     }
 }

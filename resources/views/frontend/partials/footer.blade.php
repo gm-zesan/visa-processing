@@ -5,9 +5,9 @@
         <div class="row">
            <div class="col-lg-3 col-sm-6 footer_first_item pt_40">
                 <a href="{{route('home')}}" class="f_logo">
-                    <img src="{{ asset(getSettingsData('5', 'image')) }}" alt="Image" class="w-100">
+                    <img src="{{ asset(getSettingsData('5', 'image')) }}" alt="AL FAHIM INTERNATIONAL" style="max-height: 55px; object-fit: contain;">
                 </a>
-                <p>Energistically repurpose standards services into whereas productivate Rapidiously morph best</p>
+                <p>AL FAHIM INTERNATIONAL is a government-approved overseas manpower recruitment agency dedicated to providing authentic, legally verified Work Permit Visas.</p>
                 <h4>Follow Us</h4>
                 <ul>
                     <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -17,13 +17,11 @@
                 </ul>
            </div>
            <div class="col-lg-3 col-sm-6 footer_secoend_item pt_40">
-                <h3>Immigration</h3>
+                <h3>Work Permit Countries</h3>
                 <ul>
-                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i>Take IELTS</a></li>
-                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i>Sat Coaching</a></li>
-                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i>Student Visa</a></li>
-                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i>Immigration Visa</a></li>
-                    <li><a href="#"><i class="fa-solid fa-arrow-right"></i>Diploma Visa</a></li>
+                    @foreach ($commonCountriesVisa as $commonCountryVisa)
+                        <li><a href="{{route('country',['id'=>$commonCountryVisa->id])}}"><i class="fa-solid fa-arrow-right"></i>{{$commonCountryVisa->country->name}} Work Permit</a></li>
+                    @endforeach
                 </ul>
            </div>
            <div class="col-lg-3 col-sm-6 footer_three_item pt_40">
@@ -31,13 +29,13 @@
                 <ul>
                     <li><a href="{{route('about')}}"><i class="fa-solid fa-arrow-right"></i>About Us</a></li>
                     <li><a href="{{route('ourTeam')}}"><i class="fa-solid fa-arrow-right"></i>Our Team</a></li>
-                    <li><a href="{{route('blog_list')}}"><i class="fa-solid fa-arrow-right"></i>Our Blog</a></li>
-                    <li><a href="{{route('our_service')}}"><i class="fa-solid fa-arrow-right"></i>Our Service</a></li>
+                    <li><a href="{{route('our_service')}}"><i class="fa-solid fa-arrow-right"></i>Work Permits</a></li>
+                    <li><a href="{{route('blog_list')}}"><i class="fa-solid fa-arrow-right"></i>News & Updates</a></li>
                     <li><a href="{{route('contact')}}"><i class="fa-solid fa-arrow-right"></i>Contact Us</a></li>
                 </ul>
            </div>
            <div class="col-lg-3 col-sm-6 footer_four_item pt_40">
-                <h3>Our Blog</h3>
+                <h3>Latest Updates</h3>
                 @foreach ($commonBlogs as $blog)
                     <div class="footer_galary pb_10">
                         <a href="{{route('single_blog', ['slug'=>$blog->slug])}}">
@@ -57,11 +55,11 @@
 <div class="footer_bottom">
     <div class="container">
         <div class="foot_bottom_wrap">
-        <p>Copyright © 2024 visaDoc all rights reserved.</p>
+        <p>Copyright © {{ date('Y') }} AL FAHIM INTERNATIONAL. All rights reserved.</p>
         <ul>
             <li><a href="{{route('faq')}}">FAQ</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="{{route('our_service')}}">Services</a></li>
+            <li><a href="{{route('privacy')}}">Privacy Policy</a></li>
+            <li><a href="{{route('termsofuse')}}">Terms of Use</a></li>
         </ul>
         </div>
     </div>

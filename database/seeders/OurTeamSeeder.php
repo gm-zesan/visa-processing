@@ -5,7 +5,6 @@ namespace Database\Seeders;
 use App\Models\OurTeam;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Arr;
 
 class OurTeamSeeder extends Seeder
 {
@@ -15,17 +14,106 @@ class OurTeamSeeder extends Seeder
     public function run(): void
     {
         $ourTeams = array(
-            array('id' => '1','name' => 'John Doe','email' => 'john@example.com','phone' => '123-456-7890','designation' => 'Project Manager','facebook' => 'https://www.facebook.com/johndoe','twitter' => 'https://twitter.com/johndoe','instagram' => 'https://www.instagram.com/johndoe','youtube' => 'https://www.youtube.com/johndoe','experience' => '5 years','biography' => '<p>John Doe is an experienced project manager. A vast majority of the app marketers mainly concentrate on the post-launch app marketing techniques and measures while completely missing on the pre-launch campaign. This prevents the app to create buzz and hype just around the time when the app is launched. As and when you launch the app, already a considerable number of people should expectantly look forward to your app and this requires long-drawn marketing efforts leading up to the app launch event. To create pre-launch buzz and hype about the app a mobile app development company has an array of marketing options like social media campaign, search engine ads, video ads, email campaigns, etc. Apart from online options, you can also reach out to the wider audience with traditional marketing options like outdoor ads, print ads, media ads, and promotional events</p>','image' => 'upload/our_team/20240319041954.jpg','created_at' => '2024-03-19 04:16:39','updated_at' => '2024-03-19 04:19:54'),
-            array('id' => '2','name' => 'Jane Smith','email' => 'jane@example.com','phone' => '987-654-3210','designation' => 'Lead Developer','facebook' => 'https://www.facebook.com/janesmith','twitter' => 'https://twitter.com/janesmith','instagram' => 'https://www.instagram.com/janesmith','youtube' => 'https://www.youtube.com/janesmith','experience' => '8 years','biography' => '<p>Jane Smith is a skilled lead developer. A vast majority of the app marketers mainly concentrate on the post-launch app marketing techniques and measures while completely missing on the pre-launch campaign. This prevents the app to create buzz and hype just around the time when the app is launched. As and when you launch the app, already a considerable number of people should expectantly look forward to your app and this requires long-drawn marketing efforts leading up to the app launch event. To create pre-launch buzz and hype about the app a mobile app development company has an array of marketing options like social media campaign, search engine ads, video ads, email campaigns, etc. Apart from online options, you can also reach out to the wider audience with traditional marketing options like outdoor ads, print ads, media ads, and promotional events</p>','image' => 'upload/our_team/20240319041828.jpg','created_at' => '2024-03-19 04:16:39','updated_at' => '2024-03-19 04:18:28'),
-            array('id' => '3','name' => 'Alice Johnson','email' => 'alice@example.com','phone' => '555-123-4567','designation' => 'Senior Designer','facebook' => 'https://www.facebook.com/alicejohnson','twitter' => 'https://twitter.com/alicejohnson','instagram' => 'https://www.instagram.com/alicejohnson','youtube' => 'https://www.youtube.com/alicejohnson','experience' => '7 years','biography' => '<p>Alice Johnson is a talented senior designer. A vast majority of the app marketers mainly concentrate on the post-launch app marketing techniques and measures while completely missing on the pre-launch campaign. This prevents the app to create buzz and hype just around the time when the app is launched. As and when you launch the app, already a considerable number of people should expectantly look forward to your app and this requires long-drawn marketing efforts leading up to the app launch event. To create pre-launch buzz and hype about the app a mobile app development company has an array of marketing options like social media campaign, search engine ads, video ads, email campaigns, etc. Apart from online options, you can also reach out to the wider audience with traditional marketing options like outdoor ads, print ads, media ads, and promotional events</p>','image' => 'upload/our_team/20240319041840.jpg','created_at' => '2024-03-19 04:16:39','updated_at' => '2024-03-19 04:18:40'),
-            array('id' => '4','name' => 'Sophia Williams','email' => 'sophia@example.com','phone' => '789-012-3456','designation' => 'Lead Developer','facebook' => 'https://www.facebook.com/sophiawilliams','twitter' => 'https://twitter.com/sophiawilliams','instagram' => 'https://www.instagram.com/sophiawilliams','youtube' => 'https://www.youtube.com/sophiawilliams','experience' => '6 years','biography' => '<p>Sophia Williams is a skilled lead developer. A vast majority of the app marketers mainly concentrate on the post-launch app marketing techniques and measures while completely missing on the pre-launch campaign. This prevents the app to create buzz and hype just around the time when the app is launched. As and when you launch the app, already a considerable number of people should expectantly look forward to your app and this requires long-drawn marketing efforts leading up to the app launch event. To create pre-launch buzz and hype about the app a mobile app development company has an array of marketing options like social media campaign, search engine ads, video ads, email campaigns, etc. Apart from online options, you can also reach out to the wider audience with traditional marketing options like outdoor ads, print ads, media ads, and promotional events</p>','image' => 'upload/our_team/20240319042051.jpg','created_at' => '2024-03-19 04:16:39','updated_at' => '2024-03-19 04:20:51'),
-            array('id' => '5','name' => 'David Wilson','email' => 'david@example.com','phone' => '999-888-7777','designation' => 'Financial Analyst','facebook' => 'https://www.facebook.com/davidwilson','twitter' => 'https://twitter.com/davidwilson','instagram' => 'https://www.instagram.com/davidwilson','youtube' => 'https://www.youtube.com/davidwilson','experience' => '9 years','biography' => '<p>David Wilson is a seasoned financial analyst. A vast majority of the app marketers mainly concentrate on the post-launch app marketing techniques and measures while completely missing on the pre-launch campaign. This prevents the app to create buzz and hype just around the time when the app is launched. As and when you launch the app, already a considerable number of people should expectantly look forward to your app and this requires long-drawn marketing efforts leading up to the app launch event. To create pre-launch buzz and hype about the app a mobile app development company has an array of marketing options like social media campaign, search engine ads, video ads, email campaigns, etc. Apart from online options, you can also reach out to the wider audience with traditional marketing options like outdoor ads, print ads, media ads, and promotional events</p>','image' => 'upload/our_team/20240319041942.jpg','created_at' => '2024-03-19 04:16:39','updated_at' => '2024-03-19 04:19:42'),
-            array('id' => '6','name' => 'Emily Brown','email' => 'emily@example.com','phone' => '111-222-3333','designation' => 'HR Coordinator','facebook' => 'https://www.facebook.com/emilybrown','twitter' => 'https://twitter.com/emilybrown','instagram' => 'https://www.instagram.com/emilybrown','youtube' => 'https://www.youtube.com/emilybrown','experience' => '4 years','biography' => '<p>Emily Brown is a dedicated HR coordinator. A vast majority of the app marketers mainly concentrate on the post-launch app marketing techniques and measures while completely missing on the pre-launch campaign. This prevents the app to create buzz and hype just around the time when the app is launched. As and when you launch the app, already a considerable number of people should expectantly look forward to your app and this requires long-drawn marketing efforts leading up to the app launch event. To create pre-launch buzz and hype about the app a mobile app development company has an array of marketing options like social media campaign, search engine ads, video ads, email campaigns, etc. Apart from online options, you can also reach out to the wider audience with traditional marketing options like outdoor ads, print ads, media ads, and promotional events</p>','image' => 'upload/our_team/20240319041912.jpg','created_at' => '2024-03-19 04:16:39','updated_at' => '2024-03-19 04:19:12'),
-            
+            array(
+                'id' => '1',
+                'name' => 'Fahim Al Hasan',
+                'email' => 'fahim@alfahiminternational.com',
+                'phone' => '+880 1700 000 001',
+                'designation' => 'Managing Director',
+                'facebook' => 'https://www.facebook.com/',
+                'twitter' => 'https://twitter.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'youtube' => 'https://www.youtube.com/',
+                'experience' => '12 years',
+                'biography' => '<p>Fahim Al Hasan is the founder and Managing Director of AL FAHIM INTERNATIONAL. With over 12 years of experience in international manpower recruitment and foreign employment solutions, he has established strong partnerships with leading employers across the Gulf, Southeast Asia, and Europe.</p>',
+                'image' => 'upload/our_team/20240319041954.jpg',
+                'created_at' => now(),
+                'updated_at' => now()
+            ),
+            array(
+                'id' => '2',
+                'name' => 'Mahmudul Hasan',
+                'email' => 'mahmud@alfahiminternational.com',
+                'phone' => '+880 1700 000 002',
+                'designation' => 'Director - Overseas Recruitment',
+                'facebook' => 'https://www.facebook.com/',
+                'twitter' => 'https://twitter.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'youtube' => 'https://www.youtube.com/',
+                'experience' => '10 years',
+                'biography' => '<p>Mahmudul Hasan oversees client relationships and foreign employer quota approvals for Saudi Arabia, Dubai (UAE), and European operations. He ensures seamless compliance with bilateral labor agreements.</p>',
+                'image' => 'upload/our_team/20240319041828.jpg',
+                'created_at' => now(),
+                'updated_at' => now()
+            ),
+            array(
+                'id' => '3',
+                'name' => 'Nusrat Jahan',
+                'email' => 'nusrat@alfahiminternational.com',
+                'phone' => '+880 1700 000 003',
+                'designation' => 'Senior Work Permit Specialist',
+                'facebook' => 'https://www.facebook.com/',
+                'twitter' => 'https://twitter.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'youtube' => 'https://www.youtube.com/',
+                'experience' => '7 years',
+                'biography' => '<p>Nusrat Jahan manages work permit authorizations, medical fitness verification, and document attestation for Maldives, Malaysia, and Romania candidates.</p>',
+                'image' => 'upload/our_team/20240319041840.jpg',
+                'created_at' => now(),
+                'updated_at' => now()
+            ),
+            array(
+                'id' => '4',
+                'name' => 'Kamrul Islam',
+                'email' => 'kamrul@alfahiminternational.com',
+                'phone' => '+880 1700 000 004',
+                'designation' => 'Embassy Visa Processing Officer',
+                'facebook' => 'https://www.facebook.com/',
+                'twitter' => 'https://twitter.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'youtube' => 'https://www.youtube.com/',
+                'experience' => '6 years',
+                'biography' => '<p>Kamrul Islam coordinates visa stamping procedures with foreign embassies, GAMCA medical center liaisons, and biometric submissions.</p>',
+                'image' => 'upload/our_team/20240319042051.jpg',
+                'created_at' => now(),
+                'updated_at' => now()
+            ),
+            array(
+                'id' => '5',
+                'name' => 'Shahidul Alam',
+                'email' => 'shahid@alfahiminternational.com',
+                'phone' => '+880 1700 000 005',
+                'designation' => 'BMET & Deployment Manager',
+                'facebook' => 'https://www.facebook.com/',
+                'twitter' => 'https://twitter.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'youtube' => 'https://www.youtube.com/',
+                'experience' => '9 years',
+                'biography' => '<p>Shahidul Alam leads government immigration clearances, BMET smart card processing, pre-departure training, and air ticketing operations.</p>',
+                'image' => 'upload/our_team/20240319041942.jpg',
+                'created_at' => now(),
+                'updated_at' => now()
+            ),
+            array(
+                'id' => '6',
+                'name' => 'Sumaiya Akter',
+                'email' => 'sumaiya@alfahiminternational.com',
+                'phone' => '+880 1700 000 006',
+                'designation' => 'Candidate Relations Coordinator',
+                'facebook' => 'https://www.facebook.com/',
+                'twitter' => 'https://twitter.com/',
+                'instagram' => 'https://www.instagram.com/',
+                'youtube' => 'https://www.youtube.com/',
+                'experience' => '4 years',
+                'biography' => '<p>Sumaiya Akter provides dedicated support for applicant inquiries, interview scheduling, document collection, and status updates.</p>',
+                'image' => 'upload/our_team/20240319041912.jpg',
+                'created_at' => now(),
+                'updated_at' => now()
+            ),
         );
 
         foreach ($ourTeams as $ourTeam) {
-            OurTeam::create($ourTeam);
+            OurTeam::updateOrCreate(['id' => $ourTeam['id']], $ourTeam);
         }
     }
 }
