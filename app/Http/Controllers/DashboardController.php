@@ -9,6 +9,7 @@ use App\Models\Blog;
 use App\Models\OurTeam;
 use App\Models\ContactForm;
 use App\Models\User;
+use App\Enums\ApplicationStatus;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 
@@ -17,20 +18,23 @@ class DashboardController extends Controller
     public function index()
     {
         $total_apps = Application::count();
-        $pending_apps = Application::where('status', 'pending')->count();
-        $verified_apps = Application::where('status', 'verified')->count();
-        $approved_apps = Application::where('status', 'approved')->count();
-        $rejected_apps = Application::where('status', 'rejected')->count();
+        $pending_apps = Application::where('status', ApplicationStatus::PENDING->value)->count();
+        $verified_apps = Application::where('status', ApplicationStatus::VERIFIED->value)->count();
+        $in_progress_apps = Application::where('status', ApplicationStatus::IN_PROGRESS->value)->count();
+        $approved_apps = Application::where('status', ApplicationStatus::APPROVED->value)->count();
+        $rejected_apps = Application::where('status', ApplicationStatus::REJECTED->value)->count();
 
         // Calculate pipeline percentages
         $stats = [
             'total_applications' => $total_apps,
             'pending_applications' => $pending_apps,
             'verified_applications' => $verified_apps,
+            'in_progress_applications' => $in_progress_apps,
             'approved_applications' => $approved_apps,
             'rejected_applications' => $rejected_apps,
             'pending_pct' => $total_apps > 0 ? round(($pending_apps / $total_apps) * 100) : 0,
             'verified_pct' => $total_apps > 0 ? round(($verified_apps / $total_apps) * 100) : 0,
+            'in_progress_pct' => $total_apps > 0 ? round(($in_progress_apps / $total_apps) * 100) : 0,
             'approved_pct' => $total_apps > 0 ? round(($approved_apps / $total_apps) * 100) : 0,
             'rejected_pct' => $total_apps > 0 ? round(($rejected_apps / $total_apps) * 100) : 0,
             'today_applications' => Application::whereDate('created_at', today())->count(),
@@ -71,11 +75,6 @@ class DashboardController extends Controller
     public function changePassword()
     {
         return view('profile.change-password');
-    }
-
-    public function myProfile()
-    {
-        return view('profile.my-profile');
     }
 
     /**

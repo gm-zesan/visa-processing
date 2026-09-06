@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\ApplicationStatus;
 
 class Application extends Model
 {
@@ -20,6 +21,13 @@ class Application extends Model
         'notes',
         'status',
         'admin_remarks',
+    ];
+
+    /**
+     * Cast attributes to native types / Enums
+     */
+    protected $casts = [
+        'status' => ApplicationStatus::class,
     ];
 
     /**

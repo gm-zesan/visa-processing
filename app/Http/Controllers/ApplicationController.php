@@ -5,17 +5,71 @@ namespace App\Http\Controllers;
 use App\Models\Application;
 use App\Models\CountryDetails;
 use App\Models\VisaType;
+use App\Enums\ApplicationStatus;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Enum;
 use DataTables;
 
 class ApplicationController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('permission:application-list|application-view|application-edit|application-delete', ['only' => ['index']]);
+        $this->middleware('permission:application-list|application-view|application-edit|application-delete', ['only' => ['index', 'adminCreate', 'adminStore']]);
         $this->middleware('permission:application-view', ['only' => ['show']]);
         $this->middleware('permission:application-edit', ['only' => ['updateStatus']]);
         $this->middleware('permission:application-delete', ['only' => ['delete']]);
+    }
+
+    /**
+     * Show admin back-office create application form (Walk-in Candidate)
+     */
+    public function adminCreate()
+    {
+        $countries = CountryDetails::with('country')->get();
+        $visaTypes = VisaType::all();
+
+        return view('admin.application.create', [
+            'countries' => $countries,
+            'visaTypes' => $visaTypes,
+        ]);
+    }
+
+    /**
+     * Store manual walk-in application from back office
+     */
+    public function adminStore(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'passport_number' => 'required|string|max:50',
+            'phone' => 'nullable|string|max:30',
+            'email' => 'nullable|email|max:100',
+            'destination_country' => 'nullable|string|max:100',
+            'profession' => 'nullable|string|max:150',
+            'status' => ['required', new Enum(ApplicationStatus::class)],
+            'notes' => 'nullable|string|max:2000',
+            'admin_remarks' => 'nullable|string|max:2000',
+        ], [
+            'name.required' => 'Candidate Full Name (as per Passport) is required.',
+            'passport_number.required' => 'Candidate Passport Number is required.',
+            'status.required' => 'Initial application status is required.',
+        ]);
+
+        $passport = strtoupper(trim($request->passport_number));
+
+        $application = Application::create([
+            'name' => trim($request->name),
+            'passport_number' => $passport,
+            'phone' => $request->phone ? trim($request->phone) : null,
+            'email' => $request->email ? trim($request->email) : null,
+            'destination_country' => $request->destination_country ? trim($request->destination_country) : null,
+            'profession' => $request->profession ? trim($request->profession) : null,
+            'status' => $request->status,
+            'notes' => $request->notes ? trim($request->notes) : null,
+            'admin_remarks' => $request->admin_remarks ? trim($request->admin_remarks) : null,
+        ]);
+
+        return redirect()->route('applications.index')->with('success', 'Walk-in candidate application registered successfully! Tracking ID: ' . $application->tracking_no);
     }
 
     /**
@@ -95,7 +149,7 @@ class ApplicationController extends Controller
             'email' => $request->email ? trim($request->email) : null,
             'destination_country' => $request->destination_country ? trim($request->destination_country) : null,
             'notes' => $request->notes ? trim($request->notes) : null,
-            'status' => 'pending',
+            'status' => ApplicationStatus::PENDING->value,
         ]);
 
         return redirect()->route('apply', ['passport' => $application->passport_number])->with([
@@ -142,7 +196,7 @@ class ApplicationController extends Controller
     public function updateStatus(Request $request, $id)
     {
         $request->validate([
-            'status' => 'required|in:pending,verified,in_progress,approved,rejected',
+            'status' => ['required', new Enum(ApplicationStatus::class)],
             'admin_remarks' => 'nullable|string|max:2000',
         ]);
 
@@ -153,10 +207,12 @@ class ApplicationController extends Controller
         }
         $application->save();
 
+        $statusLabel = $application->status instanceof ApplicationStatus ? $application->status->shortLabel() : strtoupper($application->status);
+
         if ($request->ajax() || $request->wantsJson()) {
             return response()->json([
                 'success' => true,
-                'message' => 'Status for candidate ' . $application->name . ' updated to ' . strtoupper(str_replace('_', ' ', $application->status)),
+                'message' => 'Status for candidate ' . $application->name . ' updated to ' . $statusLabel,
                 'data' => $application,
             ]);
         }

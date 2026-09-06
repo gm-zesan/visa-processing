@@ -42,13 +42,8 @@
 
                 <ul class="main-header-dropdown dropdown-menu">
                     <li>
-                        <a class="dropdown-item d-flex" href="{{route('profile.view')}}">
-                            <i class="ri-information-line fs-18 me-3 op-7"></i>My Profile
-                        </a>
-                    </li>
-                    <li>
                         <a class="dropdown-item d-flex" href="{{route('profile.edit')}}">
-                            <i class="ri-user-3-line fs-18 me-3 op-7"></i>Update Profile
+                            <i class="ri-user-3-line fs-18 me-3 op-7"></i>Profile Settings
                         </a>
                     </li>
                     <li>

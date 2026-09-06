@@ -39,7 +39,7 @@
         @canany(['application-list', 'application-view', 'application-edit', 'application-delete'])
         <li>
             <a href="{{ route('applications.index') }}"
-                class="{{ in_array(Route::currentRouteName(), ['applications.index', 'applications.show']) ? 'active-focus' : '' }}">
+                class="{{ in_array(Route::currentRouteName(), ['applications.index', 'applications.show', 'applications.create']) ? 'active-focus' : '' }}">
                 <i class="ri-passport-line"></i>
                 <span class="link_names">Applications</span>
             </a>

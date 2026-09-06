@@ -227,7 +227,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card table-card">
-                    <div class="card-header table-header">
+                    <div class="card-header table-header d-flex justify-content-between align-items-center">
                         <div class="title-with-breadcrumb">
                             <div class="table-title">Candidate Applications</div>
                             <nav aria-label="breadcrumb"> 
@@ -239,6 +239,9 @@
                                 </ol> 
                             </nav>
                         </div>
+                        <a href="{{ route('applications.create') }}" class="add-new">
+                            <i class="ri-add-line me-1"></i> New Walk-in Application
+                        </a>
                     </div>
                     <div class="card-body" style="overflow-x: auto">
                         @if(session('success'))
@@ -324,11 +327,9 @@
                             <div class="col-md-12">
                                 <label for="modal_status" class="form-label custom-label">Update Recruitment Status <span class="text-danger">*</span></label>
                                 <select class="form-select custom-input" id="modal_status" name="status" required>
-                                    <option value="pending">Application Pending Review</option>
-                                    <option value="verified">Documents & Medical Verified</option>
-                                    <option value="in_progress">Visa Processing & Embassy Clearance</option>
-                                    <option value="approved">Visa Approved & Ready for Flight</option>
-                                    <option value="rejected">Application Rejected / Attention Required</option>
+                                    @foreach(\App\Enums\ApplicationStatus::cases() as $appStatus)
+                                        <option value="{{ $appStatus->value }}">{{ $appStatus->label() }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-12">
@@ -355,7 +356,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" defer></script>
 
 <script type="text/javascript">
+    var SITEURL = "{{ url('/') }}";
     var listUrl = SITEURL + '/dashboard/applications';
+    var applicationStatuses = @json(\App\Enums\ApplicationStatus::shortOptions());
     var table;
 
     function showToast(message, isError = false) {
@@ -432,11 +435,11 @@
                     render: function(data, type, row) {
                         var status = data ? data : 'pending';
                         var html = '<select class="status-select-sm status-' + status + '" onchange="quickStatusChange(' + row.id + ', this.value, this)">';
-                        html += '<option value="pending" ' + (status === 'pending' ? 'selected' : '') + '>Pending</option>';
-                        html += '<option value="verified" ' + (status === 'verified' ? 'selected' : '') + '>Verified</option>';
-                        html += '<option value="in_progress" ' + (status === 'in_progress' ? 'selected' : '') + '>In Progress</option>';
-                        html += '<option value="approved" ' + (status === 'approved' ? 'selected' : '') + '>Approved</option>';
-                        html += '<option value="rejected" ' + (status === 'rejected' ? 'selected' : '') + '>Rejected</option>';
+                        for (var key in applicationStatuses) {
+                            if (applicationStatuses.hasOwnProperty(key)) {
+                                html += '<option value="' + key + '" ' + (status === key ? 'selected' : '') + '>' + applicationStatuses[key] + '</option>';
+                            }
+                        }
                         html += '</select>';
                         return html;
                     }
@@ -470,7 +473,9 @@
             },
             success: function(response) {
                 $(selectElement).prop('disabled', false);
-                $(selectElement).removeClass('status-pending status-verified status-in_progress status-approved status-rejected');
+                for (var key in applicationStatuses) {
+                    $(selectElement).removeClass('status-' + key);
+                }
                 $(selectElement).addClass('status-' + newStatus);
                 showToast(response.message || 'Status updated successfully.');
             },

@@ -341,26 +341,15 @@ Apply Online & Track Passport Status - Manpower Recruitment
             <!-- 2. Candidate Status Dossier (If Passport Found) -->
             @if($trackedApplication)
                 @php
-                    $status = $trackedApplication->status ?? 'pending';
-                    $statusTitles = [
-                        'pending' => 'Application Pending Review',
-                        'verified' => 'Documents & Medical Verified',
-                        'in_progress' => 'Visa Processing & Embassy Clearance',
-                        'approved' => 'Visa Approved & Ready for Flight',
-                        'rejected' => 'Application Rejected / Incomplete',
-                    ];
-                    $badgeClasses = [
-                        'pending' => 'badge_pending',
-                        'verified' => 'badge_verified',
-                        'in_progress' => 'badge_in_progress',
-                        'approved' => 'badge_approved',
-                        'rejected' => 'badge_rejected',
-                    ];
+                    $statusEnum = $trackedApplication->status instanceof \App\Enums\ApplicationStatus
+                        ? $trackedApplication->status
+                        : (\App\Enums\ApplicationStatus::tryFrom($trackedApplication->status ?? '') ?? \App\Enums\ApplicationStatus::PENDING);
+                    $stageLevel = $statusEnum->stageLevel();
 
-                    $isStage1 = in_array($status, ['pending', 'verified', 'in_progress', 'approved']);
-                    $isStage2 = in_array($status, ['verified', 'in_progress', 'approved']);
-                    $isStage3 = in_array($status, ['in_progress', 'approved']);
-                    $isStage4 = ($status === 'approved');
+                    $isStage1 = $stageLevel >= 1;
+                    $isStage2 = $stageLevel >= 2;
+                    $isStage3 = $stageLevel >= 3;
+                    $isStage4 = $stageLevel >= 4;
                 @endphp
 
                 <div class="tracking_dossier_card" id="trackingDossier">
@@ -369,9 +358,9 @@ Apply Online & Track Passport Status - Manpower Recruitment
                             <h4><i class="fa-solid fa-id-card-clip text-warning me-2"></i> {{ $trackedApplication->name }}</h4>
                             <span>Official File Reference: <strong>{{ $trackedApplication->tracking_no ?? 'AFI-APPLICATION' }}</strong> &bull; Registered on {{ $trackedApplication->created_at->format('M d, Y') }}</span>
                         </div>
-                        <div class="dossier_status_badge {{ $badgeClasses[$status] ?? 'badge_pending' }}">
+                        <div class="dossier_status_badge {{ $statusEnum->badgeClass() }}">
                             <i class="fa-solid fa-circle-dot"></i>
-                            <span>{{ $statusTitles[$status] ?? strtoupper($status) }}</span>
+                            <span>{{ $statusEnum->label() }}</span>
                         </div>
                     </div>
 
@@ -395,7 +384,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                         </div>
                     </div>
 
-                    @if($status !== 'rejected')
+                    @if($statusEnum !== \App\Enums\ApplicationStatus::REJECTED)
                         <!-- 4-Stage Visual Progress Timeline -->
                         <div class="timeline_progress_bar">
                             <div class="timeline_node {{ $isStage1 ? ($isStage2 ? 'done' : 'active') : '' }}">

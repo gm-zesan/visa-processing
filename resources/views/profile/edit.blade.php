@@ -1,136 +1,81 @@
 @extends('admin.app')
 @section('title')
-    My Profile | Edit
+    Profile Settings
 @endsection
 
 @push('custom-style')
     <style>
-        .update_info_title{
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 0;
-        }
-        .update_info_subtitle{
-            font-size: 14px;
-            color: #6c757d;
-            margin-bottom: 0;
-        }
-        .content-body .table-card .custom-form .custom-label{
+        .custom-label {
             font-size: 13px;
-            margin-bottom: 2px;
+            font-weight: 500;
+            color: #333335;
+            margin-bottom: 4px;
         }
-        .content-body .table-card .custom-form .custom-input{
-            height: 36px;
+        .custom-input {
+            height: 38px;
             font-size: 13px;
+            border-radius: 4px;
+            border: 1px solid #dee2e6;
         }
-        .error-messages{
-            color: red;
-            font-size: 14px;
-            list-style: none;
-            padding-left: 0;
+        .custom-input:focus {
+            border-color: #845adf;
+            box-shadow: 0 0 0 0.2rem rgba(132, 90, 223, 0.15);
         }
-        .content-body .table-card .custom-form .image-select-file .custom-label .user-image .image-preview {
-            max-width: 25%;
-            max-height: 90px;
-            border-radius: 0;
-            border: none;
-        }
-        .content-body .table-card .custom-form .submit-button{
-            background-color: #000;
-        }
-        .content-body .table-card .custom-form .submit-button:hover{
-            background-color: #6c757d;
-        }
-        
     </style>
 @endpush
 
 @section('content')
-    <div class="container-fluid mt-5">
-        <div class="row">
-            <div class="col-md-6 col-12 mx-auto">
-                <div class="p-4 bg-white rounded-3">
-                    <div class="row align-items-center">
-                        <div class="col-md-12 col-12">
-                            @include('profile.partials.update-profile-information-form')
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="container-fluid my-4">
+        @include('profile.partials.update-profile-information-form')
     </div>
 @endsection
 
 @push('custom-scripts')
     <script>
         $(document).ready(function(){
-            $('#name').keyup(function(){
+            $('#name').on('input', function(){
                 var name = $(this).val();
-                if(name == ''){
-                    $('#setName').html('Your Name');
-                }else{
-                    $('#setName').html(name);
-                }
-                
+                $('#previewCardName').text(name || 'Your Name');
             });
-            $('#email').keyup(function(){
+            $('#email').on('input', function(){
                 var email = $(this).val();
-                if(email == ''){
-                    $('#setEmail').html('example@gmail.com');
-                }else{
-                    $('#setEmail').html(email);
-                }
+                $('#previewCardEmail').text(email || 'example@domain.com');
             });
         });
-    </script>
 
+        function handleAvatarSelect(input) {
+            if (input.files && input.files[0]) {
+                var file = input.files[0];
+                var validTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp', 'image/svg+xml'];
+                if (!validTypes.includes(file.type)) {
+                    alert('Please select a valid image format (JPG, PNG, WEBP, SVG).');
+                    input.value = '';
+                    return;
+                }
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('Image file size must be less than 2MB.');
+                    input.value = '';
+                    return;
+                }
 
-    {{-- image upload and preview js --}}
-    <script>
-        function imageUpload( e ) {
-            var imgPath = e.value;
-            var ext = imgPath.substring( imgPath.lastIndexOf( '.' ) + 1 ).toLowerCase();
-            if ( ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg") {
-                readURL( e, e.id );
-                $( '.' + e.id + 'error' ).hide()
-                $( '#' + e.id + 'Delete' ).removeClass( 'd-none' );
-            } else {
-                $( '.' + e.id + 'error' ).html( 'Select a jpg, jpeg, png type image file.' ).show();
-                $("#" + e.id + "_data").attr("value", "");
-                $( '#' + e.id + 'Preview' ).attr( 'src', "" );
-                $( '#' + e.id ).val( null );
-                $( '#' + e.id + 'Delete' ).addClass( 'd-none' );
-            }
-        }
-
-        var imageName;
-        function readURL( input, id ) {
-            if ( input.files && input.files[ 0 ] ) {
-                imageName = input.files[0].name;
                 var reader = new FileReader();
-                reader.readAsDataURL( input.files[ 0 ] );
-                reader.onload = function ( e ) {
-                    $( '#' + id + 'Preview' ).removeClass( 'd-none' );
-                    $( '#' + id + 'PreviewNo' ).addClass( 'd-none' );
-                    $( '#' + id + 'Preview' ).attr( 'src', e.target.result ).show();
-                    $( '#' + id + 'Delete' ).css( 'display', 'flex' );
-                    $( '#' + id + 'Delete' ).removeClass( 'd-none' );
-                    $( '#' + id + 'Name' ).html( input.files[ 0 ].name );
-                    $("#" + id + "_data").attr("value", imageName);
-                    setProfileImage(e, imageName);
-                };
+                reader.onload = function(e) {
+                    $('#avatarPlaceholder').addClass('d-none');
+                    $('#avatarPreview').attr('src', e.target.result).removeClass('d-none');
+                    $('#remove_image').val('0');
+                }
+                reader.readAsDataURL(file);
             }
         }
-        function removeImage(id) {
-            $( "#" + id ).val( null );
-            const imgValue = $( "#" + id + "Value" ).val();
-            $( '#' + id + 'Preview' ).attr( 'src', imgValue );
-            $( '#' + id + 'PreviewNo' ).removeClass( 'd-none' );
-            $( "#" + id + "_data").attr("value", "");
-            $( '#' + id + 'Name' ).html( 'Not selected' );
-            $( '#' + id + 'Delete' ).css( 'display', 'none' );
-            $( '#' + id + 'Delete' ).addClass( 'd-none' );
-            setProfileImage();
+
+        function triggerRemoveAvatar() {
+            if (confirm('Are you sure you want to remove your profile photo?')) {
+                $('#remove_image').val('1');
+                $('#imageUploadInput').val('');
+                $('#avatarPreview').addClass('d-none').attr('src', '');
+                $('#avatarPlaceholder').removeClass('d-none');
+                $('#removeAvatarBtn').remove();
+            }
         }
     </script>
 @endpush

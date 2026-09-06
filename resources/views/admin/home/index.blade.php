@@ -78,6 +78,7 @@
     }
     .status-pill.pending { background-color: #fff8dd; color: #b58105; border: 1px solid #f7e6a5; }
     .status-pill.verified { background-color: #e8f4fd; color: #1a88cb; border: 1px solid #bce1f9; }
+    .status-pill.in_progress { background-color: #f2eefc; color: #845adf; border: 1px solid #dcd3f8; }
     .status-pill.approved { background-color: #e8f8f0; color: #16a34a; border: 1px solid #bbf0d4; }
     .status-pill.rejected { background-color: #feecee; color: #e11d48; border: 1px solid #fcc2ca; }
 
@@ -336,34 +337,42 @@
                     <div class="pipeline-progress-bar mb-4">
                         <div style="width: {{ $stats['pending_pct'] }}%; background-color: #b58105;" title="Pending: {{ $stats['pending_pct'] }}%"></div>
                         <div style="width: {{ $stats['verified_pct'] }}%; background-color: #1a88cb;" title="Verified: {{ $stats['verified_pct'] }}%"></div>
+                        <div style="width: {{ $stats['in_progress_pct'] ?? 0 }}%; background-color: #845adf;" title="In Progress: {{ $stats['in_progress_pct'] ?? 0 }}%"></div>
                         <div style="width: {{ $stats['approved_pct'] }}%; background-color: #16a34a;" title="Approved: {{ $stats['approved_pct'] }}%"></div>
                         <div style="width: {{ $stats['rejected_pct'] }}%; background-color: #e11d48;" title="Rejected: {{ $stats['rejected_pct'] }}%"></div>
                     </div>
 
-                    <div class="row g-3">
-                        <div class="col-sm-6 col-md-3">
-                            <div class="p-3 rounded border text-center" style="background-color: #fffdf5; border-color: #f7e6a5 !important;">
+                    <div class="row g-2">
+                        <div class="col-sm-6 col-md">
+                            <div class="p-3 rounded border text-center h-100" style="background-color: #fffdf5; border-color: #f7e6a5 !important;">
                                 <div class="text-muted small fw-medium">Pending</div>
                                 <div class="fs-4 fw-bold" style="color: #b58105;">{{ $stats['pending_applications'] }}</div>
                                 <div class="small text-muted">{{ $stats['pending_pct'] }}%</div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="p-3 rounded border text-center" style="background-color: #f6fbfe; border-color: #bce1f9 !important;">
+                        <div class="col-sm-6 col-md">
+                            <div class="p-3 rounded border text-center h-100" style="background-color: #f6fbfe; border-color: #bce1f9 !important;">
                                 <div class="text-muted small fw-medium">Verified</div>
                                 <div class="fs-4 fw-bold" style="color: #1a88cb;">{{ $stats['verified_applications'] }}</div>
                                 <div class="small text-muted">{{ $stats['verified_pct'] }}%</div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="p-3 rounded border text-center" style="background-color: #f5fbf7; border-color: #bbf0d4 !important;">
+                        <div class="col-sm-6 col-md">
+                            <div class="p-3 rounded border text-center h-100" style="background-color: #fbf9fe; border-color: #dcd3f8 !important;">
+                                <div class="text-muted small fw-medium">In Progress</div>
+                                <div class="fs-4 fw-bold" style="color: #845adf;">{{ $stats['in_progress_applications'] ?? 0 }}</div>
+                                <div class="small text-muted">{{ $stats['in_progress_pct'] ?? 0 }}%</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md">
+                            <div class="p-3 rounded border text-center h-100" style="background-color: #f5fbf7; border-color: #bbf0d4 !important;">
                                 <div class="text-muted small fw-medium">Approved</div>
                                 <div class="fs-4 fw-bold" style="color: #16a34a;">{{ $stats['approved_applications'] }}</div>
                                 <div class="small text-muted">{{ $stats['approved_pct'] }}%</div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-md-3">
-                            <div class="p-3 rounded border text-center" style="background-color: #fff7f8; border-color: #fcc2ca !important;">
+                        <div class="col-sm-6 col-md">
+                            <div class="p-3 rounded border text-center h-100" style="background-color: #fff7f8; border-color: #fcc2ca !important;">
                                 <div class="text-muted small fw-medium">Rejected</div>
                                 <div class="fs-4 fw-bold" style="color: #e11d48;">{{ $stats['rejected_applications'] }}</div>
                                 <div class="small text-muted">{{ $stats['rejected_pct'] }}%</div>
@@ -439,7 +448,12 @@
             <div class="dashboard-table-card">
                 <div class="card-header">
                     <h5 class="card-title">Recent Candidate Applications</h5>
-                    <a href="{{ route('applications.index') }}" class="btn btn-sm" style="color: #845adf; font-weight: 500; font-size: 13px;">View All Applications <i class="ri-arrow-right-line ms-1"></i></a>
+                    <div class="d-flex align-items-center gap-2">
+                        <a href="{{ route('applications.create') }}" class="btn btn-sm text-white" style="background-color: #845adf; font-weight: 500; font-size: 12.5px; border-radius: 4px; padding: 4px 12px;">
+                            <i class="ri-add-line me-1"></i> New Walk-in
+                        </a>
+                        <a href="{{ route('applications.index') }}" class="btn btn-sm" style="color: #845adf; font-weight: 500; font-size: 13px;">View All <i class="ri-arrow-right-line ms-1"></i></a>
+                    </div>
                 </div>
                 <div class="card-body p-0">
                     <div class="table-responsive">
@@ -465,9 +479,20 @@
                                         <td>{{ $app->phone ?? '-' }}</td>
                                         <td>{{ $app->destination_country ?? '-' }}</td>
                                         <td>
-                                            <span class="status-pill {{ $app->status }}">
-                                                {{ ucfirst($app->status) }}
-                                            </span>
+                                            @php
+                                                $statusEnum = $app->status instanceof \App\Enums\ApplicationStatus
+                                                    ? $app->status
+                                                    : \App\Enums\ApplicationStatus::tryFrom($app->status ?? '');
+                                            @endphp
+                                            @if($statusEnum)
+                                                <span class="{{ $statusEnum->pillClass() }}">
+                                                    {{ $statusEnum->shortLabel() }}
+                                                </span>
+                                            @else
+                                                <span class="status-pill pending">
+                                                    {{ ucfirst((string)$app->status) }}
+                                                </span>
+                                            @endif
                                         </td>
                                         <td class="text-muted">{{ $app->created_at ? $app->created_at->format('d M Y') : '-' }}</td>
                                         <td class="text-end">
