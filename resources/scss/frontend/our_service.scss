@@ -1,39 +1,57 @@
 @import "./variables.scss";
 @import "./mixins.scss";
 
-
-// mmigration_services_area
+// immigration_services_area
 .immigration_services_area{
-    padding: 5rem 0 2rem;
+    padding: 7rem 0 3rem;
     .choose_top{
         text-align: left;
         h2{
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
             span{
-                font-weight: 300;
+                font-weight: 400;
                 display: block;
             }
         }
         .em_bar_bg{
             margin: 0;
+            border-radius: 0;
         }
     }
     .guid_p{
-        margin: 3rem 0;
-        color: #232323;
+        margin: 2.5rem 0 3.5rem;
+        color: #64748B;
+        font-size: 1.6rem;
+        line-height: 1.7;
     }
     .accurate_guidance{
         display: flex;
-        column-gap: 4rem;
+        column-gap: 3rem;
         margin-bottom: 3rem;
+        padding: 2.5rem;
+        background: $white;
+        border: 1px solid #E2E8F0;
+        border-left: 4px solid $primary;
+        border-radius: 0;
         i{
-            font-size: 5rem;
+            font-size: 4rem;
             color: $red;
+            flex-shrink: 0;
         }
         .guidance_cont{
             h3{
-                font-size: 1.8rem;
-                margin-bottom: 2rem;
-                color: #232323;
+                font-family: 'Outfit', sans-serif;
+                font-size: 1.9rem;
+                font-weight: 700;
+                margin-bottom: 0.8rem;
+                color: #111A3A;
+            }
+            p {
+                color: #64748B;
+                line-height: 1.6;
+                margin: 0;
             }
         }
     }
@@ -43,7 +61,7 @@
     background-repeat: no-repeat;
     background-position: left bottom;
     background-size: cover;
-    padding: 5rem 0 7rem;
+    padding: 7rem 0 9rem;
     margin-top: 5rem;
     position: relative;
     z-index: 1;
@@ -54,43 +72,52 @@
         height: 100%;
         top: 0;
         left: 0;
-        background-color: #f4f7fc;
+        background-color: #F8FAFC;
         z-index: -1;
-        opacity: 0.6;
+        opacity: 0.9;
     }
     .service_tourists_Swiper {
         .swiper-slide {
             height: auto;
         }
         .swiper-pagination {
-            margin-top: 2rem;
+            margin-top: 3rem;
             position: relative;
             .swiper-pagination-bullet {
                 width: 2.5rem;
-                height: 0.5rem;
-                border-radius: 1rem;
-                background-color: $gray_light;
+                height: 0.4rem;
+                border-radius: 0;
+                background-color: #CBD5E1;
                 opacity: 1;
             }
             .swiper-pagination-bullet-active {
                 background-color: $red;
-                width: 3rem;
+                width: 3.5rem;
             }
         }
     }
     .service_tourists_card{
-        border-radius: 1rem;
-        padding: 1rem;
+        border-radius: 0;
+        border: 1px solid #E2E8F0;
+        padding: 1.2rem;
         background-color: $white;
         height: 100%;
         overflow: hidden;
+        box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
+        transition: 0.3s ease;
+        &:hover {
+            box-shadow: 0 12px 30px rgba(17, 26, 58, 0.08);
+            border-color: $primary;
+            transform: translateY(-4px);
+        }
         .visa_bg{
-            border-radius: 1rem;
+            border-radius: 0;
             height: 33.6rem;
             object-fit: cover;
+            width: 100%;
         }
         .service_tourists_cont{
-            padding: 5.4rem 1.9rem 3.2rem;
+            padding: 4.5rem 2rem 2.5rem;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -99,44 +126,58 @@
                     margin-bottom: 1.5rem;
                     display: inline-block;
                     color: $red;
-                    width: 7.0rem;
-                    height: 7.0rem;
+                    width: 6.5rem;
+                    height: 6.5rem;
                     background: #fff;
-                    box-shadow: 0 0 4.0rem 0 rgba(0,0,0,.1);
-                    border-radius: 100%;
+                    box-shadow: 0 4px 15px rgba(17, 26, 58, 0.1);
+                    border: 2px solid $primary;
+                    border-radius: 0;
                     text-align: center;
-                    line-height: 7.0rem;
-                    font-size: 3.5rem;
+                    line-height: 6.5rem;
+                    font-size: 3rem;
                     position: absolute;
-                    top: -4.1rem;
-                    right: 3.2rem;
+                    top: -3.5rem;
+                    right: 2.5rem;
                 }
             }
             h2{
-                font-size: 2.3rem;
-                font-weight: 600;
-                margin-bottom: 2rem;
+                font-family: 'Outfit', sans-serif;
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: #111A3A;
+                margin-bottom: 1.2rem;
             }
             p{
-                color: $gray_light;
+                color: #64748B;
                 margin-bottom: 2rem;
+                line-height: 1.6;
+                font-size: 1.5rem;
             }
             .read_more_btn {
-                color: $black;
+                color: #111A3A;
                 display: block;
-                font-weight: 500;
-                padding: 1.6rem 2.2rem;
+                font-weight: 700;
+                padding: 1.3rem 2.2rem;
                 position: relative;
-                font-size: 1.6rem;
-                transition: 0.5s;
-                background: linear-gradient(124deg, rgba(244,247,252,1) 80%, rgba(197,154,39,1) 80%);
+                font-size: 1.3rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                transition: 0.3s;
+                border-radius: 0;
+                border: 1px solid #E2E8F0;
+                background: #F8FAFC;
                 i{
-                    font-size: 1.7rem;
+                    font-size: 1.4rem;
                     margin-left: 0.7rem;
+                    transition: 0.3s;
                 }
                 &:hover{
-                    opacity: 0.7;
+                    background-color: $red;
+                    border-color: $red;
                     color: #fff;
+                    i {
+                        transform: translateX(4px);
+                    }
                 }
                 img{
                     position: absolute;

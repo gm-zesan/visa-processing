@@ -16,25 +16,41 @@
         padding-top: 3.5rem;
         .accordion-item{
             margin-bottom: 2rem;
+            border-radius: 0;
+            border: 1px solid #E2E8F0;
+            background: #fff;
             .accordion-header{
                 .accordion-button{
-                    font-size: 2rem;
-                    color: $black;
+                    font-family: $font_heading;
+                    font-size: 1.8rem;
+                    color: #111A3A;
                     background-color: #fff;
-                    font-weight: 700;
-                    padding: 1.7rem 1.4rem;
-                    border: 0.1rem solid #dee2e6;
+                    font-weight: 600;
+                    padding: 1.8rem 2rem;
+                    border: none;
+                    border-radius: 0;
+                    box-shadow: none;
+                    &:not(.collapsed) {
+                        color: $red;
+                        background-color: #FAFBFD;
+                        border-bottom: 1px solid #E2E8F0;
+                    }
                     &:focus{
                         color: $red;
                         outline: none;
+                        box-shadow: none;
                     }
                 }
             }
             .accordion-body{
-               padding: 2rem 1.4rem;
+               padding: 2rem 2rem;
                p{
-                color: #7a7a7a;
-                box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+                font-family: $font_body;
+                font-size: 1.5rem;
+                line-height: 1.7;
+                color: #555E6D;
+                box-shadow: none;
+                margin: 0;
                }
             }
         }

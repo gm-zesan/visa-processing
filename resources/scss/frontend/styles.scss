@@ -11,12 +11,20 @@
 }
 
 body {
-    font-family: "Merriweather Sans", sans-serif;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     font-size: 1.6rem;
-	line-height: 1.5;
+	line-height: 1.6;
     font-weight: 400;
     background-color: $white;
-    color: $black;
+    color: #2D3748;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Outfit", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+    color: #111A3A;
 }
 html{
     font-size: 62.5%;
@@ -274,53 +282,61 @@ main{
 // button
 .button {
     display: inline-block;
-    text-transform: capitalize;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
     background-color: $red;
-    border-radius: 0.4rem;
+    border-radius: 0;
     color: $white;
-    padding: 1.2rem 3.1rem;
-    transition: 0.5s;
-    font-weight: 500;
+    padding: 1.3rem 3.2rem;
+    transition: 0.3s ease;
+    font-weight: 700;
+    font-size: 1.4rem;
     border: 0.2rem solid $red;
     i {
-        margin-left: 0.5rem;
+        margin-left: 0.6rem;
     }
     &:hover {
-        background-color: $white;
-        color: $red;
+        background-color: #111A3A;
+        border-color: #111A3A;
+        color: $white;
     }
 }
 // choose_top
 .choose_top {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 3.5rem;
     h3 {
-        font-size: 1.4rem;
-        font-weight: 600;
-        letter-spacing: 0.4rem;
-        color: $gray_light;
+        font-family: 'Outfit', sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        letter-spacing: 0.2rem;
+        text-transform: uppercase;
+        color: $primary;
+        margin-bottom: 0.8rem;
     }
     h2 {
-        font-size: 3.8rem;
-        font-weight: 700;
-        color: $black;
-        margin-bottom: 2rem;
+        font-family: 'Outfit', sans-serif;
+        font-size: 3.6rem;
+        font-weight: 800;
+        color: #111A3A;
+        margin-bottom: 1.8rem;
+        letter-spacing: -0.02em;
     }
     .em_bar_bg {
-        height: 0.5rem;
-        width: 9rem;
-        background: $sky;
+        height: 0.3rem;
+        width: 8rem;
+        background: #E2E8F0;
         position: relative;
-        border-radius: 3rem;
+        border-radius: 0;
         margin: 0 auto;
         &::before {
             content: "";
             position: absolute;
             left: 0;
-            top: -0.2rem;
-            height: 1rem;
-            width: 1rem;
-            border-radius: 50%;
+            top: -0.15rem;
+            height: 0.6rem;
+            width: 2rem;
+            border-radius: 0;
             background: $red;
             animation-duration: 2s;
             animation-timing-function: linear;
@@ -334,8 +350,8 @@ main{
                 transform: translateX(0rem);
             }
             50% {
-                -webkit-transform: translateX(9rem);
-                transform: translateX(8rem);
+                -webkit-transform: translateX(6rem);
+                transform: translateX(6rem);
             }
         }
     }
@@ -345,47 +361,50 @@ main{
      display: inline-block;
      background: $red;
      color: $white;
-     font-size: 1.5rem;
+     font-size: 1.4rem;
+     font-weight: 700;
+     letter-spacing: 0.06em;
      text-transform: uppercase;
-     padding: 1.0rem 2.6rem;
-     transition: .5s;
+     padding: 1.2rem 3rem;
+     transition: .3s;
      position: relative;
      z-index: 1;
-     border-radius: 3.0rem;
+     border-radius: 0;
+     border: 1px solid $red;
      overflow: hidden;
      i{
-         height: 4.0rem;
-         width: 4.0rem;
-         line-height: 4.0rem;
+         height: 3.8rem;
+         width: 3.8rem;
+         line-height: 3.8rem;
          text-align: center;
-         background: $white;
-         color: $red;
+         background: #111A3A;
+         color: $white;
          display: inline-block;
-         border-radius: 100%;
+         border-radius: 0;
          position: relative;
-         left: 1.7rem;
-         transition: 0.5s;
+         left: 1.6rem;
+         transition: 0.3s;
      }
      &::before{
          position: absolute;
          content: "";
-         background: $primary_hover;
+         background: #111A3A;
          height: 100%;
-         width: 10%;
-         transition: .5s;
+         width: 0%;
+         transition: .3s;
          z-index: -1;
          top: 0;
          left: 0;
-         border-radius: 3.0rem;
+         border-radius: 0;
          opacity: 0;
      }
      &:hover:before {
          width: 100%;
-         opacity: 1
+         opacity: 1;
      }
      &:hover i {
          background: $red;
-         color: $white
+         color: $white;
      }
     }
  }
@@ -618,20 +637,20 @@ header {
 
 	.apply_btn {
 		background-color: transparent;
-    	color: $white;
-    	border: .1rem solid $red;
+    	border: 1.5px solid $red;
 		color: $red;
 		display: inline-block;
-		font-size: 1.4rem;
-		padding: 1.0rem 3.8rem;
-		text-transform: capitalize;
+		font-size: 1.3rem;
+		padding: 1.0rem 3.4rem;
+		text-transform: uppercase;
+		letter-spacing: 0.08em;
 		transition: all 0.3s ease 0s;
-		border-radius: 3.0rem;
-		font-weight: 500;
+		border-radius: 0;
+		font-weight: 700;
 		white-space: nowrap;
 		&:hover{
 			background-color: $red;
-			color:  $white;
+			color: $white;
 		}
 	}
 }
@@ -728,7 +747,7 @@ header {
 				max-width: 7rem;
 				flex-shrink: 0;
 				img{
-					border-radius: 1rem;
+					border-radius: 0;
 					object-fit: cover;
 					max-width: 100%;
 				}
@@ -798,34 +817,47 @@ header {
 
 // choose_area
 .choose_area {
-    background-color: $gray;
-    padding: 5rem 0;
+    background-color: #F8FAFC;
+    padding: 6rem 0;
     .choose_card_wrap {
         background-color: $white;
         text-align: center;
-        border-radius: 2rem;
-        box-shadow: 0 0.9rem 3.5rem 0 rgba(0, 0, 0, 0.07);
-        padding: 3rem 2.6rem 4.2rem;
+        border-radius: 0;
+        border: 1px solid #E2E8F0;
+        box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
+        padding: 3.5rem 2.6rem 4rem;
+        transition: 0.3s ease;
+        &:hover {
+            transform: translateY(-4px);
+            border-color: $primary;
+            box-shadow: 0 12px 30px rgba(17, 26, 58, 0.08);
+        }
         img {
             width: 7rem;
             height: 7rem;
             object-fit: contain;
         }
         h2 {
-            font-size: 4rem;
-            font-weight: 700;
-            margin: 2rem 0 1rem;
-            color: $black;
+            font-family: 'Outfit', sans-serif;
+            font-size: 3.8rem;
+            font-weight: 800;
+            margin: 2rem 0 0.8rem;
+            color: #111A3A;
+            letter-spacing: -0.02em;
         }
         h3 {
-            text-transform: capitalize;
-            font-size: 1.8rem;
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            color: #64748B;
         }
     }
 }
 // testimonial_area
 .testimonial_area {
-    padding: 5rem 0 20rem;
+    padding: 7rem 0 20rem;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -833,8 +865,7 @@ header {
     position: relative;
     &::before {
         content: "";
-        background-color: rgb(17 26 58 / 75%);
-        opacity: 0.75;
+        background-color: rgba(17, 26, 58, 0.88);
         position: absolute;
         left: 0;
         top: 0;
@@ -852,28 +883,33 @@ header {
             height: auto;
         }
         .swiper-pagination {
-            margin-top: 2rem;
+            margin-top: 3rem;
             position: relative;
             .swiper-pagination-bullet {
                 width: 2.5rem;
-                height: 0.5rem;
-                border-radius: 1rem;
-                background-color: $gray_light;
+                height: 0.4rem;
+                border-radius: 0;
+                background-color: rgba(255, 255, 255, 0.35);
                 opacity: 1;
             }
             .swiper-pagination-bullet-active {
                 background-color: $red;
-                width: 3rem;
+                width: 3.5rem;
             }
         }
     }
     .texti_card {
         text-align: center;
-        background: transparent;
-        padding: 3rem 2.5rem;
-        border-radius: 0.5rem;
-        border: 0.1rem solid #404b57;
+        background: rgba(255, 255, 255, 0.03);
+        padding: 4rem 3rem;
+        border-radius: 0;
+        border: 1px solid rgba(197, 154, 39, 0.35);
         height: 100%;
+        transition: 0.3s;
+        &:hover {
+            border-color: $primary;
+            background: rgba(255, 255, 255, 0.05);
+        }
         .testi_thumb {
             position: relative;
             margin: 0 0 2rem;
@@ -884,12 +920,12 @@ header {
                 font-weight: 400;
                 font-size: 1.8rem;
                 position: absolute;
-                line-height: 5rem;
+                line-height: 4.5rem;
                 bottom: 0;
-                right: -1.6rem;
+                right: -1.2rem;
                 background-color: $red;
-                width: 5rem;
-                height: 5rem;
+                width: 4.5rem;
+                height: 4.5rem;
                 text-align: center;
                 color: $white;
                 border-radius: 50%;
@@ -898,13 +934,15 @@ header {
                 width: 9rem;
                 height: 9rem;
                 border-radius: 50%;
+                border: 2px solid $primary;
                 object-fit: cover;
             }
         }
         p {
-            color: rgb(255 255 255 / 70%);
+            color: rgba(255, 255, 255, 0.85);
             font-size: 1.6rem;
             margin-bottom: 2rem;
+            line-height: 1.7;
         }
         .testi_title {
             margin-top: 2rem;
@@ -912,7 +950,7 @@ header {
             background: linear-gradient(
                 90deg,
                 rgba(197, 154, 39, 1) 50%,
-                rgba(221, 221, 221, 1) 50%
+                rgba(221, 221, 221, 0.3) 50%
             );
             width: 4rem;
             height: 0.2rem;
@@ -920,13 +958,15 @@ header {
             margin-right: auto;
         }
         h2 {
-            font-size: 1.8rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.9rem;
             text-transform: capitalize;
             font-weight: 700;
             color: $white;
             span {
-                color: rgb(255 255 255 / 70%);
+                color: rgba(255, 255, 255, 0.65);
                 font-weight: 400;
+                font-size: 1.4rem;
                 display: block;
                 padding-top: 0.5rem;
             }
@@ -940,13 +980,16 @@ header {
     }
     .single_brand_card {
         overflow: hidden;
-        -o-transition: 0.3s;
         transition: 0.3s;
         text-align: center;
-        box-shadow: 0 0 0.5rem rgb(0 0 0 / 15%);
+        box-shadow: none;
+        border: 1px solid #E2E8F0;
         background: $white;
-        border-radius: 1rem;
-        padding: 1.5rem;
+        border-radius: 0;
+        padding: 1.8rem;
+        &:hover {
+            border-color: $primary;
+        }
         &:hover img {
             filter: grayscale(0);
         }
@@ -954,6 +997,7 @@ header {
             height: 10.7rem;
             object-fit: cover;
             filter: grayscale(1);
+            transition: 0.3s;
         }
     }
 }
@@ -967,7 +1011,7 @@ header {
     min-height: 40rem;
     &::before {
         content: "";
-        background: rgba(41,52,92,.62);
+        background: rgba(17, 26, 58, 0.75);
         position: absolute;
         top: 0;
         right: 0;
@@ -980,17 +1024,20 @@ header {
       text-align: center;
       padding-top: 15rem;
         h2{
+            font-family: 'Outfit', sans-serif;
             font-size: 4.5rem;
             color: $white;
-            font-weight: 700;
+            font-weight: 800;
             margin-bottom: 2rem;
+            letter-spacing: -0.02em;
         }
         .breadcrumb{
             justify-content: center;
             .breadcrumb-item{
                 font-size: 1.4rem;
-                font-weight: 400;
+                font-weight: 500;
                 text-transform: uppercase;
+                letter-spacing: 0.05em;
                 &::before{
                     color: $white;
                 }
@@ -1006,14 +1053,14 @@ header {
 }
 // dedicated_area
 .dedicated_area{
-    background-color: #F0F5FC;
-    padding: 6rem 0 10rem;
+    background-color: #F8FAFC;
+    padding: 7rem 0 10rem;
     .styles_card_dedi{
         &:hover .dedicated_card_wrap .team_inner_wrap .image_wrap::before {
-            opacity: 1
+            opacity: 1;
         }
         &:hover .dedicated_card_wrap{
-            transform: translateY(-1rem)
+            transform: translateY(-0.8rem);
         }
         .dedicated_card_wrap{
             overflow: visible;
@@ -1028,13 +1075,12 @@ header {
                 .image_wrap{
                     position: relative;
                     overflow: hidden;
+                    border: 1px solid #E2E8F0;
                     img{
                         height: 380px;
                         max-width: 100%;
                         object-fit: cover;
-                        border: none;
                         border-radius: 0;
-                        box-shadow: none;
                     }
                     &::before{
                         content: "";
@@ -1043,7 +1089,7 @@ header {
                         top: 0;
                         width: 100%;
                         height: 100%;
-                        background: rgba(197, 154, 39, .85);
+                        background: rgba(17, 26, 58, .75);
                         transition: .3s;
                         opacity: 0;
                     }
@@ -1059,7 +1105,7 @@ header {
                         top: 50%;
                         transform: translateY(-50%);
                         text-align: center;
-                        margin-top: 1.4rem;
+                        border-radius: 0;
                         a{
                             i{
                                 font-size: 1.5rem;
@@ -1077,30 +1123,33 @@ header {
                 }
                 .team_content{
                     background-color: #fff;
-                    padding: 2rem 2rem 2.5rem;
+                    padding: 2.2rem 2rem 2.5rem;
                     text-align: center;
                     width: 90%;
                     margin-left: auto;
                     margin-right: auto;
                     margin-top: -3rem;
                     z-index: 1;
-                    border-radius: 0.5rem;
-                    box-shadow: 0 0 1.2rem 0 rgba(32, 46, 60, 0.06);
-                    border-bottom: 0.2rem solid $red;
+                    border-radius: 0;
+                    border: 1px solid #E2E8F0;
+                    border-bottom: 3px solid $red;
+                    box-shadow: 0 4px 20px rgba(17, 26, 58, 0.06);
                     position: relative;
                     p{
-                        color: #616161;
+                        color: #64748B;
                         text-transform: uppercase;
-                        font-size: 1.3rem;
-                        font-weight: 300;
+                        font-size: 1.2rem;
+                        font-weight: 600;
                         letter-spacing: 0.1rem;
                     }
                    a{
                     h3{
-                        font-size: 1.8rem;
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 1.9rem;
                         font-weight: 700;
-                        color: $black;
-                        margin-bottom: 1rem;
+                        color: #111A3A;
+                        margin-bottom: 0.8rem;
+                        transition: 0.3s;
                         &:hover{
                             color: $red;
                         }
@@ -1113,8 +1162,8 @@ header {
 }
 // free_online_area
 .free_online_area {
-    background-color: $gray;
-    border-radius: 2rem 0rem 0rem 2rem;
+    background-color: #F8FAFC;
+    border-radius: 0;
     .free_online_wrap {
         position: relative;
         z-index: 1;
@@ -1122,27 +1171,31 @@ header {
         width: 100%;
         background-color: $white;
         @include flax_box(flex, center, center);
-        box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.5);
+        box-shadow: 0 8px 30px rgba(17, 26, 58, 0.08);
+        border: 1px solid #E2E8F0;
         column-gap: 6.2rem;
-        border-radius: 2rem;
+        border-radius: 0;
         img {
             max-width: 50rem;
             object-fit: cover;
             flex-shrink: 0;
-            border-radius: 2rem 0rem 0rem 2rem;
+            border-radius: 0;
         }
         .free_content {
             padding-right: 20rem;
             h2 {
+                font-family: 'Outfit', sans-serif;
                 margin-bottom: 1.2rem;
-                color: $black;
-                font-size: 3rem;
+                color: #111A3A;
+                font-size: 3.2rem;
                 text-transform: capitalize;
-                font-weight: 700;
+                font-weight: 800;
+                letter-spacing: -0.02em;
             }
             p {
-                color: $gray_light;
+                color: #64748B;
                 margin-bottom: 1.6rem;
+                line-height: 1.7;
             }
         }
     }
@@ -1152,8 +1205,9 @@ header {
 .categories_right{
     padding: 3.5rem 3.0rem 3.5rem;
     background: #fff;
-    border: .1rem solid #e6e6e6;
-    box-shadow: 0 0 .5rem rgba(0,0,0,.1);
+    border: 1px solid #E2E8F0;
+    border-radius: 0;
+    box-shadow: none;
     .choose_top{
         text-align: left;
         h2{
@@ -1166,10 +1220,10 @@ header {
     ul{
         li{
             padding: 1.5rem 0;
-            border-top: 0.1rem solid #e6e6e6;
+            border-top: 0.1rem solid #E2E8F0;
             a{
                 font-size: 1.6rem;
-                color: $gray_light;
+                color: #64748B;
                 &:hover{
                     color: $red;
                 }
@@ -1181,28 +1235,35 @@ header {
     margin-bottom: 4.0rem;
     padding: 3.5rem 3.0rem 3.5rem;
     background: #fff;
-    border: .1rem solid #e6e6e6;
-    box-shadow: 0 0 .5rem rgba(0,0,0,.1);
+    border: 1px solid #E2E8F0;
+    border-radius: 0;
+    box-shadow: none;
    form{
     position: relative;
     input{
         background: #fff;
-        height: 6.0rem;
+        height: 5.5rem;
         width: 100%;
-        border: .1rem solid #ced4da;
-        color: #616161;
+        border: 1px solid #CBD5E1;
+        border-radius: 0;
+        color: #111A3A;
         padding-left: 1.5rem;
+        font-size: 1.5rem;
+        &:focus {
+            border-color: $primary;
+        }
     }
     .submit_box{
         position: absolute;
         right: 6%;
-        top: 32%;
+        top: 30%;
         width: 3rem;
         background: #fff;
         border: none;
+        border-radius: 0;
         i{
             font-size: 2rem;
-            color: #616161;
+            color: #64748B;
         }
     }
    }
@@ -1211,68 +1272,74 @@ header {
 .resources_card {
     margin-bottom: 3rem;
     overflow: hidden;
-    transition: all 0.3s ease-in-out 0s;
     background-color: $white;
-    box-shadow: 0 0 3.5rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
+    border: 1px solid #E2E8F0;
+    border-radius: 0;
     padding: 1.5rem;
-    transition: 0.4s;
+    transition: 0.3s;
     &:hover{
-        box-shadow: 0 .5rem 3.0rem rgba(0,0,0,.2);
+        box-shadow: 0 12px 30px rgba(17, 26, 58, 0.08);
+        border-color: $primary;
+        transform: translateY(-4px);
     }
     .resources_img{
         position: relative;
         display: block;
+        img {
+            border-radius: 0;
+            width: 100%;
+        }
         .student_top{
             position: absolute;
             display: inline-block;
             background-color: $red;
             padding: 0.5rem 1.6rem;
-            font-size: 1.0rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 700;
             color: $white;
-            border-radius: .2rem;
-            letter-spacing: 0.1rem;
+            border-radius: 0;
+            letter-spacing: 0.08em;
             top: 1.2rem;
             left: 1.2rem;
-
         }
     }
     .resources_cont {
-        padding: 4rem 3rem 1.5rem;
+        padding: 4rem 2.5rem 1.5rem;
         text-align: center;
         position: relative;
         .visapro-blog-meta-left {
-            box-shadow: 0 0 3.5rem rgba(0, 0, 0, 0.1);
-            padding: 1.2rem 1.2rem;
-            border-radius: 0.3rem;
+            box-shadow: 0 4px 15px rgba(17, 26, 58, 0.06);
+            padding: 1rem 1.2rem;
+            border-radius: 0;
+            border: 1px solid #E2E8F0;
             text-align: center;
             position: absolute;
-            top: -2.4rem;
+            top: -2.2rem;
             background-color: $white;
             left: 0;
             right: 0;
             margin: 0 2rem;
             a {
                 margin-right: 1.3rem;
-                -o-transition: 0.3s;
                 transition: 0.3s;
                 display: inline-block;
                 text-decoration: none;
                 text-transform: capitalize;
                 margin: 0 1rem;
                 position: relative;
-                font-weight: 400;
-                font-size: 1.5rem;
-                color: $gray_light;
+                font-weight: 500;
+                font-size: 1.3rem;
+                color: #64748B;
                 &:before {
                     content: "";
-                    background-color: #616161;
+                    background-color: #CBD5E1;
                     width: .8rem;
                     height: .1rem;
                     position: absolute;
                     right: -1.9rem;
-                    top: 1.1rem;
+                    top: 1.0rem;
                 }
                 &:hover{
                     color: $red;
@@ -1280,16 +1347,15 @@ header {
             }
             span {
                 margin-right: 1.3rem;
-                -o-transition: 0.3s;
                 transition: 0.3s;
                 display: inline-block;
                 text-decoration: none;
                 text-transform: capitalize;
                 margin: 0 1rem;
                 position: relative;
-                font-weight: 400;
-                font-size: 1.5rem;
-                color: $gray_light;
+                font-weight: 500;
+                font-size: 1.3rem;
+                color: #64748B;
                 &:hover{
                     color: $red;
                 }
@@ -1297,36 +1363,48 @@ header {
         }
         h2{
             a{
+                font-family: 'Outfit', sans-serif;
                 margin-bottom: 0;
-                color:$black;
-                font-weight: 600;
+                color: #111A3A;
+                font-size: 2.1rem;
+                font-weight: 700;
                 transition: 0.3s;
+                letter-spacing: -0.01em;
                 &:hover{
                     color: $red;
                 }
             }
         }
         p{
-            margin: 1.6rem 0 1.5rem;
-            color: $gray_light;
+            margin: 1.5rem 0 2rem;
+            color: #64748B;
+            line-height: 1.6;
+            font-size: 1.5rem;
         }
         .read_btn {
-            padding: .9rem 2.0rem;
+            padding: 1rem 2.6rem;
             display: inline-block;
-            font-weight: 400;
-            border-radius: .3rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border-radius: 0;
             transition: .3s;
-            color: #616161;
-            border: .1rem solid #eee;
+            color: #111A3A;
+            border: 1px solid #CBD5E1;
             position: relative;
             i{
-                font-size: 1.8rem;
-                top: 1.3rem;
-                position: absolute;
+                font-size: 1.4rem;
+                margin-left: 0.6rem;
+                transition: 0.3s;
             }
             &:hover{
                 background-color: $red;
-                color: $black;
+                color: $white;
+                border-color: $red;
+                i {
+                    transform: translateX(3px);
+                }
             }
         }
     }

@@ -8,18 +8,22 @@
         .country_lists{
             a{
                 padding: 1.4rem 1.5rem 1.4rem 1.8rem;
-                background-color: #F3F6F9;
-                font-weight: 400;
+                background-color: #F8FAFC;
+                border: 1px solid #E2E8F0;
+                border-radius: 0;
+                font-family: $font_body;
+                font-weight: 500;
                 font-size: 1.5rem;
                 transition: .3s;
-                color: #232323;
+                color: #111A3A;
                 display: inline-flex;
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
-                margin-bottom: 0.2rem;
+                margin-bottom: 0.6rem;
                 &.active{
                     background-color: $red;
+                    border-color: $red;
                     color: $white;
                 }
                 &.active i{
@@ -27,6 +31,7 @@
                 }
                 &:hover{
                     background-color: $red;
+                    border-color: $red;
                     color: $white;
                 }
                 &:hover i{
@@ -39,21 +44,28 @@
             }
         }
         .call_us_area{
+            margin-top: 2rem;
             .call_content{
-                padding: 3rem 0;
-                background-color: $red;
+                padding: 3rem 2rem;
+                background-color: #111A3A;
+                border-top: 3px solid $primary;
+                border-radius: 0;
                 text-align: center;
                 h2{
+                    font-family: $font_heading;
                     color: $white;
                     margin-bottom: 1rem;
-                    font-size: 1.7rem;
+                    font-size: 1.8rem;
+                    font-weight: 600;
                 }
                 a{
-                    color: $white;
+                    font-family: $font_heading;
+                    color: $primary;
                     font-weight: 700;
-                    font-size: 1.8rem;
+                    font-size: 2rem;
+                    letter-spacing: 0.05em;
                     &:hover{
-                        color: $black;
+                        color: $white;
                     }
                 }
             }
@@ -63,12 +75,17 @@
         .country_title{
             margin-top: 3rem;
             h2{
+                font-family: $font_heading;
                 font-size: 3rem;
                 font-weight: 700;
+                color: #111A3A;
                 margin-bottom: 2rem;
             }
             p{
-                color: #8e8b8b;
+                font-family: $font_body;
+                color: #555E6D;
+                font-size: 1.5rem;
+                line-height: 1.7;
             }
         }
     }

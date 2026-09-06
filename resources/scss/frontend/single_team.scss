@@ -3,39 +3,52 @@
 
 // single_person_wrap
 .single_person_wrap{
-    padding: 10rem 0 8rem;
+    padding: 6rem 0 6rem;
     .inner_person_items{
         @include flax_box(flex,center,space-between);
-        box-shadow: .0rem .0rem 1.0rem .0rem rgba(0, 0, 0, 0.27);
+        box-shadow: 0 4px 25px rgba(17, 26, 58, 0.04);
+        border: 1px solid #E2E8F0;
+        border-radius: 0;
+        background: #fff;
         padding: 5rem;
-        column-gap: 8rem;
+        column-gap: 6rem;
         .single_person_images{
-            width: 50%;
+            width: 45%;
             object-fit: cover;
+            border-radius: 0;
+            border: 1px solid #E2E8F0;
         }
         .connt_person{
-            width: 50%;
+            width: 55%;
             h2 {
-                font-size: 3.0rem;
-                font-weight: 700;
-                margin-bottom: 1.0rem;
+                font-family: 'Outfit', sans-serif;
+                font-size: 3.2rem;
+                font-weight: 800;
+                color: #111A3A;
+                margin-bottom: 0.8rem;
+                letter-spacing: -0.02em;
             }
             h3{
+                font-family: 'Outfit', sans-serif;
                 text-transform: uppercase;
-                font-size: 1.5rem;
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
                 color: $red;
             }
             .single_list_person{
-                margin: 2rem 0;
+                margin: 2.5rem 0;
                 li{
-                    color: $gray_light;
+                    color: #64748B;
                     padding: 1rem 0;
-                    font-family: 300;
+                    font-size: 1.5rem;
+                    border-bottom: 1px solid #F1F5F9;
                     strong{
                         margin-right: 0.5rem;
+                        color: #111A3A;
                     }
                     a{
-                        color: $gray_light;
+                        color: #64748B;
                         &:hover{
                             color: $red;
                         }
@@ -48,13 +61,16 @@
                 li{
                     a{
                         @include flax_box(flex,center,center);
-                        width: 3.5rem;
-                        height: 3.5rem;
-                        border-radius: 0.5rem;
-                        background-color: $red;
+                        width: 4rem;
+                        height: 4rem;
+                        border-radius: 0;
+                        background-color: #111A3A;
                         color: $white;
+                        border: 1px solid rgba(197, 154, 39, 0.3);
+                        transition: 0.3s;
                         &:hover{
-                            background-color: $black;
+                            background-color: $red;
+                            border-color: $red;
                         }
                     }
                 }
@@ -65,16 +81,23 @@
 .biography_area{
     margin-bottom: 7rem;
     .biography_wrap{
-        box-shadow: .0rem .0rem 1.0rem .0rem rgba(0, 0, 0, 0.19);
+        box-shadow: 0 4px 25px rgba(17, 26, 58, 0.04);
+        border: 1px solid #E2E8F0;
+        border-radius: 0;
+        background: #fff;
         padding: 5rem;
         h2{
-            font-size: 3.5rem;
-            font-family: 600;
-            margin-bottom: 3rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #111A3A;
+            margin-bottom: 2rem;
+            letter-spacing: -0.01em;
         }
         p{
-            color: #848484;
-            text-align: justify;
+            color: #475569;
+            line-height: 1.8;
+            font-size: 1.6rem;
         }
     }
 }

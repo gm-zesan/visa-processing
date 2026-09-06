@@ -3,21 +3,25 @@
 
 // country_work_area
 .country_work_area{
-    padding: 1rem 0 5rem;
+    padding: 3rem 0 7rem;
     .country_left_side{
         .country_lists{
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            margin-bottom: 3rem;
             a{
-                padding: 1.4rem 1.5rem 1.4rem 1.8rem;
-                background-color: #F3F6F9;
-                font-weight: 400;
+                padding: 1.5rem 1.8rem;
+                background-color: #F8FAFC;
+                font-weight: 600;
                 font-size: 1.5rem;
                 transition: .3s;
-                color: #232323;
+                color: #111A3A;
                 display: inline-flex;
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
-                margin-bottom: 0.2rem;
+                border-bottom: 1px solid #E2E8F0;
+                border-radius: 0;
                 &.active{
                     background-color: $red;
                     color: $white;
@@ -33,80 +37,116 @@
                     color: $white;
                 }
                 i{
-                    font-size: 1.5rem;
-                    color: #8e8b8b;
+                    font-size: 1.4rem;
+                    color: #94A3B8;
+                    transition: 0.3s;
                 }
             }
         }
         .call_us_area{
+            margin-bottom: 3rem;
             .call_content{
-                padding: 3rem 0;
-                background-color: $red;
+                padding: 3.5rem 2rem;
+                background-color: #111A3A;
+                border-radius: 0;
+                border: 1px solid rgba(197, 154, 39, 0.4);
                 text-align: center;
                 h2{
+                    font-family: 'Outfit', sans-serif;
                     color: $white;
                     margin-bottom: 1rem;
                     font-size: 1.7rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
                 }
                 a{
-                    color: $white;
-                    font-weight: 700;
-                    font-size: 1.8rem;
+                    color: $primary;
+                    font-weight: 800;
+                    font-size: 2.2rem;
+                    letter-spacing: 0.02em;
                     &:hover{
-                        color: $black;
+                        color: $white;
                     }
                 }
             }
         }
         .request_form_area{
-            background-color: $red;
-            padding: 5rem;
+            background-color: #111A3A;
+            padding: 4rem 3rem;
+            border-radius: 0;
+            border: 1px solid rgba(197, 154, 39, 0.3);
             h2{
-                font-size: 2.5rem;
+                font-family: 'Outfit', sans-serif;
+                font-size: 2.4rem;
+                font-weight: 800;
                 color: $white;
-                margin-bottom: 3rem;
+                margin-bottom: 2rem;
+                text-align: center;
             }
             input{
-                background-color: #F4F7FC;
-                padding: 1rem 2rem;
-                color: #666;
-                border-radius: 0.5rem;
-                border: none;
+                background-color: #F8FAFC;
+                padding: 1.2rem 1.8rem;
+                color: #111A3A;
+                border-radius: 0;
+                border: 1px solid #CBD5E1;
                 outline: none;
-                margin-top: 2rem;
+                margin-top: 1.5rem;
                 width: 100%;
+                font-size: 1.4rem;
+                &:focus {
+                    border-color: $primary;
+                }
             }
             select{
-                background-color: #F4F7FC;
-                padding: 1rem 2rem;
-                color: #666;
-                border-radius: 0.5rem;
-                border: none;
+                background-color: #F8FAFC;
+                padding: 1.2rem 1.8rem;
+                color: #111A3A;
+                border-radius: 0;
+                border: 1px solid #CBD5E1;
                 outline: none;
-                margin-top: 2rem;
+                margin-top: 1.5rem;
                 width: 100%;
+                font-size: 1.4rem;
+                &:focus {
+                    border-color: $primary;
+                }
             }
             textarea{
-                background-color: #F4F7FC;
-                padding: 1rem 2rem;
-                color: #666;
-                border-radius: 0.5rem;
-                margin-top: 2rem;
+                background-color: #F8FAFC;
+                padding: 1.2rem 1.8rem;
+                color: #111A3A;
+                border-radius: 0;
+                border: 1px solid #CBD5E1;
+                margin-top: 1.5rem;
                 width: 100%;
                 min-height: 12rem;
                 resize: none;
+                font-size: 1.4rem;
+                &:focus {
+                    border-color: $primary;
+                }
             }
             .error_msg{
-                color: $white;
-                font-size: 1.5rem;
+                color: #EF4444;
+                font-size: 1.3rem;
+                margin-top: 0.5rem;
             }
             .button{
                 width: 100%;
-                background-color: #111A3A;
-                font-weight: 400;
-                border-radius: 0.5rem;
+                background-color: $red;
+                color: $white;
+                font-weight: 700;
+                font-size: 1.4rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                border-radius: 0;
+                border: 1px solid $red;
+                margin-top: 2rem;
+                padding: 1.4rem 2rem;
                 &:hover{
-                    background-color: $primary_hover;
+                    background-color: #0E1626;
+                    border-color: #0E1626;
                     color: $white;
                 }
             }
@@ -114,18 +154,26 @@
     }
     .country_right_side{
         img{
-            height: 47.5rem;
+            height: 45rem;
             object-fit: cover;
+            width: 100%;
+            border-radius: 0;
+            border: 1px solid #E2E8F0;
         }
         .country_title{
-            margin-top: 3rem;
+            margin-top: 3.5rem;
             h2{
-                font-size: 3rem;
-                font-weight: 700;
+                font-family: 'Outfit', sans-serif;
+                font-size: 3.2rem;
+                font-weight: 800;
+                color: #111A3A;
                 margin-bottom: 2rem;
+                letter-spacing: -0.02em;
             }
             p{
-                color: #8e8b8b;
+                color: #64748B;
+                line-height: 1.7;
+                font-size: 1.6rem;
             }
         }
     }
