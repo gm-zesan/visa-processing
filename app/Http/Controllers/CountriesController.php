@@ -78,6 +78,15 @@ class CountriesController extends Controller
             $data['image'] = $imageValue;
         }
 
+        if (isset($data['sectors']) && is_string($data['sectors']) && trim($data['sectors']) !== '') {
+            $decoded = json_decode($data['sectors'], true);
+            $data['sectors'] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
+        }
+        if (isset($data['worker_protections']) && is_string($data['worker_protections']) && trim($data['worker_protections']) !== '') {
+            $decoded = json_decode($data['worker_protections'], true);
+            $data['worker_protections'] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
+        }
+
         CountryDetails::create($data);
         return redirect()->route('countries')->with('success', 'Country created successfully.');
     }
@@ -111,6 +120,15 @@ class CountriesController extends Controller
                     unlink($old_data->image);
                 }
             }
+        }
+
+        if (isset($data['sectors']) && is_string($data['sectors']) && trim($data['sectors']) !== '') {
+            $decoded = json_decode($data['sectors'], true);
+            $data['sectors'] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
+        }
+        if (isset($data['worker_protections']) && is_string($data['worker_protections']) && trim($data['worker_protections']) !== '') {
+            $decoded = json_decode($data['worker_protections'], true);
+            $data['worker_protections'] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
         }
 
         $old_data->update($data);

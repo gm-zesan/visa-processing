@@ -74,8 +74,8 @@ class PageController extends Controller
         return view('frontend.country', ['country' => $country, 'countryDetails' => $countryDetails, 'visa_types' => $visa_types]);
     }
     public function visa($slug){
-        $visa = VisaType::where('slug', $slug)->firstOrFail();
-        $all_visas = VisaType::all();
+        $visa = VisaType::with(['countryDetails.country'])->where('slug', $slug)->firstOrFail();
+        $all_visas = VisaType::with(['countryDetails.country'])->get();
         return view('frontend.visa', ['visa' => $visa, 'visas' => $all_visas]);
     }
 }

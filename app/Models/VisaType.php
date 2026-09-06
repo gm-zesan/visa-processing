@@ -6,15 +6,31 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+
 class VisaType extends Model
 {
     use HasFactory, HasSlug;
+
     protected $fillable = [
         'name',
         'slug',
         'country_details_id',
         'image',
         'description',
+        'visa_category',
+        'issuing_authority',
+        'processing_time',
+        'contract_period',
+        'emigration_clearance',
+        'benefits',
+        'requirements',
+        'processing_steps',
+    ];
+
+    protected $casts = [
+        'benefits' => 'array',
+        'requirements' => 'array',
+        'processing_steps' => 'array',
     ];
 
     public function getSlugOptions() : SlugOptions
@@ -24,11 +40,6 @@ class VisaType extends Model
             ->saveSlugsTo('slug')
             ->slugsShouldBeNoLongerThan(50);
     }
-
-    // public function country()
-    // {
-    //     return $this->belongsTo(Country::class, 'country_id');
-    // }
 
     public function countryDetails()
     {

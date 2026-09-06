@@ -61,10 +61,17 @@ class VisaTypeController extends Controller
             $image->move($destinationPath, $imageValue);
             $data['image'] = $imageValue;
         }
+
+        foreach (['benefits', 'requirements', 'processing_steps'] as $jsonField) {
+            if (isset($data[$jsonField]) && is_string($data[$jsonField]) && trim($data[$jsonField]) !== '') {
+                $decoded = json_decode($data[$jsonField], true);
+                $data[$jsonField] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
+            }
+        }
+
         VisaType::create($data);
         
-        return view('admin.visa_type.index');
-        
+        return redirect()->route('visa_type')->with('success', 'Visa Type Created Successfully');
     }
 
     public function edit($id)
@@ -97,6 +104,13 @@ class VisaTypeController extends Controller
                 if(file_exists($visa_type->image)){
                     unlink($visa_type->image);
                 }
+            }
+        }
+
+        foreach (['benefits', 'requirements', 'processing_steps'] as $jsonField) {
+            if (isset($data[$jsonField]) && is_string($data[$jsonField]) && trim($data[$jsonField]) !== '') {
+                $decoded = json_decode($data[$jsonField], true);
+                $data[$jsonField] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
             }
         }
 

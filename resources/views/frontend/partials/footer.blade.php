@@ -17,10 +17,10 @@
                 </ul>
            </div>
            <div class="col-lg-3 col-sm-6 footer_secoend_item pt_40">
-                <h3>Work Permit Countries</h3>
+                <h3>Destination Countries</h3>
                 <ul>
                     @foreach ($commonCountriesVisa as $commonCountryVisa)
-                        <li><a href="{{route('country',['id'=>$commonCountryVisa->id])}}"><i class="fa-solid fa-arrow-right"></i>{{$commonCountryVisa->country->name}} Work Permit</a></li>
+                        <li><a href="{{route('country',['id'=>$commonCountryVisa->id])}}"><i class="fa-solid fa-arrow-right"></i>Working in {{$commonCountryVisa->country->name}}</a></li>
                     @endforeach
                 </ul>
            </div>
