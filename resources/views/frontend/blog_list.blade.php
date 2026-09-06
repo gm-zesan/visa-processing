@@ -76,7 +76,7 @@
                                 </div>
                                 <h2><a href="{{route('single_blog', ['slug' => $blog->slug])}}">{{$blog->title}}</a></h2>
 
-                                {!! Str::limit($blog->description, 200, '...') !!}
+                                <p class="blog-excerpt">{{ Str::limit(strip_tags($blog->description), 180, '...') }}</p>
                             </div>
                         </div>
                     @endforeach
