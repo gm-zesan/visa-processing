@@ -48,39 +48,17 @@
                   <a href="tel:+{{ getSettingsData('59', 'subtitle') }}"><i class="fa-solid fa-phone-volume"></i>+{{ getSettingsData('59', 'subtitle') }}</a>
                 </div>
               </div>
-              <!-- request_form -->
-              <div class="request_form_area">
-                <h2>Apply for<br> Work Permit</h2>
-                <form action="{{route('appointment.store')}}" method="POST">
-                    @csrf
-                    <input type="hidden" name="country" value="{{ $visa->countryDetails->country->name ?? 'Work Permit' }}">
-                    <input type="hidden" name="visa_type_id" value="{{$visa->id}}">
-                    <input type="text" name="name" placeholder="Your Full Name" required>
-                    @if($errors->has('name'))
-                        <div class="error_msg">
-                            {{ $errors->first('name') }}
-                        </div>
-                    @endif
-                    <input type="email" name="email" placeholder="Your Email Address" required>
-                    @if($errors->has('email'))
-                        <div class="error_msg">
-                            {{ $errors->first('email') }}
-                        </div>
-                    @endif
-                    <input type="tel" name="phone" placeholder="Your Phone Number" required>
-                    @if($errors->has('phone'))
-                        <div class="error_msg">
-                            {{ $errors->first('phone') }}
-                        </div>
-                    @endif
-                    <textarea placeholder="Your Trade / Experience Details" name="message"></textarea>
-                    @if($errors->has('message'))
-                        <div class="error_msg">
-                            {{ $errors->first('message') }}
-                        </div>
-                    @endif
-                    <button type="submit" class="button">Submit Application</button>
-                </form>
+              <!-- apply_cta_box -->
+              <div class="request_form_area text-center" style="padding: 3.5rem 2.5rem; background: #111A3A; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 0;">
+                <i class="fa-solid fa-passport mb-3" style="font-size: 3.6rem; color: #C59A27;"></i>
+                <h2 style="color: #FFFFFF; font-size: 2.2rem; font-family: 'Outfit', sans-serif; margin-bottom: 1rem;">Apply for {{ $visa->name }}</h2>
+                <p style="color: rgba(255, 255, 255, 0.75); font-size: 1.4rem; font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.6; margin-bottom: 2.5rem;">
+                  Register directly with your valid Passport Number for official overseas visa processing and tracking.
+                </p>
+                <a href="{{ route('apply') }}" class="button w-100" style="display: flex; align-items: center; justify-content: center; column-gap: 0.8rem; padding: 1.5rem 2rem;">
+                  <span>APPLY ONLINE NOW</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
             </div>
           </div>

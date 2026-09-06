@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AppointmentController;
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\AssignRoleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
@@ -47,16 +47,12 @@ Route::get('/blog_list', [PageController::class,'blog_list'])->name('blog_list')
 Route::get('/blog_list/{category}', [PageController::class,'blog_list'])->name('blog_filter');
 Route::get('/country/{id}', [PageController::class,'country'])->name('country');
 Route::get('/visa/{slug}', [PageController::class,'visa'])->name('visa');
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/apply', [ApplicationController::class,'create'])->name('apply');
+Route::post('/apply/store', [ApplicationController::class,'store'])->name('apply.store');
+Route::post('/apply/track', [ApplicationController::class,'track'])->name('apply.track');
 
 // message send route
 Route::post('/message/store', [ContactFormController::class,'store'])->name('message.store');
-Route::post('/appointment/store', [AppointmentController::class,'store'])->name('appointment.store');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -67,6 +63,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // Dashboard routes
     Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+    Route::get('/dashboard/clear-cache', [DashboardController::class, 'clearCache'])->name('admin.clear-cache');
 
 
     // Ck editor routes
@@ -171,9 +168,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/visa_type/update/{id}', [VisaTypeController::class,'update'])->name('visa_type.update');
     Route::get('/dashboard/visa_type/delete/{id}', [VisaTypeController::class,'delete'])->name('visa_type.delete');
     
-    //appointment Route
-    Route::get('/dashboard/appointment', [AppointmentController::class,'index'])->name('appointment');
-    Route::get('/dashboard/appointment/delete/{id}', [AppointmentController::class,'delete'])->name('appointment.delete');
+    //application Route
+    Route::get('/dashboard/applications', [ApplicationController::class,'index'])->name('applications.index');
+    Route::get('/dashboard/applications/{id}', [ApplicationController::class,'show'])->name('applications.show');
+    Route::get('/dashboard/applications/delete/{id}', [ApplicationController::class,'delete'])->name('applications.delete');
+    Route::post('/dashboard/applications/status/{id}', [ApplicationController::class,'updateStatus'])->name('applications.status');
 
 });
 

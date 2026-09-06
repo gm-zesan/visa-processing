@@ -29,6 +29,7 @@ export default defineConfig({
                 "resources/scss/frontend/country.scss",
                 "resources/scss/frontend/visa.scss",
                 "resources/scss/frontend/blog_list.scss",
+                "resources/scss/frontend/apply.scss",
                 // "resources/scss/frontend/privacy.scss",
                 // "resources/scss/frontend/termsofuse.scss",
                 // "resources/scss/frontend/cookie.scss",

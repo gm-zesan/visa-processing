@@ -9,6 +9,14 @@ use DataTables;
 use DB;
 class VisaTypeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:visa_type-list|visa_type-create|visa_type-edit|visa_type-delete', ['only' => ['index']]);
+        $this->middleware('permission:visa_type-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:visa_type-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:visa_type-delete', ['only' => ['delete']]);
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {

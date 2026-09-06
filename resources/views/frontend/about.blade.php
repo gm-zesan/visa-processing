@@ -182,11 +182,14 @@ about
     <!-- choose_area -->
     <div class="choose_area about_choose_area">
         <div class="container">
-            <div class="row g-0" data-aos="flip-down">
+            <div class="row row_gutters_sm" data-aos="flip-down">
 
             @foreach( getSettingsList('Home-choose-card') as $item) 
-            <div class="col-lg-3 col-sm-3 mt_30">
+            <div class="col-lg-3 col-md-6 col-sm-6 mt_30">
                     <div class="choose_card_wrap">
+                        @if(!empty($item->image))
+                            <img src="{{ asset($item->image) }}" alt="img" loading="lazy" decoding="async">
+                        @endif
                         <h2 class="counter" data-speed="1000">{{ $item->subtitle }}</h2>
                         <h3>{{ $item->title }}</h3>
                     </div>
@@ -242,3 +245,32 @@ about
         </div>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const counters = document.querySelectorAll(".counter");
+            counters.forEach((item) => {
+                const text = item.textContent.trim();
+                const target = parseInt(text.replace(/[^\d]/g, ''), 10);
+                if (isNaN(target)) return;
+
+                const suffix = text.replace(/[\d\s]/g, '');
+                let current = 0;
+                const duration = 1200;
+                const steps = 30;
+                const increment = target / steps;
+                const stepTime = duration / steps;
+
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    item.textContent = Math.floor(current) + suffix;
+                }, stepTime);
+            });
+        });
+    </script>
+@endpush

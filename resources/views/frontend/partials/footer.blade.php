@@ -28,9 +28,9 @@
                 <h3>Quick Links</h3>
                 <ul>
                     <li><a href="{{route('about')}}"><i class="fa-solid fa-arrow-right"></i>About Us</a></li>
-                    <li><a href="{{route('ourTeam')}}"><i class="fa-solid fa-arrow-right"></i>Our Team</a></li>
+                    <li><a href="{{route('apply')}}"><i class="fa-solid fa-arrow-right"></i>Apply Online</a></li>
                     <li><a href="{{route('our_service')}}"><i class="fa-solid fa-arrow-right"></i>Work Permits</a></li>
-                    <li><a href="{{route('blog_list')}}"><i class="fa-solid fa-arrow-right"></i>News & Updates</a></li>
+                    <li><a href="{{route('ourTeam')}}"><i class="fa-solid fa-arrow-right"></i>Our Team</a></li>
                     <li><a href="{{route('contact')}}"><i class="fa-solid fa-arrow-right"></i>Contact Us</a></li>
                 </ul>
            </div>

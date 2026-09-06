@@ -2,19 +2,21 @@
 @import "./mixins.scss";
 
 // country_work_area
-.country_work_area{
+.country_work_area {
     padding: 3rem 0 7rem;
-    .country_left_side{
-        .country_lists{
+
+    .country_left_side {
+        .country_lists {
             border: 1px solid #E2E8F0;
             border-radius: 0;
             margin-bottom: 3rem;
-            a{
+
+            a {
                 padding: 1.5rem 1.8rem;
                 background-color: #F8FAFC;
                 font-weight: 600;
                 font-size: 1.5rem;
-                transition: .3s;
+                transition: all .25s ease;
                 color: #111A3A;
                 display: inline-flex;
                 justify-content: space-between;
@@ -22,36 +24,50 @@
                 width: 100%;
                 border-bottom: 1px solid #E2E8F0;
                 border-radius: 0;
-                &.active{
-                    background-color: $red;
+
+                &.active {
+                    background-color: #111A3A;
                     color: $white;
+
+                    i {
+                        color: $primary;
+                    }
+
+                    h3 {
+                        color: $white;
+                    }
                 }
-                &.active i{
-                    color: $white;
+
+                &:hover:not(.active) {
+                    background-color: #FAFBFD;
+                    color: $primary;
+                    padding-left: 2.2rem;
+
+                    i {
+                        color: $primary;
+                        transform: translateX(4px);
+                    }
                 }
-                &:hover{
-                    background-color: $red;
-                    color: $white;
-                }
-                &:hover i{
-                    color: $white;
-                }
-                i{
+
+                i {
                     font-size: 1.4rem;
                     color: #94A3B8;
-                    transition: 0.3s;
+                    transition: all 0.25s ease;
                 }
             }
         }
-        .call_us_area{
+
+        .call_us_area {
             margin-bottom: 3rem;
-            .call_content{
+
+            .call_content {
                 padding: 3.5rem 2rem;
                 background-color: #111A3A;
                 border-radius: 0;
                 border: 1px solid rgba(197, 154, 39, 0.4);
                 text-align: center;
-                h2{
+
+                h2 {
                     font-family: 'Outfit', sans-serif;
                     color: $white;
                     margin-bottom: 1rem;
@@ -60,23 +76,27 @@
                     text-transform: uppercase;
                     letter-spacing: 0.05em;
                 }
-                a{
+
+                a {
                     color: $primary;
                     font-weight: 800;
                     font-size: 2.2rem;
                     letter-spacing: 0.02em;
-                    &:hover{
+
+                    &:hover {
                         color: $white;
                     }
                 }
             }
         }
-        .request_form_area{
+
+        .request_form_area {
             background-color: #111A3A;
             padding: 4rem 3rem;
             border-radius: 0;
             border: 1px solid rgba(197, 154, 39, 0.3);
-            h2{
+
+            h2 {
                 font-family: 'Outfit', sans-serif;
                 font-size: 2.4rem;
                 font-weight: 800;
@@ -84,7 +104,8 @@
                 margin-bottom: 2rem;
                 text-align: center;
             }
-            input{
+
+            input {
                 background-color: #F8FAFC;
                 padding: 1.2rem 1.8rem;
                 color: #111A3A;
@@ -94,11 +115,13 @@
                 margin-top: 1.5rem;
                 width: 100%;
                 font-size: 1.4rem;
+
                 &:focus {
                     border-color: $primary;
                 }
             }
-            select{
+
+            select {
                 background-color: #F8FAFC;
                 padding: 1.2rem 1.8rem;
                 color: #111A3A;
@@ -108,11 +131,13 @@
                 margin-top: 1.5rem;
                 width: 100%;
                 font-size: 1.4rem;
+
                 &:focus {
                     border-color: $primary;
                 }
             }
-            textarea{
+
+            textarea {
                 background-color: #F8FAFC;
                 padding: 1.2rem 1.8rem;
                 color: #111A3A;
@@ -123,16 +148,19 @@
                 min-height: 12rem;
                 resize: none;
                 font-size: 1.4rem;
+
                 &:focus {
                     border-color: $primary;
                 }
             }
-            .error_msg{
+
+            .error_msg {
                 color: #EF4444;
                 font-size: 1.3rem;
                 margin-top: 0.5rem;
             }
-            .button{
+
+            .button {
                 width: 100%;
                 background-color: $red;
                 color: $white;
@@ -144,7 +172,8 @@
                 border: 1px solid $red;
                 margin-top: 2rem;
                 padding: 1.4rem 2rem;
-                &:hover{
+
+                &:hover {
                     background-color: #0E1626;
                     border-color: #0E1626;
                     color: $white;
@@ -152,17 +181,20 @@
             }
         }
     }
-    .country_right_side{
-        img{
+
+    .country_right_side {
+        img {
             height: 45rem;
             object-fit: cover;
             width: 100%;
             border-radius: 0;
             border: 1px solid #E2E8F0;
         }
-        .country_title{
+
+        .country_title {
             margin-top: 3.5rem;
-            h2{
+
+            h2 {
                 font-family: 'Outfit', sans-serif;
                 font-size: 3.2rem;
                 font-weight: 800;
@@ -170,7 +202,8 @@
                 margin-bottom: 2rem;
                 letter-spacing: -0.02em;
             }
-            p{
+
+            p {
                 color: #64748B;
                 line-height: 1.7;
                 font-size: 1.6rem;

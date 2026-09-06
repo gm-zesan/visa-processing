@@ -7,6 +7,15 @@ use Illuminate\Http\Request;
 
 class ThemeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:theme-list|theme-create|theme-edit|theme-delete|theme-active', ['only' => ['index']]);
+        $this->middleware('permission:theme-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:theme-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:theme-delete', ['only' => ['delete']]);
+        $this->middleware('permission:theme-active', ['only' => ['activate']]);
+    }
+
     public function index()
     {
         $themes = Theme::get()->all();

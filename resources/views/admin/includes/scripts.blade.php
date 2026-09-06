@@ -1,5 +1,6 @@
 
 
+
 {{-- Jquery CDN --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -152,36 +153,6 @@
     }
 </script>
 
-
-
-{{-- full screen js  --}}
-<script>
-    // full screen open
-    var elem = document.getElementById("fullpage");
-    function openFullscreen() {
-        $("#openFullScreen").addClass("d-none");
-        $("#exitFullScreen").removeClass("d-none");
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
-        }
-    }
-    // full screen exit
-    function removeFullScreen() {
-        $("#openFullScreen").removeClass("d-none");
-        $("#exitFullScreen").addClass("d-none");
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-        }
-    }
-</script>
 
 
     

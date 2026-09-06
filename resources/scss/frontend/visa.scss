@@ -7,14 +7,14 @@
     .country_left_side{
         .country_lists{
             a{
-                padding: 1.4rem 1.5rem 1.4rem 1.8rem;
+                padding: 1.4rem 1.8rem;
                 background-color: #F8FAFC;
                 border: 1px solid #E2E8F0;
                 border-radius: 0;
                 font-family: $font_body;
                 font-weight: 500;
                 font-size: 1.5rem;
-                transition: .3s;
+                transition: all .25s ease;
                 color: #111A3A;
                 display: inline-flex;
                 justify-content: space-between;
@@ -22,24 +22,27 @@
                 width: 100%;
                 margin-bottom: 0.6rem;
                 &.active{
-                    background-color: $red;
-                    border-color: $red;
+                    background-color: #111A3A;
+                    border-color: #111A3A;
                     color: $white;
+                    i {
+                        color: $primary;
+                    }
                 }
-                &.active i{
-                    color: $white;
-                }
-                &:hover{
-                    background-color: $red;
-                    border-color: $red;
-                    color: $white;
-                }
-                &:hover i{
-                    color: $white;
+                &:hover:not(.active){
+                    background-color: #FAFBFD;
+                    color: $primary;
+                    border-color: #CBD5E1;
+                    padding-left: 2.2rem;
+                    i {
+                        color: $primary;
+                        transform: translateX(4px);
+                    }
                 }
                 i{
                     font-size: 1.5rem;
                     color: #8e8b8b;
+                    transition: all 0.25s ease;
                 }
             }
         }
@@ -48,7 +51,7 @@
             .call_content{
                 padding: 3rem 2rem;
                 background-color: #111A3A;
-                border-top: 3px solid $primary;
+                border: 1px solid rgba(255, 255, 255, 0.08);
                 border-radius: 0;
                 text-align: center;
                 h2{

@@ -60,7 +60,7 @@
             </div>
             <div class="col-lg-2 col-sm-3 d-none d-lg-block">
                 <div class="text-end ">
-                    <a href="{{route('contact')}}" class="apply_btn">Apply for Job</a>
+                    <a href="{{route('apply')}}" class="apply_btn">Apply for Job</a>
                 </div>
             </div>
         </div>

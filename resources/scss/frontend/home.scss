@@ -119,20 +119,28 @@
         margin-top: -11rem;
         .appointment_cart{
             height: 100%;
-            box-shadow: 0 4px 25px rgba(17, 26, 58, 0.06);
+            box-shadow: 0 4px 20px rgba(17, 26, 58, 0.05);
             border: 1px solid #E2E8F0;
             text-align: center;
             border-radius: 0;
             padding: 7rem 4rem 4.5rem;
-            transition: 0.3s ease;
+            transition: border-color 0.35s ease, box-shadow 0.35s ease;
             z-index: 99;
             position: relative;
             background-color: $white;
-            border-bottom: 3px solid transparent;
             &:hover {
-                transform: translateY(-5px);
-                border-bottom-color: $red;
-                box-shadow: 0 12px 35px rgba(17, 26, 58, 0.1);
+                border-color: #CBD5E1;
+                box-shadow: 0 10px 30px rgba(17, 26, 58, 0.08);
+                .appointment_icon span img {
+                    transform: scale(1.08);
+                }
+                .appointment_number h4 {
+                    color: $primary;
+                    opacity: 0.18;
+                }
+                h2 {
+                    color: $primary;
+                }
             }
             .appointment_icon {
                 margin-bottom: 2.0rem;
@@ -142,6 +150,7 @@
                         width: 6.5rem;
                         height: 6.5rem;
                         object-fit: contain;
+                        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
                     }
                 }
             }
@@ -157,6 +166,7 @@
                     opacity: .06;
                     margin: 0;
                     line-height: 1;
+                    transition: all 0.35s ease;
                 }
             }
             h2{
@@ -166,6 +176,7 @@
                 color: #111A3A;
                 letter-spacing: -0.01em;
                 margin: 2rem 0 1.2rem;
+                transition: color 0.3s ease;
             }
             p{
                 color: #64748B;
@@ -336,7 +347,7 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-            transition: 0.3s;
+            transition: all 0.35s ease;
             &::before {
                 content: '';
                 width: 100%;
@@ -345,31 +356,36 @@
                 left: 0;
                 bottom: 0;
                 z-index: -1;
-                transition: 0.4s;
+                transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
                 background: #111A3A;
                 border-radius: 0;
             }
-            &:hover::before {
-                height: 100%;
-            }
-            &:hover img{
-                filter: brightness(0) invert(1);
-            }
-            &:hover h2{
-                color: $white;
-            }
-            &:hover p{
-                color: rgba(255, 255, 255, 0.8);
-            }
-            &:hover .read_btn_2{
-                color: $primary;
-                border-bottom-color: $primary;
+            &:hover {
+                border-color: #111A3A;
+                &::before {
+                    height: 100%;
+                }
+                img {
+                    filter: brightness(0) invert(1);
+                    transform: scale(1.08);
+                }
+                h2 {
+                    color: $white;
+                }
+                p {
+                    color: rgba(255, 255, 255, 0.85);
+                }
+                .read_btn_2 {
+                    color: $primary;
+                    border-bottom-color: $primary;
+                }
             }
             img{
                width: 6rem;
                height: 6rem;
                object-fit: contain;
                border-radius: 0;
+               transition: transform 0.35s ease, filter 0.35s ease;
             }
             h2 {
                 font-family: 'Outfit', sans-serif;
@@ -377,12 +393,14 @@
                 font-size: 2.1rem;
                 font-weight: 700;
                 color: #111A3A;
+                transition: color 0.3s ease;
             }
             p{
                 color: #64748B;
                 padding-bottom: 2rem;
                 line-height: 1.6;
                 font-size: 1.5rem;
+                transition: color 0.3s ease;
             }
             .read_btn_2{
                 font-family: 'Outfit', sans-serif;
@@ -394,7 +412,7 @@
                 padding-bottom: 0.6rem;
                 border-bottom: 0.2rem solid $red;
                 display: inline-block;
-                transition: 0.3s;
+                transition: all 0.3s ease;
             }
         }
     }
@@ -439,17 +457,34 @@
             border-radius: 0;
             border: 1px solid #E2E8F0;
             box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
-            transition: 0.3s ease;
+            transition: box-shadow 0.4s ease, border-color 0.4s ease;
             &:hover {
-                box-shadow: 0 12px 30px rgba(17, 26, 58, 0.08);
-                border-color: $primary;
-                transform: translateY(-4px);
+                box-shadow: 0 12px 32px rgba(17, 26, 58, 0.08);
+                border-color: #CBD5E1;
+                > img {
+                    transform: scale(1.04);
+                }
+                .choose_country_cont {
+                    .choose_country_flag img {
+                        transform: translateX(-50%) scale(1.08);
+                        box-shadow: 0 0 0 4px rgba(197, 154, 39, 0.35), 0 8px 20px rgba(17, 26, 58, 0.15);
+                    }
+                    h2 {
+                        color: $primary;
+                    }
+                    .read_btn {
+                        background-color: $primary;
+                        border-color: $primary;
+                        color: $white;
+                    }
+                }
             }
-            img{
+            > img{
                 border-radius: 0;
                 height: 32rem;
                 object-fit: cover;
                 width: 100%;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             }
             .choose_country_cont {
                 padding: 3.5rem 2rem 2.5rem;
@@ -473,6 +508,7 @@
                         right: 0;
                         top: -4.0rem;
                         z-index: 22;
+                        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
                    }
                 }
                 h2{
@@ -481,6 +517,7 @@
                     font-weight: 700;
                     color: #111A3A;
                     margin-bottom: 1.2rem;
+                    transition: color 0.3s ease;
                 }
                 p{
                     color: #64748B;
@@ -497,14 +534,9 @@
                     font-size: 1.2rem;
                     font-weight: 700;
                     letter-spacing: 0.08em;
-                    transition: .3s;
+                    transition: all .3s ease;
                     color: $white;
                     border: 1px solid #111A3A;
-                    &:hover{
-                        background-color: $red;
-                        border-color: $red;
-                        color: $white;
-                    }
                 }
             }
         }
@@ -551,10 +583,16 @@
                     content: "";
                     font-size: 1.8rem;
                 }
+                i {
+                    transition: transform 0.25s ease;
+                }
                 &:hover{
                     background-color: $red;
                     border-color: $red;
                     color: $white;
+                    i {
+                        transform: translateX(3px);
+                    }
                 }
             }
             .swiper-button-prev {
@@ -573,10 +611,16 @@
                     font-size: 1.8rem;  
                     content: "";
                 }
+                i {
+                    transition: transform 0.25s ease;
+                }
                 &:hover{
                     background-color: $red;
                     border-color: $red;
                     color: $white;
+                    i {
+                        transform: translateX(-3px);
+                    }
                 }
             }
         }

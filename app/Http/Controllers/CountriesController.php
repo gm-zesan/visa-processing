@@ -9,6 +9,14 @@ use DataTables;
 
 class CountriesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:country-list|country-create|country-edit|country-delete', ['only' => ['index']]);
+        $this->middleware('permission:country-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:country-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:country-delete', ['only' => ['delete']]);
+    }
+
     public function index(Request $request)
     {
         if ($request->ajax()) {
