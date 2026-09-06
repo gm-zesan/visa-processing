@@ -5,23 +5,23 @@
 @endsection
 
 @section('seo_title')
-{{ getSettingsData('home-seo', 'title'); }}
+    {{ getSettingsData('home-seo', 'title') }}
 @endsection
 
 @section('seo_description')
-{{ getSettingsData('home-seo', 'description'); }}
+    {{ getSettingsData('home-seo', 'description') }}
 @endsection
 
 @section('seo_keywords')
-{{ getSettingsData('home-seo', 'keywords'); }}
+    {{ getSettingsData('home-seo', 'keywords') }}
 @endsection
 
 @section('seo_image')
-{{ asset(getSettingsData('home-seo', 'image_1')) }}
+    {{ asset(getSettingsData('home-seo', 'image_1')) }}
 @endsection
 
 @push('styles')
-@vite(['resources/scss/frontend/home.scss'])
+    @vite(['resources/scss/frontend/home.scss'])
 @endpush
 
 @section('content')
@@ -32,15 +32,18 @@
                     <div class="hero-text">
                         <h1>{{getSettingsData('home-hero-section', 'title')}}</h1>
                         <p>{!!getSettingsData('home-hero-section', 'description')!!}</p>
-                        <a href="{{getSettingsData('home-hero-section', 'button_link_1')}}">{{getSettingsData('home-hero-section', 'button_text_1')}}</a>
+                        <a
+                            href="{{getSettingsData('home-hero-section', 'button_link_1')}}">{{getSettingsData('home-hero-section', 'button_text_1')}}</a>
                     </div>
                     <div class="hero-image-right">
                         <div class="hero-image-bg">
                             <img src="{{asset('admin/assets/images/home/home-hero-circle.svg')}}" alt="">
                         </div>
                         <div class="hero-image">
-                            <img class="hero-image-1" src="{{asset(getSettingsData('home-hero-section', 'image_1'))}}" alt="">
-                            <img class="hero-image-2" src="{{asset(getSettingsData('home-hero-section', 'image_2'))}}" alt="">
+                            <img class="hero-image-1" src="{{asset(getSettingsData('home-hero-section', 'image_1'))}}"
+                                alt="">
+                            <img class="hero-image-2" src="{{asset(getSettingsData('home-hero-section', 'image_2'))}}"
+                                alt="">
                         </div>
                     </div>
                 </div>
@@ -74,7 +77,8 @@
                     <div class="donation-text">
                         <h5>{{getSettingsData('home-donate', 'title')}}</h5>
                         <h1>{{getSettingsData('home-donate', 'subtitle')}}</h1>
-                        <a href="{{getSettingsData('home-donate', 'button_link_1')}}">{{getSettingsData('home-donate', 'button_text_1')}}</a>
+                        <a
+                            href="{{getSettingsData('home-donate', 'button_link_1')}}">{{getSettingsData('home-donate', 'button_text_1')}}</a>
                         <div class="count">
                             <h2>{{getSettingsData('home-year-budget', 'title')}}</h2>
                             <div class="all-counts">
@@ -96,8 +100,10 @@
                                 <p>{{getSettingsData('home-year-budget', 'subtitle_2')}}</p>
                             </div>
                             <div class="lines">
-                                <div class="line-one" style="width:{{getSettingsData('home-year-budget', 'zakat_value')}}"></div>
-                                <div class="line-two" style="width:{{getSettingsData('home-year-budget', 'sadaqah_value')}}"></div>
+                                <div class="line-one" style="width:{{getSettingsData('home-year-budget', 'zakat_value')}}">
+                                </div>
+                                <div class="line-two"
+                                    style="width:{{getSettingsData('home-year-budget', 'sadaqah_value')}}"></div>
                                 <div class="line-three"></div>
                             </div>
                             <div class="line-colors">
@@ -116,7 +122,8 @@
                             </div>
                             <div class="line-content">
                                 <p>*Updated On - {{getSettingsData('home-year-budget', 'update_date')}}</p>
-                                <a href="{{getSettingsData('home-year-budget', 'button_link')}}">{{getSettingsData('home-year-budget', 'button_text')}}</a>
+                                <a
+                                    href="{{getSettingsData('home-year-budget', 'button_link')}}">{{getSettingsData('home-year-budget', 'button_text')}}</a>
                             </div>
                         </div>
                     </div>
@@ -138,8 +145,9 @@
                     </div>
                     <div class="services-item">
                         @foreach ($services as $service)
-                            <div class="single-service" style="
-                            background-image: url({{asset($service->value['image'])}}); background-size: cover; background-repeat: no-repeat; background-position: center;">
+                            <div class="single-service"
+                                style="
+                                    background-image: url({{asset($service->value['image'])}}); background-size: cover; background-repeat: no-repeat; background-position: center;">
                                 <div class="single-service-content">
                                     <h5>{{$service->value['title']}}</h5>
                                     @if(isset($service->value['subtitle_2']))
@@ -163,8 +171,10 @@
                                         {{-- <p>Mon-Thur 7:45 am - 12:15 am <span>Fri 4:45 pm - 11:30 pm</span></p> --}}
                                     </div>
 
-                                    <button><a href="{{$service->value['button_link']}}">{{$service->value['button_text']}}</a></button>
-                                    <p>Application Closes in {{date('d M, Y' ,strtotime($service->value['application_close_date']))}}</p>
+                                    <button><a
+                                            href="{{$service->value['button_link']}}">{{$service->value['button_text']}}</a></button>
+                                    <p>Application Closes in
+                                        {{date('d M, Y', strtotime($service->value['application_close_date']))}}</p>
 
                                 </div>
                             </div>
@@ -184,19 +194,22 @@
 
                         <div class="for-small-device">
                             <div>
-                                <img src="{{asset( getSettingsData('home-who-we-are', 'image_1') )}}" alt="">
+                                <img src="{{asset(getSettingsData('home-who-we-are', 'image_1'))}}" alt="">
                             </div>
                         </div>
                         {!! getSettingsData('home-who-we-are', 'description') !!}
                         <div class="home-about-button">
-                            <button><a href="{{ getSettingsData('home-who-we-are', 'button_link_1') }}">{{ getSettingsData('home-who-we-are', 'button_text_1') }}</a></button>
-                            <button><a href="{{ getSettingsData('home-who-we-are', 'button_link_2') }}">{{ getSettingsData('home-who-we-are', 'button_text_2') }} &rarr;</a></button>
+                            <button><a
+                                    href="{{ getSettingsData('home-who-we-are', 'button_link_1') }}">{{ getSettingsData('home-who-we-are', 'button_text_1') }}</a></button>
+                            <button><a
+                                    href="{{ getSettingsData('home-who-we-are', 'button_link_2') }}">{{ getSettingsData('home-who-we-are', 'button_text_2') }}
+                                    &rarr;</a></button>
                         </div>
                     </div>
 
                     <div class="home-about-image">
                         <div class="single-about">
-                            <img src="{{asset( getSettingsData('home-who-we-are', 'image_1') )}}" alt="">
+                            <img src="{{asset(getSettingsData('home-who-we-are', 'image_1'))}}" alt="">
                         </div>
                     </div>
                 </div>
@@ -211,8 +224,9 @@
                     <div class="home-event-top">
                         <h2>{{ getSettingsData('home-events', 'title') }}</h2>
                         <div class="home-event-buttons">
-                            <a href="{{route('home.event',['event' => 'previous'])}}" onclick="myEvent('previous')">Previous</a>
-                            <a href="{{route('home.event',['event' => 'latest'])}}" onclick="myEvent('latest')">Latest</a>
+                            <a href="{{route('home.event', ['event' => 'previous'])}}"
+                                onclick="myEvent('previous')">Previous</a>
+                            <a href="{{route('home.event', ['event' => 'latest'])}}" onclick="myEvent('latest')">Latest</a>
                         </div>
                     </div>
                     <div class="home-event-image">
@@ -263,12 +277,14 @@
     <div class="home-subscribe-wrapper">
         <div class="container">
             <div class="row">
-                <div class="home-subscribe" style="background-image: url({{asset('admin/assets/images/home/home-subcribe-bg.png')}});">
+                <div class="home-subscribe"
+                    style="background-image: url({{asset('admin/assets/images/home/home-subcribe-bg.png')}});">
                     <div class="home-subscribe-content">
                         <div class="home-subscribe-text">
                             <img src="{{asset('admin/assets/images/home/home-activity.svg')}}" alt="">
                             <h2>{{ getSettingsData('home-subscription', 'title') }}</h2>
-                            <a href="{{ getSettingsData('home-subscription', 'button_link_1') }}">{{ getSettingsData('home-subscription', 'button_text_1') }}</a>
+                            <a
+                                href="{{ getSettingsData('home-subscription', 'button_link_1') }}">{{ getSettingsData('home-subscription', 'button_text_1') }}</a>
                             <img class="mosque-image" src="{{asset('images/single-mosque.png')}}" alt="">
                         </div>
                     </div>
