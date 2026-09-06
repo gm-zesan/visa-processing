@@ -2,11 +2,13 @@
 @import "./mixins.scss";
 
 // provider_area
-.provider_area{
+.provider_area {
     padding: 7rem 0 12rem;
-    .provider_img{
+
+    .provider_img {
         position: relative;
         z-index: 1;
+
         &:after {
             content: "";
             width: 45.1rem;
@@ -20,42 +22,66 @@
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             animation: visapro_bounce_animation 7s infinite;
         }
+
         @keyframes visapro_bounce_animation {
             0% {
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             }
-        
+
             25% {
-                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%
+                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
             }
-        
+
             50% {
-                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%
+                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
             }
-        
+
             75% {
-                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%
+                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+            }
+
+            100% {
+                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             }
         }
     }
-    .choose_top{
+
+    .choose_top {
         text-align: left;
-        h2{
+
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
             font-family: 'Outfit', sans-serif;
             color: #111A3A;
             font-weight: 800;
-            span{
+            font-size: 3.6rem;
+            line-height: 1.25;
+
+            span {
                 display: block;
                 font-weight: 400;
+                color: #475569;
+                font-size: 2.8rem;
             }
         }
-        .em_bar_bg{
+
+        .em_bar_bg {
             margin: 0;
             border-radius: 0;
         }
     }
-    .education_content{
+
+    .education_content {
         margin-top: 4.5rem;
+
         h3 {
             font-family: 'Outfit', sans-serif;
             color: #111A3A;
@@ -64,36 +90,589 @@
             line-height: 1.4;
             margin-bottom: 1.5rem;
         }
-        p{
+
+        p {
             line-height: 1.65;
             color: #64748B;
             margin-bottom: 2rem;
+            font-size: 1.55rem;
         }
-        ul{
-            li{
+
+        ul {
+            li {
                 margin-bottom: 1.2rem;
-                font-size: 1.6rem;
+                font-size: 1.5rem;
                 font-weight: 500;
                 color: #334155;
                 display: flex;
-                align-items: center;
-                i{
-                    font-size: 2.0rem;
+                align-items: flex-start;
+
+                i {
+                    font-size: 1.8rem;
                     color: $red;
-                    margin-right: 1.5rem;
+                    margin-right: 1.2rem;
+                    margin-top: 0.3rem;
                     flex-shrink: 0;
                 }
             }
         }
     }
 }
-.unparalleled_area{
+
+// mission_vision_area (Uses the website's authentic appointment_cart design system)
+.mission_vision_area {
+    padding: 7rem 0 8rem;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+    border-bottom: 1px solid #E2E8F0;
+
+    .choose_top {
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
+            font-size: 3.4rem;
+
+            span {
+                font-weight: 800;
+            }
+        }
+
+        .em_bar_bg {
+            margin: 1.5rem auto 2.5rem;
+            border-radius: 0;
+        }
+
+        .mission_intro_text {
+            max-width: 68rem;
+            margin: 0 auto;
+            font-size: 1.55rem;
+            color: #64748B;
+            line-height: 1.65;
+        }
+    }
+
+    .appointment_cart.mission_cart {
+        height: 100%;
+        box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
+        border: 1px solid #E2E8F0;
+        text-align: center;
+        border-radius: 0;
+        padding: 6.5rem 3.5rem 4.5rem;
+        transition: border-color 0.35s ease, box-shadow 0.35s ease;
+        position: relative;
+        background-color: $white;
+
+        &:hover {
+            border-color: $primary;
+            box-shadow: 0 10px 30px rgba(17, 26, 58, 0.08);
+
+            .appointment_icon span {
+                background: $primary;
+                color: $white;
+            }
+
+            .appointment_number h4 {
+                color: $primary;
+                opacity: 0.2;
+            }
+
+            h2 {
+                color: $primary;
+            }
+        }
+
+        .appointment_icon {
+            margin-bottom: 2.2rem;
+            position: relative;
+
+            span {
+                width: 6.5rem;
+                height: 6.5rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(17, 26, 58, 0.05);
+                color: #111A3A;
+                font-size: 2.6rem;
+                border-radius: 0;
+                transition: all 0.35s ease;
+
+                img {
+                    width: 3.6rem;
+                    height: 3.6rem;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .appointment_number {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+
+            h4 {
+                font-family: 'Outfit', sans-serif;
+                font-size: 7rem;
+                font-weight: 800;
+                color: #111A3A;
+                opacity: 0.06;
+                margin: 0;
+                line-height: 1;
+                transition: all 0.35s ease;
+            }
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #111A3A;
+            letter-spacing: -0.01em;
+            margin: 1.5rem 0 0.6rem;
+            transition: color 0.3s ease;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: $primary;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.6rem;
+        }
+
+        .mission_desc {
+            font-size: 1.5rem;
+            line-height: 1.7;
+            color: #64748B;
+            margin-bottom: 0;
+
+            p {
+                margin-bottom: 0;
+                font-size: inherit;
+                line-height: inherit;
+                color: inherit;
+            }
+        }
+    }
+}
+
+// ceo_speech_area (Executive layout mirroring provider_area and authentic letter format)
+.ceo_speech_area {
+    padding: 8rem 0 9rem;
+    background-color: $white;
+
+    .ceo_img_wrap {
+        border: 1px solid #E2E8F0;
+        background: #fff;
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: 0 4px 25px rgba(17, 26, 58, 0.05);
+
+        img {
+            border-radius: 0;
+            display: block;
+            width: 100%;
+            height: 42rem;
+            object-fit: cover;
+            object-position: top center;
+        }
+
+        .ceo_badge_tag {
+            padding: 2.2rem 2.5rem;
+            background: #111A3A;
+            border-top: 3px solid $primary;
+            text-align: left;
+
+            h4 {
+                font-family: 'Outfit', sans-serif;
+                font-size: 2.2rem;
+                font-weight: 700;
+                color: $white;
+                margin-bottom: 0.3rem;
+            }
+
+            p {
+                font-size: 1.35rem;
+                color: $primary;
+                font-weight: 700;
+                letter-spacing: 0.06em;
+                text-transform: uppercase;
+                margin: 0 0 0.3rem;
+            }
+
+            span {
+                font-size: 1.2rem;
+                color: rgba(255, 255, 255, 0.65);
+                letter-spacing: 0.04em;
+                display: block;
+            }
+        }
+    }
+
+    .choose_top {
+        text-align: left;
+
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
+            font-size: 3.4rem;
+
+            span {
+                font-weight: 400;
+                color: #475569;
+            }
+        }
+
+        .em_bar_bg {
+            margin: 0 0 2.5rem;
+            border-radius: 0;
+        }
+    }
+
+    .ceo_speech_body {
+        blockquote {
+            background: #F8FAFC;
+            border-left: 3px solid $primary;
+            padding: 2.2rem 2.8rem;
+            margin: 0 0 2.2rem;
+            border-radius: 0;
+
+            p {
+                font-family: 'Outfit', sans-serif;
+                font-size: 1.7rem;
+                font-weight: 500;
+                font-style: italic;
+                color: #111A3A;
+                line-height: 1.65;
+                margin-bottom: 0.8rem;
+            }
+
+            cite {
+                display: block;
+                font-size: 1.35rem;
+                font-weight: 700;
+                color: $primary;
+                font-style: normal;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+        }
+
+        p {
+            font-size: 1.55rem;
+            line-height: 1.75;
+            color: #64748B;
+            margin-bottom: 1.8rem;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .ceo_executive_sign {
+        margin-top: 2.5rem;
+        padding-top: 2.2rem;
+        border-top: 1px solid #E2E8F0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2rem;
+
+        .sign_details {
+            h5 {
+                font-family: 'Outfit', sans-serif;
+                font-size: 2rem;
+                font-weight: 700;
+                color: #111A3A;
+                margin-bottom: 0.3rem;
+            }
+
+            p {
+                font-size: 1.35rem;
+                font-weight: 600;
+                color: #64748B;
+                margin: 0 0 0.3rem;
+            }
+
+            .licence_num {
+                font-size: 1.25rem;
+                font-weight: 700;
+                color: $primary;
+                letter-spacing: 0.04em;
+                text-transform: uppercase;
+            }
+        }
+    }
+}
+
+// licence_certifications_area (Built with the website's authentic accurate_guidance system)
+.licence_certifications_area {
+    padding: 8rem 0 9rem;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+
+    .choose_top {
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
+            font-size: 3.4rem;
+
+            span {
+                font-weight: 800;
+            }
+        }
+
+        .em_bar_bg {
+            margin: 1.5rem auto 2.5rem;
+            border-radius: 0;
+        }
+
+        .licence_intro_text {
+            max-width: 68rem;
+            margin: 0 auto;
+            font-size: 1.55rem;
+            color: #64748B;
+            line-height: 1.65;
+        }
+    }
+
+    .accurate_guidance.licence_item {
+        display: flex;
+        align-items: flex-start;
+        column-gap: 2.5rem;
+        margin-bottom: 0;
+        padding: 3.2rem 2.8rem;
+        background: $white;
+        border: 1px solid #E2E8F0;
+        border-radius: 0;
+        height: 100%;
+        transition: border-color 0.35s ease, box-shadow 0.35s ease;
+
+        &:hover {
+            border-color: $primary;
+            box-shadow: 0 8px 25px rgba(17, 26, 58, 0.07);
+
+            .licence_icon {
+                background-color: $primary;
+                color: $white;
+            }
+
+            .licence_title_row h3 {
+                color: $primary;
+            }
+        }
+
+        .licence_icon {
+            width: 5.8rem;
+            height: 5.8rem;
+            background-color: #111A3A;
+            color: $white;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 2.4rem;
+            transition: all 0.35s ease;
+
+            .licence_img {
+                width: 3.2rem;
+                height: 3.2rem;
+                object-fit: contain;
+            }
+        }
+
+        .guidance_cont {
+            flex-grow: 1;
+
+            .licence_title_row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 0.4rem;
+                gap: 1rem;
+
+                h3 {
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 1.9rem;
+                    font-weight: 700;
+                    color: #111A3A;
+                    margin-bottom: 0;
+                    line-height: 1.3;
+                    transition: color 0.3s ease;
+                }
+
+                .licence_tag {
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    color: $primary;
+                    text-transform: uppercase;
+                    letter-spacing: 0.06em;
+                    white-space: nowrap;
+                }
+            }
+
+            h4 {
+                font-family: 'Plus Jakarta Sans', sans-serif;
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: $primary;
+                margin-bottom: 1rem;
+                letter-spacing: 0.02em;
+
+                strong {
+                    font-weight: 800;
+                    color: #111A3A;
+                }
+            }
+
+            p {
+                color: #64748B;
+                line-height: 1.6;
+                font-size: 1.45rem;
+                margin: 0;
+            }
+        }
+    }
+}
+
+// about_choose_area (Statistics Counters matching theme light styling)
+.about_choose_area {
+    padding: 7rem 0 8rem;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+    border-bottom: 1px solid #E2E8F0;
+
+    .choose_card_wrap {
+        border-radius: 0;
+        background-color: $white;
+        border: 1px solid #E2E8F0;
+        text-align: center;
+        padding: 5rem 2.5rem 4rem;
+        box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
+        transition: border-color 0.35s ease, box-shadow 0.35s ease;
+        height: 100%;
+
+        &:hover {
+            border-color: $primary;
+            box-shadow: 0 10px 30px rgba(17, 26, 58, 0.08);
+
+            img {
+                transform: scale(1.08);
+            }
+
+            h2 {
+                color: $primary;
+            }
+        }
+
+        img {
+            width: 6.5rem;
+            height: 6.5rem;
+            object-fit: contain;
+            margin-bottom: 1.8rem;
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin: 0 0 0.8rem;
+            color: #111A3A;
+            letter-spacing: -0.02em;
+            transition: color 0.3s ease;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            text-transform: uppercase;
+            font-size: 1.4rem;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+            color: #64748B;
+            margin: 0;
+        }
+    }
+}
+
+// dedicated_area
+.dedicated_area {
+    padding: 8rem 0 7rem;
+    background-color: $white;
+
+    .choose_top {
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
+            font-size: 3.4rem;
+
+            span {
+                font-weight: 400;
+                color: #475569;
+            }
+        }
+
+        .em_bar_bg {
+            margin: 1.5rem auto 2.5rem;
+            border-radius: 0;
+        }
+    }
+}
+
+// unparalleled_area
+.unparalleled_area {
     background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
     padding: 8rem 0;
     text-align: center;
     position: relative;
+
     &::before {
         content: "";
         position: absolute;
@@ -101,124 +680,73 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(17, 26, 58, 0.85);
+        background: rgba(17, 26, 58, 0.88);
         z-index: 0;
     }
+
     .container {
         position: relative;
         z-index: 1;
     }
-    h2{
+
+    h2 {
         font-family: 'Outfit', sans-serif;
         font-size: 4.2rem;
         font-weight: 400;
         color: $white;
         margin-bottom: 2rem;
-        span{
+
+        span {
             display: block;
             font-weight: 800;
             color: $primary;
         }
     }
-    p{
-        color: rgba(255, 255, 255, 0.85);
+
+    p {
+        color: rgba(255, 255, 255, 0.88);
         font-size: 1.6rem;
-        max-width: 60rem;
+        max-width: 70rem;
         margin: 0 auto;
-        line-height: 1.6;
+        line-height: 1.7;
     }
-}
-// about_choose_area
-.about_choose_area{
-    padding: 6rem 0;
-    background: #111A3A;
-    position: relative;
-    z-index: 1;
-    .choose_card_wrap{
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+
+    .button {
+        background: $primary;
+        border: 1px solid $primary;
         border-radius: 0;
-        text-align: center;
-        padding: 3.5rem 2.5rem 3.5rem;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        transition: all 0.35s ease;
-        height: 100%;
-        &:hover{
-            background: rgba(255, 255, 255, 0.08);
-            border-color: rgba(197, 154, 39, 0.5);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-            img{
-                transform: scale(1.1);
-            }
-            h2{
-                color: $primary;
-            }
-            h3{
-                color: $white;
-            }
-        }
-        img{
-            width: 6.5rem;
-            height: 6.5rem;
-            object-fit: contain;
-            margin-bottom: 1.5rem;
-            filter: brightness(0) invert(1);
-            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        h2{
-            font-family: 'Outfit', sans-serif;
-            font-size: 4rem;
-            font-weight: 800;
-            margin: 0.5rem 0 0.8rem;
-            color: $white;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-            transition: color 0.3s ease;
-        }
-        h3{
-            font-family: 'Outfit', sans-serif;
-            text-transform: uppercase;
-            font-size: 1.3rem;
-            letter-spacing: 0.1em;
-            font-weight: 700;
-            color: rgba(255, 255, 255, 0.75);
-            margin: 0;
-            transition: color 0.3s ease;
-        }
-    }
-}
-// about_testimonial
-.about_testimonial{
-    padding: 7rem 0 5rem;
-    background-color: #fff;
-    color: #111A3A !important;
-    &::before{
-        background-color: rgba(248, 250, 252, 0.9);
-    }
-   .choose_top {
-    h2{
-        font-family: 'Outfit', sans-serif;
-        color: #111A3A;
-        font-weight: 400;
-        span{
-            display: block;
-            font-weight: 800;
-        }
-    }
-   }
-   .texti_card {
-        border-radius: 0;
-        border: 1px solid #E2E8F0;
-        background: $white;
-        p{
-            color: #64748B;
-        }
-        h2 {
-            font-family: 'Outfit', sans-serif;
+        color: $white;
+        padding: 1.3rem 3rem;
+        font-size: 1.4rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: inline-block;
+        transition: 0.3s;
+
+        &:hover {
+            background: $white;
             color: #111A3A;
-            span{
-                color: #64748B;
-            }
+            border-color: $white;
+        }
+    }
+}
+
+// Responsive
+@media (max-width: 991px) {
+    .provider_area {
+        padding: 5rem 0 6rem;
+
+        .choose_top {
+            margin-top: 3.5rem;
+        }
+    }
+
+    .ceo_speech_area {
+        padding: 6rem 0;
+
+        .choose_top {
+            margin-top: 3.5rem;
         }
     }
 }

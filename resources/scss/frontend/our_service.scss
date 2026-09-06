@@ -2,150 +2,381 @@
 @import "./mixins.scss";
 
 // immigration_services_area
-.immigration_services_area{
-    padding: 7rem 0 3rem;
-    .choose_top{
+.immigration_services_area {
+    padding: 8rem 0 6rem;
+    background-color: $white;
+
+    .service_feature_img {
+        border: 1px solid #E2E8F0;
+        background: #fff;
+        border-radius: 0;
+        box-shadow: 0 4px 20px rgba(17, 26, 58, 0.05);
+
+        img {
+            border-radius: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .choose_top {
         text-align: left;
-        h2{
+
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
             font-family: 'Outfit', sans-serif;
             color: #111A3A;
             font-weight: 800;
-            span{
+            font-size: 3.4rem;
+
+            span {
                 font-weight: 400;
+                color: #475569;
                 display: block;
             }
         }
-        .em_bar_bg{
+
+        .em_bar_bg {
             margin: 0;
             border-radius: 0;
         }
     }
-    .guid_p{
-        margin: 2.5rem 0 3.5rem;
+
+    .guid_p {
+        margin: 2.2rem 0 3rem;
         color: #64748B;
         font-size: 1.6rem;
         line-height: 1.7;
     }
-    .accurate_guidance{
+
+    .accurate_guidance {
         display: flex;
-        column-gap: 3rem;
-        margin-bottom: 3rem;
-        padding: 2.5rem;
+        column-gap: 2.5rem;
+        margin-bottom: 2.2rem;
+        padding: 2.4rem;
         background: $white;
         border: 1px solid #E2E8F0;
         border-radius: 0;
-        i{
-            font-size: 4rem;
+        transition: border-color 0.35s ease, box-shadow 0.35s ease;
+
+        &:hover {
+            border-color: $primary;
+            box-shadow: 0 8px 25px rgba(17, 26, 58, 0.07);
+
+            i {
+                color: $primary;
+            }
+        }
+
+        i {
+            font-size: 3.6rem;
             color: $red;
             flex-shrink: 0;
+            margin-top: 0.2rem;
+            transition: color 0.3s ease;
         }
-        .guidance_cont{
-            h3{
+
+        .guidance_cont {
+            h3 {
                 font-family: 'Outfit', sans-serif;
                 font-size: 1.9rem;
                 font-weight: 700;
-                margin-bottom: 0.8rem;
+                margin-bottom: 0.6rem;
                 color: #111A3A;
             }
+
             p {
                 color: #64748B;
                 line-height: 1.6;
+                font-size: 1.45rem;
                 margin: 0;
             }
         }
     }
 }
-// service_tourists
-.service_tourists{
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    background-size: cover;
-    padding: 7rem 0 9rem;
-    margin-top: 5rem;
-    position: relative;
-    z-index: 1;
-    &::before{
-        content: "";
-        position: absolute;
-        width: 100%;
+
+// core_services_area (6-Pillar Manpower Processing Services matching authentic appointment_cart system)
+.core_services_area {
+    padding: 8rem 0 9rem;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+    border-bottom: 1px solid #E2E8F0;
+
+    .choose_top {
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
+            font-size: 3.4rem;
+
+            span {
+                font-weight: 800;
+            }
+        }
+
+        .em_bar_bg {
+            margin: 1.5rem auto 2.5rem;
+            border-radius: 0;
+        }
+
+        .section_intro_desc {
+            max-width: 70rem;
+            margin: 0 auto;
+            font-size: 1.55rem;
+            color: #64748B;
+            line-height: 1.65;
+        }
+    }
+
+    .appointment_cart.service_box_cart {
         height: 100%;
-        top: 0;
-        left: 0;
-        background-color: #F8FAFC;
-        z-index: -1;
-        opacity: 0.9;
-    }
-    .service_tourists_Swiper {
-        .swiper-slide {
-            height: auto;
+        box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
+        border: 1px solid #E2E8F0;
+        text-align: center;
+        border-radius: 0;
+        padding: 6.5rem 3.2rem 4.5rem;
+        background-color: $white;
+        position: relative;
+        transition: border-color 0.35s ease, box-shadow 0.35s ease;
+
+        &:hover {
+            border-color: $primary;
+            box-shadow: 0 10px 30px rgba(17, 26, 58, 0.08);
+
+            .appointment_icon span {
+                background: $primary;
+                color: $white;
+            }
+
+            .appointment_number h4 {
+                color: $primary;
+                opacity: 0.2;
+            }
+
+            h2 {
+                color: $primary;
+            }
         }
-        .swiper-pagination {
-            margin-top: 3rem;
+
+        .appointment_icon {
+            margin-bottom: 2.2rem;
             position: relative;
-            .swiper-pagination-bullet {
-                width: 2.5rem;
-                height: 0.4rem;
+
+            span {
+                width: 6.5rem;
+                height: 6.5rem;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                background: rgba(17, 26, 58, 0.05);
+                color: #111A3A;
+                font-size: 2.6rem;
                 border-radius: 0;
-                background-color: #CBD5E1;
-                opacity: 1;
-            }
-            .swiper-pagination-bullet-active {
-                background-color: $red;
-                width: 3.5rem;
+                transition: all 0.35s ease;
             }
         }
+
+        .appointment_number {
+            position: absolute;
+            top: 2rem;
+            right: 2.5rem;
+
+            h4 {
+                font-family: 'Outfit', sans-serif;
+                font-size: 7rem;
+                font-weight: 800;
+                color: #111A3A;
+                opacity: 0.06;
+                margin: 0;
+                line-height: 1;
+                transition: all 0.35s ease;
+            }
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 700;
+            color: #111A3A;
+            margin: 1.5rem 0 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: $primary;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 1.4rem;
+        }
+
+        p {
+            font-size: 1.45rem;
+            line-height: 1.65;
+            color: #64748B;
+            margin-bottom: 0;
+        }
     }
-    .service_tourists_card{
+}
+
+// service_tourists (Target Work Permit Destinations in Clean Responsive Grid)
+.service_tourists {
+    padding: 8rem 0 9rem;
+    background-color: $white;
+
+    .choose_top {
+        h3 {
+            font-size: 1.4rem;
+            color: $primary;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        h2 {
+            font-family: 'Outfit', sans-serif;
+            color: #111A3A;
+            font-weight: 800;
+            font-size: 3.4rem;
+
+            span {
+                font-weight: 800;
+            }
+        }
+
+        .em_bar_bg {
+            margin: 1.5rem auto 2.5rem;
+            border-radius: 0;
+        }
+
+        .service_desc_intro {
+            max-width: 70rem;
+            margin: 0 auto;
+            font-size: 1.55rem;
+            color: #64748B;
+            line-height: 1.65;
+        }
+    }
+
+    .service_tourists_card {
         border-radius: 0;
         border: 1px solid #E2E8F0;
         padding: 1.2rem;
         background-color: $white;
         height: 100%;
-        overflow: hidden;
         box-shadow: 0 4px 20px rgba(17, 26, 58, 0.04);
         transition: box-shadow 0.35s ease, border-color 0.35s ease;
+        display: flex;
+        flex-direction: column;
+
         &:hover {
             box-shadow: 0 10px 30px rgba(17, 26, 58, 0.08);
-            border-color: #CBD5E1;
+            border-color: $primary;
+
             .visa_bg {
-                transform: scale(1.04);
+                transform: scale(1.05);
             }
+
             .service_tourists_cont {
                 .service_tourists_icon i {
                     background-color: $primary;
                     border-color: $primary;
                     color: $white;
-                    transform: scale(1.08);
-                    box-shadow: 0 6px 20px rgba(197, 154, 39, 0.35);
+                    transform: scale(1.06);
                 }
+
                 h2 {
                     color: $primary;
                 }
+
                 .read_more_btn {
                     background-color: #111A3A;
                     border-color: #111A3A;
                     color: $white;
+
                     i {
-                        transform: translateX(5px);
-                        color: $primary;
+                        transform: translateX(4px);
                     }
                 }
             }
         }
-        .visa_bg{
+
+        .visa_thumb_wrap {
+            position: relative;
+            overflow: hidden;
             border-radius: 0;
-            height: 33.6rem;
-            object-fit: cover;
-            width: 100%;
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+            .visa_bg {
+                border-radius: 0;
+                height: 25rem;
+                object-fit: cover;
+                width: 100%;
+                transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+
+            .visa_country_badge {
+                position: absolute;
+                top: 1.5rem;
+                left: 1.5rem;
+                background: rgba(17, 26, 58, 0.92);
+                padding: 0.6rem 1.4rem;
+                display: inline-flex;
+                align-items: center;
+                gap: 0.8rem;
+                border-radius: 0;
+                border-left: 3px solid $primary;
+                z-index: 2;
+
+                .country_flag_mini {
+                    width: 2.2rem;
+                    height: 1.6rem;
+                    object-fit: cover;
+                    border-radius: 0;
+                }
+
+                span {
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    color: $white;
+                    letter-spacing: 0.04em;
+                    text-transform: uppercase;
+                }
+            }
         }
-        .service_tourists_cont{
-            padding: 4.5rem 2rem 2.5rem;
+
+        .service_tourists_cont {
+            padding: 4.5rem 2rem 2.2rem;
             text-align: center;
             position: relative;
             z-index: 1;
-            .service_tourists_icon{
-                i{
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+
+            .service_tourists_icon {
+                i {
                     margin-bottom: 1.5rem;
                     display: inline-block;
                     color: $red;
@@ -157,53 +388,89 @@
                     border-radius: 0;
                     text-align: center;
                     line-height: 6.5rem;
-                    font-size: 3rem;
+                    font-size: 2.6rem;
                     position: absolute;
                     top: -3.5rem;
                     right: 2.5rem;
-                    transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+                    transition: all 0.35s ease;
                 }
             }
-            h2{
+
+            h2 {
                 font-family: 'Outfit', sans-serif;
-                font-size: 2.2rem;
+                font-size: 2.1rem;
                 font-weight: 700;
                 color: #111A3A;
                 margin-bottom: 1.2rem;
                 transition: color 0.3s ease;
             }
-            p{
+
+            .visa_desc_excerpt {
                 color: #64748B;
                 margin-bottom: 2rem;
                 line-height: 1.6;
-                font-size: 1.5rem;
+                font-size: 1.45rem;
+                flex-grow: 1;
             }
-            .read_more_btn {
-                color: #111A3A;
-                display: block;
-                font-weight: 700;
-                padding: 1.3rem 2.2rem;
-                position: relative;
-                font-size: 1.3rem;
-                text-transform: uppercase;
-                letter-spacing: 0.08em;
-                transition: all 0.3s ease;
-                border-radius: 0;
-                border: 1px solid #E2E8F0;
-                background: #F8FAFC;
-                i{
-                    font-size: 1.4rem;
-                    margin-left: 0.7rem;
-                    transition: transform 0.3s ease, color 0.3s ease;
-                }
-                img{
-                    position: absolute;
-                    right: 4%;
-                    top: 27%;
-                    width: 2.5rem;
-                    filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(3deg) brightness(105%) contrast(101%);
+
+            .visa_card_actions {
+                .read_more_btn {
+                    color: #111A3A;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    column-gap: 0.8rem;
+                    font-weight: 700;
+                    padding: 1.2rem 2rem;
+                    position: relative;
+                    font-size: 1.3rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                    transition: all 0.3s ease;
+                    border-radius: 0;
+                    border: 1px solid #E2E8F0;
+                    background: #F8FAFC;
+
+                    i {
+                        font-size: 1.3rem;
+                        transition: transform 0.3s ease;
+                    }
                 }
             }
         }
+    }
+}
+
+// free_online_area.service_cta_area (Overriding negative margin on service page)
+.free_online_area.service_cta_area {
+    padding: 7rem 0 8rem;
+    background-color: #F8FAFC;
+    border-top: 1px solid #E2E8F0;
+
+    .free_online_wrap {
+        margin-top: 0;
+    }
+}
+
+// Responsive
+@media (max-width: 991px) {
+    .immigration_services_area {
+        padding: 5rem 0 4rem;
+
+        .choose_top {
+            margin-top: 3.5rem;
+        }
+    }
+
+    .core_services_area {
+        padding: 6rem 0;
+    }
+
+    .service_tourists {
+        padding: 6rem 0 7rem;
+    }
+
+    .free_online_area.service_cta_area {
+        padding: 5rem 0 6rem;
     }
 }

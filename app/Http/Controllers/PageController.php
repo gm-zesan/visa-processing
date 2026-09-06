@@ -18,7 +18,8 @@ class PageController extends Controller
     }
 
     public function about(){
-        return view('frontend.about');
+        $teams = OurTeam::all();
+        return view('frontend.about', compact('teams'));
     }
     public function ourTeam(){
         $teams = OurTeam::all();
@@ -29,7 +30,7 @@ class PageController extends Controller
         return view('frontend.single_team', ['teamMember' => $teamMember]);
     }
     public function our_service(){
-        $visaTypes = VisaType::all();
+        $visaTypes = VisaType::with('countryDetails.country')->get();
         return view('frontend.our_service', ['visaTypes' => $visaTypes]);
     }
     public function contact(){

@@ -2,162 +2,242 @@
 @import "./mixins.scss";
 
 // provider_area
-.provider_area{
-    padding: 5rem 0 15rem;
-    .provider_img{
+.provider_area {
+    padding: 7rem 0 10rem;
+    .provider_img {
         position: relative;
         z-index: 1;
         &:after {
             content: "";
-            width: 45.1rem;
-            height: 100%;
-            background: $white;
+            width: 42rem;
+            height: 95%;
+            background: rgba(255, 255, 255, 0.08);
             position: absolute;
             z-index: -1;
-            top: 2.4rem;
-            left: -5.8rem;
+            top: 2rem;
+            left: -3.5rem;
             display: block;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            animation: visapro_bounce_animation 7s infinite;
-        }
-        @keyframes visapro_bounce_animation {
-            0% {
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%
-            }
-        
-            25% {
-                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%
-            }
-        
-            50% {
-                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%
-            }
-        
-            75% {
-                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%
-            }
+            animation: visapro_bounce_animation 8s infinite ease-in-out;
         }
     }
-    .choose_top{
+
+    .provider_exp_badge {
+        background: $dark;
+        border: 2px solid $primary;
+    }
+
+    .choose_top {
         text-align: left;
-        h2{
-            span{
-                display: block;
-                font-weight: 300;
-            }
-        }
-        .em_bar_bg{
-            margin: 0;
-        }
-    }
-    .education_content{
-        margin-top: 7.4rem;
         h3 {
-            color: $white;
-            font-size: 2.1rem;
-            font-weight: 300;
-            line-height: 1.56;
-            margin-bottom: 2rem;
-        }
-        p{
-            line-height: 1.56;
-            color: $white;
-            margin-bottom: 2rem;
-            font-weight: 300;
-        }
-        ul{
-            li{
-                margin-bottom: 1.5rem;
-                font-size: 1.6rem;
-                font-weight: 300;
-                display: inline-flex;
-                i{
-                    font-size: 2.6rem;
-                    font-weight: 600;
-                    color: $white;
-                    margin-right: 2rem;
-                }
-            }
-        }
-        .dit-button{
-            a {
-                background-color: $red;
-            }
-        }
-    }
-}
-.unparalleled_area{
-   background: $light-dark !important;
-    padding: 7rem 0;
-    text-align: center;
-    h2{
-        font-size: 4.2rem;
-        font-weight: 300;
-        color: $white;
-        margin-bottom: 2rem;
-        span{
-            display: block;
-            font-weight: 600;
-        }
-    }
-    p{
-        color: rgb(255 255 255 / 80%);
-        font-size: 1.4rem;
-        max-width: 43rem;
-        margin: 0 auto;
-    }
-    .button{
-        background-color: $dark;
-        border-color: $dark;
-        &:hover{
-            color: $dark;
-            background-color: $red;
-        }
-    }
-}
-//  about_choose_area
-.about_choose_area{
-    padding: 1rem 0;
-    background-color: $dark;
-    .choose_card_wrap{
-        box-shadow: none;
-        border-radius: 0;
-        background-color: $light-dark;
-        h2{
-            color: $white;
-        }
-        h3{
-            color: $white;
-        }
-    }
-}
-// about_testimonial
-.about_testimonial{
-    padding: 5rem 0 4rem;
-    background-color: #fff;
-    color: $black !important;
-    &::before{
-        background-color: rgb(255 255 255 / 75%);
-    }
-   .choose_top {
-    h2{
-        color: $white;
-        font-weight: 300;
-        span{
-            display: block;
-            font-weight: 700;
-        }
-    }
-   }
-   .texti_card {
-        p{
-            color: $white;
+            color: $primary;
         }
         h2 {
             color: $white;
-            span{
+            span {
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+    }
+
+    .education_content {
+        h3 {
+            color: $white;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .agency_features_list {
+            li {
+                color: rgba(255, 255, 255, 0.85);
+                strong {
+                    color: $white;
+                }
+            }
+        }
+        .dit-button {
+            a {
+                background-color: $primary;
+                color: $white;
+                &:hover {
+                    background-color: #A87F17;
+                }
+            }
+        }
+    }
+}
+
+// mission_vision_area
+.mission_vision_area {
+    background: $light_dark;
+    border-color: rgba(255, 255, 255, 0.08);
+
+    .choose_top {
+        h2 {
+            color: $white;
+        }
+        .mission_intro_text {
+            color: rgba(255, 255, 255, 0.75);
+        }
+    }
+    .appointment_cart.mission_cart {
+        background: $dark;
+        border-color: rgba(255, 255, 255, 0.1);
+        h2 {
+            color: $white;
+        }
+        h3 {
+            color: $primary;
+        }
+        .mission_desc {
+            color: rgba(255, 255, 255, 0.75);
+        }
+        .appointment_number h4 {
+            color: $white;
+            opacity: 0.08;
+        }
+        .appointment_icon span {
+            background: rgba(255, 255, 255, 0.08);
+            color: $white;
+        }
+    }
+}
+
+// ceo_speech_area
+.ceo_speech_area {
+    background: #0d1326;
+
+    .choose_top h2 {
+        color: $white;
+        span {
+            color: rgba(255, 255, 255, 0.7);
+        }
+    }
+
+    .ceo_speech_body {
+        blockquote {
+            background: $dark;
+            p {
                 color: $white;
             }
+        }
+        p {
+            color: rgba(255, 255, 255, 0.75);
+        }
+    }
+
+    .ceo_img_wrap {
+        border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .ceo_executive_sign {
+        border-color: rgba(255, 255, 255, 0.1);
+        .sign_details {
+            h5 {
+                color: $white;
+            }
+            p {
+                color: rgba(255, 255, 255, 0.65);
+            }
+        }
+    }
+}
+
+// licence_certifications_area
+.licence_certifications_area {
+    background: $dark;
+    border-color: rgba(255, 255, 255, 0.08);
+
+    .choose_top {
+        h2 {
+            color: $white;
+        }
+        .licence_intro_text {
+            color: rgba(255, 255, 255, 0.75);
+        }
+    }
+    .accurate_guidance.licence_item {
+        background: $light_dark;
+        border-color: rgba(255, 255, 255, 0.1);
+
+        .guidance_cont {
+            .licence_title_row h3 {
+                color: $white;
+            }
+            h4 strong {
+                color: $white;
+            }
+            p {
+                color: rgba(255, 255, 255, 0.7);
+            }
+        }
+
+        .licence_icon {
+            background: rgba(255, 255, 255, 0.08);
+            color: $primary;
+        }
+    }
+}
+
+// about_choose_area
+.about_choose_area {
+    background-color: $dark;
+    border-color: rgba(255, 255, 255, 0.08);
+
+    .choose_card_wrap {
+        background-color: $light_dark;
+        border-color: rgba(255, 255, 255, 0.1);
+        h2 {
+            color: $white;
+        }
+        h3 {
+            color: rgba(255, 255, 255, 0.75);
+        }
+    }
+}
+
+// dedicated_area
+.dedicated_area {
+    background: $light_dark;
+    .choose_top {
+        h2 {
+            color: $white;
+        }
+        .section_lead_text {
+            color: rgba(255, 255, 255, 0.75);
+        }
+    }
+    .styles_card_dedi .dedicated_card_wrap {
+        background: $dark;
+        border-color: rgba(255, 255, 255, 0.1);
+        .team_content {
+            h3 {
+                color: $white;
+            }
+            p {
+                color: rgba(255, 255, 255, 0.65);
+            }
+        }
+    }
+}
+
+// unparalleled_area
+.unparalleled_area {
+    background: $light_dark !important;
+}
+
+// about_testimonial
+.about_testimonial {
+    background-color: $dark;
+    color: $white !important;
+    .choose_top h2 {
+        color: $white;
+    }
+    .texti_card {
+        background: $light_dark;
+        border-color: rgba(255, 255, 255, 0.1);
+        p, h2, h2 span {
+            color: $white;
         }
     }
 }
