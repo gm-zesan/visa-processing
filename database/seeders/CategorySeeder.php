@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class CategorySeeder extends Seeder
@@ -13,15 +12,18 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $categories = array(
-            array('name' => 'Immigration Visa'),
-            array('name' => 'PR VISA'),
-            array('name' => 'STUDENT VISA'),
-            array('name' => 'WORKING VISA'),
-        );
+        $categories = [
+            ['name' => 'Work Permit & Manpower News'],
+            ['name' => 'Saudi Arabia Recruitment'],
+            ['name' => 'UAE & Gulf Employment'],
+            ['name' => 'Maldives Island Jobs'],
+            ['name' => 'Malaysia Calling Visa'],
+            ['name' => 'Romania & European Visas'],
+            ['name' => 'Embassy & Medical Guidelines'],
+        ];
 
         foreach ($categories as $category) {
-            Category::create($category);
+            Category::firstOrCreate(['name' => $category['name']], $category);
         }
     }
 }

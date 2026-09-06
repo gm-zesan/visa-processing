@@ -97,39 +97,38 @@
   if (select('.resources_Swiper')) {
     new Swiper('.resources_Swiper', {
       slidesPerView: 3,
-      spaceBetween: 40,
+      spaceBetween: 30,
       speed: 600,
-      loop: true,
+      loop: false,
+      observer: true,
+      observeParents: true,
       autoplay: {
         delay: 5000,
-        disableOnInteraction: false
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true
       },
       pagination: {
-        el: '.swiper-pagination',
+        el: '.resources-pagination',
         type: 'bullets',
         clickable: true
       },
       navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-        clickable: true
+        nextEl: ".resources-btn-next",
+        prevEl: ".resources-btn-prev",
       },
       breakpoints: {  
-        '0': {
+        0: {
           slidesPerView: 1,
-          spaceBetween: 0,},
-          '375': {
-            slidesPerView: 1,
-            spaceBetween: 0,},
-          '480': {
-            slidesPerView: 2,
-            spaceBetween: 30,},
-            '768': {
-              slidesPerView: 2,
-              spaceBetween: 30,},
-        '992': {
+          spaceBetween: 20,
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 24,
+        },
+        992: {
           slidesPerView: 3,
-          spaceBetween: 40, },
+          spaceBetween: 30,
+        },
       }
     });
   }

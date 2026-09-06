@@ -254,50 +254,63 @@
     </div>
 
     <!-- resources_area -->
-    <div class="resources_area pt_50 pb_40">
+    <div class="resources_area pt_50 pb_50">
         <div class="container">
             <div class="resources_top">
-                <div class="latest_news">
-                    <span></span>
-                    <h2>Resources & Latest News</h2>
+                <div class="latest_news_header">
+                    <div class="section_tag">
+                        <span></span>
+                        Latest News & Insights
+                    </div>
+                    <h2>Resources & Work Permit News</h2>
+                    <p>Stay informed with authentic government notices, overseas hiring quotas, and visa regulations.</p>
                 </div>
-                <p>Cursus porta, feugiat primis in ultrice ligula risus auctor tempus dolor feugiat, felis lacinia risus
-                    interdum auctor id viverra dolor iaculis luctus placerat and massa</p>
+                <div class="resources_controls">
+                    <div class="resources-btn-prev" role="button" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></div>
+                    <div class="resources-btn-next" role="button" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></div>
+                    <a href="{{ route('blog_list') }}" class="btn_view_all_news">
+                        <span>View All News</span>
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </a>
+                </div>
             </div>
             <div class="resources_wrap">
                 <div class="swiper resources_Swiper">
                     <div class="swiper-wrapper">
-
                         @foreach ($blogs as $blog)
                             <div class="swiper-slide">
                                 <div class="resources_card">
                                     <a href="{{ route('single_blog', ['slug' => $blog->slug]) }}" class="resources_img">
-                                        <div class="student_top">{{ $blog->category->name }}</div>
-                                        <img src="{{ asset($blog->image) }}" alt="Image" class="w-100" loading="lazy" decoding="async">
+                                        @if($blog->category)
+                                            <div class="student_top">{{ $blog->category->name }}</div>
+                                        @endif
+                                        <img src="{{ asset($blog->image) }}" alt="{{ $blog->title }}" loading="lazy" decoding="async">
                                     </a>
                                     <div class="resources_cont">
-                                        <div class="visapro-blog-meta-left ">
-                                            <a href="#">{{ $blog->created_by }}</a>
-                                            <span>{{ date('F d, Y', strtotime($blog->created_at)) }}</span>
+                                        <div class="blog-meta-row">
+                                            <span class="meta-item"><i class="fa-regular fa-user"></i> {{ $blog->created_by ?? 'AL FAHIM Team' }}</span>
+                                            <span class="meta-divider">&bull;</span>
+                                            <span class="meta-item"><i class="fa-regular fa-calendar"></i> {{ date('M d, Y', strtotime($blog->created_at)) }}</span>
                                         </div>
-                                        <h2><a
-                                                href="{{ route('single_blog', ['slug' => $blog->slug]) }}">{{ $blog->title }}</a>
-                                        </h2>
-                                        <div>
-                                            {!! Str::limit($blog->description, 88, '...') !!}
+                                        <h3 class="blog-title">
+                                            <a href="{{ route('single_blog', ['slug' => $blog->slug]) }}">{{ $blog->title }}</a>
+                                        </h3>
+                                        <p class="blog-excerpt">
+                                            {{ Str::limit(strip_tags($blog->description), 95, '...') }}
+                                        </p>
+                                        <div class="blog-card-bottom">
+                                            <a href="{{ route('single_blog', ['slug' => $blog->slug]) }}" class="read_more_btn">
+                                                <span>Read Article</span>
+                                                <i class="fa-solid fa-arrow-right-long"></i>
+                                            </a>
                                         </div>
-                                        <a href="{{ route('single_blog', ['slug' => $blog->slug]) }}" class="read_btn">Read
-                                            More<i class="fa-solid fa-arrow-right-long"></i></a>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
                     </div>
-                    <div class="swiper-button-next"><i class="fa-solid fa-arrow-right-long"></i></div>
-                    <div class="swiper-button-prev"><i class="fa-solid fa-arrow-left-long"></i></div>
-                    <div class="swiper-pagination"></div>
+                    <div class="resources-pagination mt-4 text-center"></div>
                 </div>
-
             </div>
         </div>
     </div>

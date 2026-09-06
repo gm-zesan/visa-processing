@@ -260,7 +260,7 @@ textarea {
 
 
 main{
-	overflow: hidden;
+	overflow: visible;
 }
 .row_gutters {
 	margin-left: -1.7rem;
@@ -1241,7 +1241,17 @@ header {
     background: #fff;
     border: 1px solid #E2E8F0;
     border-radius: 0;
-    box-shadow: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+    @media (min-width: 992px) {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 11.5rem;
+        z-index: 99;
+        max-height: calc(100vh - 14rem);
+        overflow-y: auto;
+        scrollbar-width: thin;
+        transition: top 0.25s ease;
+    }
     .choose_top{
         text-align: left;
         h2{
