@@ -23,9 +23,21 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('frontend.*', function ($view) {
-            $blogs = Blog::latest()->take(2)->get();
-            $country = CountryDetails::wherehas('visa_types')->get();
-            $view->with('commonBlogs', $blogs)->with('commonCountriesVisa', $country);
+            static $commonBlogs = null;
+            static $commonCountriesVisa = null;
+
+            if ($commonBlogs === null) {
+                $commonBlogs = Blog::latest()->take(2)->get();
+            }
+
+            if ($commonCountriesVisa === null) {
+                $commonCountriesVisa = CountryDetails::whereHas('visa_types')
+                    ->with('country')
+                    ->get();
+            }
+
+            $view->with('commonBlogs', $commonBlogs)
+                 ->with('commonCountriesVisa', $commonCountriesVisa);
         });
     }
 }

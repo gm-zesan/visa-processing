@@ -31,7 +31,7 @@ Our Service
       <div class="container">
         <div class="row row_gutters">
           <div class="col-lg-6 mt_50">
-            <img src="{{ asset(getSettingsData('41', 'image')) }}" alt="Image" class="w-100">
+            <img src="{{ asset(getSettingsData('41', 'image')) }}" alt="Image" class="w-100" loading="lazy" decoding="async">
           </div>
           <div class="col-lg-6 mt_50">
               <div class="choose_top">
@@ -60,7 +60,7 @@ Our Service
                 @foreach ($visaTypes as $visaType)
                     <div class="swiper-slide">
                         <div class="service_tourists_card">
-                            <img src="{{asset($visaType->image)}}" alt="Image" class="w-100 visa_bg">
+                            <img src="{{asset($visaType->image)}}" alt="Image" class="w-100 visa_bg" loading="lazy" decoding="async">
                             <div class="service_tourists_cont">
                                 <div class="service_tourists_icon">
                                 <i class="fa-solid fa-bullseye"></i>
@@ -70,7 +70,7 @@ Our Service
                                     {!! Str::limit($visaType->description, 100, '...') !!}
                                 </div>
                                 <div style="position: relative">
-                                    <a href="{{route('visa',['slug'=>$visaType->slug])}}" class="read_more_btn mt_40">Read More<i class="fa-solid fa-arrow-right"></i><img src="{{asset('frontend/images/arrow-right.png')}}" alt="Image"></a></div>
+                                    <a href="{{route('visa',['slug'=>$visaType->slug])}}" class="read_more_btn mt_40">Read More<i class="fa-solid fa-arrow-right"></i><img src="{{asset('frontend/images/arrow-right.png')}}" alt="Image" loading="lazy" decoding="async"></a></div>
                             </div>
                         </div>
                     </div>
@@ -98,7 +98,7 @@ Our Service
                 <div class="swiper-slide">
                         <div class="texti_card">
                             <div class="testi_thumb">
-                                <img src="{{ asset($item->image) }}" alt="Image" class="w-100">
+                                <img src="{{ asset($item->image) }}" alt="Image" class="w-100" loading="lazy" decoding="async">
                             </div>
                             <p>{!! $item->description !!}</p>
                             <div class="testi_title">
@@ -116,7 +116,7 @@ Our Service
     <div class="free_online_area">
         <div class="container">
             <div class="free_online_wrap">
-                <img src="{{ asset(getSettingsData('25', 'image')) }}" alt="Image" class="img-fluid">
+                <img src="{{ asset(getSettingsData('25', 'image')) }}" alt="Image" class="img-fluid" loading="lazy" decoding="async">
                 <div class="free_content">
                     <h2>{{ getSettingsData('25', 'title') }}</h2>
                     <p>{!! getSettingsData('25', 'description') !!}</p>
@@ -138,7 +138,7 @@ Our Service
             @foreach( getSettingsList('Home-choose-card') as $item) 
             <div class="col-lg-3 col-sm-6 mt_30">
                     <div class="choose_card_wrap">
-                        <img src="{{ asset($item->image) }}" alt="img">
+                        <img src="{{ asset($item->image) }}" alt="img" loading="lazy" decoding="async">
                         <h2 class="counter" data-speed="1000">{{ $item->subtitle }}</h2>
                         <h3>{{ $item->title }}</h3>
                     </div>
@@ -156,7 +156,7 @@ Our Service
                 @foreach( getSettingsList('home-single-brand-section') as $item) 
                 <div class="swiper-slide">
                         <div class="single_brand_card">
-                            <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid">
+                            <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid" loading="lazy" decoding="async">
                         </div>
                     </div>
                 @endforeach
@@ -168,28 +168,29 @@ Our Service
 
 @push("scripts")
 <script>
-(() => {
-    const counter = document.querySelectorAll(".counter");
-    // covert to array
-    const array = Array.from(counter);
-    // select array element
-    array.map((item) => {
-        // data layer
-        let counterInnerText = item.textContent;
+document.addEventListener('DOMContentLoaded', () => {
+    const counters = document.querySelectorAll(".counter");
+    counters.forEach((item) => {
+        const text = item.textContent.trim();
+        const target = parseInt(text.replace(/[^\d]/g, ''), 10);
+        if (isNaN(target)) return;
 
-        let count = 1;
-        let speed = item.dataset.speed / counterInnerText;
+        const suffix = text.replace(/[\d\s]/g, '');
+        let current = 0;
+        const duration = 1200; // ms
+        const steps = 30;
+        const increment = target / steps;
+        const stepTime = duration / steps;
 
-        function counterUp() {
-            item.textContent = count++;
-            if (counterInnerText < count) {
-                clearInterval(stop);
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                current = target;
+                clearInterval(timer);
             }
-        }
-        const stop = setInterval(() => {
-            counterUp();
-        }, speed);
+            item.textContent = Math.floor(current) + suffix;
+        }, stepTime);
     });
-})();
+});
 </script>
 @endpush

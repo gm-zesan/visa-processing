@@ -35,8 +35,8 @@ Blog List
                     
                     <div class="resources_card mb_30">
                         <a href="{{route('single_blog', ['slug'=>$blog->slug])}}" class="resources_img">
-                            <div class="student_top">{{$blog->category->name}}</div>
-                            <img src="{{asset($blog->image)}}" alt="Image" class="w-100">
+                            <div class="student_top">{{$blog->category->name ?? 'News'}}</div>
+                            <img src="{{asset($blog->image)}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                         </a>
                         <div class="resources_cont">
                             <div class="visapro-blog-meta-left ">

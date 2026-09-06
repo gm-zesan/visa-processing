@@ -31,4 +31,19 @@ class WebsiteContent extends Model
     {
         return $this->belongsTo(CommonType::class, 'page_name', 'name');
     }
+
+    protected static function booted()
+    {
+        static::saved(function () {
+            if (function_exists('clearWebsiteContentCache')) {
+                clearWebsiteContentCache();
+            }
+        });
+
+        static::deleted(function () {
+            if (function_exists('clearWebsiteContentCache')) {
+                clearWebsiteContentCache();
+            }
+        });
+    }
 }

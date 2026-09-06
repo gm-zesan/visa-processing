@@ -19,7 +19,6 @@
         @include('frontend.partials.favicon')
         @include('frontend.partials.styles')
         @stack("styles")
-        @vite(['resources/scss/frontend/responsive.scss','resources/scss/frontend/helper.scss'])
 
     </head>
 

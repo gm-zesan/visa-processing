@@ -38,7 +38,7 @@ single Blog
           <div class="row row_gutters">
             <div class="col-lg-8 mt_50">
               <div class="single_blog_left">
-                <img src="{{asset($blog->image)}}" alt="Image" class="w-100">
+                <img src="{{asset($blog->image)}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                 <div class="single_blog_cont">
                   <h2>{{$blog->title}}</h2>
                   <div class="blog-meta-left">

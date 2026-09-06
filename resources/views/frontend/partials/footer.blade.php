@@ -5,7 +5,7 @@
         <div class="row">
            <div class="col-lg-3 col-sm-6 footer_first_item pt_40">
                 <a href="{{route('home')}}" class="f_logo">
-                    <img src="{{ asset(getSettingsData('5', 'image')) }}" alt="AL FAHIM INTERNATIONAL" style="max-height: 55px; object-fit: contain;">
+                    <img src="{{ asset(getSettingsData('5', 'image')) }}" alt="AL FAHIM INTERNATIONAL" style="max-height: 55px; object-fit: contain;" loading="lazy" decoding="async">
                 </a>
                 <p>AL FAHIM INTERNATIONAL is a government-approved overseas manpower recruitment agency dedicated to providing authentic, legally verified Work Permit Visas.</p>
                 <h4>Follow Us</h4>
@@ -39,7 +39,7 @@
                 @foreach ($commonBlogs as $blog)
                     <div class="footer_galary pb_10">
                         <a href="{{route('single_blog', ['slug'=>$blog->slug])}}">
-                            <img src="{{asset($blog->image)}}" alt="Image" class="w-100">
+                            <img src="{{asset($blog->image)}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                         </a>
                         <div>
                             <h4><a href="{{route('single_blog', ['slug'=>$blog->slug])}}">{{$blog->title}}</a></h4>

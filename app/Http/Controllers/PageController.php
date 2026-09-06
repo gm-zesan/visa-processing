@@ -12,8 +12,8 @@ use App\Models\VisaType;
 class PageController extends Controller
 {
     public function index() {
-        $blogs = Blog::with('category')->get();
-        $countriesVisa = CountryDetails::wherehas('visa_types')->with('visa_types')->get();
+        $blogs = Blog::with('category')->latest()->get();
+        $countriesVisa = CountryDetails::whereHas('visa_types')->with(['visa_types', 'country'])->get();
         return view('frontend.index',['blogs' => $blogs, 'countriesVisa' => $countriesVisa]);
     }
 
@@ -25,7 +25,7 @@ class PageController extends Controller
         return view('frontend.ourTeam',['teams' => $teams]);
     }
     public function single_team($id){
-        $teamMember = OurTeam::find($id);
+        $teamMember = OurTeam::findOrFail($id);
         return view('frontend.single_team', ['teamMember' => $teamMember]);
     }
     public function our_service(){
@@ -53,26 +53,27 @@ class PageController extends Controller
     
     public function blog_list($category = null){
         if($category){
-            $blogs = Category::where('id', $category)->first()->blogs;
+            $cat = Category::find($category);
+            $blogs = $cat ? $cat->blogs()->with('category')->latest()->get() : collect();
         }else{
-            $blogs = Blog::all();
+            $blogs = Blog::with('category')->latest()->get();
         }
-        $categories = Category::wherehas('blogs')->get();
+        $categories = Category::whereHas('blogs')->get();
         return view('frontend.blog_list', ['blogs' => $blogs, 'categories' => $categories]);
     }
     public function single_blog($slug){
-        $categories = Category::wherehas('blogs')->get();
-        $blog = Blog::findBySlug($slug);
+        $categories = Category::whereHas('blogs')->get();
+        $blog = Blog::with('category')->where('slug', $slug)->firstOrFail();
         return view('frontend.single_blog',['blog' => $blog, 'categories' => $categories]);
     }
     public function country($id){
-        $country = CountryDetails::find($id);
-        $countryDetails = CountryDetails::wherehas('visa_types')->get();
-        $visa_types = VisaType::where('country_details_id', $country->id)->get();
+        $country = CountryDetails::with(['country', 'visa_types'])->findOrFail($id);
+        $countryDetails = CountryDetails::whereHas('visa_types')->with('country')->get();
+        $visa_types = $country->visa_types;
         return view('frontend.country', ['country' => $country, 'countryDetails' => $countryDetails, 'visa_types' => $visa_types]);
     }
     public function visa($slug){
-        $visa = VisaType::findBySlug($slug);
+        $visa = VisaType::where('slug', $slug)->firstOrFail();
         $all_visas = VisaType::all();
         return view('frontend.visa', ['visa' => $visa, 'visas' => $all_visas]);
     }

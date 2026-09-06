@@ -5,15 +5,15 @@
 @endsection
 
 @section('seo_title')
-{{ getSettingsData('director-profile-seo', 'title'); }}
+{{ getSettingsData('director-profile-seo', 'title') }}
 @endsection
 
 @section('seo_description')
-{{ getSettingsData('director-profile-seo', 'description'); }}
+{{ getSettingsData('director-profile-seo', 'description') }}
 @endsection
 
 @section('seo_keywords')
-{{ getSettingsData('director-profile-seo', 'keywords'); }}
+{{ getSettingsData('director-profile-seo', 'keywords') }}
 @endsection
 
 @section('seo_image')
@@ -21,7 +21,7 @@
 @endsection
 
 @push('styles')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="{{asset('frontend/vendor/fontawesome/css/all.min.css')}}">
 {{-- @vite(['resources/scss/frontend/director-profile.scss']) --}}
 @endpush
 

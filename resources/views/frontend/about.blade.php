@@ -32,7 +32,7 @@ about
             <div class="row justify-content-between">
                 <div class="col-lg-5 pt_50" data-aos="flip-left">
                     <div class="provider_img">
-                        <img src="{{asset('frontend/images/about.png')}}" alt="Image" class="w-100">
+                        <img src="{{asset('frontend/images/about.png')}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-6 pt_50" data-aos="flip-right">
@@ -77,7 +77,7 @@ about
                         <div class="dedicated_card_wrap">
                             <div class="team_inner_wrap">
                                 <div class="image_wrap">
-                                    <img src="{{asset('frontend/images/team_1.jpg')}}" alt="Image" class="w-100">
+                                    <img src="{{asset('frontend/images/team_1.jpg')}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                                     <div class="social_icons1">				            								
                                         <a href="" class="social-icon">
                                         <i class="fa-brands fa-facebook-f"></i>
@@ -103,7 +103,7 @@ about
                         <div class="dedicated_card_wrap">
                             <div class="team_inner_wrap">
                                 <div class="image_wrap">
-                                    <img src="{{asset('frontend/images/team_2.jpg')}}" alt="Image" class="w-100">
+                                    <img src="{{asset('frontend/images/team_2.jpg')}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                                     <div class="social_icons1">				            								
                                         <a href="" class="social-icon">
                                         <i class="fa-brands fa-facebook-f"></i>
@@ -129,7 +129,7 @@ about
                         <div class="dedicated_card_wrap">
                             <div class="team_inner_wrap">
                                 <div class="image_wrap">
-                                    <img src="{{asset('frontend/images/team_3.jpg')}}" alt="Image" class="w-100">
+                                    <img src="{{asset('frontend/images/team_3.jpg')}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                                     <div class="social_icons1">				            								
                                         <a href="" class="social-icon">
                                         <i class="fa-brands fa-facebook-f"></i>
@@ -155,7 +155,7 @@ about
                         <div class="dedicated_card_wrap">
                             <div class="team_inner_wrap">
                                 <div class="image_wrap">
-                                    <img src="{{asset('frontend/images/team_4.jpg')}}" alt="Image" class="w-100">
+                                    <img src="{{asset('frontend/images/team_4.jpg')}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                                     <div class="social_icons1">				            								
                                         <a href="" class="social-icon">
                                         <i class="fa-brands fa-facebook-f"></i>
@@ -210,7 +210,7 @@ about
                 <div class="swiper-slide">
                         <div class="texti_card">
                             <div class="testi_thumb">
-                                <img src="{{ asset($item->image) }}" alt="Image" class="w-100">
+                                <img src="{{ asset($item->image) }}" alt="Image" class="w-100" loading="lazy" decoding="async">
                             </div>
                             <p>{!! $item->description !!}</p>
                             <div class="testi_title">
@@ -233,7 +233,7 @@ about
                 @foreach( getSettingsList('home-single-brand-section') as $item) 
                 <div class="swiper-slide">
                         <div class="single_brand_card">
-                            <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid">
+                            <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid" loading="lazy" decoding="async">
                         </div>
                     </div>
                 @endforeach

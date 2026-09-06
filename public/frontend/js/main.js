@@ -44,230 +44,250 @@
   })
 
    // home_slider
-   new Swiper(".home_area_swiper", {
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-      clickable: true
-    },
-    speed: 600,
-    loop: true,
-    effect: 'fade',
-    slidesPerView: 1,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-  });
+   if (select(".home_area_swiper")) {
+     new Swiper(".home_area_swiper", {
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        clickable: true
+      },
+      speed: 600,
+      loop: true,
+      effect: 'fade',
+      slidesPerView: 1,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+     });
+   }
+
   // brand slider
-  new Swiper('.mySwipers', {
-    slidesPerView: 5,
-    spaceBetween: 20,
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    breakpoints: {  
-      '0': {
-        slidesPerView: 2,
-        spaceBetween: 20,},
-        '375': {
+  if (select('.mySwipers')) {
+    new Swiper('.mySwipers', {
+      slidesPerView: 5,
+      spaceBetween: 20,
+      speed: 600,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      breakpoints: {  
+        '0': {
           slidesPerView: 2,
           spaceBetween: 20,},
-        '480': {
-          slidesPerView: 2,
-          spaceBetween: 30,},
-          '768': {
+          '375': {
+            slidesPerView: 2,
+            spaceBetween: 20,},
+          '480': {
             slidesPerView: 2,
             spaceBetween: 30,},
-      '992': {
-        slidesPerView: 5,
-        spaceBetween: 20, },
-    }
-  });
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 30,},
+        '992': {
+          slidesPerView: 5,
+          spaceBetween: 20, },
+      }
+    });
+  }
 
   // resources_Swiper
-  new Swiper('.resources_Swiper', {
-    slidesPerView: 3,
-    spaceBetween: 40,
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-      clickable: true
-    },
-    breakpoints: {  
-      '0': {
-        slidesPerView: 1,
-        spaceBetween: 0,},
-        '375': {
+  if (select('.resources_Swiper')) {
+    new Swiper('.resources_Swiper', {
+      slidesPerView: 3,
+      spaceBetween: 40,
+      speed: 600,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+        clickable: true
+      },
+      breakpoints: {  
+        '0': {
           slidesPerView: 1,
           spaceBetween: 0,},
-        '480': {
-          slidesPerView: 2,
-          spaceBetween: 30,},
-          '768': {
+          '375': {
+            slidesPerView: 1,
+            spaceBetween: 0,},
+          '480': {
             slidesPerView: 2,
             spaceBetween: 30,},
-      '992': {
-        slidesPerView: 3,
-        spaceBetween: 40, },
-    }
-  });
-  // choose_country_area
-  new Swiper('.service_tourists_Swiper', {
-    slidesPerView: 2,
-    spaceBetween: 40,
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {  
-      '0': {
-        slidesPerView: 1,
-        spaceBetween: 0,},
-        '375': {
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 30,},
+        '992': {
+          slidesPerView: 3,
+          spaceBetween: 40, },
+      }
+    });
+  }
+
+  // service_tourists_Swiper
+  if (select('.service_tourists_Swiper')) {
+    new Swiper('.service_tourists_Swiper', {
+      slidesPerView: 2,
+      spaceBetween: 40,
+      speed: 600,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {  
+        '0': {
           slidesPerView: 1,
           spaceBetween: 0,},
-        '480': {
-          slidesPerView: 2,
-          spaceBetween: 30,},
-          '768': {
+          '375': {
+            slidesPerView: 1,
+            spaceBetween: 0,},
+          '480': {
             slidesPerView: 2,
             spaceBetween: 30,},
-      '992': {
-        slidesPerView: 2,
-        spaceBetween: 40, },
-    }
-  });
-  // choose_country_area
-  new Swiper('.choose_country_Swiper', {
-    slidesPerView: 2,
-    spaceBetween: 40,
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {  
-      '0': {
-        slidesPerView: 1,
-        spaceBetween: 0,},
-        '375': {
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 30,},
+        '992': {
+          slidesPerView: 2,
+          spaceBetween: 40, },
+      }
+    });
+  }
+
+  // choose_country_Swiper
+  if (select('.choose_country_Swiper')) {
+    new Swiper('.choose_country_Swiper', {
+      slidesPerView: 2,
+      spaceBetween: 40,
+      speed: 600,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {  
+        '0': {
           slidesPerView: 1,
           spaceBetween: 0,},
-        '480': {
-          slidesPerView: 2,
-          spaceBetween: 30,},
-          '768': {
+          '375': {
+            slidesPerView: 1,
+            spaceBetween: 0,},
+          '480': {
             slidesPerView: 2,
             spaceBetween: 30,},
-      '992': {
-        slidesPerView: 2,
-        spaceBetween: 40, },
-    }
-  });
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 30,},
+        '992': {
+          slidesPerView: 2,
+          spaceBetween: 40, },
+      }
+    });
+  }
+
   // securce_visa_Swiper
-  new Swiper('.securce_visa_Swiper', {
-    slidesPerView: 2,
-    spaceBetween: 25,
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {  
-      '0': {
-        slidesPerView: 1,
-        spaceBetween: 0,},
-        '375': {
+  if (select('.securce_visa_Swiper')) {
+    new Swiper('.securce_visa_Swiper', {
+      slidesPerView: 2,
+      spaceBetween: 25,
+      speed: 600,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {  
+        '0': {
           slidesPerView: 1,
           spaceBetween: 0,},
-        '480': {
-          slidesPerView: 2,
-          spaceBetween: 30,},
-          '768': {
+          '375': {
+            slidesPerView: 1,
+            spaceBetween: 0,},
+          '480': {
             slidesPerView: 2,
             spaceBetween: 30,},
-      '992': {
-        slidesPerView: 2,
-        spaceBetween: 25, },
-    }
-  });
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 30,},
+        '992': {
+          slidesPerView: 2,
+          spaceBetween: 25, },
+      }
+    });
+  }
+
   // Testimonials slider
-  new Swiper('.testimonial_Swiper', {
-    slidesPerView: 3,
-    spaceBetween: 30,
-    speed: 600,
-    loop: true,
-    autoplay: {
-      delay: 5000,
-      disableOnInteraction: false
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
-    },
-    breakpoints: {  
-      '0': {
-        slidesPerView: 1,
-        spaceBetween: 0,},
-        '375': {
+  if (select('.testimonial_Swiper')) {
+    new Swiper('.testimonial_Swiper', {
+      slidesPerView: 3,
+      spaceBetween: 30,
+      speed: 600,
+      loop: true,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      pagination: {
+        el: '.swiper-pagination',
+        type: 'bullets',
+        clickable: true
+      },
+      breakpoints: {  
+        '0': {
           slidesPerView: 1,
           spaceBetween: 0,},
-        '480': {
-          slidesPerView: 2,
-          spaceBetween: 30,},
-          '768': {
+          '375': {
+            slidesPerView: 1,
+            spaceBetween: 0,},
+          '480': {
             slidesPerView: 2,
             spaceBetween: 30,},
-      '992': {
-        slidesPerView: 3,
-        spaceBetween: 20, },
-    }
-  });
+            '768': {
+              slidesPerView: 2,
+              spaceBetween: 30,},
+        '992': {
+          slidesPerView: 3,
+          spaceBetween: 20, },
+      }
+    });
+  }
 
   //Animation on scroll
-   
   window.addEventListener('load', () => {
-    AOS.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    })
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 1000,
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
+      });
+    }
   });
 
 })()

@@ -12,20 +12,51 @@ use App\Models\WebsiteContent;
 
 
 
+function getAllWebsiteContents() {
+    static $memoryCache = null;
+    if ($memoryCache !== null) {
+        return $memoryCache;
+    }
+    
+    try {
+        $memoryCache = \Illuminate\Support\Facades\Cache::rememberForever('all_website_contents', function () {
+            return WebsiteContent::all();
+        });
+    } catch (\Throwable $e) {
+        $memoryCache = WebsiteContent::all();
+    }
+    
+    return $memoryCache;
+}
+
+function clearWebsiteContentCache() {
+    \Illuminate\Support\Facades\Cache::forget('all_website_contents');
+}
+
 function getSettingsData($id, $field) {
-    return WebsiteContent::where('id', $id)->first()->$field;
+    $contents = getAllWebsiteContents();
+    $item = $contents->firstWhere('id', $id);
+    if (!$item) {
+        $item = $contents->firstWhere('link_key', $id);
+    }
+    return $item ? ($item->$field ?? null) : null;
 }
 
 function getSettingsList($key, $limit = null, $orderDirection = 'asc') {
-    $query = WebsiteContent::where('link_key', $key);
+    $contents = getAllWebsiteContents();
+    $list = $contents->where('link_key', $key);
     
-    if ($orderDirection) {
-        $query->orderBy('id', $orderDirection);
+    if (strtolower($orderDirection) === 'desc') {
+        $list = $list->sortByDesc('id');
+    } else {
+        $list = $list->sortBy('id');
     }
+    
     if ($limit) {
-        $query->limit($limit);
+        $list = $list->take($limit);
     }
-    return $query->get();
+    
+    return $list->values();
 }
 
 

@@ -41,7 +41,7 @@
               </div>
               <!-- call_us_area -->
               <div class="call_us_area mb_30">
-                <img src="{{ asset(getSettingsData('59', 'image')) }}" alt="Image" class="w-100">
+                <img src="{{ asset(getSettingsData('59', 'image')) }}" alt="Image" class="w-100" loading="lazy" decoding="async">
                 <div class="call_content">
                   <h2>{{ getSettingsData('59', 'title') }}</h2>
                   <a href="tel:+{{ getSettingsData('59', 'subtitle') }}"><i class="fa-solid fa-phone-volume"></i>+{{ getSettingsData('59', 'subtitle') }}</a>
@@ -95,7 +95,7 @@
           </div>
           <div class="col-lg-8 mt_50">
               <div class="country_right_side">
-                <img src="{{asset($country->image)}}" alt="Image" class="w-100">
+                <img src="{{asset($country->image)}}" alt="Image" class="w-100" loading="lazy" decoding="async">
                 <div class="country_title">
                     <h2>Why Work in {{$country->country->name}}</h2>
                     <p>{!!$country->description!!}</p>
