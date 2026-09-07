@@ -1,4 +1,4 @@
-<div class="sidebar sidebar-navigation active">
+<div class="sidebar sidebar-navigation {{ request()->is('dashboard/website-content*') ? '' : 'active' }}">
     <div class="logo_content">
         <a href="{{route('dashboard')}}" class="logo">
             <img class="logo-icon" src="{{ asset(getSettingsData('4', 'image')) }}" alt="Logo">
@@ -123,7 +123,8 @@
         @canany(['website-content-list', 'website-content-create', 'website-content-edit', 'website-content-delete'])
         <li>
             <a href="{{route('website-contents')}}"
-                class="{{ in_array(Route::currentRouteName(), ['website-contents', 'website-content.create', 'website-content.edit']) ? ' active-focus' : '' }}">
+                class="{{ in_array(Route::currentRouteName(), ['website-contents', 'website-content.create', 'website-content.edit']) ? ' active-focus' : '' }}"
+                onclick="$('.sidebar').removeClass('active');">
                 <i class="ri-layout-masonry-line"></i>
                 <span class="link_names">Website Content</span>
             </a>
