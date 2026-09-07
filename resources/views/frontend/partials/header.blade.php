@@ -8,7 +8,7 @@
                             class="fa-regular fa-envelope"></i>{{ getSettingsData('44', 'subtitle') ?:
                         'alfahiminternational944@gmail.com' }}</a>
                     <span><i
-                            class="fa-solid fa-location-dot"></i>{{ getSettingsData('44', 'button_text') ?: 'Towar A, House 13, Road 17, Banani, Dhaka.' }}</span>
+                            class="fa-solid fa-location-dot"></i>{{ (getSettingsData('44', 'button_text') && str_contains(getSettingsData('44', 'button_text'), 'Lift 14')) ? getSettingsData('44', 'button_text') : 'Tower A (Lift 14), House 13, Road 17, Banani, Dhaka.' }}</span>
                     <a href="tel:{{ getSettingsData('44', 'title') ?: '+8801624238179' }}"><i
                             class="fa-solid fa-phone"></i>{{ getSettingsData('44', 'title') ?: '+8801624238179' }}</a>
                 </p>
