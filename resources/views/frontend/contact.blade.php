@@ -12,12 +12,24 @@
 @section('content')
 
     @if(session('success'))
-        <div style="position: fixed; top: -20px; left: 50%; transform: translate(-50%, -50%); background-color: #fff; color: #111A3A; padding: 5px 15px; border-radius: 5px; display: flex; align-items: center; gap: 10px; opacity: 1; z-index: 1025"
+        <div style="position: fixed; top: 25px; left: 50%; transform: translateX(-50%); background-color: #10B981; color: #fff; padding: 12px 24px; border-radius: 6px; display: flex; align-items: center; gap: 10px; opacity: 1; z-index: 1050; box-shadow: 0 8px 24px rgba(0,0,0,0.15); font-weight: 500;"
             id="success-message">
-            <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512">
-                <path fill="#111A3A"
-                    d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z" />
-            </svg> {{ session('success') }}
+            <i class="fa-solid fa-circle-check" style="font-size: 16px;"></i> {{ session('success') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div style="position: fixed; top: 25px; left: 50%; transform: translateX(-50%); background-color: #EF4444; color: #fff; padding: 14px 24px; border-radius: 6px; display: flex; flex-direction: column; gap: 6px; opacity: 1; z-index: 1050; box-shadow: 0 8px 24px rgba(0,0,0,0.15); font-weight: 500;"
+            id="error-message">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <i class="fa-solid fa-circle-exclamation" style="font-size: 16px;"></i>
+                <span>Please correct the errors below:</span>
+            </div>
+            <ul style="margin: 0; padding-left: 24px; font-size: 13px;">
+                @foreach($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
         </div>
     @endif
 
@@ -47,19 +59,19 @@
                             <h2>Get In Touch</h2>
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" name="name" placeholder="Your Name">
+                                    <input type="text" name="name" value="{{ old('name') }}" placeholder="Your Name" required>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="email" name="email" placeholder="Your Email">
+                                    <input type="email" name="email" value="{{ old('email') }}" placeholder="Your Email" required>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="tel" name="phone" placeholder="Your Phone">
+                                    <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="Your Phone">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" name="subject" placeholder="Subject">
+                                    <input type="text" name="subject" value="{{ old('subject') }}" placeholder="Subject">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea name="message" placeholder="Message"></textarea>
+                                    <textarea name="message" placeholder="Message" required>{{ old('message') }}</textarea>
                                 </div>
                                 <div class="col-lg-6">
                                     <button type="submit" class="sub_btn">Send Request</button>
@@ -265,14 +277,21 @@
         const successMsg = document.getElementById('success-message');
         if (successMsg) {
             setTimeout(() => {
-                successMsg.style.opacity = '1';
-                successMsg.style.top = '30px';
-                successMsg.style.transition = 'all 0.3s ease-in-out';
-                setTimeout(() => {
-                    successMsg.style.opacity = '0';
-                    successMsg.style.top = '-20px';
-                }, 3000);
-            }, 100);
+                successMsg.style.transition = 'all 0.4s ease-in-out';
+                successMsg.style.opacity = '0';
+                successMsg.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => successMsg.remove(), 400);
+            }, 4000);
+        }
+
+        const errorMsg = document.getElementById('error-message');
+        if (errorMsg) {
+            setTimeout(() => {
+                errorMsg.style.transition = 'all 0.4s ease-in-out';
+                errorMsg.style.opacity = '0';
+                errorMsg.style.transform = 'translateX(-50%) translateY(-20px)';
+                setTimeout(() => errorMsg.remove(), 400);
+            }, 6000);
         }
 
         // Descriptive Office Modal with Left/Right Image Navigation

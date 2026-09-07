@@ -14,18 +14,17 @@ class ContactFormController extends Controller
     
     function __construct()
     {
-         $this->middleware('permission:contact-list|contact-delete', ['only' => ['index','store']]);
-         $this->middleware('permission:contact-delete', ['only' => ['delete']]);
+        $this->middleware('permission:contact-list|contact-delete', ['only' => ['index']]);
+        $this->middleware('permission:contact-delete', ['only' => ['delete']]);
     }
-
 
     public function index(Request $request)
     {
-        if($request->ajax()){
-            $contactForms = ContactForm::get()->all();
+        if ($request->ajax()) {
+            $contactForms = ContactForm::query()->latest('id');
             return DataTables::of($contactForms)
                 ->addIndexColumn()
-                ->addColumn('action-btn', function($row){
+                ->addColumn('action-btn', function ($row) {
                     return $row->id;
                 })
                 ->rawColumns(['action-btn'])
@@ -34,41 +33,36 @@ class ContactFormController extends Controller
         return view('admin.contact-messages.index');
     }
 
-
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required|max:100',
-            'email' => 'required|max:100',
-            'message' => 'required|max:100',
+        $validated = $this->validate($request, [
+            'name' => 'required|string|max:100',
+            'email' => 'required|email|max:100',
+            'phone' => 'nullable|string|max:50',
+            'subject' => 'nullable|string|max:150',
+            'message' => 'required|string|max:2000',
         ], [
-            'name.max' => 'your name should be less than 100 characters',
-            'email.max' => 'your phone should be less than 100 characters',
-            'message.max' => 'your message should be less than 100 characters',
+            'name.required' => 'Please enter your name.',
+            'name.max' => 'Your name should be less than 100 characters.',
+            'email.required' => 'Please enter your email address.',
+            'email.email' => 'Please enter a valid email address.',
+            'message.required' => 'Please enter your message.',
+            'message.max' => 'Your message should be less than 2000 characters.',
         ]);
 
-        // $mailData = [
-        //     'name' => $request->name,
-        //     'phone' => $request->phone,
-        //     'content' => $request->message,
-        // ];
-        // $replymailData = [
-        //     'name' => $request->name,
-        //     'content' => 'Thank you for contacting us. We will get back to you soon.'
-        // ];
+        ContactForm::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'phone' => $validated['phone'] ?? null,
+            'subject' => $validated['subject'] ?? null,
+            'message' => $validated['message'],
+        ]);
 
-        $data = $request->all();
-        ContactForm::create($data);
-
-        // Mail::to(env('MAIL_FROM_ADDRESS'))->send(new ContactMail($mailData));
-        // Mail::to('gmzesan7767@gmail.com')->send(new ReplyContactMail($replymailData));
-
-        return redirect()->back()->with('success','Message sent successfully');
+        return redirect()->back()->with('success', 'Your message has been sent successfully. We will get back to you soon!');
     }
-
 
     /**
      * Remove the specified resource from storage.
@@ -76,8 +70,11 @@ class ContactFormController extends Controller
     public function delete($id)
     {
         $contactForm = ContactForm::find($id);
-        $contactForm->delete();
-        return redirect()->back()->with('success','Message deleted successfully');
+        if ($contactForm) {
+            $contactForm->delete();
+            return redirect()->back()->with('success', 'Message deleted successfully');
+        }
+        return redirect()->back()->with('error', 'Message not found');
     }
 
 }

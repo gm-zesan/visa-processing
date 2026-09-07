@@ -94,14 +94,13 @@
                     render: function (data) {
                         var btn1 = '';
                         btn1 += '<div class="action-btn">';
-                        btn1 += '<a href="' + SITEURL + '/dashboard/message/delete/' + data + '" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></a>';
-                        
+                        btn1 += '<a href="' + SITEURL + '/dashboard/message/delete/' + data + '" class="btn btn-delete" onclick="return confirm(\'Are you sure you want to delete this message?\')" title="Delete"><i class="ri-delete-bin-2-line"></i></a>';
                         btn1 += '</div>';
                         return btn1;
                     }
                 }
             ],
-            order: [[0, 'asc']],
+            order: [[0, 'desc']],
         });
     });
 </script>
