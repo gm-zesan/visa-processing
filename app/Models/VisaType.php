@@ -22,14 +22,10 @@ class VisaType extends Model
         'processing_time',
         'contract_period',
         'emigration_clearance',
-        'benefits',
-        'requirements',
         'processing_steps',
     ];
 
     protected $casts = [
-        'benefits' => 'array',
-        'requirements' => 'array',
         'processing_steps' => 'array',
     ];
 
@@ -44,9 +40,5 @@ class VisaType extends Model
     public function countryDetails()
     {
         return $this->belongsTo(CountryDetails::class, 'country_details_id');
-    }
-
-    public function visa(){
-        return $this->hasMany(Visa::class);
     }
 }

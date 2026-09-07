@@ -92,16 +92,6 @@
                                 </div>
 
                                 <div class="col-md-12 mt-3">
-                                    <label for="benefits" class="form-label custom-label">Key Benefits & Facilities (JSON array format: ["Legal 2-Year Contract", "Free Housing", ...])</label>
-                                    <textarea class="form-control custom-input font-monospace" name="benefits" id="benefits" rows="4" placeholder='["Official Work Permit", "Company-provided accommodation", "Full medical insurance"]' style="resize: vertical;"></textarea>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <label for="requirements" class="form-label custom-label">Required Documents Checklist (JSON array format: ["Original Passport", "Medical Certificate", ...])</label>
-                                    <textarea class="form-control custom-input font-monospace" name="requirements" id="requirements" rows="5" placeholder='["Original passport (min 12 months validity)", "6 passport-size photographs", "Medical fitness certificate"]' style="resize: vertical;"></textarea>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
                                     <label for="processing_steps" class="form-label custom-label">Step-by-Step Processing Timeline (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
                                     <textarea class="form-control custom-input font-monospace" name="processing_steps" id="processing_steps" rows="6" placeholder='[{"step": "01", "title": "Quota & Offer", "description": "Verification of demand letter."}]' style="resize: vertical;"></textarea>
                                 </div>

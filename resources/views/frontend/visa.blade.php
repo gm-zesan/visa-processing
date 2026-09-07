@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-  {{ $visa->name }} | Work Permit Requirements & Processing
+  {{ $visa->name }} | Overseas Employment & Work Permit
 @endsection
 
 @push("styles")
@@ -52,10 +52,9 @@
               <i class="fa-solid fa-map-location-dot"></i>
             </div>
             <div class="crosslink_text">
-              <span class="crosslink_sub">TARGET DESTINATION PROFILE</span>
-              <h4>Looking for life and labor market information in {{ $visa->countryDetails->country->name }}?</h4>
-              <p>Discover wage standards, living conditions, major economic sectors, and accommodations in our official
-                destination guide.</p>
+              <h4>Thinking About Moving to {{ $visa->countryDetails->country->name }}?</h4>
+              <p>Get the facts on living costs, job opportunities, accommodation, and local culture in our complete
+                {{ $visa->countryDetails->country->name }} Destination Guide.</p>
             </div>
           </div>
           <a href="{{ route('country', ['id' => $visa->countryDetails->id]) }}" class="btn_crosslink">
@@ -217,28 +216,7 @@
               </div>
             </div>
 
-            <!-- Mandatory Document Checklist (100% Dynamic) -->
-            @if(!empty($visa->requirements) && is_array($visa->requirements) && count($visa->requirements) > 0)
-              <div class="visa_content_block mt_40">
-                <div class="visa_section_heading">
-                  <span class="sub_lead">OFFICIAL DOCUMENTATION</span>
-                  <h2>Required Documents Checklist</h2>
-                  <div class="em_bar_bg"></div>
-                  <p class="section_intro">
-                    Please prepare the following verified original documents before embassy submission and BMET biometric
-                    registration.
-                  </p>
-                </div>
-                <div class="requirements_list">
-                  @foreach($visa->requirements as $req)
-                    <div class="req_item">
-                      <i class="fa-solid fa-circle-check"></i>
-                      <span>{{ $req }}</span>
-                    </div>
-                  @endforeach
-                </div>
-              </div>
-            @endif
+
 
             <!-- Step-by-Step Processing Workflow (100% Dynamic) -->
             @if(!empty($visa->processing_steps) && is_array($visa->processing_steps) && count($visa->processing_steps) > 0)

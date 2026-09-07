@@ -91,16 +91,6 @@
                                 </div>
 
                                 <div class="col-md-12 mt-3">
-                                    <label for="benefits" class="form-label custom-label">Key Benefits & Facilities (JSON array format: ["Legal 2-Year Contract", "Free Housing", ...])</label>
-                                    <textarea class="form-control custom-input font-monospace" name="benefits" id="benefits" rows="4" placeholder="JSON array of benefits" style="resize: vertical;">{{ !empty($visa_type->benefits) ? json_encode($visa_type->benefits, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
-                                    <label for="requirements" class="form-label custom-label">Required Documents Checklist (JSON array format: ["Original Passport", "Medical Certificate", ...])</label>
-                                    <textarea class="form-control custom-input font-monospace" name="requirements" id="requirements" rows="5" placeholder="JSON array of required documents" style="resize: vertical;">{{ !empty($visa_type->requirements) ? json_encode($visa_type->requirements, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
-                                </div>
-
-                                <div class="col-md-12 mt-3">
                                     <label for="processing_steps" class="form-label custom-label">Step-by-Step Processing Timeline (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
                                     <textarea class="form-control custom-input font-monospace" name="processing_steps" id="processing_steps" rows="6" placeholder="JSON array of processing steps" style="resize: vertical;">{{ !empty($visa_type->processing_steps) ? json_encode($visa_type->processing_steps, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
                                 </div>

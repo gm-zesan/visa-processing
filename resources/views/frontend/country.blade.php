@@ -179,77 +179,45 @@
                 </div>
               @endif
 
-              <!-- Available Work Permit Visas Showcase Section (100% Dynamic) -->
+              <!-- Available Visas Section -->
               <div class="country_block mt_40">
                 <div class="country_section_heading">
-                  <span class="sub_lead">OFFICIAL WORK PERMIT AUTHORIZATION</span>
-                  <h2>Available Work Permits for {{ $country->country->name }}</h2>
+                  <h2>Available Visas for {{ $country->country->name }}</h2>
                   <div class="em_bar_bg"></div>
-                  <p class="section_intro">
-                    The following legally authorized work permits are officially processed by our agency in strict compliance with the host government's labor regulations and the Bangladesh BMET emigration framework.
-                  </p>
                 </div>
 
                 @forelse ($visa_types as $visa)
                   <div class="work_permit_showcase_card mb_25">
-                    <div class="showcase_header">
+                    <div class="showcase_header" style="margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 1px solid #F1F5F9;">
                       <div class="showcase_title_wrap">
-                        <span class="permit_badge"><i class="fa-solid fa-shield-halved"></i> {{ $visa->visa_category ?? 'Official Work Permit' }}</span>
-                        <h3>{{ $visa->name }}</h3>
+                        <h3 style="margin: 0; font-size: 2.2rem; font-family: 'Outfit', sans-serif; font-weight: 700; color: #111A3A;">{{ $visa->name }}</h3>
                         @if(!empty($visa->issuing_authority))
-                          <p class="showcase_authority" style="font-size: 1.3rem; color: #64748B; margin: 0.4rem 0 0;"><i class="fa-solid fa-building-columns" style="color: #C59A27; margin-right: 0.5rem;"></i> {{ $visa->issuing_authority }}</p>
+                          <p class="showcase_authority" style="font-size: 1.4rem; color: #64748B; margin: 0.6rem 0 0;">
+                            <i class="fa-solid fa-building-columns" style="color: #C59A27; margin-right: 0.6rem;"></i>{{ $visa->issuing_authority }}
+                          </p>
                         @endif
                       </div>
-                      <div class="showcase_flag">
-                        @if(!empty($country->country->flag) && file_exists(public_path('flags/' . $country->country->flag)))
-                          <img src="{{ asset('flags/' . $country->country->flag) }}" alt="{{ $country->country->name }}">
-                        @endif
-                      </div>
-                    </div>
-
-                    <!-- Dynamic Benefits & Contract Features -->
-                    <div class="showcase_features_grid">
-                      @if(!empty($visa->benefits) && is_array($visa->benefits) && count($visa->benefits) > 0)
-                        @foreach ($visa->benefits as $benefit)
-                          <div class="feature_chip">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <span>{{ $benefit }}</span>
-                          </div>
-                        @endforeach
-                      @else
-                        <div class="feature_chip">
-                          <i class="fa-solid fa-file-contract"></i>
-                          <span>{{ $visa->contract_period ?? 'Legal 2-Year Renewable Contract' }}</span>
-                        </div>
-                        <div class="feature_chip">
-                          <i class="fa-solid fa-clock"></i>
-                          <span>Processing Time: {{ $visa->processing_time ?? '30 - 45 Days' }}</span>
-                        </div>
-                        <div class="feature_chip">
-                          <i class="fa-solid fa-shield-halved"></i>
-                          <span>{{ $visa->emigration_clearance ?? 'BMET Emigration Smart Card' }}</span>
-                        </div>
-                        <div class="feature_chip">
-                          <i class="fa-solid fa-house-chimney"></i>
-                          <span>Employer-Provided Accommodation</span>
+                      @if(!empty($country->country->flag) && file_exists(public_path('flags/' . $country->country->flag)))
+                        <div class="showcase_flag">
+                          <img src="{{ asset('flags/' . $country->country->flag) }}" alt="{{ $country->country->name }}" style="width: 4.2rem; height: 2.8rem; object-fit: cover; border: 1px solid #E2E8F0;">
                         </div>
                       @endif
                     </div>
 
                     <div class="showcase_action_row">
                       <a href="{{ route('visa', ['slug' => $visa->slug]) }}" class="btn_view_visa">
-                        <span>VIEW VISA REQUIREMENTS & DOCUMENT CHECKLIST</span>
+                        <span>View Details</span>
                         <i class="fa-solid fa-arrow-right"></i>
                       </a>
                       <a href="{{ route('apply') }}" class="btn_apply_visa">
-                        <span>APPLY NOW</span>
+                        <span>Apply Now</span>
                         <i class="fa-solid fa-paper-plane"></i>
                       </a>
                     </div>
                   </div>
                 @empty
                   <div class="alert alert-info" style="border-radius: 0; background: #F8FAFC; border: 1px solid #CBD5E1; color: #111A3A;">
-                    Currently, work permit updates for {{ $country->country->name }} are being refreshed. Please contact our helpline for ongoing allocations.
+                    No visas found for {{ $country->country->name }}.
                   </div>
                 @endforelse
               </div>

@@ -62,7 +62,7 @@ class VisaTypeController extends Controller
             $data['image'] = $imageValue;
         }
 
-        foreach (['benefits', 'requirements', 'processing_steps'] as $jsonField) {
+        foreach (['processing_steps'] as $jsonField) {
             if (isset($data[$jsonField]) && is_string($data[$jsonField]) && trim($data[$jsonField]) !== '') {
                 $decoded = json_decode($data[$jsonField], true);
                 $data[$jsonField] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;
@@ -107,7 +107,7 @@ class VisaTypeController extends Controller
             }
         }
 
-        foreach (['benefits', 'requirements', 'processing_steps'] as $jsonField) {
+        foreach (['processing_steps'] as $jsonField) {
             if (isset($data[$jsonField]) && is_string($data[$jsonField]) && trim($data[$jsonField]) !== '') {
                 $decoded = json_decode($data[$jsonField], true);
                 $data[$jsonField] = json_last_error() === JSON_ERROR_NONE ? $decoded : null;

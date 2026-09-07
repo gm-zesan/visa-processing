@@ -26,20 +26,6 @@ class VisaTypeSeeder extends Seeder
                 'processing_time' => '30 - 45 Working Days',
                 'contract_period' => '2 Years (Renewable)',
                 'emigration_clearance' => 'BMET Smart Card Mandatory',
-                'benefits' => [
-                    'Official Work Permit issued under Maldivian labor regulations',
-                    'Employer-provided resort/island accommodation and daily meals',
-                    'Full medical fitness coverage and emergency health insurance',
-                    'Paid annual leave entitlement with roundtrip flight ticket',
-                    'Mandatory BMET Emigration clearance and Smart Card protection'
-                ],
-                'requirements' => [
-                    'Original Machine-Readable / E-Passport (minimum 12 months validity)',
-                    '6 recent passport-size photographs with studio white background',
-                    'Pre-medical fitness screening certificate from an authorized center',
-                    'Digital Police Clearance Certificate verified by Ministry of Foreign Affairs',
-                    'Trade test certificate or experience credential (for skilled trades)'
-                ],
                 'processing_steps' => [
                     [
                         'step' => '01',
@@ -96,20 +82,6 @@ class VisaTypeSeeder extends Seeder
                 'processing_time' => '30 - 40 Working Days',
                 'contract_period' => '2 Years (Renewable)',
                 'emigration_clearance' => 'BMET Smart Card Mandatory',
-                'benefits' => [
-                    'Verified electronic contract registered on Qiwa / Musaned platform',
-                    'Employer-sponsored Iqama (Resident Identity) and work permit renewal',
-                    'Free company accommodation, site transport, or housing allowance',
-                    'Mandatory health insurance under Council of Health Insurance (CCHI)',
-                    'Overtime benefits and end-of-service gratuity per Saudi Labor Law'
-                ],
-                'requirements' => [
-                    'Original passport with minimum 6 to 12 months validity',
-                    'GAMCA medical fitness certificate with "FIT" endorsement',
-                    'Digital Police Clearance Certificate authenticated by Foreign Ministry',
-                    'Attested technical diploma or trade skill verification certificate (for technical jobs)',
-                    'Recent color passport photographs on white background'
-                ],
                 'processing_steps' => [
                     [
                         'step' => '01',
@@ -166,20 +138,6 @@ class VisaTypeSeeder extends Seeder
                 'processing_time' => '25 - 35 Working Days',
                 'contract_period' => '2 Years (Renewable)',
                 'emigration_clearance' => 'BMET Smart Card Mandatory',
-                'benefits' => [
-                    'Official electronic entry permit issued directly by UAE MOHRE',
-                    '2-year renewable Emirates ID card and residency visa stamping',
-                    'Wages Protection System (WPS) guaranteed timely salary transfer',
-                    'Company-provided accommodation, transport, and health card',
-                    'Annual paid leave, flight allowance, and end-of-service gratuity'
-                ],
-                'requirements' => [
-                    'Original Machine-Readable Passport with at least 6 months validity',
-                    'Digital passport-size photos on clear white background',
-                    'Pre-medical fitness checkup and security clearance',
-                    'Police clearance certificate verified by Foreign Ministry',
-                    'Attested education or vocational certificates (for professional categories)'
-                ],
                 'processing_steps' => [
                     [
                         'step' => '01',
@@ -236,20 +194,6 @@ class VisaTypeSeeder extends Seeder
                 'processing_time' => '45 - 60 Working Days',
                 'contract_period' => '2 Years (Renewable up to 5 Years)',
                 'emigration_clearance' => 'BMET Smart Card Mandatory',
-                'benefits' => [
-                    'Approved Malaysian Calling Visa (VDR) under bilateral government quota',
-                    'Official contract with structured basic wage plus overtime rates',
-                    'Foreign Worker Compensation Scheme (FWCS) and SOCSO medical protection',
-                    'Employer-provided accommodation complying with Malaysian Act 446',
-                    'BMET Emigration Smart Card flight departure authorization'
-                ],
-                'requirements' => [
-                    'Original Passport with minimum 18 months validity remaining',
-                    'FOMEMA-format biometric pre-medical fitness certificate',
-                    'Digital Police Clearance Certificate certified by Foreign Ministry',
-                    'Passport-size photographs with studio white background',
-                    'Verified employment offer letter under approved corporate quota'
-                ],
                 'processing_steps' => [
                     [
                         'step' => '01',
@@ -306,20 +250,6 @@ class VisaTypeSeeder extends Seeder
                 'processing_time' => '60 - 90 Working Days',
                 'contract_period' => '1 to 2 Years (Renewable with Pathway to EU Residency)',
                 'emigration_clearance' => 'BMET Smart Card Mandatory',
-                'benefits' => [
-                    'Official European Work Notice (Aviz de Munca) issued by IGI Romania',
-                    'Long-Stay Work Visa (Type D/AM) allowing legal residence in the European Union',
-                    'Competitive earnings in Romanian Leu (RON) or Euros with standard overtime',
-                    'Employer-provided accommodation, utilities, and European national health coverage',
-                    'BMET legal emigration clearance and pre-departure European briefing'
-                ],
-                'requirements' => [
-                    'Original passport valid for at least 18 months',
-                    'Apostilled / Notarized Police Clearance Certificate',
-                    'Comprehensive medical fitness certificate from certified center',
-                    'Recent biometric passport photos meeting European standards',
-                    'Vocational or trade experience certificate (for skilled/semi-skilled roles)'
-                ],
                 'processing_steps' => [
                     [
                         'step' => '01',
