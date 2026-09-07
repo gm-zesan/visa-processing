@@ -2,7 +2,7 @@
 <div class="header_top">
     <div class="container">
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-9">
                 <p>
                     <a href="mailto:{{ getSettingsData('44', 'subtitle') ?: 'alfahiminternational944@gmail.com' }}"><i
                             class="fa-regular fa-envelope"></i>{{ getSettingsData('44', 'subtitle') ?:
@@ -13,7 +13,7 @@
                             class="fa-solid fa-phone"></i>{{ getSettingsData('44', 'title') ?: '+8801624238179' }}</a>
                 </p>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <ul class="text-end">
                     <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
                     <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>

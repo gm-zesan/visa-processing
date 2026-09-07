@@ -101,10 +101,14 @@
 
               <!-- Call Us Assistance Area -->
               <div class="call_us_area mb_30">
-                <img src="{{ asset(getSettingsData('59', 'image')) }}" alt="Assistance" class="w-100" loading="lazy" decoding="async">
+                <img src="{{ asset(getSettingsData('59', 'image') ?: 'upload/website-content/call_us_support.jpg') }}" alt="Visa Assistance" class="w-100" loading="lazy" decoding="async">
                 <div class="call_content">
-                  <h2>{{ getSettingsData('59', 'title') }}</h2>
-                  <a href="tel:+{{ getSettingsData('59', 'subtitle') }}"><i class="fa-solid fa-phone-volume"></i>+{{ getSettingsData('59', 'subtitle') }}</a>
+                  <h2>{{ getSettingsData('59', 'title') ?: 'Need Visa Assistance?' }}</h2>
+                  @php
+                    $countryHelpline = getSettingsData('59', 'subtitle') ?: (getSettingsData('44', 'title') ?: '+8801624238179');
+                    $countryTel = preg_replace('/[^\d+]/', '', $countryHelpline);
+                  @endphp
+                  <a href="tel:{{ $countryTel }}"><i class="fa-solid fa-phone-volume"></i>{{ $countryHelpline }}</a>
                 </div>
               </div>
 

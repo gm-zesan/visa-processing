@@ -128,9 +128,13 @@
               <img src="{{ asset(getSettingsData('59', 'image')) }}" alt="Assistance" class="w-100" loading="lazy"
                 decoding="async">
               <div class="call_content">
-                <h2>{{ getSettingsData('59', 'title') }}</h2>
-                <a href="tel:+{{ getSettingsData('59', 'subtitle') }}"><i
-                    class="fa-solid fa-phone-volume"></i>+{{ getSettingsData('59', 'subtitle') }}</a>
+                <h2>{{ getSettingsData('59', 'title') ?: 'Need Visa Assistance?' }}</h2>
+                @php
+                  $visaHelpline = getSettingsData('59', 'subtitle') ?: (getSettingsData('44', 'title') ?: '+8801624238179');
+                  $visaTel = preg_replace('/[^\d+]/', '', $visaHelpline);
+                @endphp
+                <a href="tel:{{ $visaTel }}"><i
+                    class="fa-solid fa-phone-volume"></i>{{ $visaHelpline }}</a>
               </div>
             </div>
 

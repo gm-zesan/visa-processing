@@ -39,7 +39,8 @@
                     <div class="choose_top">
                         <h3>{{ getSettingsData('41', 'title') ?? 'OVERSEAS RECRUITMENT & WORK PERMIT SOLUTIONS' }}</h3>
                         <h2><span>{{ getSettingsData('41', 'subtitle') ?? 'End-to-End Deployment From' }}</span>
-                            {{ getSettingsData('41', 'button_text') ?? 'Licensed Manpower Specialists' }}</h2>
+                            {{ getSettingsData('41', 'button_text') ?? 'Licensed Manpower Specialists' }}
+                        </h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     {!! getSettingsData('41', 'description') !!}
@@ -211,7 +212,8 @@
                     alt="Work Permit Assessment" class="img-fluid" loading="lazy" decoding="async">
                 <div class="free_content">
                     <h2>{{ getSettingsData('25', 'title') ?? 'Free Overseas Job Assessment & Trade Verification' }}</h2>
-                    <p>{!! getSettingsData('25', 'description') ?? 'Consult our licensed consular specialists to verify your eligibility for active employer quotas across Saudi Arabia, UAE, Maldives, Malaysia, and Romania.' !!}</p>
+                    <p>{!! getSettingsData('25', 'description') ?? 'Consult our licensed consular specialists to verify your eligibility for active employer quotas across Saudi Arabia, UAE, Maldives, Malaysia, and Romania.' !!}
+                    </p>
                     <a href="{{ url(getSettingsData('25', 'button_link') ?? '/apply') }}"
                         class="button">{{ getSettingsData('25', 'button_text') ?? 'Apply For Work Permit' }}<i
                             class="fa-solid fa-angle-right"></i></a>
