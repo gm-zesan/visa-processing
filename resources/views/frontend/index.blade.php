@@ -233,8 +233,8 @@
     <div class="choose_area">
         <div class="container">
             <div class="choose_top">
-                <h3>{{ getSettingsData('26', 'title') }}</h3>
-                <h2>{{ getSettingsData('26', 'title') }}</h2>
+                <h3>{{ getSettingsData('26', 'title') ?: 'WHY CHOOSE US' }}</h3>
+                <h2><span>{{ getSettingsData('26', 'subtitle') ?: 'Proven Track Record in Legal Deployments' }}</span></h2>
                 <div class="em_bar_bg"></div>
             </div>
             <div class="row row_gutters_sm" data-aos="flip-down">

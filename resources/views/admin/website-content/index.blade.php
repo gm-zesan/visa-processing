@@ -312,6 +312,8 @@
                                 'Home' => 'ri-home-4-line',
                                 'About' => 'ri-information-line',
                                 'Service' => 'ri-customer-service-2-line',
+                                'Country' => 'ri-global-line',
+                                'Visa' => 'ri-passport-line',
                                 'Faq' => 'ri-questionnaire-line',
                                 'Terms of use' => 'ri-file-shield-line',
                                 'Privacy Policy' => 'ri-shield-check-line',

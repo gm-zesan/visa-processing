@@ -6,7 +6,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>VisaDocs || @yield('title')</title>
+        <title>@yield('title') &mdash; AL FAHIM INTERNATIONAL</title>
 
         <!-- Meta data -->
         <meta name="author" content="UQIF" />

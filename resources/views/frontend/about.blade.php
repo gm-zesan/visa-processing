@@ -11,7 +11,7 @@
 @section('content')
     <!-- contact_page_area -->
     <div class="contact_page_area"
-        style="background-image: url({{ asset(getSettingsData('39', 'image') ?? 'frontend/images/contact_bg.jpg') }});">
+        style="background-image: url({{ asset(getSettingsData('38', 'image') ?: (getSettingsData('39', 'image') ?: 'frontend/images/contact_bg.jpg')) }});">
         <div class="container">
             <div class="contact_wrapper">
                 <h2>{{ getSettingsData('38', 'title') ?? 'About Us' }}</h2>
@@ -115,7 +115,7 @@
                             loading="lazy" decoding="async">
                         <div class="ceo_badge_tag">
                             <h4>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Hasibur Rahman Fahim' }}</h4>
-                            <p>{{ getSettingsData('about-ceo-speech', 'extra') ?? 'Chief Executive Officer (CEO)' }}</p>
+                            <p>{{ getSettingsData('about-ceo-speech', 'button_text') ?: 'Chief Executive Officer (CEO)' }}</p>
                             <span>AL FAHIM INTERNATIONAL &bull; RL-XXXX</span>
                         </div>
                     </div>
