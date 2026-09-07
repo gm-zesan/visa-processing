@@ -74,13 +74,7 @@ class PermissionTableSeeder extends Seeder
             ['name' => 'website-content-edit', 'display_name' => 'Website Content edit', 'module' => 'website-content'],
             ['name' => 'website-content-delete', 'display_name' => 'Website Content delete', 'module' => 'website-content'],
 
-            // 11. Common Type
-            ['name' => 'commontype-list', 'display_name' => 'Common Type list', 'module' => 'commontype'],
-            ['name' => 'commontype-create', 'display_name' => 'Common Type create', 'module' => 'commontype'],
-            ['name' => 'commontype-edit', 'display_name' => 'Common Type edit', 'module' => 'commontype'],
-            ['name' => 'commontype-delete', 'display_name' => 'Common Type delete', 'module' => 'commontype'],
-
-            // 12. Theme Management
+            // 11. Theme Management
             ['name' => 'theme-list', 'display_name' => 'Theme list', 'module' => 'theme'],
             ['name' => 'theme-create', 'display_name' => 'Theme create', 'module' => 'theme'],
             ['name' => 'theme-edit', 'display_name' => 'Theme edit', 'module' => 'theme'],

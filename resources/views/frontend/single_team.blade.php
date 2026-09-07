@@ -5,9 +5,7 @@
 @endsection
 
 @push("styles")
-
 @vite(['resources/scss/frontend/single_team.scss'])
-{{-- @vite(['resources/scss/frontend/single_team-dark.scss']) --}}
 @endpush
 
 

@@ -5,7 +5,6 @@ use App\Http\Controllers\AssignRoleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CkeditorController;
-use App\Http\Controllers\CommonTypeController;
 use App\Http\Controllers\ContactFormController;
 use App\Http\Controllers\CountriesController;
 use App\Http\Controllers\DashboardController;
@@ -40,8 +39,6 @@ Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/faq', [PageController::class, 'faq'])->name('faq');
 Route::get('/privacy', [PageController::class, 'privacy'])->name('privacy');
 Route::get('/termsofuse', [PageController::class, 'termsofuse'])->name('termsofuse');
-Route::get('/cookie', [PageController::class, 'cookie'])->name('cookie');
-Route::get('/helpcenter', [PageController::class, 'helpcenter'])->name('helpcenter');
 Route::get('/single_blog/{slug}', [PageController::class, 'single_blog'])->name('single_blog');
 Route::get('/blog_list', [PageController::class, 'blog_list'])->name('blog_list');
 Route::get('/blog_list/{category}', [PageController::class, 'blog_list'])->name('blog_filter');
@@ -78,15 +75,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/theme/update/{id}', [ThemeController::class, 'update'])->name('theme.update');
     Route::get('/dashboard/theme/delete/{id}', [ThemeController::class, 'delete'])->name('theme.delete');
     Route::get('/dashboard/theme/activate/{id}', [ThemeController::class, 'activate'])->name('theme.active');
-
-
-    // commontype Route
-    Route::get('/dashboard/common-type', [CommonTypeController::class, 'index'])->name('commontypes');
-    Route::get('/dashboard/common-type/create', [CommonTypeController::class, 'create'])->name('commontype.create');
-    Route::post('/dashboard/common-type/store', [CommonTypeController::class, 'store'])->name('commontype.store');
-    Route::get('/dashboard/common-type/edit/{id}', [CommonTypeController::class, 'edit'])->name('commontype.edit');
-    Route::post('/dashboard/common-type/update/{id}', [CommonTypeController::class, 'update'])->name('commontype.update');
-    Route::get('/dashboard/common-type/delete/{id}', [CommonTypeController::class, 'delete'])->name('commontype.delete');
 
 
     // website.content Route

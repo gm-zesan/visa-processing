@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('image_label')->nullable();
             $table->timestamps();
+
+            $table->index('link_key');
+            $table->index('page_name');
         });
     }
 

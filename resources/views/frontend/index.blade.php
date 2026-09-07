@@ -12,7 +12,6 @@
         <link rel="preload" as="image" href="{{ asset($firstHero->image) }}" fetchpriority="high">
     @endif
     @vite(['resources/scss/frontend/home.scss'])
-    {{-- @vite(['resources/scss/frontend/home-dark.scss']) --}}
 @endpush
 
 

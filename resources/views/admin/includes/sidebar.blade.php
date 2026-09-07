@@ -114,7 +114,7 @@
         @endcan
 
         <!-- Site Configuration -->
-        @canany(['website-content-list', 'website-content-create', 'website-content-edit', 'website-content-delete', 'theme-list', 'theme-create', 'theme-edit', 'theme-delete', 'theme-active', 'commontype-list', 'commontype-create', 'commontype-edit', 'commontype-delete'])
+        @canany(['website-content-list', 'website-content-create', 'website-content-edit', 'website-content-delete', 'theme-list', 'theme-create', 'theme-edit', 'theme-delete', 'theme-active'])
             <li class="category-li">
                 <span class="link_names">Site Settings</span>
             </li>
@@ -136,16 +136,6 @@
                 class="{{ in_array(Route::currentRouteName(), ['theme', 'theme.create', 'theme.edit']) ? ' active-focus' : '' }}">
                 <i class="ri-palette-line"></i>
                 <span class="link_names">Theme Settings</span>
-            </a>
-        </li>
-        @endcan
-
-        @canany(['commontype-list', 'commontype-create', 'commontype-edit', 'commontype-delete'])
-        <li>
-            <a href="{{route('commontypes')}}"
-                class="{{ in_array(Route::currentRouteName(), ['commontypes', 'commontype.create', 'commontype.edit']) ? ' active-focus' : '' }}">
-                <i class="ri-list-settings-line"></i>
-                <span class="link_names">Common Types</span>
             </a>
         </li>
         @endcan

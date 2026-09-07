@@ -14,9 +14,6 @@ return new class extends Migration
         Schema::create('common_types', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            // $table->string('key')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

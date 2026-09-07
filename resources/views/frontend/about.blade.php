@@ -6,7 +6,6 @@
 
 @push("styles")
     @vite(['resources/scss/frontend/about.scss'])
-    {{-- @vite(['resources/scss/frontend/about-dark.scss']) --}}
 @endpush
 
 @section('content')

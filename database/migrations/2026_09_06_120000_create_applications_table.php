@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('profession')->nullable();
             $table->text('notes')->nullable();
             $table->string('status')->default('pending');
+            $table->text('admin_remarks')->nullable();
             $table->timestamps();
         });
     }

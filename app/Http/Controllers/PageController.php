@@ -45,12 +45,6 @@ class PageController extends Controller
     public function termsofuse(){
         return view('frontend.termsofuse');
     }
-    public function cookie(){
-        return view('frontend.cookie');
-    }
-    public function helpcenter(){
-        return view('frontend.helpcenter');
-    }
     
     public function blog_list($category = null){
         if($category){
