@@ -29,7 +29,7 @@
                 height: 4.8rem;
                 flex-shrink: 0;
                 background-color: rgba(255, 255, 255, 0.08);
-                border: 1px solid rgba(197, 154, 39, 0.5);
+                border: 1px solid rgba(var(--primary-rgb), 0.5);
                 color: $primary;
                 font-family: $font_heading;
                 font-weight: 800;
@@ -64,7 +64,7 @@
                 background-color: $primary;
                 color: $white;
                 border-color: $primary;
-                box-shadow: 0 0 15px rgba(197, 154, 39, 0.4);
+                box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.4);
             }
         }
     }
@@ -181,7 +181,7 @@
                     &:focus {
                         background-color: $white;
                         border-color: $primary;
-                        box-shadow: 0 0 0 3px rgba(197, 154, 39, 0.15);
+                        box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
 
                         + i.input_icon {
                             color: $primary;
@@ -308,12 +308,12 @@
 
     // Success Tracking Alert Card
     .apply_success_card {
-        background: #111A3A;
-        border: 1px solid rgba(197, 154, 39, 0.35);
+        background: $dark_blue;
+        border: 1px solid rgba(var(--primary-rgb), 0.35);
         border-radius: 0;
         padding: 4rem 3.5rem;
         margin-bottom: 4rem;
-        box-shadow: 0 10px 35px rgba(17, 26, 58, 0.15);
+        box-shadow: 0 10px 35px rgba(var(--secondary-rgb), 0.15);
         color: $white;
         text-align: center;
 
@@ -321,7 +321,7 @@
             width: 7.5rem;
             height: 7.5rem;
             margin: 0 auto 2rem;
-            background: rgba(197, 154, 39, 0.15);
+            background: rgba(var(--primary-rgb), 0.15);
             border: 2px solid $primary;
             border-radius: 50%;
             display: flex;
@@ -354,7 +354,7 @@
         .tracking_pill_box {
             display: inline-block;
             background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(197, 154, 39, 0.5);
+            border: 1px solid rgba(var(--primary-rgb), 0.5);
             padding: 1.6rem 3rem;
             border-radius: 0;
             margin-bottom: 2.5rem;
@@ -491,8 +491,8 @@
                     i {
                         width: 4.2rem;
                         height: 4.2rem;
-                        background: rgba(197, 154, 39, 0.15);
-                        border: 1px solid rgba(197, 154, 39, 0.4);
+                        background: rgba(var(--primary-rgb), 0.15);
+                        border: 1px solid rgba(var(--primary-rgb), 0.4);
                         color: $primary;
                         font-size: 1.6rem;
                         display: flex;

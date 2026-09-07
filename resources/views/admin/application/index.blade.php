@@ -218,11 +218,6 @@
 @endpush
 
 @section('content')
-    <div id="toastNotification" class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
-        <i class="ri-checkbox-circle-line me-1"></i> <span id="toastMessage">Action completed successfully.</span>
-        <button type="button" class="btn-close" onclick="$('#toastNotification').fadeOut();"></button>
-    </div>
-
     <div class="container-fluid my-4">
         <div class="row">
             <div class="col-12">
@@ -244,12 +239,6 @@
                         </a>
                     </div>
                     <div class="card-body" style="overflow-x: auto">
-                        @if(session('success'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('success') }}
-                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        @endif
                         <table class="table dataTable w-100" id="data-table" style="min-width: 950px;">
                             <thead>
                                 <tr>
@@ -360,17 +349,6 @@
     var listUrl = SITEURL + '/dashboard/applications';
     var applicationStatuses = @json(\App\Enums\ApplicationStatus::shortOptions());
     var table;
-
-    function showToast(message, isError = false) {
-        var toast = $('#toastNotification');
-        toast.removeClass('alert-success alert-danger');
-        toast.addClass(isError ? 'alert-danger' : 'alert-success');
-        $('#toastMessage').text(message);
-        toast.stop(true, true).fadeIn();
-        setTimeout(function() {
-            toast.fadeOut();
-        }, 3500);
-    }
 
     $(document).ready( function () {
         table = $('#data-table').DataTable({

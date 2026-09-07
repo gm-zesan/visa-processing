@@ -65,12 +65,6 @@
     </div>
 </header>
 
-<!-- Global Toast Notification Container -->
-<div id="adminGlobalToast" class="alert alert-success alert-dismissible fade show shadow-sm" role="alert" style="position: fixed; top: 20px; right: 20px; z-index: 999999; min-width: 280px; display: none; border-radius: 6px; font-size: 13px; font-weight: 500;">
-    <i class="ri-checkbox-circle-line me-1" id="adminGlobalToastIcon"></i> <span id="adminGlobalToastMsg">Action completed successfully.</span>
-    <button type="button" class="btn-close" onclick="$('#adminGlobalToast').fadeOut();" style="box-shadow: none !important; outline: none !important;"></button>
-</div>
-
 <script>
 function clearAdminCache(event, el) {
     event.preventDefault();
@@ -83,24 +77,12 @@ function clearAdminCache(event, el) {
         headers: { 'X-Requested-With': 'XMLHttpRequest' },
         success: function(res) {
             $icon.removeClass('ri-spin');
-            showAdminToast(res.message || 'System cache cleared successfully!', false);
+            toastr.success(res.message || 'System and view cache cleared successfully!', 'Cache Cleared');
         },
         error: function(xhr) {
             $icon.removeClass('ri-spin');
-            showAdminToast('Failed to clear cache. Please try again.', true);
+            toastr.error('Failed to clear cache. Please try again.', 'Error');
         }
     });
-}
-
-function showAdminToast(msg, isError) {
-    var $toast = $('#adminGlobalToast');
-    $toast.removeClass('alert-success alert-danger');
-    $toast.addClass(isError ? 'alert-danger' : 'alert-success');
-    $('#adminGlobalToastIcon').attr('class', isError ? 'ri-error-warning-line me-1' : 'ri-checkbox-circle-line me-1');
-    $('#adminGlobalToastMsg').text(msg);
-    $toast.stop(true, true).fadeIn();
-    setTimeout(function() {
-        $toast.fadeOut();
-    }, 3500);
 }
 </script>

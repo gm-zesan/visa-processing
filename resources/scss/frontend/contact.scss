@@ -5,7 +5,7 @@
 .touch_from_area{
     padding: 3rem 0 8rem;
     .touch_left{
-        box-shadow: 0 4px 25px rgba(17, 26, 58, 0.04);
+        box-shadow: 0 4px 25px rgba(var(--secondary-rgb), 0.04);
         border: 1px solid #E2E8F0;
         border-radius: 0;
         padding: 4.5rem 4.0rem;
@@ -30,7 +30,7 @@
             font-size: 1.5rem;
             &:focus{
                 border-color: $primary;
-                box-shadow: 0 0 0 .2rem rgba(197, 154, 39, .15);
+                box-shadow: 0 0 0 .2rem rgba(var(--primary-rgb), .15);
             }
         }
         textarea{
@@ -46,7 +46,7 @@
             font-size: 1.5rem;
             &:focus{
                 border-color: $primary;
-                box-shadow: 0 0 0 .2rem rgba(197, 154, 39, .15);
+                box-shadow: 0 0 0 .2rem rgba(var(--primary-rgb), .15);
             }
         }
         .sub_btn{
@@ -70,11 +70,11 @@
         }
     }
     .company_right{
-        background-color: #111A3A;
+        background-color: $dark_blue;
         padding: 4.5rem 3.5rem;
         height: 100%;
         border-radius: 0;
-        border: 1px solid rgba(197, 154, 39, 0.3);
+        border: 1px solid rgba(var(--primary-rgb), 0.3);
         .company_item{
             display: flex;
             align-items: flex-start;

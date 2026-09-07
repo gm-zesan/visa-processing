@@ -42,7 +42,7 @@ class ApplicationController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'passport_number' => 'required|string|max:50',
-            'phone' => 'nullable|string|max:30',
+            'phone' => 'required|string|max:30',
             'email' => 'nullable|email|max:100',
             'destination_country' => 'nullable|string|max:100',
             'profession' => 'nullable|string|max:150',
@@ -52,6 +52,7 @@ class ApplicationController extends Controller
         ], [
             'name.required' => 'Candidate Full Name (as per Passport) is required.',
             'passport_number.required' => 'Candidate Passport Number is required.',
+            'phone.required' => 'Candidate Contact / WhatsApp number is mandatory.',
             'status.required' => 'Initial application status is required.',
         ]);
 
@@ -133,13 +134,14 @@ class ApplicationController extends Controller
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'passport_number' => 'required|string|max:50',
-            'phone' => 'nullable|string|max:30',
+            'phone' => 'required|string|max:30',
             'email' => 'nullable|email|max:100',
             'destination_country' => 'nullable|string|max:100',
             'notes' => 'nullable|string|max:1000',
         ], [
             'name.required' => 'Full Name (as in Passport) is required.',
             'passport_number.required' => 'Valid Passport Number is required.',
+            'phone.required' => 'Phone / WhatsApp number is required for visa application updates.',
         ]);
 
         $application = Application::create([

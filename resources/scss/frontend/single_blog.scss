@@ -196,7 +196,7 @@
                             left: 0;
                             top: 0.3rem;
                             color: $primary;
-                            background-color: rgba(197, 154, 39, 0.14);
+                            background-color: rgba(var(--primary-rgb), 0.14);
                             width: 2.2rem;
                             height: 2.2rem;
                             border-radius: 50%;
@@ -336,8 +336,8 @@
                     margin: 3.2rem 0;
                     padding: 2.2rem 2.6rem;
                     border-radius: 6px;
-                    background-color: #FBF6EA;
-                    border: 1px solid rgba(197, 154, 39, 0.35);
+                    background-color: $primary_light;
+                    border: 1px solid rgba(var(--primary-rgb), 0.35);
                     border-left: 5px solid $primary;
                     display: flex;
                     gap: 1.8rem;
@@ -497,7 +497,7 @@
                         &:hover {
                             background-color: $primary_hover;
                             transform: translateY(-2px);
-                            box-shadow: 0 6px 16px rgba(197, 154, 39, 0.35);
+                            box-shadow: 0 6px 16px rgba(var(--primary-rgb), 0.35);
                             color: #FFFFFF;
 
                             i {
@@ -731,19 +731,19 @@
     }
 
     .sidebar_support_box {
-        background: linear-gradient(135deg, #111A3A 0%, #172346 100%);
+        background: linear-gradient(135deg, $dark_blue 0%, #172346 100%);
         border-radius: 0;
         padding: 3.5rem 3rem;
         color: #FFFFFF;
         text-align: center;
-        border: 1px solid rgba(197, 154, 39, 0.4);
-        box-shadow: 0 6px 20px rgba(17, 26, 58, 0.08);
+        border: 1px solid rgba(var(--primary-rgb), 0.4);
+        box-shadow: 0 6px 20px rgba(var(--secondary-rgb), 0.08);
 
         .support_icon {
             width: 6.5rem;
             height: 6.5rem;
             border-radius: 50%;
-            background-color: rgba(197, 154, 39, 0.15);
+            background-color: rgba(var(--primary-rgb), 0.15);
             color: $primary;
             border: 2px solid $primary;
             display: inline-flex;
@@ -787,7 +787,7 @@
             &:hover {
                 background-color: $primary_hover;
                 transform: translateY(-2px);
-                box-shadow: 0 4px 12px rgba(197, 154, 39, 0.35);
+                box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.35);
                 color: #FFFFFF;
 
                 i {

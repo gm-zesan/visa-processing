@@ -2,50 +2,73 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\CommonType;
 use App\Models\WebsiteContent;
 use Illuminate\Http\Request;
 
 class WebsiteContentController extends Controller
 {
-    function __construct()
+    public function __construct()
     {
-        $this->middleware('permission:website-content-list|website-content-create|website-content-edit|website-content-delete', ['only' => ['index','store']]);
-        $this->middleware('permission:website-content-create', ['only' => ['create','store']]);
-        $this->middleware('permission:website-content-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:website-content-list|website-content-create|website-content-edit|website-content-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:website-content-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:website-content-edit', ['only' => ['edit', 'update']]);
         $this->middleware('permission:website-content-delete', ['only' => ['delete']]);
     }
     
-    public function index(Request $request){
+    public function index(Request $request)
+    {
+        // Defined logical page ordering for clean navigation
+        $pageOrder = [
+            'Home' => 1,
+            'About' => 2,
+            'Service' => 3,
+            'Faq' => 4,
+            'Terms of use' => 5,
+            'Privacy Policy' => 6,
+            'Contact' => 7,
+            'Blog' => 8,
+            'Team' => 9,
+            'Website Setting' => 10,
+            'Admin Setting' => 11,
+        ];
 
-        $websitecontent = WebsiteContent::select('link_key', 'page_name')->distinct()->get()->groupBy('page_name');
-        if($request->key && $request->page){
-            $webcontent = WebsiteContent::where('page_name', $request->page)->where('link_key', $request->key);
+        $rawContents = WebsiteContent::select('link_key', 'page_name')->distinct()->get()->groupBy('page_name');
+        
+        // Sort grouped pages by established logical order
+        $websitecontent = $rawContents->sortBy(function ($items, $pageName) use ($pageOrder) {
+            return $pageOrder[$pageName] ?? 99;
+        });
+
+        $activeKey = $request->key;
+        $activePage = $request->page;
+
+        if ($activeKey && $activePage) {
+            $webcontent = WebsiteContent::where('page_name', $activePage)->where('link_key', $activeKey);
             $count = $webcontent->count();
-            if($count > 1){
+            if ($count > 1) {
                 $settings = $webcontent->get();
-            }else{
+            } else {
                 $settings = $webcontent->first();
             }
-            return view('admin.website-content.index',[
+            return view('admin.website-content.index', [
                 'settings' => $settings,
                 'websitecontents' => $websitecontent,
                 'count' => $count,
-                'key' => $request->key,
-                'page' => $request->page,
-            ])->with('key', $request->key)->with('page', $request->page);
-        }
-        else{
-            $link_key = WebsiteContent::first()->link_key;
-            $page_name = WebsiteContent::first()->page_name;
-            $webcontent = WebsiteContent::where('link_key', $link_key)->where('page_name',$page_name);
+                'key' => $activeKey,
+                'page' => $activePage,
+            ])->with('key', $activeKey)->with('page', $activePage);
+        } else {
+            $first = WebsiteContent::first();
+            $link_key = $first ? $first->link_key : 'home-hero-section';
+            $page_name = $first ? $first->page_name : 'Home';
+            $webcontent = WebsiteContent::where('link_key', $link_key)->where('page_name', $page_name);
             $count = $webcontent->count();
-            if($count > 1){
+            if ($count > 1) {
                 $settings = $webcontent->get();
-            }else{
+            } else {
                 $settings = $webcontent->first();
             }
-            return view('admin.website-content.index',[
+            return view('admin.website-content.index', [
                 'settings' => $settings, 
                 'websitecontents' => $websitecontent,
                 'count' => $count,
@@ -55,18 +78,16 @@ class WebsiteContentController extends Controller
         }
     }
 
-
     public function create(Request $request)
     {
         $key = $request->key;
         $page = $request->page;
-        if($key != null){
+        if ($key != null) {
             $websitecontent = WebsiteContent::where('link_key', $key)->where('page_name', $page)->first();
-            return view('admin.website-content.create',['key' => $key, 'page' => $page, 'websitecontent' => $websitecontent]);
-        }else{
+            return view('admin.website-content.create', ['key' => $key, 'page' => $page, 'websitecontent' => $websitecontent]);
+        } else {
             return view('admin.website-content.create', ['key' => $key, 'page' => $page]);
         }
-            
     }
 
     /**
@@ -74,21 +95,22 @@ class WebsiteContentController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'link_key' => 'required',
-        ],[
+        ], [
             'link_key.required' => 'The key field is required.',
         ]);
 
         $data = $request->all();
 
-
-        if($data['cover_image_data'] != ""){
+        if (isset($data['cover_image_data']) && $data['cover_image_data'] != "") {
             $image = $request->file('image');
-            $destinationPath = 'upload/website-content/';
-            $imageValue = $destinationPath .  rand(1,999999).date('YmdHis').".".$image->getClientOriginalExtension();
-            $image->move($destinationPath, $imageValue);
-            $data['image'] = $imageValue;
+            if ($image) {
+                $destinationPath = 'upload/website-content/';
+                $imageValue = $destinationPath . rand(1, 999999) . date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $imageValue);
+                $data['image'] = $imageValue;
+            }
         }
 
         unset($data['cover_image_data']);
@@ -97,13 +119,16 @@ class WebsiteContentController extends Controller
             
         WebsiteContent::create($data);
 
-        return redirect()->route('website-contents', ['key' => $key, 'page' => $page])->with('success','Website content created successfully.');
+        clearWebsiteContentCache();
+
+        return redirect()->route('website-contents', ['key' => $key, 'page' => $page])->with('success', 'Website content created successfully.');
     }
 
     public function edit($id)
     {
-        $data = WebsiteContent::find($id);
-        return view('admin.website-content.edit',['settings' => $data, 'key' => $data->link_key, 'page' => $data->commonType->name])->with('key', $data->link_key)->with('page', $data->commonType->name);
+        $data = WebsiteContent::findOrFail($id);
+        $page = $data->page_name;
+        return view('admin.website-content.edit', ['settings' => $data, 'key' => $data->link_key, 'page' => $page])->with('key', $data->link_key)->with('page', $page);
     }
 
     /**
@@ -111,47 +136,54 @@ class WebsiteContentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request,[
+        $this->validate($request, [
             'link_key' => 'required',
-        ],[
+        ], [
             'link_key.required' => 'The key field is required.',
         ]);
 
         $data = $request->all();
 
-        $old_data = WebsiteContent::find($id);
+        $old_data = WebsiteContent::findOrFail($id);
         $page = $old_data->page_name;
 
         if (isset($data['cover_image_data']) && $data['cover_image_data'] != "") {
             $image = $request->file('image');
-            $destinationPath = 'upload/website-content/';
-            $imageValue = $destinationPath .  rand(1, 999999) . date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $imageValue);
-            $data['image'] = $imageValue;
-            if($old_data->image != ""){
-                if(file_exists($old_data->image)){
-                    unlink($old_data->image);
+            if ($image) {
+                $destinationPath = 'upload/website-content/';
+                $imageValue = $destinationPath . rand(1, 999999) . date('YmdHis') . "." . $image->getClientOriginalExtension();
+                $image->move($destinationPath, $imageValue);
+                $data['image'] = $imageValue;
+                if ($old_data->image != "" && file_exists(public_path($old_data->image))) {
+                    @unlink(public_path($old_data->image));
                 }
             }
-        }else{
+        } else {
             $data['image'] = $old_data->image;
         }
 
-        WebsiteContent::find($id)->update($data);
+        unset($data['cover_image_data']);
 
-        return redirect()->route('website-contents', ['key' => $old_data->link_key, 'page' => $page])->with('message','Website Content updated successfully');
+        $old_data->update($data);
 
+        clearWebsiteContentCache();
+
+        return redirect()->route('website-contents', ['key' => $old_data->link_key, 'page' => $page])->with('success', 'Website Content updated successfully');
     }
 
     public function delete($id)
     {
-        $data = WebsiteContent::find($id);
+        $data = WebsiteContent::findOrFail($id);
         $page = $data->page_name;
-        if(file_exists($data->image) && !empty($data->image)){
-            unlink($data->image);
+        $key = $data->link_key;
+        if (!empty($data->image) && file_exists(public_path($data->image))) {
+            @unlink(public_path($data->image));
         }
             
         $data->delete();
-        return redirect()->route('website-contents', ['key' => $data->link_key, 'page' => $page])->with('message','Website Content deleted successfully');
+
+        clearWebsiteContentCache();
+
+        return redirect()->route('website-contents', ['key' => $key, 'page' => $page])->with('success', 'Website Content deleted successfully');
     }
 }

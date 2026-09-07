@@ -545,12 +545,12 @@ Apply Online & Track Passport Status - Manpower Recruitment
                             </div>
 
                             <div class="row">
-                                <!-- Phone / WhatsApp Number (Optional) -->
+                                <!-- Phone / WhatsApp Number (Required) -->
                                 <div class="col-md-6">
                                     <div class="form_group">
-                                        <label for="candidate_phone">Phone / WhatsApp <span class="optional_mark">(Optional)</span></label>
+                                        <label for="candidate_phone">Phone / WhatsApp Number <span class="required_mark">*</span></label>
                                         <div class="input_field_wrapper">
-                                            <input type="tel" id="candidate_phone" name="phone" value="{{ old('phone') }}" placeholder="+880 1700 000 000">
+                                            <input type="tel" id="candidate_phone" name="phone" value="{{ old('phone') }}" placeholder="+880 1700 000 000" required>
                                             <i class="fa-solid fa-phone input_icon"></i>
                                         </div>
                                         @error('phone')
@@ -565,7 +565,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                                         <label for="destination_country">Target Country <span class="optional_mark">(Optional)</span></label>
                                         <div class="input_field_wrapper">
                                             <select id="destination_country" name="destination_country">
-                                                <option value="">-- Select Preferred Destination --</option>
+                                                <option value="">-- Select Destination --</option>
                                                 @foreach($countries as $countryDetail)
                                                     @if($countryDetail->country)
                                                         <option value="{{ $countryDetail->country->name }}" {{ old('destination_country') == $countryDetail->country->name ? 'selected' : '' }}>

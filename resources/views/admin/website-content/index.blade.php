@@ -81,7 +81,6 @@
             font-size: 13px!important;
             font-weight: 400!important;
             text-align: left!important;
-            /* white-space: pre; */
             font-family: Courier New, monospace;
         }
         .tooltips {
@@ -132,6 +131,7 @@
         }
         .active-focus>a{
             color: #000!important;
+            font-weight: 600!important;
         }
         .create-new-section{
             transition: all 0.3s ease-in-out;
@@ -151,14 +151,14 @@
 
                         @foreach ($websitecontents as $websitecontent => $datas)
                             <li>
-                                <a href="#">{{$websitecontent}}</a>
+                                <a href="#" style="font-weight: 600; color: #536485; text-transform: uppercase; font-size: 11.5px; letter-spacing: 0.5px;">{{$websitecontent}}</a>
                                 <ul class="pagecontent-sidebar-submenu">
                                     @foreach ($datas as $data)
                                         @if(isset($data->link_key))
                                             <?php
-                                                $modKey = Illuminate\Support\Str::title(str_replace('-', ' ', $data->link_key));
+                                                $modKey = Illuminate\Support\Str::title(str_replace(['-', '_'], ' ', $data->link_key));
                                             ?>
-                                            <li  class="{{$data->link_key == $key && $data->page_name == $page ? 'active-focus' : ''}}">
+                                            <li class="{{$data->link_key == $key && $data->page_name == $page ? 'active-focus' : ''}}">
                                                 <a href="{{route('website-contents', ['key' => $data->link_key, 'page' => $data->page_name])}}">{{$modKey}}</a>
                                             </li>
                                         @endif
@@ -189,6 +189,7 @@
                                         <li class="breadcrumb-item">
                                             <a href="{{route('website-contents')}}">Content</a>
                                         </li>
+                                        <li class="breadcrumb-item"><span class="text-primary">{{ $page }}</span></li>
                                         @if(isset($settings->hints))
                                             <li class="breadcrumb-item active" aria-current="page"> Edit {{ $settings->hints }}</li> 
                                         @endif
@@ -257,11 +258,6 @@
                     @else
                         <form action="{{ route('website-content.update', ['id'=> $settings->id ]) }}" method="POST" enctype="multipart/form-data" id="contentContainer">
                             @csrf
-                            {{-- @if (Str::contains($settings->link_key, 'seo'))
-                                @include('admin.website-content.form.seo-form')
-                            @else
-                                @include('admin.website-content.form.common-form')
-                            @endif --}}
                             @include('admin.website-content.form.common-form')
                         </form>
                     @endif
@@ -301,7 +297,7 @@
         function imageUpload( e ) {
             var imgPath = e.value;
             var ext = imgPath.substring( imgPath.lastIndexOf( '.' ) + 1 ).toLowerCase();
-            if ( ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg" ) {
+            if ( ext == "gif" || ext == "png" || ext == "jpg" || ext == "jpeg" || ext == "svg") {
                 readURL( e, e.id );
                 $( '.' + e.id + 'error' ).hide()
                 $( '.btn-submit' ).prop( "disabled", false );
@@ -333,7 +329,6 @@
         }
     </script>
 
-
     {{-- Copy to clipboard --}}
     <script>
         function copyContent(e) {
@@ -357,16 +352,4 @@
                 });
         }
     </script>
-    
-    {{-- <script>
-        function copyContent(e){
-            var copyText = $(e).closest('.clipboard').find('p').text();
-            var tooltip = $(e).closest('.clipboard').find('span');
-            navigator.clipboard.writeText(copyText);
-            tooltip.html('Copied');
-            setTimeout(function(){
-                tooltip.html('Copy');
-            }, 1000);
-        }
-    </script> --}}
 @endpush

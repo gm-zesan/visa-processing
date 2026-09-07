@@ -64,9 +64,9 @@
                         width: 4rem;
                         height: 4rem;
                         border-radius: 0;
-                        background-color: #111A3A;
+                        background-color: $dark_blue;
                         color: $white;
-                        border: 1px solid rgba(197, 154, 39, 0.3);
+                        border: 1px solid rgba(var(--primary-rgb), 0.3);
                         transition: 0.3s;
                         &:hover{
                             background-color: $red;

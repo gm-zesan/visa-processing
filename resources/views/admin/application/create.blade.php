@@ -96,8 +96,8 @@
                             </div>
 
                             <div class="col-md-6 col-12">
-                                <label for="phone" class="form-label custom-label">Candidate Contact / WhatsApp No</label>
-                                <input type="text" class="form-control custom-input @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" placeholder="e.g. +880 1712 345678">
+                                <label for="phone" class="form-label custom-label">Candidate Contact / WhatsApp No <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control custom-input @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" placeholder="e.g. +880 1712 345678" required>
                                 @error('phone')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror

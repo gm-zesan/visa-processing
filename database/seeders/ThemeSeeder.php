@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Theme;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ThemeSeeder extends Seeder
@@ -13,12 +12,73 @@ class ThemeSeeder extends Seeder
      */
     public function run(): void
     {
-        $themes = array(
-            array('id' => '1','name' => 'Theme-1','slug' => 'theme-1','subtitle' => 'subtitle-1','description' => '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstr the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available. Wikipedia
-            </p>','image' => 'upload/theme/20240330071845.png','light_or_dark' => 'light', 'status' => '1','created_at' => '2024-03-30 07:18:45','updated_at' => '2024-03-30 08:05:08'),
-            array('id' => '2','name' => 'Theme-2','slug' => 'theme-2','subtitle' => 'subtitle-2','description' => '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstr the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available. Wikipedia
-            </p>','image' => 'upload/theme/20240330073935.png','light_or_dark' => 'dark', 'status' => '0','created_at' => '2024-03-30 07:39:35','updated_at' => '2024-03-30 08:05:08'),
-        );
+        $themes = [
+            [
+                'id' => 1,
+                'name' => 'Royal Gold & Navy (Official)',
+                'slug' => 'royal-gold-navy',
+                'primary_color' => '#C59A27',
+                'secondary_color' => '#111A3A',
+                'hover_color' => '#A87F17',
+                'light_color' => '#FBF6EA',
+                'nav_bg' => '#FFFFFF',
+                'footer_bg' => '#111A3A',
+                'description' => 'Official AL FAHIM INTERNATIONAL branding palette matching the corporate eagle logo.',
+                'status' => 1,
+            ],
+            [
+                'id' => 2,
+                'name' => 'Emerald Green & Slate',
+                'slug' => 'emerald-green-slate',
+                'primary_color' => '#16A34A',
+                'secondary_color' => '#0F172A',
+                'hover_color' => '#15803D',
+                'light_color' => '#F0FDF4',
+                'nav_bg' => '#FFFFFF',
+                'footer_bg' => '#0F172A',
+                'description' => 'Fresh, prestigious botanical green theme ideal for global mobility and welfare.',
+                'status' => 0,
+            ],
+            [
+                'id' => 3,
+                'name' => 'Sapphire Blue & Steel',
+                'slug' => 'sapphire-blue-steel',
+                'primary_color' => '#2563EB',
+                'secondary_color' => '#0B192C',
+                'hover_color' => '#1D4ED8',
+                'light_color' => '#EFF6FF',
+                'nav_bg' => '#FFFFFF',
+                'footer_bg' => '#0B192C',
+                'description' => 'Modern corporate international aviation blue with deep midnight accents.',
+                'status' => 0,
+            ],
+            [
+                'id' => 4,
+                'name' => 'Crimson & Charcoal',
+                'slug' => 'crimson-charcoal',
+                'primary_color' => '#DC2626',
+                'secondary_color' => '#18181B',
+                'hover_color' => '#B91C1C',
+                'light_color' => '#FEF2F2',
+                'nav_bg' => '#FFFFFF',
+                'footer_bg' => '#18181B',
+                'description' => 'High-energy, authoritative red and deep charcoal for high-impact presence.',
+                'status' => 0,
+            ],
+            [
+                'id' => 5,
+                'name' => 'Amber Bronze & Espresso',
+                'slug' => 'amber-bronze-espresso',
+                'primary_color' => '#D97706',
+                'secondary_color' => '#1C1917',
+                'hover_color' => '#B45309',
+                'light_color' => '#FFFBEB',
+                'nav_bg' => '#FFFFFF',
+                'footer_bg' => '#1C1917',
+                'description' => 'Warm luxury bronze and rich espresso designed for executive recruitment.',
+                'status' => 0,
+            ],
+        ];
 
         foreach ($themes as $theme) {
             Theme::create($theme);

@@ -15,10 +15,13 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('subtitle')->nullable();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->string('light_or_dark')->default('light');
+            $table->string('primary_color')->default('#C59A27');
+            $table->string('secondary_color')->default('#111A3A');
+            $table->string('hover_color')->default('#A87F17');
+            $table->string('light_color')->default('#FBF6EA');
+            $table->string('nav_bg')->default('#FFFFFF');
+            $table->string('footer_bg')->default('#111A3A');
+            $table->string('description')->nullable();
             $table->tinyInteger('status')->default(0);
             $table->timestamps();
         });

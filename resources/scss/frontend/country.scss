@@ -173,9 +173,9 @@
 
             .call_content {
                 padding: 3.5rem 2rem;
-                background-color: #111A3A;
+                background-color: $dark_blue;
                 border-radius: 0;
-                border: 1px solid rgba(197, 154, 39, 0.4);
+                border: 1px solid rgba(var(--primary-rgb), 0.4);
                 text-align: center;
 
                 h2 {
@@ -202,10 +202,10 @@
         }
 
         .request_form_area {
-            background-color: #111A3A;
+            background-color: $dark_blue;
             padding: 4rem 3rem;
             border-radius: 0;
-            border: 1px solid rgba(197, 154, 39, 0.3);
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
 
             .button {
                 width: 100%;
@@ -356,7 +356,7 @@
                 .sector_icon {
                     width: 4.8rem;
                     height: 4.8rem;
-                    background: rgba(197, 154, 39, 0.12);
+                    background: rgba(var(--primary-rgb), 0.12);
                     color: $primary;
                     display: flex;
                     align-items: center;
@@ -391,12 +391,12 @@
             border-left: 4px solid $primary;
             padding: 2.8rem 2.8rem;
             transition: all 0.25s ease;
-            box-shadow: 0 4px 15px rgba(17, 26, 58, 0.03);
+            box-shadow: 0 4px 15px rgba(var(--secondary-rgb), 0.03);
 
             &:hover {
                 border-color: #CBD5E1;
                 border-left-color: $primary;
-                box-shadow: 0 8px 25px rgba(17, 26, 58, 0.08);
+                box-shadow: 0 8px 25px rgba(var(--secondary-rgb), 0.08);
             }
 
             .showcase_header {
@@ -412,8 +412,8 @@
                         display: inline-flex;
                         align-items: center;
                         gap: 0.6rem;
-                        background: rgba(197, 154, 39, 0.12);
-                        color: #936F15;
+                        background: rgba(var(--primary-rgb), 0.12);
+                        color: $primary;
                         font-size: 1.15rem;
                         font-weight: 700;
                         text-transform: uppercase;

@@ -12,7 +12,7 @@
         }
 
         .swiper-button-next {
-            background-color: rgba(17, 26, 58, 0.75);
+            background-color: rgba(var(--secondary-rgb), 0.75);
             top: 40%;
             right: 3rem;
             width: 5.5rem;
@@ -22,7 +22,7 @@
             color: $white !important;
             fill: $white !important;
             stroke: $white !important;
-            border: 1px solid rgba(197, 154, 39, 0.5);
+            border: 1px solid rgba(var(--primary-rgb), 0.5);
             transition: 0.3s ease;
 
             &::after {
@@ -38,14 +38,14 @@
         }
 
         .swiper-button-prev {
-            background-color: rgba(17, 26, 58, 0.75);
+            background-color: rgba(var(--secondary-rgb), 0.75);
             top: 40%;
             left: 3rem;
             width: 5.5rem;
             height: 5.5rem;
             padding: 2rem;
             border-radius: 0;
-            border: 1px solid rgba(197, 154, 39, 0.5);
+            border: 1px solid rgba(var(--primary-rgb), 0.5);
             color: $white !important;
             fill: $white !important;
             stroke: $white !important;
@@ -80,7 +80,7 @@
                 left: 0;
                 right: 0;
                 bottom: 0;
-                background: linear-gradient(90deg, rgba(17, 26, 58, 0.88) 0%, rgba(17, 26, 58, 0.55) 60%, rgba(17, 26, 58, 0.25) 100%);
+                background: linear-gradient(90deg, rgba(var(--secondary-rgb), 0.88) 0%, rgba(var(--secondary-rgb), 0.55) 60%, rgba(var(--secondary-rgb), 0.25) 100%);
                 z-index: 0;
             }
 
@@ -320,7 +320,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background: rgba(17, 26, 58, 0.88);
+        background: rgba(var(--secondary-rgb), 0.88);
         z-index: -1;
     }
 
@@ -533,7 +533,7 @@
                 .choose_country_cont {
                     .choose_country_flag img {
                         transform: translateX(-50%) scale(1.08);
-                        box-shadow: 0 0 0 4px rgba(197, 154, 39, 0.35), 0 8px 20px rgba(17, 26, 58, 0.15);
+                        box-shadow: 0 0 0 4px rgba(var(--primary-rgb), 0.35), 0 8px 20px rgba(var(--secondary-rgb), 0.15);
                     }
 
                     h2 {
@@ -694,7 +694,7 @@
                     border-color: $primary;
                     color: #FFFFFF;
                     transform: translateY(-1px);
-                    box-shadow: 0 4px 10px rgba(197, 154, 39, 0.25);
+                    box-shadow: 0 4px 10px rgba(var(--primary-rgb), 0.25);
                 }
 
                 &.swiper-button-disabled {
