@@ -31,7 +31,7 @@ class CreateAdminUserSeeder extends Seeder
             ['email' => 'alfahiminternational944@gmail.com'],
             [
                 'name' => 'Hasibur Rahman Fahim',
-                'phone_no'=> '+8801624238179',
+                'phone_no' => '+8801624238179',
                 'password' => bcrypt('admin@12345'),
             ]
         );
@@ -48,8 +48,25 @@ class CreateAdminUserSeeder extends Seeder
 
         // Admin has access to operational modules (excluding system role assignment)
         $adminPermissions = Permission::whereNotIn('name', [
-            'role-list', 'role-create', 'role-edit', 'role-delete',
-            'assignrole-list', 'assignrole-create',
+            'role-list',
+            'role-create',
+            'role-edit',
+            'role-delete',
+            'assignrole-list',
+            'assignrole-create',
+            'user-list',
+            'user-create',
+            'user-edit',
+            'user-delete',
+            'website-content-list',
+            'website-content-create',
+            'website-content-edit',
+            'website-content-delete',
+            'theme-list',
+            'theme-create',
+            'theme-edit',
+            'theme-delete',
+            'theme-active'
         ])->pluck('name')->all();
         $adminRole->syncPermissions($adminPermissions);
     }
