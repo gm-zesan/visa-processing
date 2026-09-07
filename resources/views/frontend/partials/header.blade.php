@@ -4,9 +4,13 @@
         <div class="row">
             <div class="col-lg-8">
                 <p>
-                    <a href="mailto:info@alfahiminternational.com"><i class="fa-regular fa-envelope"></i>info@alfahiminternational.com</a>
-                    <span><i class="fa-solid fa-location-dot"></i>Dhaka, Bangladesh</span>
-                    <a href="tel:+8801700000000"><i class="fa-solid fa-phone"></i>+880 1700 000 000</a>
+                    <a href="mailto:{{ getSettingsData('44', 'subtitle') ?: 'alfahiminternational944@gmail.com' }}"><i
+                            class="fa-regular fa-envelope"></i>{{ getSettingsData('44', 'subtitle') ?:
+                        'alfahiminternational944@gmail.com' }}</a>
+                    <span><i
+                            class="fa-solid fa-location-dot"></i>{{ getSettingsData('44', 'button_text') ?: 'Towar A, House 13, Road 17, Banani, Dhaka.' }}</span>
+                    <a href="tel:{{ getSettingsData('44', 'title') ?: '+8801624238179' }}"><i
+                            class="fa-solid fa-phone"></i>{{ getSettingsData('44', 'title') ?: '+8801624238179' }}</a>
                 </p>
             </div>
             <div class="col-lg-4">
@@ -41,7 +45,9 @@
                             <a href="#">Countries</a>
                             <ul>
                                 @foreach ($commonCountriesVisa as $commonCountryVisa)
-                                    <li><a href="{{route('country',['id'=>$commonCountryVisa->id])}}">{{$commonCountryVisa->country->name}}</a></li>
+                                    <li><a
+                                            href="{{route('country', ['id' => $commonCountryVisa->id])}}">{{$commonCountryVisa->country->name}}</a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </li>

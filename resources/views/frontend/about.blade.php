@@ -111,11 +111,11 @@
                 <div class="col-lg-5 pt_50" data-aos="flip-left">
                     <div class="ceo_img_wrap">
                         <img src="{{ asset(getSettingsData('about-ceo-speech', 'image') ?? 'upload/our_team/20240319041954.jpg') }}"
-                            alt="{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Fahim Al Hasan' }}" class="w-100"
+                            alt="{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Hasibur Rahman Fahim' }}" class="w-100"
                             loading="lazy" decoding="async">
                         <div class="ceo_badge_tag">
-                            <h4>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Fahim Al Hasan' }}</h4>
-                            <p>{{ getSettingsData('about-ceo-speech', 'extra') ?? 'Managing Director & CEO' }}</p>
+                            <h4>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Hasibur Rahman Fahim' }}</h4>
+                            <p>{{ getSettingsData('about-ceo-speech', 'extra') ?? 'Chief Executive Officer (CEO)' }}</p>
                             <span>AL FAHIM INTERNATIONAL &bull; RL-XXXX</span>
                         </div>
                     </div>
@@ -123,7 +123,7 @@
                 <div class="col-lg-7 pt_50" data-aos="flip-right">
                     <div class="choose_top">
                         <h3>{{ getSettingsData('about-ceo-speech', 'title') ?? 'MESSAGE FROM LEADERSHIP' }}</h3>
-                        <h2><span>A Message From Our</span> Managing Director</h2>
+                        <h2><span>A Message From Our</span> Chief Executive Officer</h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     <div class="ceo_speech_body">
@@ -131,9 +131,9 @@
                     </div>
                     <div class="ceo_executive_sign">
                         <div class="sign_details">
-                            <h5>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Fahim Al Hasan' }}</h5>
-                            <p>Managing Director & CEO &bull; Al Fahim International</p>
-                            <span class="licence_num">Govt. Approved Recruiting Agency RL-XXXX</span>
+                            <h5>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Hasibur Rahman Fahim' }}</h5>
+                            <p>Chief Executive Officer (CEO) &bull; Al Fahim International</p>
+                            <span class="licence_num">Govt. Approved Recruiting Agency</span>
                         </div>
                     </div>
                 </div>

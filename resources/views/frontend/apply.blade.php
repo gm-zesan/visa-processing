@@ -634,7 +634,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                                 <i class="fa-solid fa-phone"></i>
                                 <div class="hl_info">
                                     <span>Direct Application Hotline</span>
-                                    <a href="tel:+8801700000000">+880 1700 000 000</a>
+                                    <a href="tel:{{ getSettingsData('44', 'title') ?: '+8801624238179' }}">{{ getSettingsData('44', 'title') ?: '+8801624238179' }}</a>
                                 </div>
                             </div>
 
@@ -642,7 +642,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                                 <i class="fa-brands fa-whatsapp"></i>
                                 <div class="hl_info">
                                     <span>Instant WhatsApp Counseling</span>
-                                    <a href="https://wa.me/8801700000000" target="_blank">+880 1700 000 000</a>
+                                    <a href="https://wa.me/8801624238179" target="_blank">{{ getSettingsData('44', 'title') ?: '+8801624238179' }}</a>
                                 </div>
                             </div>
 
@@ -650,7 +650,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                                 <i class="fa-solid fa-envelope"></i>
                                 <div class="hl_info">
                                     <span>Official Inquiries</span>
-                                    <a href="mailto:info@alfahiminternational.com">info@alfahiminternational.com</a>
+                                    <a href="mailto:{{ getSettingsData('44', 'subtitle') ?: 'alfahiminternational944@gmail.com' }}">{{ getSettingsData('44', 'subtitle') ?: 'alfahiminternational944@gmail.com' }}</a>
                                 </div>
                             </div>
                         </div>

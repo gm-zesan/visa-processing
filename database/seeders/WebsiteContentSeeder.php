@@ -807,9 +807,9 @@ class WebsiteContentSeeder extends Seeder
                 'page_name' => 'About',
                 'link_key' => 'about-ceo-speech',
                 'hints' => 'CEO Speech / MD Message',
-                'title' => 'A Message from Our Managing Director',
+                'title' => 'A Message from Our CEO',
                 'title_label' => 'Section Heading',
-                'subtitle' => 'Fahim Al Hasan — Founder & Managing Director',
+                'subtitle' => 'Hasibur Rahman Fahim — Chief Executive Officer (CEO)',
                 'subtitle_label' => 'Director Title',
                 'button_text' => 'Member, BAIRA',
                 'button_text_label' => 'Credential Tag',
@@ -817,7 +817,7 @@ class WebsiteContentSeeder extends Seeder
                 'button_link_label' => 'Button Link',
                 'description' => '<blockquote>
     <p>"Foreign remittance is the economic backbone of Bangladesh. Behind every single remittance transfer is an honest worker striving to build a prosperous future for their children and family. To us at AL FAHIM INTERNATIONAL, overseas recruitment is never a transaction; it is a sacred trust. Our commitment has always been uncompromising: zero fraud, complete legal transparency, direct employer contracts, and total worker protection from our Dhaka testing facility to the jobsite abroad."</p>
-    <cite>— Fahim Al Hasan, Managing Director & Licensee (RL-XXXX)</cite>
+    <cite>— Hasibur Rahman Fahim, Chief Executive Officer (CEO)</cite>
 </blockquote>
 <p>When we established AL FAHIM INTERNATIONAL over a decade ago, our objective was clear: to counter the widespread issue of unauthorized middlemen, hidden recruitment fees, and counterfeit work permits by creating an institutional standard of absolute honesty and digital verification.</p>
 <p>Today, every worker deployed through our agency holds an electronic employment contract verifiable on destination government portals—including Saudi Qiwa, UAE MoHRE, Maldives Xpat, Malaysia FWCMS, and Romania IGI. We take immense pride in having empowered over 15,000 families with dignified global employment, and we remain dedicated to upholding the highest standards of international labor mobility.</p>',
@@ -1166,11 +1166,11 @@ class WebsiteContentSeeder extends Seeder
                 'page_name' => 'Contact',
                 'link_key' => 'contact-company-section',
                 'hints' => 'Contact Details',
-                'title' => '+880 1700 000 000',
+                'title' => '+8801624238179',
                 'title_label' => 'Helpline Phone',
-                'subtitle' => 'info@alfahiminternational.com',
+                'subtitle' => 'alfahiminternational944@gmail.com',
                 'subtitle_label' => 'Support Email',
-                'button_text' => 'Dhaka, Bangladesh',
+                'button_text' => 'Towar A, House 13, Road 17, Banani, Dhaka.',
                 'button_text_label' => 'Office Location',
                 'button_link' => null,
                 'button_link_label' => null,
@@ -1709,7 +1709,7 @@ class WebsiteContentSeeder extends Seeder
                 'button_text_label' => null,
                 'button_link' => null,
                 'button_link_label' => null,
-                'description' => '<p>For questions regarding personal data handling, passport safe-custody verification, or privacy concerns, please contact our Compliance Officer:</p><div style="background: #111A3A; color: #FFFFFF; padding: 16px 20px; margin: 12px 0;"><strong style="color: #C59A27; font-size: 16px; display: block; margin-bottom: 6px;">AL FAHIM INTERNATIONAL - Data Compliance Desk</strong><p style="margin-bottom: 4px; color: rgba(255,255,255,0.85);"><i class="fa-solid fa-location-dot" style="color: #C59A27; margin-right: 8px;"></i>Head Office: Dhaka, Bangladesh</p><p style="margin-bottom: 4px; color: rgba(255,255,255,0.85);"><i class="fa-solid fa-envelope" style="color: #C59A27; margin-right: 8px;"></i>Email: compliance@alfahimoverseas.com</p><p style="margin-bottom: 0; color: rgba(255,255,255,0.85);"><i class="fa-solid fa-phone" style="color: #C59A27; margin-right: 8px;"></i>Helpline: +880 1886-271317</p></div>',
+                'description' => '<p>For questions regarding personal data handling, passport safe-custody verification, or privacy concerns, please contact our Compliance Officer:</p><div style="background: #111A3A; color: #FFFFFF; padding: 16px 20px; margin: 12px 0;"><strong style="color: #C59A27; font-size: 16px; display: block; margin-bottom: 6px;">AL FAHIM INTERNATIONAL - Data Compliance Desk</strong><p style="margin-bottom: 4px; color: rgba(255,255,255,0.85);"><i class="fa-solid fa-location-dot" style="color: #C59A27; margin-right: 8px;"></i>Head Office: Towar A, House 13, Road 17, Banani, Dhaka.</p><p style="margin-bottom: 4px; color: rgba(255,255,255,0.85);"><i class="fa-solid fa-envelope" style="color: #C59A27; margin-right: 8px;"></i>Email: alfahiminternational944@gmail.com</p><p style="margin-bottom: 0; color: rgba(255,255,255,0.85);"><i class="fa-solid fa-phone" style="color: #C59A27; margin-right: 8px;"></i>Helpline: +8801624238179</p></div>',
                 'description_label' => 'Privacy Body',
                 'image' => null,
                 'image_label' => null,
