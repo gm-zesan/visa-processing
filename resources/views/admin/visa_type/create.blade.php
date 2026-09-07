@@ -56,14 +56,44 @@
                                     @endif
                                 </div>
 
+                                <div class="col-md-6">
+                                    <label for="visa_category" class="form-label custom-label">Visa Category</label>
+                                    <input type="text" class="form-control custom-input" name="visa_category" placeholder="e.g. Employment Work Permit">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="issuing_authority" class="form-label custom-label">Issuing Authority</label>
+                                    <input type="text" class="form-control custom-input" name="issuing_authority" placeholder="e.g. Ministry of Economic Development (MED)">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="processing_time" class="form-label custom-label">Processing Time</label>
+                                    <input type="text" class="form-control custom-input" name="processing_time" placeholder="e.g. 30 - 45 Working Days">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="contract_period" class="form-label custom-label">Contract Period</label>
+                                    <input type="text" class="form-control custom-input" name="contract_period" placeholder="e.g. 2 Years (Renewable)">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="emigration_clearance" class="form-label custom-label">Emigration Clearance</label>
+                                    <input type="text" class="form-control custom-input" name="emigration_clearance" placeholder="e.g. BMET Smart Card Mandatory">
+                                </div>
+
                                 <div class="col-md-12">
                                     <label for="description" class="form-label custom-label">Description</label>
-                                    <textarea class="form-control custom-input" name="description" id="description" rows="5"  placeholder="Description"  style="resize: none; height: auto"></textarea>
+                                    <textarea class="form-control custom-input" name="description" id="description" rows="5" placeholder="Description" style="resize: none; height: auto"></textarea>
                                     @if($errors->has('description'))
                                         <div class="error_msg">
                                             {{ $errors->first('description') }}
                                         </div>
                                     @endif
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <label for="processing_steps" class="form-label custom-label">Step-by-Step Processing Timeline (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
+                                    <textarea class="form-control custom-input font-monospace" name="processing_steps" id="processing_steps" rows="6" placeholder='[{"step": "01", "title": "Quota & Offer", "description": "Verification of demand letter."}]' style="resize: vertical;"></textarea>
                                 </div>
 
 

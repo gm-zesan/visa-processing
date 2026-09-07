@@ -8,6 +8,14 @@ use Illuminate\Http\Request;
 use DataTables;
 class OurTeamController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:our_team-list|our_team-create|our_team-edit|our_team-delete', ['only' => ['index']]);
+        $this->middleware('permission:our_team-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:our_team-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:our_team-delete', ['only' => ['delete']]);
+    }
+
     /**
      * Display a listing of the resource.
      */

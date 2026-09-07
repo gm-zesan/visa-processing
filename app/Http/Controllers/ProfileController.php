@@ -26,15 +26,37 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $validatedData = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Handle Image Upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $destinationPath = 'upload/user-image/';
+            $imageName = $destinationPath . date('YmdHis') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path($destinationPath), $imageName);
+            
+            // Delete old avatar if exists
+            if ($user->image && file_exists(public_path($user->image))) {
+                @unlink(public_path($user->image));
+            }
+            $validatedData['image'] = $imageName;
+        } elseif ($request->input('remove_image') == '1') {
+            if ($user->image && file_exists(public_path($user->image))) {
+                @unlink(public_path($user->image));
+            }
+            $validatedData['image'] = null;
         }
 
-        $request->user()->save();
+        $user->fill($validatedData);
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
+
+        return Redirect::route('profile.edit')->with('success', 'Profile updated successfully!');
     }
 
     /**

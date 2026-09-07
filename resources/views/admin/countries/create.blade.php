@@ -47,14 +47,39 @@
                             </div>
 
 
+                            <div class="col-md-6">
+                                <label for="subtitle" class="form-label custom-label">Subtitle / Tagline</label>
+                                <input type="text" class="form-control custom-input" name="subtitle" placeholder="e.g. Official Maldives Overseas Employment Guide">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="language" class="form-label custom-label">Official Languages</label>
+                                <input type="text" class="form-control custom-input" name="language" placeholder="e.g. Dhivehi & English">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="processing_time" class="form-label custom-label">Processing Time</label>
+                                <input type="text" class="form-control custom-input" name="processing_time" placeholder="e.g. 30 - 45 Working Days">
+                            </div>
+
                             <div class="col-md-12">
                                 <label for="description" class="form-label custom-label">Description</label>
-                                <textarea class="form-control custom-input" name="description" id="description" rows="5"  placeholder="Description"  style="resize: none; height: auto"></textarea>
+                                <textarea class="form-control custom-input" name="description" id="description" rows="5" placeholder="Description" style="resize: none; height: auto"></textarea>
                                 @if($errors->has('description'))
                                     <div class="error_msg">
                                         {{ $errors->first('description') }}
                                     </div>
                                 @endif
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="sectors" class="form-label custom-label">High-Demand Sectors (JSON format: [{"title": "...", "description": "...", "icon": "fa-hotel"}])</label>
+                                <textarea class="form-control custom-input font-monospace" name="sectors" id="sectors" rows="6" placeholder='[{"title": "Hospitality & Tourism", "description": "Resort operations and guest services.", "icon": "fa-hotel"}]' style="resize: vertical;"></textarea>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="worker_protections" class="form-label custom-label">Labor Standards & Worker Protections (JSON format: [{"title": "...", "description": "...", "icon": "fa-scale-balanced"}])</label>
+                                <textarea class="form-control custom-input font-monospace" name="worker_protections" id="worker_protections" rows="6" placeholder='[{"title": "Ministry-Attested Contract", "description": "Contracts are verified by the Ministry of Labor.", "icon": "fa-scale-balanced"}]' style="resize: vertical;"></textarea>
                             </div>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{{asset('frontend/vendor/fontawesome/css/all.min.css')}}">
 
 <!-- Vendor CSS Files -->
@@ -9,10 +9,102 @@
 <link href="{{asset('frontend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
 <link href="{{asset('frontend/vendor/bootstrap-icons/bootstrap-icons.css')}}" rel="stylesheet">
 <link href="{{asset('frontend/vendor/swiper/swiper-bundle.min.css')}}" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
-<!-- Template Main CSS File -->
-<!-- <link href="{{asset('frontend/css/style.css')}}" rel="stylesheet">
-<link href="{{asset('frontend/css/responsive.css')}}" rel="stylesheet"> -->
+<style>
+    /* Modern Enterprise Toastr Styling */
+    #toast-container {
+        position: fixed;
+        z-index: 9999999 !important;
+        pointer-events: auto;
+    }
+    #toast-container > div {
+        opacity: 1 !important;
+        background: #FFFFFF !important;
+        color: #0F172A !important;
+        border: 1px solid #E2E8F0 !important;
+        box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04), 0 0 0 1px rgba(15, 23, 42, 0.02) !important;
+        border-radius: 10px !important;
+        padding: 15px 16px 15px 52px !important;
+        width: 360px !important;
+        max-width: calc(100vw - 32px) !important;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+        position: relative !important;
+        overflow: hidden !important;
+        transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    #toast-container > div:hover {
+        box-shadow: 0 25px 30px -5px rgba(15, 23, 42, 0.12), 0 10px 12px -6px rgba(15, 23, 42, 0.06) !important;
+    }
+    #toast-container > .toast-success {
+        border-left: 4px solid #10B981 !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2310B981'%3E%3Cpath fill-rule='evenodd' d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+        background-size: 22px 22px !important;
+        background-position: 16px 16px !important;
+        background-repeat: no-repeat !important;
+    }
+    #toast-container > .toast-error {
+        border-left: 4px solid #EF4444 !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23EF4444'%3E%3Cpath fill-rule='evenodd' d='M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+        background-size: 22px 22px !important;
+        background-position: 16px 16px !important;
+        background-repeat: no-repeat !important;
+    }
+    #toast-container > .toast-warning {
+        border-left: 4px solid #F59E0B !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F59E0B'%3E%3Cpath fill-rule='evenodd' d='M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+        background-size: 22px 22px !important;
+        background-position: 16px 16px !important;
+        background-repeat: no-repeat !important;
+    }
+    #toast-container > .toast-info {
+        border-left: 4px solid #3B82F6 !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%233B82F6'%3E%3Cpath fill-rule='evenodd' d='M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z' clip-rule='evenodd'/%3E%3C/svg%3E") !important;
+        background-size: 22px 22px !important;
+        background-position: 16px 16px !important;
+        background-repeat: no-repeat !important;
+    }
+    .toast-title {
+        font-family: 'Outfit', -apple-system, sans-serif !important;
+        font-size: 1.4rem !important;
+        font-weight: 700 !important;
+        color: #0F172A !important;
+        letter-spacing: -0.01em !important;
+        margin-bottom: 2px !important;
+        line-height: 1.3 !important;
+    }
+    .toast-message {
+        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif !important;
+        font-size: 1.25rem !important;
+        font-weight: 400 !important;
+        line-height: 1.45 !important;
+        color: #475569 !important;
+    }
+    .toast-close-button {
+        top: 10px !important;
+        right: 12px !important;
+        font-size: 18px !important;
+        font-weight: 400 !important;
+        color: #94A3B8 !important;
+        opacity: 0.7 !important;
+        text-shadow: none !important;
+        transition: all 0.2s ease !important;
+    }
+    .toast-close-button:hover {
+        opacity: 1 !important;
+        color: #0F172A !important;
+    }
+    #toast-container > div .toast-progress {
+        height: 3px !important;
+        bottom: 0 !important;
+        opacity: 0.8 !important;
+        border-radius: 0 0 10px 10px !important;
+    }
+    #toast-container > .toast-success .toast-progress { background-color: #10B981 !important; }
+    #toast-container > .toast-error .toast-progress { background-color: #EF4444 !important; }
+    #toast-container > .toast-warning .toast-progress { background-color: #F59E0B !important; }
+    #toast-container > .toast-info .toast-progress { background-color: #3B82F6 !important; }
+</style>
 
 @vite(['resources/scss/frontend/styles.scss', 'resources/scss/frontend/helper.scss', 'resources/scss/frontend/responsive.scss'])
-{{-- @vite(['resources/scss/frontend/styles-dark.scss']) --}}
+

@@ -55,6 +55,31 @@
                                     @endif
                                 </div>
 
+                                <div class="col-md-6">
+                                    <label for="visa_category" class="form-label custom-label">Visa Category</label>
+                                    <input type="text" class="form-control custom-input" name="visa_category" value="{{ $visa_type->visa_category }}" placeholder="e.g. Employment Work Permit">
+                                </div>
+
+                                <div class="col-md-6">
+                                    <label for="issuing_authority" class="form-label custom-label">Issuing Authority</label>
+                                    <input type="text" class="form-control custom-input" name="issuing_authority" value="{{ $visa_type->issuing_authority }}" placeholder="e.g. Ministry of Economic Development (MED)">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="processing_time" class="form-label custom-label">Processing Time</label>
+                                    <input type="text" class="form-control custom-input" name="processing_time" value="{{ $visa_type->processing_time }}" placeholder="e.g. 30 - 45 Working Days">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="contract_period" class="form-label custom-label">Contract Period</label>
+                                    <input type="text" class="form-control custom-input" name="contract_period" value="{{ $visa_type->contract_period }}" placeholder="e.g. 2 Years (Renewable)">
+                                </div>
+
+                                <div class="col-md-4">
+                                    <label for="emigration_clearance" class="form-label custom-label">Emigration Clearance</label>
+                                    <input type="text" class="form-control custom-input" name="emigration_clearance" value="{{ $visa_type->emigration_clearance }}" placeholder="e.g. BMET Smart Card Mandatory">
+                                </div>
+
                                 <div class="col-md-12">
                                     <label for="description" class="form-label custom-label">Description</label>
                                     <textarea class="form-control custom-input" name="description" id="description" rows="3">{{$visa_type->description}}</textarea>
@@ -63,6 +88,11 @@
                                             {{ $errors->first('description') }}
                                         </div>
                                     @endif
+                                </div>
+
+                                <div class="col-md-12 mt-3">
+                                    <label for="processing_steps" class="form-label custom-label">Step-by-Step Processing Timeline (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
+                                    <textarea class="form-control custom-input font-monospace" name="processing_steps" id="processing_steps" rows="6" placeholder="JSON array of processing steps" style="resize: vertical;">{{ !empty($visa_type->processing_steps) ? json_encode($visa_type->processing_steps, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
                                 </div>
 
 

@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 class AssignRoleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('permission:assignrole-list|assignrole-create|role-list', ['only' => ['index']]);
+        $this->middleware('permission:assignrole-create|role-create|role-edit', ['only' => ['assignRole']]);
+    }
+
     public function index(Request $request)
     {
         $auth_user = Auth::user();

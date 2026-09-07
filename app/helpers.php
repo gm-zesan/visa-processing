@@ -1,16 +1,9 @@
 <?php
 
 use App\Models\CommonType;
+use App\Models\Theme;
 use App\Models\WebsiteContent;
-
-// use App\Models\UserActivity;
-// use App\Category;
-// use App\User;
-// use Illuminate\Support\Facades\Auth;
-// use Carbon\Carbon;
-// use DB;
-
-
+use Illuminate\Support\Facades\Cache;
 
 function getAllWebsiteContents() {
     static $memoryCache = null;
@@ -19,7 +12,7 @@ function getAllWebsiteContents() {
     }
     
     try {
-        $memoryCache = \Illuminate\Support\Facades\Cache::rememberForever('all_website_contents', function () {
+        $memoryCache = Cache::rememberForever('all_website_contents', function () {
             return WebsiteContent::all();
         });
     } catch (\Throwable $e) {
@@ -30,7 +23,7 @@ function getAllWebsiteContents() {
 }
 
 function clearWebsiteContentCache() {
-    \Illuminate\Support\Facades\Cache::forget('all_website_contents');
+    Cache::forget('all_website_contents');
 }
 
 function getSettingsData($id, $field) {
@@ -59,50 +52,45 @@ function getSettingsList($key, $limit = null, $orderDirection = 'asc') {
     return $list->values();
 }
 
+/**
+ * Get active dynamic color theme
+ */
+function getActiveTheme() {
+    static $memoryTheme = null;
+    if ($memoryTheme !== null) {
+        return $memoryTheme;
+    }
 
+    try {
+        $memoryTheme = Cache::rememberForever('active_theme_config', function () {
+            return Theme::where('status', 1)->first() ?? Theme::first();
+        });
+    } catch (\Throwable $e) {
+        $memoryTheme = Theme::where('status', 1)->first();
+    }
 
+    return $memoryTheme;
+}
 
+function clearActiveThemeCache() {
+    Cache::forget('active_theme_config');
+}
 
-
-
-// function createUserActivity($request, $action, $description, $log_level, $email)
-// {
-//     $userActivity = new UserActivity();
-//     $userActivity->action = $action;
-//     $userActivity->email = $email ?? auth()->user()->name . '<' . auth()->user()->email . '>';
-//     $userActivity->description = $description;
-//     $userActivity->log_level = $log_level;
-//     $userActivity->ip = $request->ip();
-//     $userActivity->browser = $request->header('User-Agent');
-//     $userActivity->save();
-// }
-
-// // last login helpers create
-// function lastLoginUser()
-// {
-//     $date = Auth::user()->last_login;
-//     $jplast_login = Carbon::parse($date)->format('Y/m/d H:i');
-//     return $jplast_login;
-// }
-
-// function isChecked($optionId, $itemArray = array())
-// {
-//     $checked = false;
-//     if (!empty($itemArray) && isset($optionId)) {
-//         if (in_array($optionId, $itemArray)) {
-//             $checked = true;
-//         }
-//     }
-//     return $checked;
-// }
-
-// /**
-//  * Unauthorized User
-//  */
-
-// function unauthorizedAccess($id)
-// {
-//     if (Auth::user()->id != $id) {
-//         return true;
-//     }
-// }
+/**
+ * Convert Hex Color to RGB format for CSS rgba() functions
+ */
+function hexToRgb($hex) {
+    $hex = ltrim($hex, '#');
+    if (strlen($hex) == 3) {
+        $r = hexdec(substr($hex, 0, 1) . substr($hex, 0, 1));
+        $g = hexdec(substr($hex, 1, 1) . substr($hex, 1, 1));
+        $b = hexdec(substr($hex, 2, 1) . substr($hex, 2, 1));
+    } elseif (strlen($hex) >= 6) {
+        $r = hexdec(substr($hex, 0, 2));
+        $g = hexdec(substr($hex, 2, 2));
+        $b = hexdec(substr($hex, 4, 2));
+    } else {
+        return '197, 154, 39'; // Default gold rgb
+    }
+    return "$r, $g, $b";
+}

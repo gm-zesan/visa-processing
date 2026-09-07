@@ -18,7 +18,8 @@ class PageController extends Controller
     }
 
     public function about(){
-        return view('frontend.about');
+        $teams = OurTeam::all();
+        return view('frontend.about', compact('teams'));
     }
     public function ourTeam(){
         $teams = OurTeam::all();
@@ -29,7 +30,7 @@ class PageController extends Controller
         return view('frontend.single_team', ['teamMember' => $teamMember]);
     }
     public function our_service(){
-        $visaTypes = VisaType::all();
+        $visaTypes = VisaType::with('countryDetails.country')->get();
         return view('frontend.our_service', ['visaTypes' => $visaTypes]);
     }
     public function contact(){
@@ -43,12 +44,6 @@ class PageController extends Controller
     }
     public function termsofuse(){
         return view('frontend.termsofuse');
-    }
-    public function cookie(){
-        return view('frontend.cookie');
-    }
-    public function helpcenter(){
-        return view('frontend.helpcenter');
     }
     
     public function blog_list($category = null){
@@ -73,8 +68,8 @@ class PageController extends Controller
         return view('frontend.country', ['country' => $country, 'countryDetails' => $countryDetails, 'visa_types' => $visa_types]);
     }
     public function visa($slug){
-        $visa = VisaType::where('slug', $slug)->firstOrFail();
-        $all_visas = VisaType::all();
+        $visa = VisaType::with(['countryDetails.country'])->where('slug', $slug)->firstOrFail();
+        $all_visas = VisaType::with(['countryDetails.country'])->get();
         return view('frontend.visa', ['visa' => $visa, 'visas' => $all_visas]);
     }
 }

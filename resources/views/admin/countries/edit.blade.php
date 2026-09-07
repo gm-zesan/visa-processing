@@ -47,14 +47,39 @@
                             </div>
 
 
+                            <div class="col-md-6">
+                                <label for="subtitle" class="form-label custom-label">Subtitle / Tagline</label>
+                                <input type="text" class="form-control custom-input" name="subtitle" value="{{ $countryDetails->subtitle }}" placeholder="e.g. Official Maldives Overseas Employment Guide">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="language" class="form-label custom-label">Official Languages</label>
+                                <input type="text" class="form-control custom-input" name="language" value="{{ $countryDetails->language }}" placeholder="e.g. Dhivehi & English">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="processing_time" class="form-label custom-label">Processing Time</label>
+                                <input type="text" class="form-control custom-input" name="processing_time" value="{{ $countryDetails->processing_time }}" placeholder="e.g. 30 - 45 Working Days">
+                            </div>
+
                             <div class="col-md-12">
                                 <label for="description" class="form-label custom-label">Description</label>
-                                <textarea class="form-control custom-input" name="description" id="description" rows="5"  placeholder="Description"  style="resize: none; height: auto">{{$countryDetails->description}}</textarea>
+                                <textarea class="form-control custom-input" name="description" id="description" rows="5" placeholder="Description" style="resize: none; height: auto">{{$countryDetails->description}}</textarea>
                                 @if($errors->has('description'))
                                     <div class="error_msg">
                                         {{ $errors->first('description') }}
                                     </div>
                                 @endif
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="sectors" class="form-label custom-label">High-Demand Sectors (JSON format: [{"title": "...", "description": "...", "icon": "fa-hotel"}])</label>
+                                <textarea class="form-control custom-input font-monospace" name="sectors" id="sectors" rows="6" placeholder="JSON array of sectors" style="resize: vertical;">{{ !empty($countryDetails->sectors) ? json_encode($countryDetails->sectors, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                            </div>
+
+                            <div class="col-md-12 mt-3">
+                                <label for="worker_protections" class="form-label custom-label">Labor Standards & Worker Protections (JSON format: [{"title": "...", "description": "...", "icon": "fa-scale-balanced"}])</label>
+                                <textarea class="form-control custom-input font-monospace" name="worker_protections" id="worker_protections" rows="6" placeholder="JSON array of worker protections" style="resize: vertical;">{{ !empty($countryDetails->worker_protections) ? json_encode($countryDetails->worker_protections, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
                             </div>
                         </div>
                     </div>

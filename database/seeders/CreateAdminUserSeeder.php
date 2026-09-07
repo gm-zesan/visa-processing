@@ -7,7 +7,6 @@ use App\Models\User;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
-
 class CreateAdminUserSeeder extends Seeder
 {
     /**
@@ -17,35 +16,41 @@ class CreateAdminUserSeeder extends Seeder
      */
     public function run()
     {
-        $superadminUser = User::create([
-            'name' => 'G.M. Zesan',
-            'email' => 'gmzesan7767@gmail.com',
-            'password' => bcrypt('12345678aA'),
-            'phone_no' => '+8801921324091',
-            'image' => 'upload/user-image/20240129060727.jpeg',
-            'description' => '<p>In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available.</p>',
-        ]);
-        $admin = User::create([
-            'name' => 'Hasibur Rahman Fahim',
-            'email' => 'alfahiminternational944@gmail.com',
-            'phone_no'=> '+8801624238179',
-            'password' => bcrypt('admin@12345'),
-        ]);
+        $superadminUser = User::firstOrCreate(
+            ['email' => 'gmzesan7767@gmail.com'],
+            [
+                'name' => 'G.M. Zesan',
+                'password' => bcrypt('12345678aA'),
+                'phone_no' => '+8801921324091',
+                'image' => 'upload/user-image/20240129060727.jpeg',
+                'description' => '<p>Executive Administrator</p>',
+            ]
+        );
 
+        $admin = User::firstOrCreate(
+            ['email' => 'alfahiminternational944@gmail.com'],
+            [
+                'name' => 'Hasibur Rahman Fahim',
+                'phone_no'=> '+8801624238179',
+                'password' => bcrypt('admin@12345'),
+            ]
+        );
 
-        $permissions = Permission::pluck('id','name')->all();
-        $permissionsAdmin = Permission::whereNotIn('name', ['role-list', 'role-create', 'role-edit', 'role-delete','commontype-list', 'commontype-create', 'commontype-edit', 'commontype-delete'])->pluck('id','name')->all();
+        $superAdminRole = Role::firstOrCreate(['name' => 'superadmin', 'guard_name' => 'web']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin', 'guard_name' => 'web']);
 
         $superadminUser->assignRole('superadmin');
         $admin->assignRole('admin');
 
+        // Superadmin has access to every permission
+        $allPermissions = Permission::pluck('name')->all();
+        $superAdminRole->syncPermissions($allPermissions);
 
-        // superadmin
-        $superAdminRole = Role::findByName('superadmin');
-        $superAdminRole->givePermissionTo($permissions);
-        // admin
-        $adminRole = Role::findByName('admin');
-        $adminRole->givePermissionTo($permissionsAdmin);
-
+        // Admin has access to operational modules (excluding system role assignment)
+        $adminPermissions = Permission::whereNotIn('name', [
+            'role-list', 'role-create', 'role-edit', 'role-delete',
+            'assignrole-list', 'assignrole-create',
+        ])->pluck('name')->all();
+        $adminRole->syncPermissions($adminPermissions);
     }
 }

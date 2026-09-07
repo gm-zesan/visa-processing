@@ -16,16 +16,16 @@ class OurTeamSeeder extends Seeder
         $ourTeams = array(
             array(
                 'id' => '1',
-                'name' => 'Fahim Al Hasan',
-                'email' => 'fahim@alfahiminternational.com',
-                'phone' => '+880 1700 000 001',
-                'designation' => 'Managing Director',
+                'name' => 'Hasibur Rahman Fahim',
+                'email' => 'alfahiminternational944@gmail.com',
+                'phone' => '+8801624238179',
+                'designation' => 'Chief Executive Officer (CEO)',
                 'facebook' => 'https://www.facebook.com/',
                 'twitter' => 'https://twitter.com/',
                 'instagram' => 'https://www.instagram.com/',
                 'youtube' => 'https://www.youtube.com/',
                 'experience' => '12 years',
-                'biography' => '<p>Fahim Al Hasan is the founder and Managing Director of AL FAHIM INTERNATIONAL. With over 12 years of experience in international manpower recruitment and foreign employment solutions, he has established strong partnerships with leading employers across the Gulf, Southeast Asia, and Europe.</p>',
+                'biography' => '<p>Hasibur Rahman Fahim is the founder and Chief Executive Officer (CEO) of AL FAHIM INTERNATIONAL. With over 12 years of experience in international manpower recruitment and foreign employment solutions, he has established strong partnerships with leading employers across the Gulf, Southeast Asia, and Europe.</p>',
                 'image' => 'upload/our_team/20240319041954.jpg',
                 'created_at' => now(),
                 'updated_at' => now()

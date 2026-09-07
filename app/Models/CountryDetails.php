@@ -8,10 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class CountryDetails extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'country_id',
         'image',
         'description',
+        'subtitle',
+        'language',
+        'processing_time',
+        'sectors',
+        'worker_protections',
+    ];
+
+    protected $casts = [
+        'sectors' => 'array',
+        'worker_protections' => 'array',
     ];
 
     public function country(){

@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('visa_types', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('country_details_id')->constrained('country_details');
+            $table->foreignId('country_details_id')->constrained('country_details')->onDelete('cascade');
             $table->string('name');
             $table->string('slug');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('visa_category')->nullable();
+            $table->string('issuing_authority')->nullable();
+            $table->string('processing_time')->nullable();
+            $table->string('contract_period')->nullable();
+            $table->string('emigration_clearance')->nullable();
+            $table->json('processing_steps')->nullable();
             $table->timestamps();
+
+            $table->index('country_details_id');
         });
     }
 

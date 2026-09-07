@@ -7,6 +7,30 @@
    {{-- Datatable css  --}}
    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.semanticui.min.css">
+   <style>
+       .table-flag-container {
+           width: 44px;
+           height: 30px;
+           display: inline-flex;
+           align-items: center;
+           justify-content: center;
+           background: #f8fafc;
+           border-radius: 4px;
+           overflow: hidden;
+           border: 1px solid #e9edf4;
+           box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+           vertical-align: middle;
+       }
+       .table-flag-img {
+           width: 100%;
+           height: 100%;
+           object-fit: cover;
+           display: block;
+       }
+       #data-table td {
+           vertical-align: middle;
+       }
+   </style>
 @endpush
 
 @section('content')
@@ -33,11 +57,12 @@
                         <table class="table w-100" id="data-table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Id</th>
+                                    <th scope="col" style="width: 50px;">Id</th>
+                                    <th scope="col" style="width: 80px;" class="text-center">Flag</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Capital</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col" style="width: 100px;" class="text-center">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -55,8 +80,6 @@
     {{-- Data table --}}
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" defer></script>
-
-
 
     {{-- Datatable Ajax Call --}}
     <script type="text/javascript">
@@ -76,6 +99,7 @@
                 },
                 columns: [
                     { data: 'id', name: 'id', orderable: true },
+                    { data: 'flag', name: 'flag', orderable: false, searchable: false, className: 'text-center align-middle' },
                     { data: 'country_id', name: 'country_id', orderable: true },
                     { data: 'capital', name: 'capital', orderable: true },
                     { data: 'description',
@@ -94,11 +118,12 @@
                     {
                         data: 'action-btn',
                         orderable: false,
+                        className: 'text-center align-middle',
                         render: function (data) {
                             var btn1 = '';
                             btn1 += '<div class="action-btn">';
-                            btn1 += '<a href="' + SITEURL + '/dashboard/country/edit/' + data + '" class="btn btn-edit"><i class="ri-edit-line"></i></a>';
-                            btn1 += '<a href="' + SITEURL + '/dashboard/country/delete/' + data + '" class="btn btn-delete"><i class="ri-delete-bin-2-line"></i></a>';
+                            btn1 += '<a href="' + SITEURL + '/dashboard/country/edit/' + data + '" class="btn btn-edit" title="Edit"><i class="ri-edit-line"></i></a>';
+                            btn1 += '<a href="' + SITEURL + '/dashboard/country/delete/' + data + '" class="btn btn-delete" onclick="return confirm(\'Are you sure you want to delete this country record?\')" title="Delete"><i class="ri-delete-bin-2-line"></i></a>';
                             btn1 += '</div>';
                             return btn1;
                         }
@@ -108,6 +133,4 @@
             });
         });
     </script>
-
-
 @endpush

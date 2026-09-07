@@ -4,16 +4,24 @@
             <i class="ri-menu-2-line" id="btn" style="font-size: 22px;"></i>
         </div>
         <ul>
+            <!-- Global / Live Website Link -->
             <li>
-                <a href="#" id="openFullScreen" class="icon" onclick="openFullscreen()">
-                    <i class="ri-fullscreen-line"></i>
-                </a>
-                <a href="#" id="exitFullScreen" class="icon d-none" onclick="removeFullScreen()">
-                    <i class="ri-fullscreen-exit-line" ></i>
+                <a href="{{ route('home') }}" target="_blank" class="icon" title="View Live Website" style="font-size: 18px;" data-bs-toggle="tooltip" data-bs-placement="bottom">
+                    <i class="ri-global-line"></i>
                 </a>
             </li>
+
+            <!-- Clear Cache Link -->
             <li>
-                <a href="#" class="dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="{{ route('admin.clear-cache') }}" id="headerClearCacheBtn" class="icon" title="Clear System Cache" style="font-size: 18px;" onclick="clearAdminCache(event, this)">
+                    <i class="ri-brush-line" id="headerClearCacheIcon"></i>
+                </a>
+            </li>
+
+
+            <!-- User Profile Dropdown -->
+            <li>
+                <a href="#" class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <div class="d-flex align-items-center"> 
                         <div class="me-sm-2 me-0">
                             <img id="profileImage" class="d-none" src="" alt="img" width="30" height="30" class="rounded-circle"> 
@@ -34,13 +42,8 @@
 
                 <ul class="main-header-dropdown dropdown-menu">
                     <li>
-                        <a class="dropdown-item d-flex" href="{{route('profile.view')}}">
-                            <i class="ri-information-line fs-18 me-3 op-7"></i>My Profile
-                        </a>
-                    </li>
-                    <li>
                         <a class="dropdown-item d-flex" href="{{route('profile.edit')}}">
-                            <i class="ri-user-3-line fs-18 me-3 op-7"></i>Update Profile
+                            <i class="ri-user-3-line fs-18 me-3 op-7"></i>Profile Settings
                         </a>
                     </li>
                     <li>
@@ -61,3 +64,25 @@
         </ul>
     </div>
 </header>
+
+<script>
+function clearAdminCache(event, el) {
+    event.preventDefault();
+    var $icon = $('#headerClearCacheIcon');
+    $icon.addClass('ri-spin');
+    
+    $.ajax({
+        url: "{{ route('admin.clear-cache') }}",
+        type: 'GET',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        success: function(res) {
+            $icon.removeClass('ri-spin');
+            toastr.success(res.message || 'System and view cache cleared successfully!', 'Cache Cleared');
+        },
+        error: function(xhr) {
+            $icon.removeClass('ri-spin');
+            toastr.error('Failed to clear cache. Please try again.', 'Error');
+        }
+    });
+}
+</script>

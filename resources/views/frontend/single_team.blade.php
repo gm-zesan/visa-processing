@@ -5,15 +5,13 @@
 @endsection
 
 @push("styles")
-
 @vite(['resources/scss/frontend/single_team.scss'])
-{{-- @vite(['resources/scss/frontend/single_team-dark.scss']) --}}
 @endpush
 
 
 @section('content')
     <!-- contact_page_area -->
-    <div class="contact_page_area" style="background-image: url({{asset('frontend/images/contact_bg.jpg')}});">
+    <div class="contact_page_area" style="background-image: url({{ asset(getSettingsData('46', 'image') ?: 'frontend/images/contact_bg.jpg') }});">
         <div class="container">
             <div class="contact_wrapper">
                 <h2>{{$teamMember->name}}</h2>

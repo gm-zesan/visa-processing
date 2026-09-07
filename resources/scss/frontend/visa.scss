@@ -1,74 +1,692 @@
 @import "./variables.scss";
 @import "./mixins.scss";
 
-// country_work_area
-.country_work_area{
-    padding: 1rem 0 5rem;
-    .country_left_side{
-        .country_lists{
-            a{
-                padding: 1.4rem 1.5rem 1.4rem 1.8rem;
-                background-color: #F3F6F9;
-                font-weight: 400;
+// visa_details_area
+.visa_details_area {
+    padding: 3rem 0 7rem;
+
+    // Crosslink banner between Visa and Country
+    .destination_crosslink_banner {
+        background: $dark_blue;
+        border: 1px solid rgba(var(--primary-rgb), 0.3);
+        border-left: 5px solid $primary;
+        padding: 2.2rem 2.8rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.5rem;
+        box-shadow: 0 6px 20px rgba(var(--secondary-rgb), 0.08);
+
+        @media (max-width: 991px) {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .crosslink_content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+
+            .crosslink_icon {
+                width: 5.2rem;
+                height: 5.2rem;
+                background: rgba(var(--primary-rgb), 0.15);
+                color: $primary;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 2.4rem;
+                flex-shrink: 0;
+            }
+
+            .crosslink_text {
+                .crosslink_sub {
+                    display: block;
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    color: $primary;
+                    letter-spacing: 0.1em;
+                    text-transform: uppercase;
+                    margin-bottom: 0.4rem;
+                }
+
+                h4 {
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 1.8rem;
+                    font-weight: 700;
+                    color: $white;
+                    margin-bottom: 0.4rem;
+                }
+
+                p {
+                    font-size: 1.35rem;
+                    color: rgba(255, 255, 255, 0.75);
+                    line-height: 1.5;
+                    margin: 0;
+                }
+            }
+        }
+
+        .btn_crosslink {
+            background: $primary;
+            color: #111A3A;
+            padding: 1.2rem 2.2rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+            border: 1px solid $primary;
+
+            &:hover {
+                background: $white;
+                border-color: $white;
+                color: #111A3A;
+
+                i {
+                    transform: translateX(4px);
+                }
+            }
+
+            i {
+                transition: transform 0.25s ease;
+            }
+        }
+    }
+
+    // Left Sidebar
+    .country_left_side {
+        .sidebar_section_title {
+            margin-bottom: 1.5rem;
+
+            h4 {
+                font-family: 'Outfit', sans-serif;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: #111A3A;
+                margin-bottom: 0.8rem;
+                text-transform: uppercase;
+                letter-spacing: 0.04em;
+            }
+
+            .em_bar_bg {
+                height: 3px;
+                width: 50px;
+                background-color: $primary;
+            }
+        }
+
+        .country_lists {
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            margin-bottom: 3rem;
+
+            a {
+                padding: 1.4rem 1.8rem;
+                background-color: #F8FAFC;
+                font-weight: 600;
                 font-size: 1.5rem;
-                transition: .3s;
-                color: #232323;
+                transition: all .25s ease;
+                color: #111A3A;
                 display: inline-flex;
                 justify-content: space-between;
                 align-items: center;
                 width: 100%;
-                margin-bottom: 0.2rem;
-                &.active{
-                    background-color: $red;
-                    color: $white;
+                border-bottom: 1px solid #E2E8F0;
+                border-radius: 0;
+
+                .visa_item_name {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 1.2rem;
+
+                    .sidebar_flag_img {
+                        width: 2.4rem;
+                        height: 1.6rem;
+                        object-fit: cover;
+                        border: 1px solid #CBD5E1;
+                    }
+
+                    span {
+                        font-family: 'Outfit', sans-serif;
+                        font-weight: 600;
+                    }
                 }
-                &.active i{
+
+                &.active {
+                    background-color: #111A3A;
                     color: $white;
+                    border-bottom-color: #111A3A;
+
+                    i {
+                        color: $primary;
+                    }
+
+                    .visa_item_name span {
+                        color: $white;
+                    }
                 }
-                &:hover{
-                    background-color: $red;
-                    color: $white;
+
+                &:hover:not(.active) {
+                    background-color: #FAFBFD;
+                    color: $primary;
+                    padding-left: 2.2rem;
+
+                    i {
+                        color: $primary;
+                        transform: translateX(4px);
+                    }
                 }
-                &:hover i{
-                    color: $white;
-                }
-                i{
-                    font-size: 1.5rem;
-                    color: #8e8b8b;
+
+                i {
+                    font-size: 1.3rem;
+                    color: #94A3B8;
+                    transition: all 0.25s ease;
                 }
             }
         }
-        .call_us_area{
-            .call_content{
-                padding: 3rem 0;
-                background-color: $red;
-                text-align: center;
-                h2{
-                    color: $white;
-                    margin-bottom: 1rem;
-                    font-size: 1.7rem;
-                }
-                a{
-                    color: $white;
-                    font-weight: 700;
+
+        .destination_widget {
+            background: #FFFFFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 0;
+            margin-bottom: 3rem;
+
+            .widget_header {
+                background: #111A3A;
+                padding: 1.6rem 2rem;
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+                color: $white;
+
+                i {
+                    color: $primary;
                     font-size: 1.8rem;
-                    &:hover{
-                        color: $black;
+                }
+
+                h3 {
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 1.6rem;
+                    font-weight: 700;
+                    margin: 0;
+                    color: $white;
+                }
+            }
+
+            .widget_body {
+                padding: 1.8rem 2rem;
+
+                .widget_item {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 0.9rem 0;
+                    border-bottom: 1px solid #F1F5F9;
+                    font-size: 1.4rem;
+
+                    .w_label {
+                        color: #64748B;
+                        font-weight: 500;
+                        display: flex;
+                        align-items: center;
+                        gap: 0.8rem;
+
+                        i {
+                            color: #94A3B8;
+                            font-size: 1.3rem;
+                            width: 1.6rem;
+                        }
+                    }
+
+                    .w_val {
+                        color: #111A3A;
+                        font-weight: 700;
+                    }
+                }
+
+                .btn_widget_link {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    width: 100%;
+                    padding: 1.1rem 1.6rem;
+                    background: #F8FAFC;
+                    border: 1px solid #E2E8F0;
+                    color: #111A3A;
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 1.35rem;
+                    font-weight: 700;
+                    transition: all 0.25s ease;
+
+                    &:hover {
+                        background: #111A3A;
+                        border-color: #111A3A;
+                        color: $primary;
+
+                        i {
+                            transform: translateX(4px);
+                        }
+                    }
+
+                    i {
+                        transition: transform 0.25s ease;
                     }
                 }
             }
         }
-    }
-    .country_right_side{
-        .country_title{
-            margin-top: 3rem;
-            h2{
-                font-size: 3rem;
-                font-weight: 700;
-                margin-bottom: 2rem;
+
+        .call_us_area {
+            margin-bottom: 3rem;
+
+            .call_content {
+                padding: 3.5rem 2rem;
+                background-color: $dark_blue;
+                border-radius: 0;
+                border: 1px solid rgba(var(--primary-rgb), 0.4);
+                text-align: center;
+
+                h2 {
+                    font-family: 'Outfit', sans-serif;
+                    color: $white;
+                    margin-bottom: 1rem;
+                    font-size: 1.7rem;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.05em;
+                }
+
+                a {
+                    color: $primary;
+                    font-weight: 800;
+                    font-size: 2.2rem;
+                    letter-spacing: 0.02em;
+
+                    &:hover {
+                        color: $white;
+                    }
+                }
             }
-            p{
-                color: #8e8b8b;
+        }
+
+        .request_form_area {
+            background-color: $dark_blue;
+            padding: 4rem 3rem;
+            border-radius: 0;
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
+
+            .button {
+                width: 100%;
+                background-color: $red;
+                color: $white;
+                font-weight: 700;
+                font-size: 1.4rem;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                border-radius: 0;
+                border: 1px solid $red;
+                margin-top: 2rem;
+                padding: 1.4rem 2rem;
+
+                &:hover {
+                    background-color: #0E1626;
+                    border-color: #0E1626;
+                    color: $white;
+                }
+            }
+        }
+    }
+
+    // Right Side Main Content
+    .country_right_side {
+        .visa_hero_card {
+            border: 1px solid #E2E8F0;
+
+            .visa_main_img {
+                width: 100%;
+                height: 42rem;
+                object-fit: cover;
+                display: block;
+            }
+        }
+
+        // Specs Bar
+        .visa_specs_grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.2rem;
+
+            @media (max-width: 991px) {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            @media (max-width: 575px) {
+                grid-template-columns: 1fr;
+            }
+
+            .spec_item {
+                background: #F8FAFC;
+                border: 1px solid #E2E8F0;
+                border-top: 3px solid $primary;
+                padding: 1.8rem 1.6rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 1.2rem;
+
+                .spec_icon {
+                    color: $primary;
+                    font-size: 2rem;
+                    margin-top: 0.2rem;
+                }
+
+                .spec_details {
+                    .spec_label {
+                        display: block;
+                        font-size: 1.15rem;
+                        font-weight: 600;
+                        color: #64748B;
+                        text-transform: uppercase;
+                        letter-spacing: 0.05em;
+                        margin-bottom: 0.4rem;
+                    }
+
+                    .spec_value {
+                        display: block;
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 1.45rem;
+                        font-weight: 700;
+                        color: #111A3A;
+                        line-height: 1.3;
+                    }
+                }
+            }
+        }
+
+        // Main Block & HTML content
+        .visa_content_block {
+            .visa_section_heading {
+                margin-bottom: 2.5rem;
+
+                .sub_lead {
+                    display: block;
+                    font-size: 1.2rem;
+                    font-weight: 700;
+                    color: $primary;
+                    text-transform: uppercase;
+                    letter-spacing: 0.12em;
+                    margin-bottom: 0.6rem;
+                }
+
+                h2 {
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 2.8rem;
+                    font-weight: 800;
+                    color: #111A3A;
+                    margin-bottom: 1.2rem;
+                    letter-spacing: -0.02em;
+                }
+
+                .em_bar_bg {
+                    height: 3px;
+                    width: 55px;
+                    background-color: $primary;
+                    margin-bottom: 1.5rem;
+                }
+
+                .section_intro {
+                    color: #64748B;
+                    font-size: 1.5rem;
+                    line-height: 1.7;
+                    margin-top: 1rem;
+                }
+            }
+
+            .visa_html_content {
+                p {
+                    color: #475569;
+                    font-size: 1.55rem;
+                    line-height: 1.8;
+                    margin-bottom: 1.8rem;
+                }
+
+                h3 {
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 2.2rem;
+                    font-weight: 700;
+                    color: #111A3A;
+                    margin: 3.5rem 0 1.8rem;
+                    padding-bottom: 1rem;
+                    border-bottom: 2px solid #F1F5F9;
+                    position: relative;
+
+                    &::after {
+                        content: '';
+                        position: absolute;
+                        bottom: -2px;
+                        left: 0;
+                        width: 45px;
+                        height: 2px;
+                        background: $primary;
+                    }
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0 0 2.5rem;
+                    display: grid;
+                    grid-template-columns: repeat(1, 1fr);
+                    gap: 1rem;
+
+                    li {
+                        position: relative;
+                        padding: 1.4rem 1.8rem 1.4rem 4.8rem;
+                        background: #F8FAFC;
+                        border: 1px solid #E2E8F0;
+                        font-size: 1.45rem;
+                        color: #334155;
+                        line-height: 1.6;
+                        font-weight: 500;
+
+                        &::before {
+                            font-family: "Font Awesome 6 Free";
+                            content: "\f058";
+                            font-weight: 900;
+                            position: absolute;
+                            left: 1.8rem;
+                            top: 1.4rem;
+                            color: $primary;
+                            font-size: 1.8rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        // Requirements list
+        .requirements_list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.2rem;
+
+            .req_item {
+                background: #F8FAFC;
+                border: 1px solid #E2E8F0;
+                padding: 1.6rem 2rem;
+                display: flex;
+                align-items: center;
+                gap: 1.6rem;
+                transition: all 0.25s ease;
+
+                &:hover {
+                    background: #FFFFFF;
+                    border-color: $primary;
+                    box-shadow: 0 4px 15px rgba(17, 26, 58, 0.05);
+                    transform: translateX(4px);
+                }
+
+                i {
+                    color: $primary;
+                    font-size: 2rem;
+                    flex-shrink: 0;
+                }
+
+                span {
+                    font-size: 1.5rem;
+                    color: #334155;
+                    font-weight: 600;
+                    line-height: 1.5;
+                }
+            }
+        }
+
+        // 5-Stage Processing Timeline
+        .workflow_timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+
+            .timeline_card {
+                background: #FFFFFF;
+                border: 1px solid #E2E8F0;
+                padding: 2.2rem 2.6rem;
+                display: flex;
+                align-items: flex-start;
+                gap: 2.2rem;
+                transition: all 0.25s ease;
+
+                &:hover {
+                    border-color: $primary;
+                    box-shadow: 0 6px 20px rgba(17, 26, 58, 0.05);
+                    transform: translateX(4px);
+
+                    .timeline_step {
+                        background: #111A3A;
+                        color: $primary;
+                    }
+                }
+
+                .timeline_step {
+                    width: 5.2rem;
+                    height: 5.2rem;
+                    background: rgba(var(--primary-rgb), 0.12);
+                    color: $primary;
+                    font-family: 'Outfit', sans-serif;
+                    font-size: 2rem;
+                    font-weight: 800;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-shrink: 0;
+                    border: 1px solid rgba(var(--primary-rgb), 0.3);
+                    transition: all 0.25s ease;
+                }
+
+                .timeline_info {
+                    h4 {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 1.75rem;
+                        font-weight: 700;
+                        color: #111A3A;
+                        margin-bottom: 0.6rem;
+                    }
+
+                    p {
+                        font-size: 1.4rem;
+                        color: #64748B;
+                        line-height: 1.6;
+                        margin: 0;
+                    }
+                }
+            }
+        }
+
+        // Fast-Track Apply Banner
+        .visa_apply_banner {
+            background: $dark_blue;
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
+            border-top: 4px solid $primary;
+            padding: 3.5rem 3.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+
+            @media (max-width: 991px) {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 3rem 2.5rem;
+            }
+
+            .banner_content {
+                display: flex;
+                align-items: center;
+                gap: 2rem;
+
+                .banner_icon {
+                    width: 5.8rem;
+                    height: 5.8rem;
+                    background: rgba(var(--primary-rgb), 0.15);
+                    color: $primary;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 2.6rem;
+                    flex-shrink: 0;
+                }
+
+                .banner_text {
+                    h3 {
+                        font-family: 'Outfit', sans-serif;
+                        font-size: 2.2rem;
+                        font-weight: 800;
+                        color: $white;
+                        margin-bottom: 0.6rem;
+                    }
+
+                    p {
+                        font-size: 1.4rem;
+                        color: rgba(255, 255, 255, 0.75);
+                        line-height: 1.6;
+                        margin: 0;
+                    }
+                }
+            }
+
+            .btn_banner_action {
+                background: $red;
+                color: $white;
+                padding: 1.4rem 2.6rem;
+                font-family: 'Outfit', sans-serif;
+                font-size: 1.4rem;
+                font-weight: 700;
+                letter-spacing: 0.05em;
+                display: inline-flex;
+                align-items: center;
+                gap: 1rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+                transition: all 0.25s ease;
+                border: 1px solid $red;
+
+                &:hover {
+                    background: #0E1626;
+                    border-color: #0E1626;
+                    color: $white;
+
+                    i {
+                        transform: translateX(4px);
+                    }
+                }
+
+                i {
+                    transition: transform 0.25s ease;
+                }
             }
         }
     }

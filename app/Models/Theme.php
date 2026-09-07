@@ -6,20 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+
 class Theme extends Model
 {
     use HasFactory, HasSlug;
+
     protected $fillable = [
         'name',
         'slug',
-        'subtitle',
+        'primary_color',
+        'secondary_color',
+        'hover_color',
+        'light_color',
+        'nav_bg',
+        'footer_bg',
         'description',
-        'image',
-        'light_or_dark',
         'status',
     ];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('name')

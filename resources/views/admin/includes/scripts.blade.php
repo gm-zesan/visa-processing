@@ -1,5 +1,6 @@
 
 
+
 {{-- Jquery CDN --}}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -152,36 +153,79 @@
     }
 </script>
 
-
-
-{{-- full screen js  --}}
+{{-- Toastr JS & Global Flash Message Handler --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
-    // full screen open
-    var elem = document.getElementById("fullpage");
-    function openFullscreen() {
-        $("#openFullScreen").addClass("d-none");
-        $("#exitFullScreen").removeClass("d-none");
-        if (elem.requestFullscreen) {
-            elem.requestFullscreen();
-        } else if (elem.webkitRequestFullscreen) {
-            elem.webkitRequestFullscreen();
-        } else if (elem.msRequestFullscreen) {
-            elem.msRequestFullscreen();
+    // Toastr Global Settings
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": false,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "600",
+        "timeOut": "4500",
+        "extendedTimeOut": "1500",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    };
+
+    // Universal Helper for Toast Notifications
+    window.showToast = function(message, isError = false, title = '') {
+        if (isError) {
+            toastr.error(message, title || 'Error');
+        } else {
+            toastr.success(message, title || 'Success');
         }
-    }
-    // full screen exit
-    function removeFullScreen() {
-        $("#openFullScreen").removeClass("d-none");
-        $("#exitFullScreen").addClass("d-none");
-        if (document.exitFullscreen) {
-            document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
+    };
+
+    window.notify = function(type, message, title = '') {
+        if (type === 'error' || type === 'danger') {
+            toastr.error(message, title || 'Error');
+        } else if (type === 'warning') {
+            toastr.warning(message, title || 'Warning');
+        } else if (type === 'info') {
+            toastr.info(message, title || 'Notice');
+        } else {
+            toastr.success(message, title || 'Success');
         }
-    }
+    };
+
+    // Trigger Laravel Session Flash Messages
+    $(document).ready(function() {
+        @if(Session::has('success'))
+            toastr.success("{!! addslashes(Session::get('success')) !!}", "Success");
+        @endif
+
+        @if(Session::has('message'))
+            toastr.success("{!! addslashes(Session::get('message')) !!}", "Success");
+        @endif
+
+        @if(Session::has('error'))
+            toastr.error("{!! addslashes(Session::get('error')) !!}", "Error");
+        @endif
+
+        @if(Session::has('warning'))
+            toastr.warning("{!! addslashes(Session::get('warning')) !!}", "Warning");
+        @endif
+
+        @if(Session::has('info'))
+            toastr.info("{!! addslashes(Session::get('info')) !!}", "Notice");
+        @endif
+
+        @if(Session::has('status'))
+            toastr.info("{!! addslashes(Session::get('status')) !!}", "Status");
+        @endif
+
+        @if(isset($errors) && $errors->any())
+            @foreach($errors->all() as $error)
+                toastr.error("{!! addslashes($error) !!}", "Validation Error");
+            @endforeach
+        @endif
+    });
 </script>
-
-
-    

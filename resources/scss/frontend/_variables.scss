@@ -1,21 +1,22 @@
-
-// color
+// color variables mapped to dynamic CSS custom properties
 $gray: #F4F7FC;
 $white: #fff;
-$red: #C59A27; // Brand Primary Gold from Logo
-$primary: #C59A27;
-$primary_hover: #A87F17;
-$primary_light: #FBF6EA;
-$green: #2E7D32; // Brand Leaf Green
-$blue: #0077B6; // Brand Aviation Swoosh Blue
+$red: var(--primary-color, #C59A27); // Brand Primary
+$primary: var(--primary-color, #C59A27);
+$primary_hover: var(--primary-hover, #A87F17);
+$primary_light: var(--primary-light, #FBF6EA);
+$dark_blue: var(--secondary-color, #111A3A);
+$green: #2E7D32;
+$blue: #0077B6;
 $gray_light: #9EA9B3;
 $black: #232323;
 $sky: #E9E1CD;
 $light_dark: #191919;
 $dark: #131313;
 
-
 // Font Variables
-$philosopher: 'Philosopher', sans-serif;
-$quattrocento: 'Quattrocento', serif;
+$font_heading: 'Outfit', sans-serif;
+$font_body: 'Plus Jakarta Sans', sans-serif;
+$philosopher: 'Outfit', sans-serif;
+$quattrocento: 'Plus Jakarta Sans', sans-serif;
 $outfit: 'Outfit', sans-serif;

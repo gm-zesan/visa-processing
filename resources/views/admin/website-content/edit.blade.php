@@ -108,6 +108,7 @@
                                     </div>
                                 @endif
 
+
                                 @if(isset($settings->title))
                                     <div class="col-12">
                                         <label for="" class="form-label custom-label custom-label">{{$settings->title_label ? $settings->title_label : 'Title'}}</label>
@@ -120,6 +121,7 @@
                                                     <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
                                                 </div>
                                             </div>
+                                            
                                         @endif
                                         @if($errors->has('title'))
                                             <div class="error_msg">
@@ -150,11 +152,11 @@
                                     </div>
                                 @endif
 
+
                                 @if(isset($settings->button_text))
                                     <div class="col-md-6">
                                         
                                         <label for="" class="form-label custom-label custom-label">{{$settings->button_text_label ? $settings->button_text_label : 'Button Text'}}</label>
-                                            
                                         <input type="text" class="form-control custom-input" name="button_text" value="{{$settings->button_text}}">
                                         @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
                                             <div class="clipboard mb-3">
@@ -193,6 +195,7 @@
                                         @endif
                                     </div>
                                 @endif
+
 
                                 @if(isset($settings->description))
                                     <div class="col-12">
@@ -259,7 +262,7 @@
                                                     
                                                     <span class="formate-error cover_imageerror"></span>
                                                 </div>
-                                                <span class="upload-btn">Upload Iamge</span>
+                                                <span class="upload-btn">Upload Image</span>
                                             </label>
                                             @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
                                                 <div class="clipboard mb-3">
@@ -351,16 +354,12 @@
         }
         function removeImage(id) {
             $( "#" + id ).val( null );
-            // $( '#' + id + 'Preview' ).attr( 'class', noImage  );
             $( '#' + id + 'Preview' ).addClass( 'd-none' );
-            // const oldImageValue = $('#imagesrcvalue').val();
-            // $( '#' + id + 'Preview' ).attr( 'src', oldImageValue );
             $( '#' + id + 'PreviewNo' ).removeClass( 'd-none' );
             $( "#" + id + "_data").attr("value", "");
             $( '#' + id + 'Name' ).html( 'Not selected' );
             $( '#' + id + 'Delete' ).css( 'display', 'none' );
             $( '#' + id + 'Delete' ).addClass( 'd-none' );
-            
         }
     </script>
 

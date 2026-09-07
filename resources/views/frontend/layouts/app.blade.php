@@ -6,7 +6,7 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>VisaDocs || @yield('title')</title>
+        <title>@yield('title') &mdash; AL FAHIM INTERNATIONAL</title>
 
         <!-- Meta data -->
         <meta name="author" content="UQIF" />
@@ -19,6 +19,24 @@
         @include('frontend.partials.favicon')
         @include('frontend.partials.styles')
         @stack("styles")
+
+        @php
+            $activeTheme = getActiveTheme();
+        @endphp
+        @if($activeTheme)
+        <style id="dynamic-brand-theme">
+            :root, html, body {
+                --primary-color: {{ $activeTheme->primary_color ?? '#C59A27' }} !important;
+                --primary-hover: {{ $activeTheme->hover_color ?? '#A87F17' }} !important;
+                --primary-light: {{ $activeTheme->light_color ?? '#FBF6EA' }} !important;
+                --secondary-color: {{ $activeTheme->secondary_color ?? '#111A3A' }} !important;
+                --nav-bg: {{ $activeTheme->nav_bg ?? '#FFFFFF' }} !important;
+                --footer-bg: {{ $activeTheme->footer_bg ?? '#111A3A' }} !important;
+                --primary-rgb: {{ hexToRgb($activeTheme->primary_color ?? '#C59A27') }} !important;
+                --secondary-rgb: {{ hexToRgb($activeTheme->secondary_color ?? '#111A3A') }} !important;
+            }
+        </style>
+        @endif
 
     </head>
 

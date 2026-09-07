@@ -8,12 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CommonType extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'name',
-        'description',
-        'image',
     ];
-
 
     public function websiteContents()
     {
