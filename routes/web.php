@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\AssignRoleController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CkeditorController;
@@ -93,6 +92,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/dashboard/user/update/{id}', [UserController::class, 'update'])->name('user.update');
     Route::get('/dashboard/user/delete/{id}', [UserController::class, 'delete'])->name('user.delete');
+    Route::post('/dashboard/user/assign-role', [UserController::class, 'assignRole'])->name('assignrole.store');
 
     // Role Route
     Route::get('/dashboard/role', [RoleController::class, 'index'])->name('role.index');
@@ -101,10 +101,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/role/edit/{id}', [RoleController::class, 'edit'])->name('role.edit');
     Route::post('/dashboard/role/update/{id}', [RoleController::class, 'update'])->name('role.update');
     Route::get('/dashboard/role/delete/{id}', [RoleController::class, 'destroy'])->name('role.delete');
-
-    // Assign Role Route
-    Route::get('/dashboard/assign-role', [AssignRoleController::class, 'index'])->name('assignrole.index');
-    Route::post('/dashboard/assign-role/store', [AssignRoleController::class, 'assignRole'])->name('assignrole.store');
 
 
     //message Route

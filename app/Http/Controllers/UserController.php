@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
 use DataTables;
@@ -14,36 +14,57 @@ class UserController extends Controller
 
     function __construct()
     {
-         $this->middleware('permission:user-list|user-create|user-edit|user-delete', ['only' => ['index','store']]);
+         $this->middleware('permission:user-list|user-create|user-edit|user-delete|assignrole-create', ['only' => ['index','store']]);
          $this->middleware('permission:user-create', ['only' => ['create','store']]);
-         $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
+         $this->middleware('permission:user-edit|assignrole-create', ['only' => ['edit','update','assignRole']]);
          $this->middleware('permission:user-delete', ['only' => ['delete']]);
     }
 
     
     public function index(Request $request){
+        $auth_user = Auth::user();
+        if ($auth_user->hasRole('superadmin')) {
+            $roles = Role::pluck('name')->all();
+        } else {
+            $roles = Role::where('name','!=', 'superadmin')->pluck('name')->all();
+        }
+
         if ($request->ajax()) {
-            $auth_user = Auth::user();
             if ($auth_user->hasRole('superadmin')) {
-                $users = User::get()->all();
+                $users = User::with('roles')->get();
             } elseif ($auth_user->hasRole('developer')) {
                 $users = User::whereHas('roles', function ($query) {
                     return $query->where('name','!=', 'superadmin');
-                })->where('id','!=',$auth_user->id)->get()->all();
+                })->where('id','!=',$auth_user->id)->with('roles')->get();
             } else {
                 $users = User::whereHas('roles', function ($query) {
                     return $query->where('name','!=', 'superadmin')->where('name','!=', 'developer');
-                })->where('id','!=',$auth_user->id)->get()->all();
+                })->where('id','!=',$auth_user->id)->with('roles')->get();
             }
             return DataTables::of($users)
                 ->addIndexColumn()
-                ->addColumn('action-btn', function($row) {
-                    return $row->id;
+                ->addColumn('role', function($row) {
+                    $roleName = $row->roles->first()->name ?? 'user';
+                    $badgeClass = match($roleName) {
+                        'superadmin' => 'bg-danger',
+                        'admin' => 'bg-primary',
+                        'developer' => 'bg-info',
+                        default => 'bg-secondary'
+                    };
+                    return '<span class="badge ' . $badgeClass . ' text-uppercase">' . e($roleName) . '</span>';
                 })
-                ->rawColumns(['action-btn'])
+                ->addColumn('action-btn', function($row) {
+                    return [
+                        'id' => $row->id,
+                        'name' => $row->name,
+                        'email' => $row->email,
+                        'role' => $row->roles->first()->name ?? null,
+                    ];
+                })
+                ->rawColumns(['role', 'action-btn'])
                 ->make(true);
         }
-        return view('admin.users.index');
+        return view('admin.users.index', compact('roles'));
     }
 
 
@@ -190,5 +211,30 @@ class UserController extends Controller
         }
         User::find($id)->delete();
         return redirect()->route('users')->with('message','User deleted successfully');
+    }
+
+    public function assignRole(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+            'role'  => 'required|string|exists:roles,name',
+        ]);
+
+        $auth_user = Auth::user();
+        $user = User::where('email', $request->email)->firstOrFail();
+
+        // Superadmin security protection
+        if ($user->hasRole('superadmin') && !$auth_user->hasRole('superadmin')) {
+            return back()->with('error', 'You do not have permission to modify a Superadmin user.');
+        }
+
+        if ($request->role === 'superadmin' && !$auth_user->hasRole('superadmin')) {
+            return back()->with('error', 'You do not have permission to assign the Superadmin role.');
+        }
+
+        // Sync role (removes old roles and attaches the selected one)
+        $user->syncRoles([$request->role]);
+
+        return back()->with('message', 'Role "' . ucfirst($request->role) . '" assigned successfully to ' . $user->name);
     }
 }

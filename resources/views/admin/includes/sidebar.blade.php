@@ -142,7 +142,7 @@
         @endcan
 
         <!-- User & Access Management -->
-        @canany(['user-list', 'user-create', 'user-edit', 'user-delete', 'role-list', 'role-create', 'role-edit', 'role-delete', 'assignrole-list', 'assignrole-create'])
+        @canany(['user-list', 'user-create', 'user-edit', 'user-delete', 'role-list', 'role-create', 'role-edit', 'role-delete'])
             <li class="category-li">
                 <span class="link_names">User Management</span>
             </li>
@@ -164,16 +164,6 @@
                 class="{{ in_array(Route::currentRouteName(), ['role.index', 'role.create', 'role.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-shield-user-line"></i>
                 <span class="link_names">Roles & Permissions</span>
-            </a>
-        </li>
-        @endcan
-
-        @canany(['assignrole-list', 'assignrole-create', 'role-list', 'role-create', 'role-edit', 'role-delete'])
-        <li class="drop-item">
-            <a href="{{route('assignrole.index')}}"
-                class="{{ in_array(Route::currentRouteName(), ['assignrole.index', 'assignrole.edit']) ? 'active-focus' : '' }}">
-                <i class="ri-user-settings-line"></i>
-                <span class="link_names">Assign Role</span>
             </a>
         </li>
         @endcan

@@ -112,6 +112,24 @@ table.dataTable tbody tr td .btn-view {
     }
 }
 
+table.dataTable tbody tr td .btn-assign-role {
+    color: #23b7e9;
+    background-color: #e9f8fc;
+    height: 28px;
+    width: 28px;
+    border-radius: 5px;
+    border: none;
+    @include flex-box(flex, center, center);
+    transition: all 0.3s ease-in-out;
+    margin: 0 2px;
+    cursor: pointer;
+    font-size: 14px;
+    &:hover {
+        color: #fff;
+        background-color: #23b7e9;
+    }
+}
+
 table.dataTable tbody tr td .btn-delete {
     color: #dc3545;
     background-color: #f3d1d4;
