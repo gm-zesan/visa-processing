@@ -1,66 +1,143 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# AL FAHIM INTERNATIONAL &bull; Overseas Manpower & Visa Processing Portal
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/images/favicon/android-chrome-192x192.png" width="96" alt="Al Fahim International Logo" />
 </p>
 
-## About Laravel
+<p align="center">
+  <strong>Government-Approved Overseas Manpower Recruitment Agency & Visa Processing Management Portal</strong>
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📌 Project Overview
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**AL FAHIM INTERNATIONAL** is a full-featured, modern web portal and enterprise back-office management system designed for a government-authorized overseas manpower recruitment agency headquartered in Dhaka, Bangladesh.
 
-## Learning Laravel
+The platform streamlines candidate recruitment, digital job applications, online passport application status tracking, country visa directories, team profiles, news blogs, dynamic website content customization, and administrative workflow management with role-based access control.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+---
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🌟 Key Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🌐 Public Frontend Portal
+- **Hero & Services Showcase:** Interactive country visa circulars, job category spotlights, overseas process timelines, and live statistics counter.
+- **Online Job Application & Passport Tracking:** Real-time online application submission and instant passport status verification modal (`/apply`).
+- **Interactive Office Tour Modal:** Step-by-step visual office tour with road-to-floor guidance (Lift 14, Tower A, Banani, Dhaka).
+- **Executive Leadership & Team Directory:** Dedicated profile pages with direct phone, email, and social connectivity (`/ourTeam`).
+- **Destination Countries Directory:** In-depth guides for Saudi Arabia, UAE, Malaysia, Maldives, and Romania (`/country/{id}`).
+- **News & Visa Circulars:** Category-filtered overseas job circulars and immigration articles (`/blog_list`).
+- **Contact & Inquiry System:** Interactive Google Maps embed and instant lead inquiry capture (`/contact`).
+- **SEO & Social Share Ready:** Dynamic OpenGraph tags, automated page-level metadata, and multi-device favicon setup.
 
-## Laravel Sponsors
+### ⚙️ Admin Back-Office Management
+- **Role-Based Access Control (RBAC):** Powered by Spatie Laravel-Permission with custom granular privileges.
+- **Candidate Applications Management:** Server-side DataTables tracking walk-in and online candidates with status lifecycle updates.
+- **Dynamic Website Content CMS:** Complete control over home sliders, section headings, about details, and media assets.
+- **Team & Staff Management:** Full CRUD with circular thumbnail preview, biography rich-text editor, and contact details.
+- **Theme & Brand Colors:** Dynamic primary/secondary color and branding palette manager.
+- **Countries & Visa Types:** Multi-country visa category catalog and requirements manager.
+- **Lead Message Inbox:** View and manage visitor inquiries submitted through the contact forms.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## 🛠️ Technology Stack
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **Backend Framework:** [Laravel 10.x](https://laravel.com/) (PHP 8.1+)
+- **Database:** MySQL 8.0+ / MariaDB
+- **Frontend Assets & Bundler:** [Vite](https://vitejs.dev/) + Sass (SCSS) + Vanilla JavaScript
+- **Admin Template & UI:** Bootstrap 5, Remix Icon, Semantic UI, FontAwesome 6, DataTables (Server-side)
+- **Role & Permission:** `spatie/laravel-permission`
+- **Rich Text Editor:** CKEditor 4
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Installation & Local Setup
 
-## Code of Conduct
+### 1. Prerequisites
+- PHP >= 8.1
+- Composer
+- Node.js & NPM
+- MySQL Server
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Clone and Setup Environment
+```bash
+# Clone the repository
+git clone <repository-url>
+cd visa-processing
 
-## Security Vulnerabilities
+# Install PHP dependencies
+composer install
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+# Install Frontend dependencies
+npm install
 
-## License
+# Setup Environment File
+cp .env.example .env
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Generate Application Key
+php artisan key:generate
+```
+
+### 3. Database Configuration
+Open `.env` and set your MySQL database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=vdocglobal
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+### 4. Run Migrations & Database Seeders
+```bash
+# Run database schema migrations
+php artisan migrate
+
+# Seed all initial dataset (Roles, Admin, Website Content, Countries, Visas, Blogs, Team Members)
+php artisan db:seed
+```
+
+### 5. Compile Frontend Assets & Start Server
+```bash
+# In Terminal 1 (Vite Dev Server)
+npm run dev
+
+# In Terminal 2 (Laravel Server)
+php artisan serve
+```
+The application will be accessible at: `http://localhost:8000`
+
+---
+
+## 🔑 Default Admin Credentials
+
+- **Admin Login URL:** `http://localhost:8000/login`
+- **Email:** `admin@gmail.com`
+- **Password:** `12345678`
+
+---
+
+## ⚡ Production Deployment & Optimization
+
+When deploying to a live production environment, execute the following optimization commands:
+
+```bash
+# Build optimized frontend assets
+npm run build
+
+# Cache configuration, routes, and views
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Optimize Composer autoloader
+composer install --optimize-autoloader --no-dev
+```
+
+---
+
+## 📄 License & Ownership
+
+Developed for **AL FAHIM INTERNATIONAL**. All rights reserved &copy; 2026.

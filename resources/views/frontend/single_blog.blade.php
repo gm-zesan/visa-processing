@@ -1,6 +1,14 @@
 @extends('frontend.layouts.app')
 
-@section('title', $blog->title . ' - AL FAHIM INTERNATIONAL')
+@section('title', $blog->title)
+
+@section('seo_description')
+{{ Str::limit(strip_tags($blog->description), 160) }}
+@endsection
+
+@section('seo_image')
+{{ asset($blog->image ?? getSettingsData('5', 'image')) }}
+@endsection
 
 @push("styles")
   @vite(['resources/scss/frontend/single_blog.scss'])

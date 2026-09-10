@@ -4,6 +4,14 @@
 {{ $country->subtitle ?? 'Working in ' . $country->country->name }} | Overseas Employment Guide
 @endsection
 
+@section('seo_description')
+{{ Str::limit(strip_tags($country->description ?? 'Learn about foreign employment opportunities, work permit processing, salary packages, and visa requirements for ' . ($country->country->name ?? 'our destination countries') . ' through AL FAHIM INTERNATIONAL.'), 160) }}
+@endsection
+
+@section('seo_image')
+{{ asset($country->image ?? getSettingsData('5', 'image')) }}
+@endsection
+
 @push("styles")
 @vite(['resources/scss/frontend/country.scss'])
 @endpush

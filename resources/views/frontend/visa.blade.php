@@ -4,6 +4,14 @@
   {{ $visa->name }} | Overseas Employment & Work Permit
 @endsection
 
+@section('seo_description')
+  {{ Str::limit(strip_tags($visa->description ?? 'Official processing details, legal documentation checklist, salary packages, and employer verification for ' . $visa->name . ' through AL FAHIM INTERNATIONAL.'), 160) }}
+@endsection
+
+@section('seo_image')
+  {{ asset($visa->image ?? getSettingsData('5', 'image')) }}
+@endsection
+
 @push("styles")
   @vite(['resources/scss/frontend/visa.scss'])
 @endpush

@@ -1,7 +1,15 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-    {{$teamMember->name}}
+    {{$teamMember->name}} &mdash; {{$teamMember->designation}}
+@endsection
+
+@section('seo_description')
+    {{ Str::limit(strip_tags($teamMember->biography ?: $teamMember->name . ' is ' . $teamMember->designation . ' at AL FAHIM INTERNATIONAL overseas recruitment agency.'), 160) }}
+@endsection
+
+@section('seo_image')
+    {{ (!empty($teamMember->image) && file_exists(public_path($teamMember->image))) ? asset($teamMember->image) : asset('images/admin/user.jpeg') }}
 @endsection
 
 @push("styles")

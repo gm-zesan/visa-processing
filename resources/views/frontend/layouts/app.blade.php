@@ -8,12 +8,29 @@
 
         <title>@yield('title') &mdash; AL FAHIM INTERNATIONAL</title>
 
-        <!-- Meta data -->
-        <meta name="author" content="UQIF" />
-        <meta name="description" content="@yield('seo_description')"/>
-        <meta name="Resource-type" content="@yield('seo_resource_type')" />
-        <meta name="keywords" content="@yield('seo_keywords')">
-        <link rel="image_src" href="@yield('seo_image')"/>
+        <!-- Meta data & SEO -->
+        <meta name="author" content="AL FAHIM INTERNATIONAL" />
+        @php
+            $defaultDescription = "AL FAHIM INTERNATIONAL is a government-approved overseas manpower recruitment agency providing authentic work permit processing, legal foreign employment, and overseas placement solutions.";
+            $defaultKeywords = "overseas manpower recruitment, work permit visa, foreign employment agency, saudi arabia visa, dubai uae jobs, malaysia calling visa, maldives hospitality jobs, romania work permit, al fahim international";
+            $defaultImage = asset(getSettingsData('5', 'image') ?: 'images/favicon/android-chrome-512x512.png');
+        @endphp
+        <meta name="description" content="@yield('seo_description', $defaultDescription)"/>
+        <meta name="keywords" content="@yield('seo_keywords', $defaultKeywords)">
+        
+        <!-- OpenGraph / Facebook / WhatsApp -->
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="{{ url()->current() }}">
+        <meta property="og:title" content="@yield('title') &mdash; AL FAHIM INTERNATIONAL">
+        <meta property="og:description" content="@yield('seo_description', $defaultDescription)">
+        <meta property="og:image" content="@yield('seo_image', $defaultImage)">
+        
+        <!-- Twitter Cards -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="{{ url()->current() }}">
+        <meta name="twitter:title" content="@yield('title') &mdash; AL FAHIM INTERNATIONAL">
+        <meta name="twitter:description" content="@yield('seo_description', $defaultDescription)">
+        <meta name="twitter:image" content="@yield('seo_image', $defaultImage)">
 
 
         @include('frontend.partials.favicon')
