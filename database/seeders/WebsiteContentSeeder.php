@@ -822,7 +822,7 @@ class WebsiteContentSeeder extends Seeder
 <p>When we established AL FAHIM INTERNATIONAL over a decade ago, our objective was clear: to counter the widespread issue of unauthorized middlemen, hidden recruitment fees, and counterfeit work permits by creating an institutional standard of absolute honesty and digital verification.</p>
 <p>Today, every worker deployed through our agency holds an electronic employment contract verifiable on destination government portals—including Saudi Qiwa, UAE MoHRE, Maldives Xpat, Malaysia FWCMS, and Romania IGI. We take immense pride in having empowered over 15,000 families with dignified global employment, and we remain dedicated to upholding the highest standards of international labor mobility.</p>',
                 'description_label' => 'Speech Text',
-                'image' => 'upload/our_team/20240319041954.jpg',
+                'image' => 'upload/website_content/ceo_avatar.jpg',
                 'image_label' => 'Director Photo',
                 'created_at' => now(),
                 'updated_at' => now(),

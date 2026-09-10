@@ -25,10 +25,21 @@ class OurTeamController extends Controller
             $ourTeams = OurTeam::all();
             return DataTables::of($ourTeams)
                 ->addIndexColumn()
+                ->addColumn('image', function($row){
+                    if (!empty($row->image) && file_exists(public_path($row->image))) {
+                        $imgUrl = asset($row->image);
+                        return '<div class="table-avatar-container">
+                                    <img src="' . $imgUrl . '" alt="' . e($row->name) . '" class="table-avatar-img">
+                                </div>';
+                    }
+                    return '<div class="table-avatar-container" style="background:#f1f5f9; color:#94a3b8; display:inline-flex; align-items:center; justify-content:center;">
+                                <i class="ri-user-line" style="font-size: 20px;"></i>
+                            </div>';
+                })
                 ->addColumn('action-btn', function($row){
                     return $row->id;
                 })
-                ->rawColumns(['action-btn'])
+                ->rawColumns(['image', 'action-btn'])
                 ->make(true);
 
         }

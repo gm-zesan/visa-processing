@@ -37,7 +37,7 @@ ourTeam
                             <div class="dedicated_card_wrap">
                                 <div class="team_inner_wrap">
                                     <div class="image_wrap">
-                                        <img src="{{asset($team->image)}}" alt="Image" class="w-100" loading="lazy" decoding="async">
+                                        <img src="{{ (!empty($team->image) && file_exists(public_path($team->image))) ? asset($team->image) : asset('images/admin/user.jpeg') }}" alt="{{ $team->name }}" class="w-100" loading="lazy" decoding="async">
                                         <div class="social_icons1">				            								
                                             <a href="{{$team->facebook}}" class="social-icon">
                                             <i class="fa-brands fa-facebook-f"></i>

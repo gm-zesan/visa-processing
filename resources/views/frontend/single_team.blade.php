@@ -1,26 +1,27 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-{{$teamMember->name}}
+    {{$teamMember->name}}
 @endsection
 
 @push("styles")
-@vite(['resources/scss/frontend/single_team.scss'])
+    @vite(['resources/scss/frontend/single_team.scss'])
 @endpush
 
 
 @section('content')
     <!-- contact_page_area -->
-    <div class="contact_page_area" style="background-image: url({{ asset(getSettingsData('46', 'image') ?: 'frontend/images/contact_bg.jpg') }});">
+    <div class="contact_page_area"
+        style="background-image: url({{ asset(getSettingsData('46', 'image') ?: 'frontend/images/contact_bg.jpg') }});">
         <div class="container">
             <div class="contact_wrapper">
                 <h2>{{$teamMember->name}}</h2>
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-                  <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="{{route('home')}}">HOME</a></li>
-                    <li class="breadcrumb-item"><a href="{{route('ourTeam')}}">Our Team</a></li>
-                    <li class="breadcrumb-item active">{{$teamMember->name}}</li>
-                  </ol>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}">HOME</a></li>
+                        <li class="breadcrumb-item"><a href="{{route('ourTeam')}}">Our Team</a></li>
+                        <li class="breadcrumb-item active">{{$teamMember->name}}</li>
+                    </ol>
                 </nav>
             </div>
         </div>
@@ -29,7 +30,8 @@
     <div class="single_person_wrap">
         <div class="container">
             <div class="inner_person_items">
-                <img src="{{asset($teamMember->image)}}" alt="Image" class="single_person_images">
+                <img src="{{ (!empty($teamMember->image) && file_exists(public_path($teamMember->image))) ? asset($teamMember->image) : asset('images/admin/user.jpeg') }}"
+                    alt="{{ $teamMember->name }}" class="single_person_images">
                 <div class="connt_person">
                     <h2>{{$teamMember->name}}</h2>
                     <h3>{{$teamMember->designation}}</h3>
