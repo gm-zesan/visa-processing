@@ -29,6 +29,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get('lang/{lang}', [App\Http\Controllers\LanguageController::class, 'switchLang'])->name('lang.switch');
+
 Route::get('/', [PageController::class, 'index'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
 Route::get('/ourTeam', [PageController::class, 'ourTeam'])->name('ourTeam');

@@ -1,4 +1,4 @@
-@extends('admin.app')
+﻿@extends('admin.app')
 @section('title')
     Visa Type
 @endsection
@@ -31,17 +31,7 @@
                         <div class="card-body custom-form">
                             
                             <div class="row">
-                                <div class="col-md-6">
-                                    <label for="name" class="form-label custom-label custom-label">Visa Type</label>
-                                    <input type="text" class="form-control custom-input" name="name" value="{{$visa_type->name}}" id="name">
-                                    @if($errors->has('name'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('name') }}
-                                        </div>
-                                    @endif
-                                </div>
-
-                                <div class="col-md-6">
+                                <div class="col-md-12 mb-3">
                                     <label for="country_details_id" class="form-label custom-label">Country</label>
                                     <select class="form-select custom-input" name="country_details_id" id="country_details_id">
                                         @foreach ($countries as $country)
@@ -55,44 +45,115 @@
                                     @endif
                                 </div>
 
-                                <div class="col-md-6">
-                                    <label for="visa_category" class="form-label custom-label">Visa Category</label>
-                                    <input type="text" class="form-control custom-input" name="visa_category" value="{{ $visa_type->visa_category }}" placeholder="e.g. Employment Work Permit">
-                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <ul class="nav nav-tabs custom-tabs" id="langTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                                        </li>
+                                    </ul>
 
-                                <div class="col-md-6">
-                                    <label for="issuing_authority" class="form-label custom-label">Issuing Authority</label>
-                                    <input type="text" class="form-control custom-input" name="issuing_authority" value="{{ $visa_type->issuing_authority }}" placeholder="e.g. Ministry of Economic Development (MED)">
-                                </div>
+                                    <div class="tab-content mt-3" id="langTabContent">
+                                        <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="name" class="form-label custom-label custom-label">Visa Type</label>
+                                                    <input type="text" class="form-control custom-input" name="name" value="{{$visa_type->name}}" id="name">
+                                                    @if($errors->has('name'))
+                                                        <div class="error_msg">
+                                                            {{ $errors->first('name') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
 
-                                <div class="col-md-4">
-                                    <label for="processing_time" class="form-label custom-label">Processing Time</label>
-                                    <input type="text" class="form-control custom-input" name="processing_time" value="{{ $visa_type->processing_time }}" placeholder="e.g. 30 - 45 Working Days">
-                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="visa_category" class="form-label custom-label">Visa Category</label>
+                                                    <input type="text" class="form-control custom-input" name="visa_category" value="{{ $visa_type->visa_category }}" placeholder="e.g. Employment Work Permit">
+                                                </div>
 
-                                <div class="col-md-4">
-                                    <label for="contract_period" class="form-label custom-label">Contract Period</label>
-                                    <input type="text" class="form-control custom-input" name="contract_period" value="{{ $visa_type->contract_period }}" placeholder="e.g. 2 Years (Renewable)">
-                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="issuing_authority" class="form-label custom-label">Issuing Authority</label>
+                                                    <input type="text" class="form-control custom-input" name="issuing_authority" value="{{ $visa_type->issuing_authority }}" placeholder="e.g. Ministry of Economic Development (MED)">
+                                                </div>
 
-                                <div class="col-md-4">
-                                    <label for="emigration_clearance" class="form-label custom-label">Emigration Clearance</label>
-                                    <input type="text" class="form-control custom-input" name="emigration_clearance" value="{{ $visa_type->emigration_clearance }}" placeholder="e.g. BMET Smart Card Mandatory">
-                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="processing_time" class="form-label custom-label">Processing Time</label>
+                                                    <input type="text" class="form-control custom-input" name="processing_time" value="{{ $visa_type->processing_time }}" placeholder="e.g. 30 - 45 Working Days">
+                                                </div>
 
-                                <div class="col-md-12">
-                                    <label for="description" class="form-label custom-label">Description</label>
-                                    <textarea class="form-control custom-input" name="description" id="description" rows="3">{{$visa_type->description}}</textarea>
-                                    @if($errors->has('description'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('description') }}
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contract_period" class="form-label custom-label">Contract Period</label>
+                                                    <input type="text" class="form-control custom-input" name="contract_period" value="{{ $visa_type->contract_period }}" placeholder="e.g. 2 Years (Renewable)">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="emigration_clearance" class="form-label custom-label">Emigration Clearance</label>
+                                                    <input type="text" class="form-control custom-input" name="emigration_clearance" value="{{ $visa_type->emigration_clearance }}" placeholder="e.g. BMET Smart Card Mandatory">
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="description" class="form-label custom-label">Description</label>
+                                                    <textarea class="form-control custom-input" name="description" id="description" rows="3">{{$visa_type->description}}</textarea>
+                                                    @if($errors->has('description'))
+                                                        <div class="error_msg">
+                                                            {{ $errors->first('description') }}
+                                                        </div>
+                                                    @endif
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="processing_steps" class="form-label custom-label">Step-by-Step Processing Timeline (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
+                                                    <textarea class="form-control custom-input font-monospace" name="processing_steps" id="processing_steps" rows="6" placeholder="JSON array of processing steps" style="resize: vertical;">{{ !empty($visa_type->processing_steps) ? json_encode($visa_type->processing_steps, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                                </div>
+                                            </div>
                                         </div>
-                                    @endif
-                                </div>
 
-                                <div class="col-md-12 mt-3">
-                                    <label for="processing_steps" class="form-label custom-label">Step-by-Step Processing Timeline (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
-                                    <textarea class="form-control custom-input font-monospace" name="processing_steps" id="processing_steps" rows="6" placeholder="JSON array of processing steps" style="resize: vertical;">{{ !empty($visa_type->processing_steps) ? json_encode($visa_type->processing_steps, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                        <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                                            <div class="row">
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="name_bn" class="form-label custom-label custom-label">Visa Type (Bangla)</label>
+                                                    <input type="text" class="form-control custom-input" name="name_bn" value="{{$visa_type->name_bn}}" id="name_bn" placeholder="visa type name (Bangla)">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="visa_category_bn" class="form-label custom-label">Visa Category (Bangla)</label>
+                                                    <input type="text" class="form-control custom-input" name="visa_category_bn" value="{{ $visa_type->visa_category_bn }}" placeholder="e.g. à¦•à¦°à§à¦®à¦¸à¦‚à¦¸à§à¦¥à¦¾à¦¨ à¦“à¦¯à¦¼à¦¾à¦°à§à¦• à¦ªà¦¾à¦°à¦®à¦¿à¦Ÿ">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="issuing_authority_bn" class="form-label custom-label">Issuing Authority (Bangla)</label>
+                                                    <input type="text" class="form-control custom-input" name="issuing_authority_bn" value="{{ $visa_type->issuing_authority_bn }}" placeholder="e.g. à¦…à¦°à§à¦¥à¦¨à§ˆà¦¤à¦¿à¦• à¦‰à¦¨à§à¦¨à¦¯à¦¼à¦¨ à¦®à¦¨à§à¦¤à§à¦°à¦£à¦¾à¦²à¦¯à¦¼ (MED)">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="processing_time_bn" class="form-label custom-label">Processing Time (Bangla)</label>
+                                                    <input type="text" class="form-control custom-input" name="processing_time_bn" value="{{ $visa_type->processing_time_bn }}" placeholder="e.g. à§©à§¦ - à§ªà§« à¦•à¦°à§à¦®à¦¦à¦¿à¦¬à¦¸">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="contract_period_bn" class="form-label custom-label">Contract Period (Bangla)</label>
+                                                    <input type="text" class="form-control custom-input" name="contract_period_bn" value="{{ $visa_type->contract_period_bn }}" placeholder="e.g. à§¨ à¦¬à¦›à¦° (à¦¨à¦¬à¦¾à¦¯à¦¼à¦¨à¦¯à§‹à¦—à§à¦¯)">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="emigration_clearance_bn" class="form-label custom-label">Emigration Clearance (Bangla)</label>
+                                                    <input type="text" class="form-control custom-input" name="emigration_clearance_bn" value="{{ $visa_type->emigration_clearance_bn }}" placeholder="e.g. à¦¬à¦¿à¦à¦®à¦‡à¦Ÿà¦¿ à¦¸à§à¦®à¦¾à¦°à§à¦Ÿ à¦•à¦¾à¦°à§à¦¡ à¦¬à¦¾à¦§à§à¦¯à¦¤à¦¾à¦®à§‚à¦²à¦•">
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="description_bn" class="form-label custom-label">Description (Bangla)</label>
+                                                    <textarea class="form-control custom-input" name="description_bn" id="description_bn" rows="3">{{$visa_type->description_bn}}</textarea>
+                                                </div>
+
+                                                <div class="col-md-12 mb-3">
+                                                    <label for="processing_steps_bn" class="form-label custom-label">Step-by-Step Processing Timeline (Bangla) (JSON format: [{"step": "01", "title": "...", "description": "..."}])</label>
+                                                    <textarea class="form-control custom-input font-monospace" name="processing_steps_bn" id="processing_steps_bn" rows="6" placeholder="JSON array of processing steps" style="resize: vertical;">{{ !empty($visa_type->processing_steps_bn) ? json_encode($visa_type->processing_steps_bn, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
 
@@ -182,11 +243,15 @@
     <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
         setTimeout(function(){
-                CKEDITOR.replace('description', {
-                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            },100);
+            CKEDITOR.replace('description', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+            CKEDITOR.replace('description_bn', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        },100);
     </script>
 
     {{-- image upload and preview js --}}
@@ -237,3 +302,4 @@
         }
     </script>
 @endpush
+

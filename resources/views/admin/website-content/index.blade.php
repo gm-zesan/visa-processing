@@ -535,10 +535,18 @@
     <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
         setTimeout(function(){
-            CKEDITOR.replace('description', {
-                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                filebrowserUploadMethod: 'form'
-            });
+            if ($('#description').length) {
+                CKEDITOR.replace('description', {
+                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                    filebrowserUploadMethod: 'form'
+                });
+            }
+            if ($('#description_bn').length) {
+                CKEDITOR.replace('description_bn', {
+                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                    filebrowserUploadMethod: 'form'
+                });
+            }
         },100);
     </script>
 

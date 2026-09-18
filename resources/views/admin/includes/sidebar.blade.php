@@ -20,19 +20,19 @@
     <ul class="nav_list ps-0 scrollbar">
         <!-- Main / Dashboard -->
         <li class="category-li">
-            <span class="link_names">Main</span>
+            <span class="link_names">{{ __('admin.sidebar.main') }}</span>
         </li>
         <li>
             <a href="{{route('dashboard')}}" class="{{ Route::is('dashboard') ? ' active-focus' : '' }}">
                 <i class="ri-dashboard-3-line"></i>
-                <span class="link_names">Dashboard</span>
+                <span class="link_names">{{ __('admin.sidebar.dashboard') }}</span>
             </a>
         </li>
 
         <!-- Recruitment & Visa Operations -->
         @canany(['application-list', 'application-view', 'application-edit', 'application-delete', 'country-list', 'country-create', 'country-edit', 'country-delete', 'visa_type-list', 'visa_type-create', 'visa_type-edit', 'visa_type-delete'])
             <li class="category-li">
-                <span class="link_names">Visa & Operations</span>
+                <span class="link_names">{{ __('admin.sidebar.visa_operations') }}</span>
             </li>
         @endcanany
 
@@ -41,7 +41,7 @@
             <a href="{{ route('applications.index') }}"
                 class="{{ in_array(Route::currentRouteName(), ['applications.index', 'applications.show', 'applications.create']) ? 'active-focus' : '' }}">
                 <i class="ri-passport-line"></i>
-                <span class="link_names">Applications</span>
+                <span class="link_names">{{ __('admin.sidebar.applications') }}</span>
             </a>
         </li>
         @endcan
@@ -51,7 +51,7 @@
             <a href="{{ route('countries') }}"
                 class="{{ in_array(Route::currentRouteName(), ['countries', 'country.create', 'country.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-earth-line"></i>
-                <span class="link_names">Countries</span>
+                <span class="link_names">{{ __('admin.sidebar.countries') }}</span>
             </a>
         </li>
         @endcan
@@ -61,7 +61,7 @@
             <a href="{{ route('visa_type') }}"
                 class="{{ in_array(Route::currentRouteName(), ['visa_type', 'visa_type.create', 'visa_type.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-visa-line"></i>
-                <span class="link_names">Visa Types</span>
+                <span class="link_names">{{ __('admin.sidebar.visa_types') }}</span>
             </a>
         </li>
         @endcan
@@ -69,7 +69,7 @@
         <!-- Content & Media -->
         @canany(['our_team-list', 'our_team-create', 'our_team-edit', 'our_team-delete', 'blog-list', 'blog-create', 'blog-edit', 'blog-delete', 'category-list', 'category-create', 'category-edit', 'category-delete', 'contact-list', 'contact-delete'])
             <li class="category-li">
-                <span class="link_names">Content & Media</span>
+                <span class="link_names">{{ __('admin.sidebar.content_media') }}</span>
             </li>
         @endcanany
 
@@ -78,7 +78,7 @@
             <a href="{{route('our-team')}}"
                 class="{{ in_array(Route::currentRouteName(), ['our-team', 'our-team.create', 'our-team.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-team-line"></i>
-                <span class="link_names">Our Team</span>
+                <span class="link_names">{{ __('admin.sidebar.our_team') }}</span>
             </a>
         </li>
         @endcan
@@ -88,7 +88,7 @@
             <a href="{{route('blogs')}}"
                 class="{{ in_array(Route::currentRouteName(), ['blogs', 'blog.create', 'blog.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-article-line"></i>
-                <span class="link_names">Blogs & News</span>
+                <span class="link_names">{{ __('admin.sidebar.blogs_news') }}</span>
             </a>
         </li>
         @endcan
@@ -98,7 +98,7 @@
             <a href="{{ route('categories') }}"
                 class="{{ in_array(Route::currentRouteName(), ['categories', 'category.create', 'category.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-price-tag-3-line"></i>
-                <span class="link_names">Blog Categories</span>
+                <span class="link_names">{{ __('admin.sidebar.blog_categories') }}</span>
             </a>
         </li>
         @endcan
@@ -108,7 +108,7 @@
             <a href="{{route('message')}}"
                 class="{{ in_array(Route::currentRouteName(), ['message']) ? 'active-focus' : '' }}">
                 <i class="ri-mail-open-line"></i>
-                <span class="link_names">Contact Messages</span>
+                <span class="link_names">{{ __('admin.sidebar.contact_messages') }}</span>
             </a>
         </li>
         @endcan
@@ -116,7 +116,7 @@
         <!-- Site Configuration -->
         @canany(['website-content-list', 'website-content-create', 'website-content-edit', 'website-content-delete', 'theme-list', 'theme-create', 'theme-edit', 'theme-delete', 'theme-active'])
             <li class="category-li">
-                <span class="link_names">Site Settings</span>
+                <span class="link_names">{{ __('admin.sidebar.site_settings') }}</span>
             </li>
         @endcanany
 
@@ -126,7 +126,7 @@
                 class="{{ in_array(Route::currentRouteName(), ['website-contents', 'website-content.create', 'website-content.edit']) ? ' active-focus' : '' }}"
                 onclick="$('.sidebar').removeClass('active');">
                 <i class="ri-layout-masonry-line"></i>
-                <span class="link_names">Website Content</span>
+                <span class="link_names">{{ __('admin.sidebar.website_content') }}</span>
             </a>
         </li>
         @endcan
@@ -136,7 +136,7 @@
             <a href="{{route('theme')}}"
                 class="{{ in_array(Route::currentRouteName(), ['theme', 'theme.create', 'theme.edit']) ? ' active-focus' : '' }}">
                 <i class="ri-palette-line"></i>
-                <span class="link_names">Theme Settings</span>
+                <span class="link_names">{{ __('admin.sidebar.theme_settings') }}</span>
             </a>
         </li>
         @endcan
@@ -144,7 +144,7 @@
         <!-- User & Access Management -->
         @canany(['user-list', 'user-create', 'user-edit', 'user-delete', 'role-list', 'role-create', 'role-edit', 'role-delete'])
             <li class="category-li">
-                <span class="link_names">User Management</span>
+                <span class="link_names">{{ __('admin.sidebar.user_management') }}</span>
             </li>
         @endcanany
 
@@ -153,7 +153,7 @@
             <a href="{{route('users')}}"
                 class="{{ in_array(Route::currentRouteName(), ['users', 'user.create', 'user.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-user-3-line"></i>
-                <span class="link_names">User List</span>
+                <span class="link_names">{{ __('admin.sidebar.user_list') }}</span>
             </a>
         </li>
         @endcan
@@ -163,7 +163,17 @@
             <a href="{{route('role.index')}}"
                 class="{{ in_array(Route::currentRouteName(), ['role.index', 'role.create', 'role.edit']) ? 'active-focus' : '' }}">
                 <i class="ri-shield-user-line"></i>
-                <span class="link_names">Roles & Permissions</span>
+                <span class="link_names">{{ __('admin.sidebar.roles_permissions') }}</span>
+            </a>
+        </li>
+        @endcan
+
+        @canany(['assignrole-list', 'assignrole-create', 'role-list', 'role-create', 'role-edit', 'role-delete'])
+        <li class="drop-item">
+            <a href="{{route('assignrole.index')}}"
+                class="{{ in_array(Route::currentRouteName(), ['assignrole.index', 'assignrole.edit']) ? 'active-focus' : '' }}">
+                <i class="ri-user-settings-line"></i>
+                <span class="link_names">{{ __('admin.sidebar.assign_role') }}</span>
             </a>
         </li>
         @endcan

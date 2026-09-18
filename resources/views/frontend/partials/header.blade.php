@@ -15,10 +15,15 @@
             </div>
             <div class="col-lg-3">
                 <ul class="text-end">
-                    <li><a href="https://www.facebook.com/share/196jqwbpyM/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a></li>
-                    <li><a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a></li>
-                    <li><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li><a href="https://www.facebook.com/share/196jqwbpyM/"><i class="fa-brands fa-facebook-f"></i></a></li>
+                    <li><a href="https://twitter.com/"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://www.youtube.com/"><i class="fa-brands fa-youtube"></i></a></li>
+                    <li style="margin-left: 15px; display: inline-block;">
+                        <a href="{{ route('lang.switch', 'en') }}" style="{{ app()->getLocale() == 'en' ? 'font-weight: bold; color: var(--primary-color);' : '' }}">EN</a> 
+                        <span style="color: #fff;">|</span> 
+                        <a href="{{ route('lang.switch', 'bn') }}" style="{{ app()->getLocale() == 'bn' ? 'font-weight: bold; color: var(--primary-color);' : '' }}">BN</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -39,10 +44,10 @@
                 <!--menu start-->
                 <div class="menu">
                     <ul>
-                        <li><a href="{{route('home')}}">Home</a></li>
-                        <li><a href="{{route('about')}}">About Us</a></li>
+                        <li><a href="{{route('home')}}">{{ __('frontend.nav.home') }}</a></li>
+                        <li><a href="{{route('about')}}">{{ __('frontend.nav.about_us') }}</a></li>
                         <li class="dropdown_wrap">
-                            <a href="#">Countries</a>
+                            <a href="#">{{ __('frontend.nav.countries') }}</a>
                             <ul>
                                 @foreach ($commonCountriesVisa as $commonCountryVisa)
                                     <li><a
@@ -51,10 +56,10 @@
                                 @endforeach
                             </ul>
                         </li>
-                        <li><a href="{{route('our_service')}}">Services</a></li>
-                        <li><a href="{{route('ourTeam')}}">Team</a></li>
-                        <li><a href="{{route('blog_list')}}">News</a></li>
-                        <li><a href="{{route('contact')}}">Contact</a></li>
+                        <li><a href="{{route('our_service')}}">{{ __('frontend.nav.services') }}</a></li>
+                        <li><a href="{{route('ourTeam')}}">{{ __('frontend.nav.team') }}</a></li>
+                        <li><a href="{{route('blog_list')}}">{{ __('frontend.nav.news') }}</a></li>
+                        <li><a href="{{route('contact')}}">{{ __('frontend.nav.contact') }}</a></li>
                     </ul>
                 </div>
                 <!-- menu toggler -->
@@ -66,7 +71,7 @@
             </div>
             <div class="col-lg-2 col-sm-3 d-none d-lg-block">
                 <div class="text-end ">
-                    <a href="{{route('apply')}}" class="apply_btn">Apply for Job</a>
+                    <a href="{{route('apply')}}" class="apply_btn">{{ __('frontend.nav.apply_job') }}</a>
                 </div>
             </div>
         </div>

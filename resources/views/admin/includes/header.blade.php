@@ -17,6 +17,25 @@
                     <i class="ri-brush-line" id="headerClearCacheIcon"></i>
                 </a>
             </li>
+            <!-- Language Switcher -->
+            <li>
+                <a href="#" class="dropdown-toggle icon" role="button" data-bs-toggle="dropdown" aria-expanded="false" title="Change Language" style="font-size: 18px;">
+                    <i class="ri-translate-2"></i>
+                    <span class="fs-12 fw-semibold ms-1">{{ app()->getLocale() == 'bn' ? 'BN' : 'EN' }}</span>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                        <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}" href="{{ route('lang.switch', 'en') }}">
+                            English
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item {{ app()->getLocale() == 'bn' ? 'active' : '' }}" href="{{ route('lang.switch', 'bn') }}">
+                            বাংলা
+                        </a>
+                    </li>
+                </ul>
+            </li>
 
 
             <!-- User Profile Dropdown -->

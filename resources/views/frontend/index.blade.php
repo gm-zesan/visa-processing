@@ -113,7 +113,7 @@
             <div class="row">
                 <div class="col-lg-4 securce_top mt_50">
                     <div class="choose_top">
-                        <h3>WORK PERMIT VISAS</h3>
+                        <h3>{{ __('frontend.home.work_permit_visas') }}</h3>
                         <h2><span>{{ getSettingsData('13', 'title') }}</span> {{ getSettingsData('13', 'subtitle') }}</h2>
                         <div class="em_bar_bg"></div>
                     </div>
@@ -153,8 +153,8 @@
     <div class="choose_country_area" style="background-image: url({{ asset('frontend/images/choose_country.png') }});">
         <div class="container">
             <div class="choose_top">
-                <h3>TARGET DESTINATIONS</h3>
-                <h2><span>Overseas Employment - Choose</span> Your Destination!</h2>
+                <h3>{{ __('frontend.home.target_destinations') }}</h3>
+                <h2><span>{{ __('frontend.home.overseas_employment_choose') }}</span> {{ __('frontend.home.your_destination') }}</h2>
                 <div class="em_bar_bg"></div>
             </div>
             <div class="swiper choose_country_Swiper">
@@ -172,8 +172,7 @@
                                     <div>
                                         {!! Str::limit($countryVisa->description, 88, '...') !!}
                                     </div>
-                                    <a href="{{ route('country', ['id' => $countryVisa->id]) }}" class="read_btn">Read
-                                        More</a>
+                                    <a href="{{ route('country', ['id' => $countryVisa->id]) }}" class="read_btn">{{ __('frontend.home.read_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -259,16 +258,16 @@
                 <div class="latest_news_header">
                     <div class="section_tag">
                         <span></span>
-                        Latest News & Insights
+                        {{ __('frontend.home.latest_news_insights') }}
                     </div>
-                    <h2>Resources & Work Permit News</h2>
-                    <p>Stay informed with authentic government notices, overseas hiring quotas, and visa regulations.</p>
+                    <h2>{{ __('frontend.home.resources_news') }}</h2>
+                    <p>{{ __('frontend.home.resources_subtitle') }}</p>
                 </div>
                 <div class="resources_controls">
                     <div class="resources-btn-prev" role="button" aria-label="Previous Slide"><i class="fa-solid fa-chevron-left"></i></div>
                     <div class="resources-btn-next" role="button" aria-label="Next Slide"><i class="fa-solid fa-chevron-right"></i></div>
                     <a href="{{ route('blog_list') }}" class="btn_view_all_news">
-                        <span>View All News</span>
+                        <span>{{ __('frontend.home.view_all_news') }}</span>
                         <i class="fa-solid fa-arrow-right-long"></i>
                     </a>
                 </div>
@@ -299,7 +298,7 @@
                                         </p>
                                         <div class="blog-card-bottom">
                                             <a href="{{ route('single_blog', ['slug' => $blog->slug]) }}" class="read_more_btn">
-                                                <span>Read Article</span>
+                                                <span>{{ __('frontend.home.read_article') }}</span>
                                                 <i class="fa-solid fa-arrow-right-long"></i>
                                             </a>
                                         </div>

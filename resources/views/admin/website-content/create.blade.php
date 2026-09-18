@@ -1,4 +1,4 @@
-@extends('admin.app')
+﻿@extends('admin.app')
 @section('title')
     Website Content
 @endsection
@@ -58,53 +58,69 @@
                                 </div>
 
                                 <div class="col-12">
-                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->title_label) && $websitecontent->title_label ? $websitecontent->title_label : 'Title' }}</label>
-                                    <input type="text" class="form-control custom-input" name="title" placeholder="Title" value="{{ old('title') }}">
-                                    @if($errors->has('title'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('title') }}
-                                        </div>
-                                    @endif
-                                </div>
+                                    <ul class="nav nav-tabs custom-tabs mb-4" id="langTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                                        </li>
+                                    </ul>
 
-                                <div class="col-12">
-                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->subtitle_label) && $websitecontent->subtitle_label ? $websitecontent->subtitle_label : 'Subtitle' }}</label>
-                                    <input type="text" class="form-control custom-input" name="subtitle" placeholder="Subtitle" value="{{ old('subtitle') }}">
-                                    @if($errors->has('subtitle'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('subtitle') }}
-                                        </div>
-                                    @endif
-                                </div>
+                                    <div class="tab-content" id="langTabContent">
+                                        <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                                            <div class="row">
+                                                <div class="col-12 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->title_label) && $websitecontent->title_label ? $websitecontent->title_label : 'Title' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="title" placeholder="Title" value="{{ old('title') }}">
+                                                </div>
 
-                                <div class="col-md-6">
-                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->button_text_label) && $websitecontent->button_text_label ? $websitecontent->button_text_label : 'Button Text' }}</label>
-                                    <input type="text" class="form-control custom-input" name="button_text" placeholder="Button Text" value="{{ old('button_text') }}">
-                                    @if($errors->has('button_text'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('button_text') }}
-                                        </div>
-                                    @endif
-                                </div>
+                                                <div class="col-12 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->subtitle_label) && $websitecontent->subtitle_label ? $websitecontent->subtitle_label : 'Subtitle' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="subtitle" placeholder="Subtitle" value="{{ old('subtitle') }}">
+                                                </div>
 
-                                <div class="col-md-6">
-                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->button_link_label) && $websitecontent->button_link_label ? $websitecontent->button_link_label : 'Button Link' }}</label>
-                                    <input type="text" class="form-control custom-input" name="button_link" placeholder="Button Link" value="{{ old('button_link') }}">
-                                    @if($errors->has('button_link'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('button_link') }}
-                                        </div>
-                                    @endif
-                                </div>
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->button_text_label) && $websitecontent->button_text_label ? $websitecontent->button_text_label : 'Button Text' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="button_text" placeholder="Button Text" value="{{ old('button_text') }}">
+                                                </div>
 
-                                <div class="col-12">
-                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->description_label) && $websitecontent->description_label ? $websitecontent->description_label : 'Description' }}</label>
-                                    <textarea name="description" class="form-control custom-input" id="description" cols="30" rows="10" placeholder="Description">{{ old('description') }}</textarea>
-                                    @if($errors->has('description'))
-                                        <div class="error_msg">
-                                            {{ $errors->first('description') }}
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->button_link_label) && $websitecontent->button_link_label ? $websitecontent->button_link_label : 'Button Link' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="button_link" placeholder="Button Link" value="{{ old('button_link') }}">
+                                                </div>
+
+                                                <div class="col-12 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->description_label) && $websitecontent->description_label ? $websitecontent->description_label : 'Description' }}</label>
+                                                    <textarea name="description" class="form-control custom-input" id="description" cols="30" rows="10" placeholder="Description">{{ old('description') }}</textarea>
+                                                </div>
+                                            </div>
                                         </div>
-                                    @endif
+                                        
+                                        <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                                            <div class="row">
+                                                <div class="col-12 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->title_label) && $websitecontent->title_label ? $websitecontent->title_label : 'Title (Bangla)' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="title_bn" placeholder="Title (Bangla)" value="{{ old('title_bn') }}">
+                                                </div>
+
+                                                <div class="col-12 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->subtitle_label) && $websitecontent->subtitle_label ? $websitecontent->subtitle_label : 'Subtitle (Bangla)' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="subtitle_bn" placeholder="Subtitle (Bangla)" value="{{ old('subtitle_bn') }}">
+                                                </div>
+
+                                                <div class="col-md-6 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->button_text_label) && $websitecontent->button_text_label ? $websitecontent->button_text_label : 'Button Text (Bangla)' }}</label>
+                                                    <input type="text" class="form-control custom-input" name="button_text_bn" placeholder="Button Text (Bangla)" value="{{ old('button_text_bn') }}">
+                                                </div>
+
+                                                <div class="col-12 mb-3">
+                                                    <label for="" class="form-label custom-label">{{ isset($websitecontent->description_label) && $websitecontent->description_label ? $websitecontent->description_label : 'Description (Bangla)' }}</label>
+                                                    <textarea name="description_bn" class="form-control custom-input" id="description_bn" cols="30" rows="10" placeholder="Description (Bangla)">{{ old('description_bn') }}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             </div>
@@ -190,6 +206,10 @@
                 filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
                 filebrowserUploadMethod: 'form'
             });
+            CKEDITOR.replace('description_bn', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
         },100);
     </script>
 
@@ -239,3 +259,4 @@
         }
     </script>
 @endpush
+

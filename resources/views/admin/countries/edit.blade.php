@@ -1,4 +1,4 @@
-@extends('admin.app')
+﻿@extends('admin.app')
 @section('title')
     Country
 @endsection
@@ -47,39 +47,89 @@
                             </div>
 
 
-                            <div class="col-md-6">
-                                <label for="subtitle" class="form-label custom-label">Subtitle / Tagline</label>
-                                <input type="text" class="form-control custom-input" name="subtitle" value="{{ $countryDetails->subtitle }}" placeholder="e.g. Official Maldives Overseas Employment Guide">
-                            </div>
+                            <div class="col-md-12 mb-3 mt-3">
+                                <ul class="nav nav-tabs custom-tabs" id="langTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                                    </li>
+                                </ul>
 
-                            <div class="col-md-6">
-                                <label for="language" class="form-label custom-label">Official Languages</label>
-                                <input type="text" class="form-control custom-input" name="language" value="{{ $countryDetails->language }}" placeholder="e.g. Dhivehi & English">
-                            </div>
+                                <div class="tab-content mt-3" id="langTabContent">
+                                    <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="subtitle" class="form-label custom-label">Subtitle / Tagline</label>
+                                                <input type="text" class="form-control custom-input" name="subtitle" value="{{ $countryDetails->subtitle }}" placeholder="e.g. Official Maldives Overseas Employment Guide">
+                                            </div>
 
-                            <div class="col-md-6">
-                                <label for="processing_time" class="form-label custom-label">Processing Time</label>
-                                <input type="text" class="form-control custom-input" name="processing_time" value="{{ $countryDetails->processing_time }}" placeholder="e.g. 30 - 45 Working Days">
-                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="language" class="form-label custom-label">Official Languages</label>
+                                                <input type="text" class="form-control custom-input" name="language" value="{{ $countryDetails->language }}" placeholder="e.g. Dhivehi & English">
+                                            </div>
 
-                            <div class="col-md-12">
-                                <label for="description" class="form-label custom-label">Description</label>
-                                <textarea class="form-control custom-input" name="description" id="description" rows="5" placeholder="Description" style="resize: none; height: auto">{{$countryDetails->description}}</textarea>
-                                @if($errors->has('description'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('description') }}
+                                            <div class="col-md-6 mb-3">
+                                                <label for="processing_time" class="form-label custom-label">Processing Time</label>
+                                                <input type="text" class="form-control custom-input" name="processing_time" value="{{ $countryDetails->processing_time }}" placeholder="e.g. 30 - 45 Working Days">
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description" class="form-label custom-label">Description</label>
+                                                <textarea class="form-control custom-input" name="description" id="description" rows="5" placeholder="Description" style="resize: none; height: auto">{{$countryDetails->description}}</textarea>
+                                                @if($errors->has('description'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('description') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <label for="sectors" class="form-label custom-label">High-Demand Sectors (JSON format)</label>
+                                                <textarea class="form-control custom-input font-monospace" name="sectors" id="sectors" rows="6" placeholder="JSON array of sectors" style="resize: vertical;">{{ !empty($countryDetails->sectors) ? json_encode($countryDetails->sectors, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="worker_protections" class="form-label custom-label">Labor Standards & Worker Protections (JSON format)</label>
+                                                <textarea class="form-control custom-input font-monospace" name="worker_protections" id="worker_protections" rows="6" placeholder="JSON array of worker protections" style="resize: vertical;">{{ !empty($countryDetails->worker_protections) ? json_encode($countryDetails->worker_protections, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                            </div>
+                                        </div>
                                     </div>
-                                @endif
-                            </div>
+                                    <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                                        <div class="row">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="subtitle_bn" class="form-label custom-label">Subtitle / Tagline (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="subtitle_bn" value="{{ $countryDetails->subtitle_bn }}" placeholder="Subtitle / Tagline (Bangla)">
+                                            </div>
 
-                            <div class="col-md-12 mt-3">
-                                <label for="sectors" class="form-label custom-label">High-Demand Sectors (JSON format: [{"title": "...", "description": "...", "icon": "fa-hotel"}])</label>
-                                <textarea class="form-control custom-input font-monospace" name="sectors" id="sectors" rows="6" placeholder="JSON array of sectors" style="resize: vertical;">{{ !empty($countryDetails->sectors) ? json_encode($countryDetails->sectors, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
-                            </div>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="language_bn" class="form-label custom-label">Official Languages (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="language_bn" value="{{ $countryDetails->language_bn }}" placeholder="Official Languages (Bangla)">
+                                            </div>
 
-                            <div class="col-md-12 mt-3">
-                                <label for="worker_protections" class="form-label custom-label">Labor Standards & Worker Protections (JSON format: [{"title": "...", "description": "...", "icon": "fa-scale-balanced"}])</label>
-                                <textarea class="form-control custom-input font-monospace" name="worker_protections" id="worker_protections" rows="6" placeholder="JSON array of worker protections" style="resize: vertical;">{{ !empty($countryDetails->worker_protections) ? json_encode($countryDetails->worker_protections, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                            <div class="col-md-6 mb-3">
+                                                <label for="processing_time_bn" class="form-label custom-label">Processing Time (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="processing_time_bn" value="{{ $countryDetails->processing_time_bn }}" placeholder="Processing Time (Bangla)">
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <label for="description_bn" class="form-label custom-label">Description (Bangla)</label>
+                                                <textarea class="form-control custom-input" name="description_bn" id="description_bn" rows="5" placeholder="Description (Bangla)" style="resize: none; height: auto">{{$countryDetails->description_bn}}</textarea>
+                                            </div>
+
+                                            <div class="col-md-12 mb-3">
+                                                <label for="sectors_bn" class="form-label custom-label">High-Demand Sectors (Bangla - JSON format)</label>
+                                                <textarea class="form-control custom-input font-monospace" name="sectors_bn" id="sectors_bn" rows="6" placeholder="JSON array of sectors" style="resize: vertical;">{{ !empty($countryDetails->sectors_bn) ? json_encode($countryDetails->sectors_bn, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="worker_protections_bn" class="form-label custom-label">Labor Standards & Worker Protections (Bangla - JSON format)</label>
+                                                <textarea class="form-control custom-input font-monospace" name="worker_protections_bn" id="worker_protections_bn" rows="6" placeholder="JSON array of worker protections" style="resize: vertical;">{{ !empty($countryDetails->worker_protections_bn) ? json_encode($countryDetails->worker_protections_bn, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE) : '' }}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -165,11 +215,15 @@
     <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
         setTimeout(function(){
-                CKEDITOR.replace('description', {
-                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            },100);
+            CKEDITOR.replace('description', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+            CKEDITOR.replace('description_bn', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        },100);
     </script>
 
      
@@ -222,3 +276,4 @@
     </script>
 
 @endpush
+

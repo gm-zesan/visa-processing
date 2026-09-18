@@ -8,12 +8,14 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 class Blog extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, \App\Traits\HasTranslations;
     protected $fillable = [
         'category_id',
         'title',
+        'title_bn',
         'slug',
         'description',
+        'description_bn',
         'image',
         'created_by',
     ];
@@ -29,5 +31,15 @@ class Blog extends Model
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function getTitleAttribute($value)
+    {
+        return $this->getTranslated('title', $value);
+    }
+
+    public function getDescriptionAttribute($value)
+    {
+        return $this->getTranslated('description', $value);
     }
 }

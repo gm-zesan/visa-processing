@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends Model
 {
-    use HasFactory;
+    use HasFactory, \App\Traits\HasTranslations;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +29,7 @@ class Country extends Model
         'iso_3166_2',
         'iso_3166_3',
         'name',
+        'name_bn',
         'region_code',
         'sub_region_code',
         'calling_code',
@@ -45,5 +46,10 @@ class Country extends Model
     
     public function country_details(){
         return $this->hasOne(CountryDetails::class);
+    }
+
+    public function getNameAttribute($value)
+    {
+        return $this->getTranslated('name', $value);
     }
 }
