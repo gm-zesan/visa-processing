@@ -48,8 +48,9 @@ class CreateAdminUserSeeder extends Seeder
 
         // Admin has access to operational modules (excluding system role assignment)
         $adminPermissions = Permission::whereNotIn('name', [
+            'user-list', 'user-create', 'user-edit', 'user-delete',
             'role-list', 'role-create', 'role-edit', 'role-delete',
-            'assignrole-list', 'assignrole-create',
+            'assignrole-list', 'assignrole-create', 'website-content-list', 'website-content-create', 'website-content-edit', 'website-content-delete',
         ])->pluck('name')->all();
         $adminRole->syncPermissions($adminPermissions);
     }

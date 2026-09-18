@@ -40,25 +40,25 @@ contact
             <div class="row g-0">
               <div class="col-lg-6 mt_50">
                   <div class="touch_left">
-                  <h2>Get In Touch</h2>
+                  <h2>{{ __('frontend.contact.get_in_touch') }}</h2>
                   <div class="row">
                     <div class="col-lg-6">
-                      <input type="text" name="name" placeholder="Your Name">
+                      <input type="text" name="name" placeholder="{{ __('frontend.contact.your_name') }}">
                     </div>
                     <div class="col-lg-6">
-                      <input type="email" name="email" placeholder="Your Email">
+                      <input type="email" name="email" placeholder="{{ __('frontend.contact.your_email') }}">
                     </div>
                     <div class="col-lg-6">
-                      <input type="tel" name="phone" placeholder="Your Phone">
+                      <input type="tel" name="phone" placeholder="{{ __('frontend.contact.your_phone') }}">
                     </div>
                     <div class="col-lg-6">
-                      <input type="text" name="subject" placeholder="Subject">
+                      <input type="text" name="subject" placeholder="{{ __('frontend.contact.subject') }}">
                     </div>
                     <div class="col-lg-12">
-                      <textarea name="message" placeholder="Message"></textarea>
+                      <textarea name="message" placeholder="{{ __('frontend.contact.message') }}"></textarea>
                     </div>
                    <div class="col-lg-6">
-                      <button type="submit" class="sub_btn">Send Request</button>
+                      <button type="submit" class="sub_btn">{{ __('frontend.contact.send_request') }}</button>
                    </div>
                   </div>
                   </div>
@@ -70,7 +70,7 @@ contact
                       <i class="fa-solid fa-location-pin"></i>
                       </div>
                       <div class="company_cont">
-                        <h2>Company Location</h2>
+                        <h2>{{ __('frontend.contact.company_location') }}</h2>
                         <p>{{ getSettingsData('44', 'button_text') }}</p>
                       </div>
                     </div>
@@ -79,7 +79,7 @@ contact
                       <i class="fa-solid fa-phone"></i>
                       </div>
                       <div class="company_cont">
-                        <h2>Telephone Number</h2>
+                        <h2>{{ __('frontend.contact.telephone_number') }}</h2>
                        <ul>
                         <li><a href="tel:{{ getSettingsData('44', 'title') }}">{{ getSettingsData('44', 'title') }}</a></li>
                         <!-- <li><a href="tel:880636524265">+880 636 524 265,</a></li> -->
@@ -91,7 +91,7 @@ contact
                         <i class="fa-regular fa-envelope"></i>
                       </div>
                       <div class="company_cont">
-                        <h2>Our Email Address</h2>
+                        <h2>{{ __('frontend.contact.our_email_address') }}</h2>
                        <ul>
                         <li><a href="mailto:{{ getSettingsData('44', 'subtitle') }}">{{ getSettingsData('44', 'subtitle') }}</a></li>
                         <!-- <li><a href="mailto:yourinfo@gmail.com">yourinfo@gmail.com</a></li> -->

@@ -1,4 +1,4 @@
-@extends('admin.app')
+﻿@extends('admin.app')
 @section('title')
     Blog
 @endsection
@@ -31,17 +31,7 @@
                     <div class="card-body custom-form">
                         
                         <div class="row">
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Title</label>
-                                <input type="text" class="form-control custom-input" name="title" value="{{$blog->title}}">
-                                @if($errors->has('title'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('title') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
+                            <div class="col-md-12 mb-3">
                                 <label for="" class="form-label custom-label">Category</label>
                                 <select class="form-select custom-input" name="category_id">
                                     <option value="">Select Category</option>
@@ -56,15 +46,54 @@
                                 @endif
                             </div>
 
+                            <div class="col-md-12 mb-3">
+                                <ul class="nav nav-tabs custom-tabs" id="langTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                                    </li>
+                                </ul>
 
-                            <div class="col-md-12">
-                                <label for="description" class="form-label custom-label">Description</label>
-                                <textarea class="form-control custom-input" name="description" id="description" rows="5"  placeholder="Description"  style="resize: none; height: auto">{{$blog->description}}</textarea>
-                                @if($errors->has('description'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('description') }}
+                                <div class="tab-content mt-3" id="langTabContent">
+                                    <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label custom-label">Title</label>
+                                                <input type="text" class="form-control custom-input" name="title" value="{{$blog->title}}">
+                                                @if($errors->has('title'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('title') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="description" class="form-label custom-label">Description</label>
+                                                <textarea class="form-control custom-input" name="description" id="description" rows="5"  placeholder="Description"  style="resize: none; height: auto">{{$blog->description}}</textarea>
+                                                @if($errors->has('description'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('description') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
-                                @endif
+                                    <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label custom-label">Title (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="title_bn" value="{{$blog->title_bn}}">
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="description_bn" class="form-label custom-label">Description (Bangla)</label>
+                                                <textarea class="form-control custom-input" name="description_bn" id="description_bn" rows="5"  placeholder="Description (Bangla)"  style="resize: none; height: auto">{{$blog->description_bn}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -150,11 +179,15 @@
     <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
         setTimeout(function(){
-                CKEDITOR.replace('description', {
-                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            },100);
+            CKEDITOR.replace('description', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+            CKEDITOR.replace('description_bn', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        },100);
     </script>
 
      
@@ -207,3 +240,4 @@
     </script>
 
 @endpush
+

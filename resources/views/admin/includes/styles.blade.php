@@ -187,3 +187,58 @@
 
 {{-- <!-- Style css --> --}}
 @vite(['resources/scss/admin/style.scss', 'resources/scss/admin/table.scss', 'resources/js/app.js'])
+
+<style>
+    .custom-tabs {
+        border: 1px solid #e2e8f0;
+        border-radius: 8px;
+        background-color: #f8fafc;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        display: flex;
+        flex-wrap: nowrap;
+        border-bottom: 1px solid #e2e8f0 !important;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+    }
+    
+    .custom-tabs .nav-item {
+        flex: 1;
+        text-align: center;
+        margin-bottom: 0;
+    }
+    
+    .custom-tabs .nav-item .nav-link {
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        padding: 12px 15px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #64748b;
+        background-color: transparent;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border-bottom: 3px solid transparent !important;
+    }
+    
+    .custom-tabs .nav-item .nav-link.active {
+        background-color: #ffffff;
+        color: #845adf;
+        font-weight: 600;
+        border-bottom: 3px solid #845adf !important;
+    }
+    
+    .custom-tabs .nav-item .nav-link:hover:not(.active) {
+        background-color: #f1f5f9;
+        color: #334155;
+        border-bottom: 3px solid #cbd5e1 !important;
+    }
+    
+    .custom-tabs .nav-item:first-child .nav-link {
+        border-right: 1px solid #e2e8f0;
+    }
+</style>

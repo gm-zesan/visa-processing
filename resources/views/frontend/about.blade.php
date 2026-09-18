@@ -14,11 +14,11 @@
         style="background-image: url({{ asset(getSettingsData('39', 'image') ?? 'frontend/images/contact_bg.jpg') }});">
         <div class="container">
             <div class="contact_wrapper">
-                <h2>{{ getSettingsData('38', 'title') ?? 'About Us' }}</h2>
+                <h2>{{ getSettingsData('38', 'title') ?? __('frontend.about.about_us') }}</h2>
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">HOME</a></li>
-                        <li class="breadcrumb-item active">{{ getSettingsData('38', 'title') ?? 'About Us' }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('frontend.nav.home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ getSettingsData('38', 'title') ?? __('frontend.about.about_us') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -37,20 +37,20 @@
                 </div>
                 <div class="col-lg-6" data-aos="flip-right">
                     <div class="choose_top">
-                        <h3>{{ getSettingsData('11', 'title') ?? 'ABOUT OUR AGENCY' }}</h3>
-                        <h2><span>{{ getSettingsData('11', 'subtitle') ?? 'Govt. Approved Overseas' }}</span>{{ getSettingsData('11', 'button_text') ?? 'Recruitment Agency' }}
+                        <h3>{{ getSettingsData('11', 'title') ?? __('frontend.about.about_our_agency') }}</h3>
+                        <h2><span>{{ getSettingsData('11', 'subtitle') ?? __('frontend.about.govt_approved') }}</span>{{ getSettingsData('11', 'button_text') ?? __('frontend.about.recruitment_agency') }}
                         </h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     <div class="education_content">
-                        <h3>{{ getSettingsData('12', 'title') ?? 'Authorized Overseas Employment & Manpower Placement Services' }}
+                        <h3>{{ getSettingsData('12', 'title') ?? __('frontend.about.authorized_overseas') }}
                         </h3>
                         <p>{{ getSettingsData('12', 'subtitle') }}</p>
                         <ul>
                             {!! getSettingsData('12', 'description') !!}
                         </ul>
                         <div class="dit-button mt_25">
-                            <a href="{{ url(getSettingsData('12', 'button_link') ?? '/contact') }}">{{ getSettingsData('12', 'button_text') ?? 'Contact Recruitment Desk' }}<i
+                            <a href="{{ url(getSettingsData('12', 'button_link') ?? '/contact') }}">{{ getSettingsData('12', 'button_text') ?? __('frontend.about.contact_recruitment') }}<i
                                     class="fa-solid fa-angle-right"></i></a>
                         </div>
                     </div>
@@ -63,8 +63,8 @@
     <div class="mission_vision_area">
         <div class="container">
             <div class="choose_top text-center mb_40">
-                <h3>{{ getSettingsData('about-mission-vision', 'title') ?? 'OUR COMMITMENT & PRINCIPLES' }}</h3>
-                <h2><span>{{ getSettingsData('about-mission-vision', 'subtitle') ?? 'Mission, Vision & Core Values' }}</span>
+                <h3>{{ getSettingsData('about-mission-vision', 'title') ?? __('frontend.about.our_commitment') }}</h3>
+                <h2><span>{{ getSettingsData('about-mission-vision', 'subtitle') ?? __('frontend.about.mission_vision') }}</span>
                 </h2>
                 <div class="em_bar_bg mx-auto"></div>
                 @if(getSettingsData('about-mission-vision', 'description'))
@@ -122,8 +122,8 @@
                 </div>
                 <div class="col-lg-7 pt_50" data-aos="flip-right">
                     <div class="choose_top">
-                        <h3>{{ getSettingsData('about-ceo-speech', 'title') ?? 'MESSAGE FROM LEADERSHIP' }}</h3>
-                        <h2><span>A Message From Our</span> Managing Director</h2>
+                        <h3>{{ getSettingsData('about-ceo-speech', 'title') ?? __('frontend.about.message_from_leadership') }}</h3>
+                        <h2><span>{{ __('frontend.about.message_from_md') }}</span> {{ __('frontend.about.md') }}</h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     <div class="ceo_speech_body">
@@ -132,7 +132,7 @@
                     <div class="ceo_executive_sign">
                         <div class="sign_details">
                             <h5>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Fahim Al Hasan' }}</h5>
-                            <p>Managing Director & CEO &bull; Al Fahim International</p>
+                            <p>{{ __('frontend.about.md') }} &bull; Al Fahim International</p>
                             <span class="licence_num">Govt. Approved Recruiting Agency RL-XXXX</span>
                         </div>
                     </div>
@@ -145,8 +145,8 @@
     <div class="licence_certifications_area">
         <div class="container">
             <div class="choose_top text-center mb_40">
-                <h3>{{ getSettingsData('about-licence-cert', 'title') ?? 'OFFICIAL RECOGNITIONS' }}</h3>
-                <h2><span>{{ getSettingsData('about-licence-cert', 'subtitle') ?? 'Government Licences & Accreditations' }}</span>
+                <h3>{{ getSettingsData('about-licence-cert', 'title') ?? __('frontend.about.official_recognitions') }}</h3>
+                <h2><span>{{ getSettingsData('about-licence-cert', 'subtitle') ?? __('frontend.about.govt_licences') }}</span>
                 </h2>
                 <div class="em_bar_bg mx-auto"></div>
                 @if(getSettingsData('about-licence-cert', 'description'))
@@ -154,9 +154,7 @@
                         {!! getSettingsData('about-licence-cert', 'description') !!}
                     </div>
                 @else
-                    <p class="licence_intro_text">Operating with full statutory authorization under the Government of the
-                        People's
-                        Republic of Bangladesh, accredited by international labor platforms and foreign diplomatic missions.</p>
+                    <p class="licence_intro_text">{{ __('frontend.about.operating_with_full') }}</p>
                 @endif
             </div>
 
@@ -197,12 +195,12 @@
     <div class="unparalleled_area"
         style="background-image: url({{ asset(getSettingsData('39', 'image') ?? 'frontend/images/unpara.jpg') }});">
         <div class="container">
-            <h2>{{ getSettingsData('39', 'title') ?? 'Looking for Skilled & Certified Manpower?' }}<span>{{ getSettingsData('39', 'subtitle') ?? 'Partner With Bangladesh\'s Trusted Recruitment Agency' }}</span>
+            <h2>{{ getSettingsData('39', 'title') ?? __('frontend.about.looking_for_skilled') }}<span>{{ getSettingsData('39', 'subtitle') ?? __('frontend.about.partner_with_bangladesh') }}</span>
             </h2>
-            <p>{!! getSettingsData('39', 'description') ?? 'Whether you need bulk recruitment for large-scale infrastructure projects in Saudi Arabia and the UAE, hospitality personnel for luxury Maldives resorts, factory technicians in Malaysia, or skilled tradesmen for Romania, we provide fully trade-tested, medically screened candidates with verified BMET emigration clearance.' !!}
+            <p>{!! getSettingsData('39', 'description') ?? __('frontend.about.whether_you_need') !!}
             </p>
             <a href="{{ url(getSettingsData('39', 'button_link') ?? '/contact') }}"
-                class="button mt_25">{{ getSettingsData('39', 'button_text') ?? 'Request Manpower Proposal' }}</a>
+                class="button mt_25">{{ getSettingsData('39', 'button_text') ?? __('frontend.about.request_proposal') }}</a>
         </div>
     </div>
 
@@ -212,8 +210,8 @@
     <div class="dedicated_area" id="experts">
         <div class="container">
             <div class="choose_top text-center mb_40">
-                <h3>REGISTERED RECRUITMENT EXPERTS</h3>
-                <h2><span>Meet Our Licensed</span> Manpower Specialists</h2>
+                <h3>{{ __('frontend.about.registered_experts') }}</h3>
+                <h2><span>{{ __('frontend.about.meet_licensed') }}</span> {{ __('frontend.about.manpower_specialists') }}</h2>
                 <div class="em_bar_bg mx-auto"></div>
             </div>
             <div class="row row_gutters_sm">
@@ -264,7 +262,7 @@
             @if(isset($teams) && count($teams) > 4)
                 <div class="text-center mt_40">
                     <div class="dit-button">
-                        <a href="{{ route('ourTeam') }}">View All Recruitment Specialists <i
+                        <a href="{{ route('ourTeam') }}">{{ __('frontend.about.view_all_specialists') }} <i
                                 class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>

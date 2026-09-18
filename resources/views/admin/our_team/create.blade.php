@@ -1,4 +1,4 @@
-@extends('admin.app')
+﻿@extends('admin.app')
 @section('title')
     Our Team
 @endsection
@@ -33,7 +33,7 @@
                         <div class="row">
                             
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Name</label>
                                 <input type="text" class="form-control custom-input" name="name" placeholder="Name">
                                 @if($errors->has('name'))
@@ -43,7 +43,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Email</label>
                                 <input type="email" class="form-control custom-input" name="email" placeholder="Email">
                                 @if($errors->has('email'))
@@ -53,7 +53,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Phone</label>
                                 <input type="text" class="form-control custom-input" name="phone" placeholder="Phone">
                                 @if($errors->has('phone'))
@@ -62,18 +62,18 @@
                                     </div>
                                 @endif
                             </div>
-
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Designation</label>
-                                <input type="text" class="form-control custom-input" name="designation" placeholder="Designation">
-                                @if($errors->has('designation'))
+                            
+                            <div class="col-md-6 mb-3">
+                                <label for="experience" class="form-label custom-label">Experience</label>
+                                <input type="text" class="form-control custom-input" name="experience" placeholder="Experience">
+                                @if($errors->has('experience'))
                                     <div class="error_msg">
-                                        {{ $errors->first('designation') }}
+                                        {{ $errors->first('experience') }}
                                     </div>
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="facebook" class="form-label custom-label">Facebook</label>
                                 <input type="text" class="form-control custom-input" name="facebook" placeholder="Facebook">
                                 @if($errors->has('facebook'))
@@ -83,7 +83,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="twitter" class="form-label custom-label">Twitter</label>
                                 <input type="text" class="form-control custom-input" name="twitter" placeholder="Twitter">
                                 @if($errors->has('twitter'))
@@ -94,7 +94,7 @@
                             </div>
 
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="instagram" class="form-label custom-label">Instagram</label>
                                 <input type="text" class="form-control custom-input" name="instagram" placeholder="Instagram">
                                 @if($errors->has('instagram'))
@@ -104,7 +104,7 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="youtube" class="form-label custom-label">Youtube</label>
                                 <input type="text" class="form-control custom-input" name="youtube" placeholder="Youtube">
                                 @if($errors->has('youtube'))
@@ -114,25 +114,54 @@
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="experience" class="form-label custom-label">Experience</label>
-                                <input type="text" class="form-control custom-input" name="experience" placeholder="Experience">
-                                @if($errors->has('experience'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('experience') }}
-                                    </div>
-                                @endif
-                            </div>
-                            
+                            <div class="col-md-12 mb-3">
+                                <ul class="nav nav-tabs custom-tabs" id="langTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                                    </li>
+                                </ul>
 
-                            <div class="col-md-12">
-                                <label for="biography" class="form-label custom-label">Biography</label>
-                                <textarea class="form-control custom-input" name="biography" rows="5"  placeholder="Biography"  style="resize: none; height: auto"></textarea>
-                                @if($errors->has('biography'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('biography') }}
+                                <div class="tab-content mt-3" id="langTabContent">
+                                    <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label custom-label">Designation</label>
+                                                <input type="text" class="form-control custom-input" name="designation" placeholder="Designation">
+                                                @if($errors->has('designation'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('designation') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="biography" class="form-label custom-label">Biography</label>
+                                                <textarea class="form-control custom-input" name="biography" id="biography" rows="5"  placeholder="Biography"  style="resize: none; height: auto"></textarea>
+                                                @if($errors->has('biography'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('biography') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
                                     </div>
-                                @endif
+                                    <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label custom-label">Designation (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="designation_bn" placeholder="Designation (Bangla)">
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="biography_bn" class="form-label custom-label">Biography (Bangla)</label>
+                                                <textarea class="form-control custom-input" name="biography_bn" id="biography_bn" rows="5"  placeholder="Biography (Bangla)"  style="resize: none; height: auto"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -215,6 +244,20 @@
         });
     </script>
 
+    {{-- CK Editor --}}
+    <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
+    <script type="text/javascript">
+        setTimeout(function(){
+            CKEDITOR.replace('biography', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+            CKEDITOR.replace('biography_bn', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        },100);
+    </script>
         
     {{-- image upload and preview js --}}
     <script>
@@ -266,3 +309,4 @@
 
 
 @endpush
+

@@ -1,4 +1,4 @@
-@extends('admin.app')
+﻿@extends('admin.app')
 @section('title')
 Our Team
 @endsection
@@ -31,7 +31,7 @@ Our Team
                     <div class="card-body custom-form">
                         
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Name</label>
                                 <input type="text" class="form-control custom-input" name="name" value="{{$ourTeam->name}}">
                                 @if($errors->has('name'))
@@ -41,7 +41,7 @@ Our Team
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Email</label>
                                 <input type="email" class="form-control custom-input" name="email" value="{{$ourTeam->email}}">
                                 @if($errors->has('email'))
@@ -51,7 +51,7 @@ Our Team
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Phone</label>
                                 <input type="text" class="form-control custom-input" name="phone" value="{{$ourTeam->phone}}">
                                 @if($errors->has('phone'))
@@ -61,57 +61,7 @@ Our Team
                                 @endif
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Designation</label>
-                                <input type="text" class="form-control custom-input" name="designation" value="{{$ourTeam->designation}}">
-                                @if($errors->has('designation'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('designation') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Facebook</label>
-                                <input type="text" class="form-control custom-input" name="facebook" value="{{$ourTeam->facebook}}">
-                                @if($errors->has('facebook'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('facebook') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Twitter</label>
-                                <input type="text" class="form-control custom-input" name="twitter" value="{{$ourTeam->twitter}}">
-                                @if($errors->has('twitter'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('twitter') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Instagram</label>
-                                <input type="text" class="form-control custom-input" name="instagram" value="{{$ourTeam->instagram}}">
-                                @if($errors->has('instagram'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('instagram') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="" class="form-label custom-label">Youtube</label>
-                                <input type="text" class="form-control custom-input" name="youtube" value="{{$ourTeam->youtube}}">
-                                @if($errors->has('youtube'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('youtube') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Experience</label>
                                 <input type="text" class="form-control custom-input" name="experience" value="{{$ourTeam->experience}}">
                                 @if($errors->has('experience'))
@@ -121,14 +71,95 @@ Our Team
                                 @endif
                             </div>
 
-                            <div class="col-md-12">
-                                <label for="" class="form-label custom-label">Biography</label>
-                                <textarea name="biography" id="biography" class="form-control custom-input" rows="5">{{$ourTeam->biography}}</textarea>
-                                @if($errors->has('biography'))
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label custom-label">Facebook</label>
+                                <input type="text" class="form-control custom-input" name="facebook" value="{{$ourTeam->facebook}}">
+                                @if($errors->has('facebook'))
                                     <div class="error_msg">
-                                        {{ $errors->first('biography') }}
+                                        {{ $errors->first('facebook') }}
                                     </div>
                                 @endif
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label custom-label">Twitter</label>
+                                <input type="text" class="form-control custom-input" name="twitter" value="{{$ourTeam->twitter}}">
+                                @if($errors->has('twitter'))
+                                    <div class="error_msg">
+                                        {{ $errors->first('twitter') }}
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label custom-label">Instagram</label>
+                                <input type="text" class="form-control custom-input" name="instagram" value="{{$ourTeam->instagram}}">
+                                @if($errors->has('instagram'))
+                                    <div class="error_msg">
+                                        {{ $errors->first('instagram') }}
+                                    </div>
+                                @endif
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label for="" class="form-label custom-label">Youtube</label>
+                                <input type="text" class="form-control custom-input" name="youtube" value="{{$ourTeam->youtube}}">
+                                @if($errors->has('youtube'))
+                                    <div class="error_msg">
+                                        {{ $errors->first('youtube') }}
+                                    </div>
+                                @endif
+                            </div>
+
+
+                            <div class="col-md-12 mb-3">
+                                <ul class="nav nav-tabs custom-tabs" id="langTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content mt-3" id="langTabContent">
+                                    <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label custom-label">Designation</label>
+                                                <input type="text" class="form-control custom-input" name="designation" value="{{$ourTeam->designation}}">
+                                                @if($errors->has('designation'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('designation') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="biography" class="form-label custom-label">Biography</label>
+                                                <textarea name="biography" id="biography" class="form-control custom-input" rows="5">{{$ourTeam->biography}}</textarea>
+                                                @if($errors->has('biography'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('biography') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                                        <div class="row">
+                                            <div class="col-md-12 mb-3">
+                                                <label for="" class="form-label custom-label">Designation (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="designation_bn" value="{{$ourTeam->designation_bn}}">
+                                            </div>
+
+                                            <div class="col-md-12">
+                                                <label for="biography_bn" class="form-label custom-label">Biography (Bangla)</label>
+                                                <textarea name="biography_bn" id="biography_bn" class="form-control custom-input" rows="5">{{$ourTeam->biography_bn}}</textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
 
@@ -217,11 +248,15 @@ Our Team
     <script src="{{asset('vendor/ckeditor/ckeditor.js')}}"></script>
     <script type="text/javascript">
         setTimeout(function(){
-                CKEDITOR.replace('description', {
-                    filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
-                    filebrowserUploadMethod: 'form'
-                });
-            },100);
+            CKEDITOR.replace('biography', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+            CKEDITOR.replace('biography_bn', {
+                filebrowserUploadUrl: "{{route('ckeditor.upload', ['_token' => csrf_token() ])}}",
+                filebrowserUploadMethod: 'form'
+            });
+        },100);
     </script>
 
      
@@ -274,3 +309,4 @@ Our Team
     </script>
 
 @endpush
+

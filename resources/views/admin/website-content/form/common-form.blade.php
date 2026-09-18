@@ -1,4 +1,4 @@
-<div class="row g-4">
+﻿<div class="row g-4">
     <div class="col-md-8 col-12 order-last order-md-first">
         <div class="card table-card pb-5">
             <div class="card-body custom-form">
@@ -19,117 +19,159 @@
                     @endif
 
 
-                    {{-- @if() --}}
+                    <ul class="nav nav-tabs custom-tabs mb-4" id="langTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="english-tab" data-bs-toggle="tab" data-bs-target="#english" type="button" role="tab" aria-controls="english" aria-selected="true">🇺🇸 English</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="bangla-tab" data-bs-toggle="tab" data-bs-target="#bangla" type="button" role="tab" aria-controls="bangla" aria-selected="false">🇧🇩 Bangla</button>
+                        </li>
+                    </ul>
 
-
-                    @if(isset($settings->title))
-                        <div class="col-12">
-                            <label for="" class="form-label custom-label custom-label">{{$settings->title_label ? $settings->title_label : 'Title'}}</label>
-                            <input type="text" class="form-control custom-input" name="title" value="{{$settings->title}}">
-                            @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
-                                <div class="clipboard mb-3">
-                                    <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'title') &#125;&#125;</p>
-                                    <div class="tooltips">
-                                        <span class="tooltiptext">Copy</span>
-                                        <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                    <div class="tab-content w-100" id="langTabContent">
+                        <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
+                            <div class="row">
+                                @if(isset($settings->title))
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->title_label ? $settings->title_label : 'Title'}}</label>
+                                        <input type="text" class="form-control custom-input" name="title" value="{{$settings->title}}">
+                                        @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
+                                            <div class="clipboard mb-3">
+                                                <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'title') &#125;&#125;</p>
+                                                <div class="tooltips">
+                                                    <span class="tooltiptext">Copy</span>
+                                                    <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if($errors->has('title'))
+                                            <div class="error_msg">
+                                                {{ $errors->first('title') }}
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
-                                
-                            @endif
-                            @if($errors->has('title'))
-                                <div class="error_msg">
-                                    {{ $errors->first('title') }}
-                                </div>
-                            @endif
-                        </div>
-                    @endif
+                                @endif
 
-                    @if(isset($settings->subtitle))
-                        <div class="col-12">
-                            <label for="" class="form-label custom-label custom-label">{{$settings->subtitle_label ? $settings->subtitle_label : 'Subtitle'}}</label>
-                            <input type="text" class="form-control custom-input" name="subtitle" value="{{$settings->subtitle}}">
-                            @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
-                                <div class="clipboard mb-3">
-                                    <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'subtitle') &#125;&#125;</p>
-                                    <div class="tooltips">
-                                        <span class="tooltiptext">Copy</span>
-                                        <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                @if(isset($settings->subtitle))
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->subtitle_label ? $settings->subtitle_label : 'Subtitle'}}</label>
+                                        <input type="text" class="form-control custom-input" name="subtitle" value="{{$settings->subtitle}}">
+                                        @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
+                                            <div class="clipboard mb-3">
+                                                <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'subtitle') &#125;&#125;</p>
+                                                <div class="tooltips">
+                                                    <span class="tooltiptext">Copy</span>
+                                                    <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if($errors->has('subtitle'))
+                                            <div class="error_msg">
+                                                {{ $errors->first('subtitle') }}
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
-                            @endif
-                            @if($errors->has('subtitle'))
-                                <div class="error_msg">
-                                    {{ $errors->first('subtitle') }}
-                                </div>
-                            @endif
-                        </div>
-                    @endif
+                                @endif
 
 
-                    @if(isset($settings->button_text))
-                        <div class="col-md-6">
-                            
-                            <label for="" class="form-label custom-label custom-label">{{$settings->button_text_label ? $settings->button_text_label : 'Button Text'}}</label>
-                            <input type="text" class="form-control custom-input" name="button_text" value="{{$settings->button_text}}">
-                            @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
-                                <div class="clipboard mb-3">
-                                    <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'button_text') &#125;&#125;</p>
-                                    <div class="tooltips">
-                                        <span class="tooltiptext">Copy</span>
-                                        <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                @if(isset($settings->button_text))
+                                    <div class="col-md-6 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->button_text_label ? $settings->button_text_label : 'Button Text'}}</label>
+                                        <input type="text" class="form-control custom-input" name="button_text" value="{{$settings->button_text}}">
+                                        @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
+                                            <div class="clipboard mb-3">
+                                                <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'button_text') &#125;&#125;</p>
+                                                <div class="tooltips">
+                                                    <span class="tooltiptext">Copy</span>
+                                                    <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if($errors->has('button_text'))
+                                            <div class="error_msg">
+                                                {{ $errors->first('button_text') }}
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
-                            @endif
-                            @if($errors->has('button_text'))
-                                <div class="error_msg">
-                                    {{ $errors->first('button_text') }}
-                                </div>
-                            @endif
-                        </div>
-                    @endif
+                                @endif
 
-                    @if(isset($settings->button_link))
-                        <div class="col-md-6">
-                            <label for="" class="form-label custom-label custom-label">{{$settings->button_link_label ? $settings->button_link_label : 'Button Link'}}</label>
-                            <input type="text" class="form-control custom-input" name="button_link" value="{{$settings->button_link}}">
-                            @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
-                                <div class="clipboard mb-3">
-                                    <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'button_link') &#125;&#125;</p>
-                                    <div class="tooltips">
-                                        <span class="tooltiptext">Copy</span>
-                                        <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                @if(isset($settings->button_link))
+                                    <div class="col-md-6 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->button_link_label ? $settings->button_link_label : 'Button Link'}}</label>
+                                        <input type="text" class="form-control custom-input" name="button_link" value="{{$settings->button_link}}">
+                                        @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
+                                            <div class="clipboard mb-3">
+                                                <p>&#123;&#123; getSettingsData('{{$settings->id}}', 'button_link') &#125;&#125;</p>
+                                                <div class="tooltips">
+                                                    <span class="tooltiptext">Copy</span>
+                                                    <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if($errors->has('button_link'))
+                                            <div class="error_msg">
+                                                {{ $errors->first('button_link') }}
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
-                            @endif
-                            @if($errors->has('button_link'))
-                                <div class="error_msg">
-                                    {{ $errors->first('button_link') }}
-                                </div>
-                            @endif
-                        </div>
-                    @endif
+                                @endif
 
 
-                    @if(isset($settings->description))
-                        <div class="col-12">
-                            <label for="" class="form-label custom-label custom-label">{{$settings->description_label ? $settings->description_label : 'Description'}}</label>
-                            <textarea name="description" class="form-control custom-input" id="description" cols="30" rows="10">{{$settings->description}}</textarea>
-                            @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
-                                <div class="clipboard mt-3">
-                                    <p>&#123;!! getSettingsData('{{$settings->id}}', 'description') !!&#125;</p>
-                                    <div class="tooltips">
-                                        <span class="tooltiptext">Copy</span>
-                                        <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                @if(isset($settings->description))
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->description_label ? $settings->description_label : 'Description'}}</label>
+                                        <textarea name="description" class="form-control custom-input" id="description" cols="30" rows="10">{{$settings->description}}</textarea>
+                                        @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('developer'))
+                                            <div class="clipboard mt-3">
+                                                <p>&#123;!! getSettingsData('{{$settings->id}}', 'description') !!&#125;</p>
+                                                <div class="tooltips">
+                                                    <span class="tooltiptext">Copy</span>
+                                                    <i class="ri-clipboard-line" onclick="copyContent(this)"></i>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        @if($errors->has('description'))
+                                            <div class="error_msg">
+                                                {{ $errors->first('description') }}
+                                            </div>
+                                        @endif
                                     </div>
-                                </div>
-                            @endif
-                            @if($errors->has('description'))
-                                <div class="error_msg">
-                                    {{ $errors->first('description') }}
-                                </div>
-                            @endif
+                                @endif
+                            </div>
                         </div>
-                    @endif
+
+                        <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
+                            <div class="row">
+                                @if(isset($settings->title))
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->title_label ? $settings->title_label : 'Title'}} (Bangla)</label>
+                                        <input type="text" class="form-control custom-input" name="title_bn" value="{{$settings->title_bn}}">
+                                    </div>
+                                @endif
+
+                                @if(isset($settings->subtitle))
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->subtitle_label ? $settings->subtitle_label : 'Subtitle'}} (Bangla)</label>
+                                        <input type="text" class="form-control custom-input" name="subtitle_bn" value="{{$settings->subtitle_bn}}">
+                                    </div>
+                                @endif
+
+                                @if(isset($settings->button_text))
+                                    <div class="col-md-6 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->button_text_label ? $settings->button_text_label : 'Button Text'}} (Bangla)</label>
+                                        <input type="text" class="form-control custom-input" name="button_text_bn" value="{{$settings->button_text_bn}}">
+                                    </div>
+                                @endif
+
+                                @if(isset($settings->description))
+                                    <div class="col-12 mb-3">
+                                        <label for="" class="form-label custom-label">{{$settings->description_label ? $settings->description_label : 'Description'}} (Bangla)</label>
+                                        <textarea name="description_bn" class="form-control custom-input" id="description_bn" cols="30" rows="10">{{$settings->description_bn}}</textarea>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
 
 
                 </div>

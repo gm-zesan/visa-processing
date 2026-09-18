@@ -14,11 +14,11 @@
         style="background-image: url({{ asset(getSettingsData('40', 'image') ?? 'frontend/images/contact_bg.jpg') }});">
         <div class="container">
             <div class="contact_wrapper">
-                <h2>{{ getSettingsData('40', 'title') ?? 'Our Work Permit Services' }}</h2>
+                <h2>{{ getSettingsData('40', 'title') ?? __('frontend.services.our_services') }}</h2>
                 <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('home') }}">HOME</a></li>
-                        <li class="breadcrumb-item active">{{ getSettingsData('40', 'title') ?? 'Our Services' }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('home') }}">{{ __('frontend.nav.home') }}</a></li>
+                        <li class="breadcrumb-item active">{{ getSettingsData('40', 'title') ?? __('frontend.services.our_services') }}</li>
                     </ol>
                 </nav>
             </div>
@@ -37,14 +37,14 @@
                 </div>
                 <div class="col-lg-6 mt_50" data-aos="flip-right">
                     <div class="choose_top">
-                        <h3>{{ getSettingsData('41', 'title') ?? 'OVERSEAS RECRUITMENT & WORK PERMIT SOLUTIONS' }}</h3>
-                        <h2><span>{{ getSettingsData('41', 'subtitle') ?? 'End-to-End Deployment From' }}</span>
-                            {{ getSettingsData('41', 'button_text') ?? 'Licensed Manpower Specialists' }}</h2>
+                        <h3>{{ getSettingsData('41', 'title') ?? __('frontend.services.overseas_recruitment') }}</h3>
+                        <h2><span>{{ getSettingsData('41', 'subtitle') ?? __('frontend.services.end_to_end') }}</span>
+                            {{ getSettingsData('41', 'button_text') ?? __('frontend.services.licensed_specialists') }}</h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     {!! getSettingsData('41', 'description') !!}
                     <div class="dit-button mt_30">
-                        <a href="{{ route('apply') }}">Apply For Work Permit <i class="fa-solid fa-angle-right"></i></a>
+                        <a href="{{ route('apply') }}">{{ __('frontend.services.apply_for_work_permit') }} <i class="fa-solid fa-angle-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -55,11 +55,10 @@
     <div class="core_services_area">
         <div class="container">
             <div class="choose_top text-center mb_40">
-                <h3>MANPOWER RECRUITMENT SOLUTIONS</h3>
-                <h2><span>Our Full-Spectrum</span> Recruitment & Deployment Services</h2>
+                <h3>{{ __('frontend.services.manpower_recruitment') }}</h3>
+                <h2><span>{{ __('frontend.services.full_spectrum') }}</span> {{ __('frontend.services.recruitment_deployment') }}</h2>
                 <div class="em_bar_bg mx-auto"></div>
-                <p class="section_intro_desc">Operating under Government of Bangladesh approval (RL-XXXX), we manage
-                    the entire overseas employment lifecycle from initial sourcing to airport departure.</p>
+                <p class="section_intro_desc">{{ __('frontend.services.operating_under_govt') }}</p>
             </div>
             <div class="row row_gutters_sm">
                 <div class="col-lg-4 col-sm-6 mt_30" data-aos="fade-up">
@@ -154,8 +153,8 @@
     <div class="service_tourists">
         <div class="container">
             <div class="choose_top text-center mb_40">
-                <h3>{{ getSettingsData('42', 'title') ?? 'TARGET WORK PERMIT DESTINATIONS' }}</h3>
-                <h2><span>Official Government-Approved</span> Work Permit Programs</h2>
+                <h3>{{ getSettingsData('42', 'title') ?? __('frontend.services.target_work_permit') }}</h3>
+                <h2><span>{{ __('frontend.services.official_govt_approved') }}</span> {{ __('frontend.services.work_permit_programs') }}</h2>
                 <div class="em_bar_bg mx-auto"></div>
                 @if(getSettingsData('42', 'description'))
                     <div class="service_desc_intro">
@@ -191,7 +190,7 @@
                                 </p>
                                 <div class="visa_card_actions">
                                     <a href="{{ route('visa', ['slug' => $visaType->slug]) }}" class="read_more_btn">
-                                        <span>Details & Requirements</span>
+                                        <span>{{ __('frontend.services.details_requirements') }}</span>
                                         <i class="fa-solid fa-arrow-right"></i>
                                     </a>
                                 </div>
@@ -210,10 +209,10 @@
                 <img src="{{ asset(getSettingsData('25', 'image') ?? 'frontend/images/about.png') }}"
                     alt="Work Permit Assessment" class="img-fluid" loading="lazy" decoding="async">
                 <div class="free_content">
-                    <h2>{{ getSettingsData('25', 'title') ?? 'Free Overseas Job Assessment & Trade Verification' }}</h2>
-                    <p>{!! getSettingsData('25', 'description') ?? 'Consult our licensed consular specialists to verify your eligibility for active employer quotas across Saudi Arabia, UAE, Maldives, Malaysia, and Romania.' !!}</p>
+                    <h2>{{ getSettingsData('25', 'title') ?? __('frontend.services.free_assessment') }}</h2>
+                    <p>{!! getSettingsData('25', 'description') ?? __('frontend.services.consult_specialists') !!}</p>
                     <a href="{{ url(getSettingsData('25', 'button_link') ?? '/apply') }}"
-                        class="button">{{ getSettingsData('25', 'button_text') ?? 'Apply For Work Permit' }}<i
+                        class="button">{{ getSettingsData('25', 'button_text') ?? __('frontend.services.apply_for_work_permit') }}<i
                             class="fa-solid fa-angle-right"></i></a>
                 </div>
             </div>
