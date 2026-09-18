@@ -1,4 +1,4 @@
-﻿@extends('admin.app')
+@extends('admin.app')
 @section('title')
 Our Team
 @endsection
@@ -31,15 +31,7 @@ Our Team
                     <div class="card-body custom-form">
                         
                         <div class="row">
-                            <div class="col-md-6 mb-3">
-                                <label for="" class="form-label custom-label">Name</label>
-                                <input type="text" class="form-control custom-input" name="name" value="{{$ourTeam->name}}">
-                                @if($errors->has('name'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('name') }}
-                                    </div>
-                                @endif
-                            </div>
+
 
                             <div class="col-md-6 mb-3">
                                 <label for="" class="form-label custom-label">Email</label>
@@ -47,26 +39,6 @@ Our Team
                                 @if($errors->has('email'))
                                     <div class="error_msg">
                                         {{ $errors->first('email') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="" class="form-label custom-label">Phone</label>
-                                <input type="text" class="form-control custom-input" name="phone" value="{{$ourTeam->phone}}">
-                                @if($errors->has('phone'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('phone') }}
-                                    </div>
-                                @endif
-                            </div>
-
-                            <div class="col-md-6 mb-3">
-                                <label for="" class="form-label custom-label">Experience</label>
-                                <input type="text" class="form-control custom-input" name="experience" value="{{$ourTeam->experience}}">
-                                @if($errors->has('experience'))
-                                    <div class="error_msg">
-                                        {{ $errors->first('experience') }}
                                     </div>
                                 @endif
                             </div>
@@ -125,7 +97,37 @@ Our Team
                                 <div class="tab-content mt-3" id="langTabContent">
                                     <div class="tab-pane fade show active" id="english" role="tabpanel" aria-labelledby="english-tab">
                                         <div class="row">
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="" class="form-label custom-label">Name</label>
+                                                <input type="text" class="form-control custom-input" name="name" value="{{$ourTeam->name}}">
+                                                @if($errors->has('name'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('name') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="" class="form-label custom-label">Phone</label>
+                                                <input type="text" class="form-control custom-input" name="phone" value="{{$ourTeam->phone}}">
+                                                @if($errors->has('phone'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('phone') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="" class="form-label custom-label">Experience</label>
+                                                <input type="text" class="form-control custom-input" name="experience" value="{{$ourTeam->experience}}">
+                                                @if($errors->has('experience'))
+                                                    <div class="error_msg">
+                                                        {{ $errors->first('experience') }}
+                                                    </div>
+                                                @endif
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
                                                 <label for="" class="form-label custom-label">Designation</label>
                                                 <input type="text" class="form-control custom-input" name="designation" value="{{$ourTeam->designation}}">
                                                 @if($errors->has('designation'))
@@ -148,7 +150,22 @@ Our Team
                                     </div>
                                     <div class="tab-pane fade" id="bangla" role="tabpanel" aria-labelledby="bangla-tab">
                                         <div class="row">
-                                            <div class="col-md-12 mb-3">
+                                            <div class="col-md-6 mb-3">
+                                                <label for="" class="form-label custom-label">Name (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="name_bn" value="{{$ourTeam->name_bn}}">
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="" class="form-label custom-label">Phone (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="phone_bn" value="{{$ourTeam->phone_bn}}">
+                                            </div>
+
+                                            <div class="col-md-6 mb-3">
+                                                <label for="" class="form-label custom-label">Experience (Bangla)</label>
+                                                <input type="text" class="form-control custom-input" name="experience_bn" value="{{$ourTeam->experience_bn}}">
+                                            </div>
+                                            
+                                            <div class="col-md-6 mb-3">
                                                 <label for="" class="form-label custom-label">Designation (Bangla)</label>
                                                 <input type="text" class="form-control custom-input" name="designation_bn" value="{{$ourTeam->designation_bn}}">
                                             </div>

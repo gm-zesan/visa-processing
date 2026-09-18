@@ -167,16 +167,6 @@
             </a>
         </li>
         @endcan
-
-        @canany(['assignrole-list', 'assignrole-create', 'role-list', 'role-create', 'role-edit', 'role-delete'])
-        <li class="drop-item">
-            <a href="{{route('assignrole.index')}}"
-                class="{{ in_array(Route::currentRouteName(), ['assignrole.index', 'assignrole.edit']) ? 'active-focus' : '' }}">
-                <i class="ri-user-settings-line"></i>
-                <span class="link_names">{{ __('admin.sidebar.assign_role') }}</span>
-            </a>
-        </li>
-        @endcan
     </ul>
 
     <div class="profile_content">

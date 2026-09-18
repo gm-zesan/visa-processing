@@ -17,11 +17,17 @@ return new class extends Migration
             $table->foreign('country_id')->references('id')->on('countries');
             $table->string('image')->nullable();
             $table->text('description')->nullable();
+            $table->text('description_bn')->nullable();
             $table->string('subtitle')->nullable();
+            $table->string('subtitle_bn')->nullable();
             $table->string('language')->nullable();
+            $table->string('language_bn')->nullable();
             $table->string('processing_time')->nullable();
+            $table->string('processing_time_bn')->nullable();
             $table->json('sectors')->nullable();
+            $table->json('sectors_bn')->nullable();
             $table->json('worker_protections')->nullable();
+            $table->json('worker_protections_bn')->nullable();
             $table->timestamps();
         });
     }

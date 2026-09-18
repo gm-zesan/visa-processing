@@ -45,9 +45,9 @@
                     <h3>{{$teamMember->designation}}</h3>
                     <ul class="single_list_person">
                         {{-- <li><strong>Department:</strong> Web Development</li> --}}
-                        <li><strong>Experience:</strong> {{$teamMember->experience}}</li>
-                        <li><strong>Email:</strong><a href="mailto:{{$teamMember->email}}">{{$teamMember->email}}</a></li>
-                        <li><strong>Phone:</strong><a href="tel:{{$teamMember->phone}}">{{$teamMember->phone}}</a></li>
+                        <li><strong>{{ app()->getLocale() == 'bn' ? 'অভিজ্ঞতা' : 'Experience' }}:</strong> {{$teamMember->experience}}</li>
+                        <li><strong>{{ app()->getLocale() == 'bn' ? 'ইমেইল' : 'Email' }}:</strong><a href="mailto:{{$teamMember->email}}">{{$teamMember->email}}</a></li>
+                        <li><strong>{{ app()->getLocale() == 'bn' ? 'ফোন' : 'Phone' }}:</strong><a href="tel:{{$teamMember->phone}}">{{$teamMember->phone}}</a></li>
                     </ul>
                     <ul class="person_social_list">
                         <li><a href="{{$teamMember->facebook}}"><i class="fa-brands fa-facebook-f"></i></a></li>
@@ -63,7 +63,7 @@
     <div class="biography_area">
         <div class="container">
             <div class="biography_wrap">
-                <h2>Biography</h2>
+                <h2>{{ app()->getLocale() == 'bn' ? 'জীবনবৃত্তান্ত' : 'Biography' }}</h2>
                 {!!$teamMember->biography!!}
             </div>
         </div>

@@ -198,7 +198,6 @@
         overflow: hidden;
         display: flex;
         flex-wrap: nowrap;
-        border-bottom: 1px solid #e2e8f0 !important;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     }
     
@@ -212,7 +211,7 @@
         width: 100%;
         border: none;
         border-radius: 0;
-        padding: 12px 15px;
+        padding: 14px 15px;
         font-size: 14px;
         font-weight: 500;
         color: #64748b;
@@ -222,23 +221,24 @@
         align-items: center;
         justify-content: center;
         gap: 8px;
-        border-bottom: 3px solid transparent !important;
+        border-bottom: 3px solid transparent;
     }
     
     .custom-tabs .nav-item .nav-link.active {
         background-color: #ffffff;
         color: #845adf;
         font-weight: 600;
-        border-bottom: 3px solid #845adf !important;
+        border-bottom: 3px solid #845adf;
+        box-shadow: inset 0 -1px 0 #845adf;
     }
     
     .custom-tabs .nav-item .nav-link:hover:not(.active) {
         background-color: #f1f5f9;
         color: #334155;
-        border-bottom: 3px solid #cbd5e1 !important;
+        border-bottom: 3px solid #cbd5e1;
     }
     
-    .custom-tabs .nav-item:first-child .nav-link {
+    .custom-tabs .nav-item:not(:last-child) .nav-link {
         border-right: 1px solid #e2e8f0;
     }
 </style>

@@ -20,14 +20,18 @@ return new class extends Migration
             $table->string('link_key')->nullable();
             $table->string('hints')->nullable();
             $table->string('title')->nullable();
+            $table->string('title_bn')->nullable();
             $table->string('title_label')->nullable();
             $table->string('subtitle')->nullable();
+            $table->string('subtitle_bn')->nullable();
             $table->string('subtitle_label')->nullable();
             $table->string('button_text')->nullable();
+            $table->string('button_text_bn')->nullable();
             $table->string('button_text_label')->nullable();
             $table->string('button_link')->nullable();
             $table->string('button_link_label')->nullable();
             $table->text('description')->nullable();
+            $table->text('description_bn')->nullable();
             $table->text('description_label')->nullable();
             $table->string('image')->nullable();
             $table->string('image_label')->nullable();

@@ -25,6 +25,7 @@ return new class extends Migration
 		    $table->string('iso_3166_2', 2)->default('');
 		    $table->string('iso_3166_3', 3)->default('');
 		    $table->string('name', 255)->default('');
+		    $table->string('name_bn', 255)->nullable();
 		    $table->string('region_code', 3)->default('');
 		    $table->string('sub_region_code', 3)->default('');
 		    $table->boolean('eea')->default(0);
