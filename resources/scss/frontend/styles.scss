@@ -615,6 +615,10 @@ header {
             filter: brightness(0) invert(1);
         }
 
+        .hamburger-menu span {
+            background-color: $white !important;
+        }
+
         .menu {
             >ul {
                 >li {
