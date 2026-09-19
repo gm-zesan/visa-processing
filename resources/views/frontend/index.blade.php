@@ -312,23 +312,6 @@
             </div>
         </div>
     </div>
-    <!-- single_brand -->
-    <div class="single_brand_area pt_50 pb_50">
-        <div class="container">
-            <div class="swiper mySwipers">
-                <div class="swiper-wrapper">
-
-                    @foreach (getSettingsList('home-single-brand-section') as $item)
-                        <div class="swiper-slide">
-                            <div class="single_brand_card">
-                                <img src="{{ asset($item->image) }}" alt="Image" class="img-fluid" loading="lazy" decoding="async">
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @push('scripts')
