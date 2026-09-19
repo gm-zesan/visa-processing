@@ -60,6 +60,11 @@
                         <li><a href="{{route('ourTeam')}}">{{ __('frontend.nav.team') }}</a></li>
                         <li><a href="{{route('blog_list')}}">{{ __('frontend.nav.news') }}</a></li>
                         <li><a href="{{route('contact')}}">{{ __('frontend.nav.contact') }}</a></li>
+                        <li class="d-block d-lg-none mt-3" style="padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1); text-align: center;">
+                            <a href="{{ route('lang.switch', 'en') }}" style="display: inline-block; padding: 5px 10px; {{ app()->getLocale() == 'en' ? 'font-weight: bold; color: var(--primary-color);' : '' }}">EN</a> 
+                            <span style="color: #666;">|</span> 
+                            <a href="{{ route('lang.switch', 'bn') }}" style="display: inline-block; padding: 5px 10px; {{ app()->getLocale() == 'bn' ? 'font-weight: bold; color: var(--primary-color);' : '' }}">BN</a>
+                        </li>
                     </ul>
                 </div>
                 <!-- menu toggler -->
