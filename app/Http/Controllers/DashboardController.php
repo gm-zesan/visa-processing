@@ -19,24 +19,18 @@ class DashboardController extends Controller
     {
         $total_apps = Application::count();
         $pending_apps = Application::where('status', ApplicationStatus::PENDING->value)->count();
-        $verified_apps = Application::where('status', ApplicationStatus::VERIFIED->value)->count();
-        $in_progress_apps = Application::where('status', ApplicationStatus::IN_PROGRESS->value)->count();
-        $approved_apps = Application::where('status', ApplicationStatus::APPROVED->value)->count();
-        $rejected_apps = Application::where('status', ApplicationStatus::REJECTED->value)->count();
+        $processing_apps = Application::where('status', ApplicationStatus::PROCESSING->value)->count();
+        $flight_apps = Application::where('status', ApplicationStatus::FLIGHT->value)->count();
 
         // Calculate pipeline percentages
         $stats = [
             'total_applications' => $total_apps,
             'pending_applications' => $pending_apps,
-            'verified_applications' => $verified_apps,
-            'in_progress_applications' => $in_progress_apps,
-            'approved_applications' => $approved_apps,
-            'rejected_applications' => $rejected_apps,
+            'processing_applications' => $processing_apps,
+            'flight_applications' => $flight_apps,
             'pending_pct' => $total_apps > 0 ? round(($pending_apps / $total_apps) * 100) : 0,
-            'verified_pct' => $total_apps > 0 ? round(($verified_apps / $total_apps) * 100) : 0,
-            'in_progress_pct' => $total_apps > 0 ? round(($in_progress_apps / $total_apps) * 100) : 0,
-            'approved_pct' => $total_apps > 0 ? round(($approved_apps / $total_apps) * 100) : 0,
-            'rejected_pct' => $total_apps > 0 ? round(($rejected_apps / $total_apps) * 100) : 0,
+            'processing_pct' => $total_apps > 0 ? round(($processing_apps / $total_apps) * 100) : 0,
+            'flight_pct' => $total_apps > 0 ? round(($flight_apps / $total_apps) * 100) : 0,
             'today_applications' => Application::whereDate('created_at', today())->count(),
             'week_applications' => Application::where('created_at', '>=', now()->subDays(7))->count(),
             'total_countries' => CountryDetails::count(),

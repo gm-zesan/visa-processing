@@ -13,17 +13,15 @@ return new class extends Migration
     {
         Schema::create('applications', function (Blueprint $table) {
             $table->id();
-            $table->string('tracking_no')->unique()->nullable();
             $table->string('name');
-            $table->string('passport_number');
+            $table->string('passport_number')->unique();
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
             $table->string('destination_country')->nullable();
-            $table->string('profession')->nullable();
-            $table->text('notes')->nullable();
             $table->string('status')->default('pending');
-            $table->text('admin_remarks')->nullable();
             $table->timestamps();
+            $table->index('passport_number');
+            $table->index('destination_country');
         });
     }
 

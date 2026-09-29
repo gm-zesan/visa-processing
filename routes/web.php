@@ -159,8 +159,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/applications/store', [ApplicationController::class, 'adminStore'])->name('applications.adminStore');
     Route::get('/dashboard/applications/{id}', [ApplicationController::class, 'show'])->name('applications.show');
     Route::get('/dashboard/applications/delete/{id}', [ApplicationController::class, 'delete'])->name('applications.delete');
-    Route::post('/dashboard/applications/status/{id}', [ApplicationController::class, 'updateStatus'])->name('applications.status');
-
+    Route::get('/dashboard/applications/edit/{id}', [ApplicationController::class, 'edit'])->name('applications.edit');
+    Route::post('/dashboard/applications/update/{id}', [ApplicationController::class, 'update'])->name('applications.update');
+    
+    Route::get('/dashboard/applications/documents/{id}', [ApplicationController::class, 'documents'])->name('applications.documents');
+    Route::post('/dashboard/applications/documents/{id}', [ApplicationController::class, 'uploadDocuments'])->name('applications.uploadDocuments');
+    Route::get('/dashboard/applications/document/delete/{id}', [ApplicationController::class, 'deleteDocument'])->name('applications.deleteDocument');
 });
 
 require __DIR__ . '/auth.php';

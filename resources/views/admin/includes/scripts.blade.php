@@ -112,11 +112,24 @@
     let btn = document.querySelector("#btn");
     let sidebar = document.querySelector(".sidebar");
 
-    btn.onclick = function(){
-        sidebar.classList.toggle("active");
+    if (btn && sidebar) {
+        btn.onclick = function(){
+            sidebar.classList.toggle("active");
+        }
+
+        function handleSidebarResponsive() {
+            if (window.innerWidth < 992) {
+                sidebar.classList.remove("active");
+            }
+        }
+
+        // Check on initial load
+        handleSidebarResponsive();
+
+        // Check on window resize
+        window.addEventListener('resize', handleSidebarResponsive);
     }
 </script>
-
 
 <!-- Common Scripts -->
 <script>

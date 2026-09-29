@@ -5,10 +5,8 @@ namespace App\Enums;
 enum ApplicationStatus: string
 {
     case PENDING = 'pending';
-    case VERIFIED = 'verified';
-    case IN_PROGRESS = 'in_progress';
-    case APPROVED = 'approved';
-    case REJECTED = 'rejected';
+    case PROCESSING = 'processing';
+    case FLIGHT = 'flight';
 
     /**
      * Get human-readable label for status
@@ -16,11 +14,9 @@ enum ApplicationStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::PENDING => 'Application Pending Review',
-            self::VERIFIED => 'Documents & Medical Verified',
-            self::IN_PROGRESS => 'Visa Processing & Embassy Clearance',
-            self::APPROVED => 'Visa Approved & Ready for Flight',
-            self::REJECTED => 'Application Rejected / Incomplete',
+            self::PENDING => 'Application Pending',
+            self::PROCESSING => 'Processing',
+            self::FLIGHT => 'Flight',
         };
     }
 
@@ -31,10 +27,8 @@ enum ApplicationStatus: string
     {
         return match ($this) {
             self::PENDING => 'Pending',
-            self::VERIFIED => 'Verified',
-            self::IN_PROGRESS => 'In Progress',
-            self::APPROVED => 'Approved',
-            self::REJECTED => 'Rejected',
+            self::PROCESSING => 'Processing',
+            self::FLIGHT => 'Flight',
         };
     }
 
@@ -45,10 +39,8 @@ enum ApplicationStatus: string
     {
         return match ($this) {
             self::PENDING => 'badge_pending',
-            self::VERIFIED => 'badge_verified',
-            self::IN_PROGRESS => 'badge_in_progress',
-            self::APPROVED => 'badge_approved',
-            self::REJECTED => 'badge_rejected',
+            self::PROCESSING => 'badge_processing',
+            self::FLIGHT => 'badge_flight',
         };
     }
 
@@ -59,24 +51,20 @@ enum ApplicationStatus: string
     {
         return match ($this) {
             self::PENDING => 'status-pill pending',
-            self::VERIFIED => 'status-pill verified',
-            self::IN_PROGRESS => 'status-pill in_progress',
-            self::APPROVED => 'status-pill approved',
-            self::REJECTED => 'status-pill rejected',
+            self::PROCESSING => 'status-pill processing',
+            self::FLIGHT => 'status-pill flight',
         };
     }
 
     /**
-     * Timeline stage index (1 to 4) or 0 if rejected
+     * Timeline stage index (1 to 3) or 0 if rejected
      */
     public function stageLevel(): int
     {
         return match ($this) {
             self::PENDING => 1,
-            self::VERIFIED => 2,
-            self::IN_PROGRESS => 3,
-            self::APPROVED => 4,
-            self::REJECTED => 0,
+            self::PROCESSING => 2,
+            self::FLIGHT => 3,
         };
     }
 

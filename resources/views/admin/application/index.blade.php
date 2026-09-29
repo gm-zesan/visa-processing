@@ -21,9 +21,8 @@
     transition: all 0.25s ease;
 }
 .status-select-sm.status-pending { background-color: #fff8dd; color: #b58105; border-color: #f7e6a5; }
-.status-select-sm.status-verified { background-color: #e8f4fd; color: #1a88cb; border-color: #bce1f9; }
-.status-select-sm.status-in_progress { background-color: #f2eefc; color: #845adf; border-color: #dcd3f8; }
-.status-select-sm.status-approved { background-color: #e8f8f0; color: #16a34a; border-color: #bbf0d4; }
+.status-select-sm.status-processing { background-color: #e8f4fd; color: #1a88cb; border-color: #bce1f9; }
+.status-select-sm.status-flight { background-color: #e8f8f0; color: #16a34a; border-color: #bbf0d4; }
 .status-select-sm.status-rejected { background-color: #feecee; color: #e11d48; border-color: #fcc2ca; }
 
 /* Admin Modal Theme & Scrollable Structure */
@@ -242,13 +241,12 @@
                         <table class="table dataTable w-100" id="data-table" style="min-width: 950px;">
                             <thead>
                                 <tr>
-                                    <th scope="col">Tracking ID</th>
                                     <th scope="col">Full Name</th>
                                     <th scope="col">Passport Number</th>
                                     <th scope="col">Phone / WhatsApp</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Destination</th>
                                     <th scope="col">Date Applied</th>
-                                    <th scope="col">Status (Reviewer)</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -261,83 +259,8 @@
         </div>
     </div>
 
-    <!-- Review Application Modal (Fully Scrollable & Admin Panel Theme Styled) -->
-    <div class="modal fade admin-modal-theme" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div class="modal-title" id="reviewModalLabel">Review Candidate Dossier</div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="box-shadow: none !important; outline: none !important;"></button>
-                </div>
-                <div class="modal-body custom-form scrollbar">
-                    <form id="reviewDossierForm">
-                        <input type="hidden" id="modal_app_id" name="app_id">
-
-                        <!-- Candidate Overview Section -->
-                        <div class="modal-section-heading">
-                            <i class="ri-user-follow-line text-primary"></i> Candidate Information
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="modal_name" class="form-label custom-label">Full Name (As in Passport)</label>
-                                <input type="text" class="form-control custom-input" id="modal_name" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modal_passport" class="form-label custom-label">Passport Number</label>
-                                <input type="text" class="form-control custom-input font-monospace fw-bold" id="modal_passport" readonly style="letter-spacing: 0.5px;">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modal_tracking" class="form-label custom-label">File Tracking Reference</label>
-                                <input type="text" class="form-control custom-input fw-bold" id="modal_tracking" readonly style="color: #845adf;">
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modal_country" class="form-label custom-label">Target Destination</label>
-                                <input type="text" class="form-control custom-input" id="modal_country" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modal_phone" class="form-label custom-label">Phone / WhatsApp</label>
-                                <input type="text" class="form-control custom-input" id="modal_phone" readonly>
-                            </div>
-                            <div class="col-md-6">
-                                <label for="modal_email" class="form-label custom-label">Email Address</label>
-                                <input type="text" class="form-control custom-input" id="modal_email" readonly>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="modal_notes" class="form-label custom-label">Applicant Notes / Experience</label>
-                                <textarea class="form-control custom-input" id="modal_notes" rows="2" readonly></textarea>
-                            </div>
-                        </div>
-
-                        <!-- Reviewer Status & Remarks Section -->
-                        <div class="modal-section-heading mt-3">
-                            <i class="ri-shield-check-line text-success"></i> Reviewer Action & Processing Status
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label for="modal_status" class="form-label custom-label">Update Recruitment Status <span class="text-danger">*</span></label>
-                                <select class="form-select custom-input" id="modal_status" name="status" required>
-                                    @foreach(\App\Enums\ApplicationStatus::cases() as $appStatus)
-                                        <option value="{{ $appStatus->value }}">{{ $appStatus->label() }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-12">
-                                <label for="modal_remarks" class="form-label custom-label">Official Counselor Remarks / Live Tracking Message</label>
-                                <textarea class="form-control custom-input" id="modal_remarks" name="admin_remarks" rows="3" placeholder="Add remarks or instructions visible to the candidate when tracking their passport..."></textarea>
-                                <small class="text-muted d-block" style="font-size: 11px; margin-top: -4px;">These remarks are displayed to the candidate in real-time on the frontend tracking page.</small>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn modal-btn-leave" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn modal-btn-submit" id="btnSaveDossier" onclick="saveDossierChanges()">
-                        <i class="ri-save-line me-1"></i> Save Changes & Update Status
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- End Review Application Modal -->
+    
 @endsection
 
 @push('custom-scripts')
@@ -363,14 +286,6 @@
                 type: 'GET'
             },
             columns: [
-                { 
-                    data: 'tracking_no', 
-                    name: 'tracking_no', 
-                    orderable: true,
-                    render: function (data) {
-                        return '<strong style="color:#845adf;">' + (data ? data : 'N/A') + '</strong>';
-                    }
-                },
                 { data: 'name', name: 'name', orderable: true },
                 { 
                     data: 'passport_number', 
@@ -385,6 +300,15 @@
                     name: 'phone', 
                     orderable: true,
                     render: function(data) {
+                        return data ? data : '<span class="text-muted small">N/A</span>';
+                    }
+                },
+                
+                { 
+                    data: 'email', 
+                    name: 'email', 
+                    orderable: true,
+                    render: function (data) {
                         return data ? data : '<span class="text-muted small">N/A</span>';
                     }
                 },
@@ -406,29 +330,15 @@
                         return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
                     }
                 },
-                { 
-                    data: 'status', 
-                    name: 'status', 
-                    orderable: true,
-                    render: function(data, type, row) {
-                        var status = data ? data : 'pending';
-                        var html = '<select class="status-select-sm status-' + status + '" onchange="quickStatusChange(' + row.id + ', this.value, this)">';
-                        for (var key in applicationStatuses) {
-                            if (applicationStatuses.hasOwnProperty(key)) {
-                                html += '<option value="' + key + '" ' + (status === key ? 'selected' : '') + '>' + applicationStatuses[key] + '</option>';
-                            }
-                        }
-                        html += '</select>';
-                        return html;
-                    }
-                },
                 {
                     data: 'action-btn',
                     orderable: false,
                     render: function (data, type, row) {
                         var btn1 = '';
                         btn1 += '<div class="action-btn">';
-                        btn1 += '<button type="button" class="btn-view" onclick="openReviewModal(' + data + ')" title="Review Candidate Dossier"><i class="ri-eye-line"></i></button>';
+                        btn1 += '<a href="javascript:void(0)" onclick="markAsFlight(' + row.id + ', this)" class="btn-success" title="Mark as Flight Ready" style="color: #198754; background: rgba(25,135,84,0.1); padding: 5px 8px; border-radius: 4px; margin-right: 5px;"><i class="ri-checkbox-circle-line"></i></a>';
+                        btn1 += '<a href="' + SITEURL + '/dashboard/applications/documents/' + data + '" class="btn-info" title="Manage Documents" style="color: #0dcaf0; background: rgba(13,202,240,0.1); padding: 5px 8px; border-radius: 4px; margin-right: 5px;"><i class="ri-folder-upload-line"></i></a>';
+                        btn1 += '<a href="' + SITEURL + '/dashboard/applications/edit/' + data + '" class="btn-view" title="Edit Application"><i class="ri-edit-line"></i></a>';
                         btn1 += '<a href="' + SITEURL + '/dashboard/applications/delete/' + data + '" class="btn-delete" onclick="return confirm(\'Are you sure you want to delete this application record?\')" title="Delete"><i class="ri-delete-bin-2-line"></i></a>';
                         btn1 += '</div>';
                         return btn1;
@@ -439,87 +349,29 @@
         });
     });
 
-    // Quick inline status change handler
-    function quickStatusChange(id, newStatus, selectElement) {
-        $(selectElement).prop('disabled', true);
+    // Mark application as flight ready
+    function markAsFlight(id, btnElement) {
+        if(!confirm('Are you sure you want to mark this application as Flight Ready?')) return;
+        
+        var $btn = $(btnElement);
+        var originalHtml = $btn.html();
+        $btn.html('<i class="ri-loader-4-line ri-spin"></i>').addClass('disabled');
+
         $.ajax({
             url: SITEURL + '/dashboard/applications/status/' + id,
             type: 'POST',
             data: {
                 _token: '{{ csrf_token() }}',
-                status: newStatus
+                status: 'flight'
             },
             success: function(response) {
-                $(selectElement).prop('disabled', false);
-                for (var key in applicationStatuses) {
-                    $(selectElement).removeClass('status-' + key);
-                }
-                $(selectElement).addClass('status-' + newStatus);
-                showToast(response.message || 'Status updated successfully.');
+                $btn.html(originalHtml).removeClass('disabled');
+                showToast(response.message || 'Application marked as flight ready.');
+                table.ajax.reload(null, false);
             },
             error: function(xhr) {
-                $(selectElement).prop('disabled', false);
+                $btn.html(originalHtml).removeClass('disabled');
                 showToast('Failed to update status. Please try again.', true);
-            }
-        });
-    }
-
-    // Open detailed review modal
-    function openReviewModal(id) {
-        $.ajax({
-            url: SITEURL + '/dashboard/applications/' + id,
-            type: 'GET',
-            success: function(response) {
-                if(response.success && response.data) {
-                    var app = response.data;
-                    $('#modal_app_id').val(app.id);
-                    $('#modal_name').val(app.name || '');
-                    $('#modal_passport').val(app.passport_number || '');
-                    $('#modal_tracking').val(app.tracking_no || 'N/A');
-                    $('#modal_country').val(app.destination_country || 'General Overseas Pool');
-                    $('#modal_phone').val(app.phone || 'Not provided');
-                    $('#modal_email').val(app.email || 'Not provided');
-                    $('#modal_notes').val(app.notes || 'No remarks submitted by candidate.');
-                    $('#modal_status').val(app.status || 'pending');
-                    $('#modal_remarks').val(app.admin_remarks || '');
-                    
-                    var modal = new bootstrap.Modal(document.getElementById('reviewModal'));
-                    modal.show();
-                }
-            },
-            error: function() {
-                showToast('Failed to load candidate dossier.', true);
-            }
-        });
-    }
-
-    // Save changes from review modal
-    function saveDossierChanges() {
-        var id = $('#modal_app_id').val();
-        var status = $('#modal_status').val();
-        var remarks = $('#modal_remarks').val();
-        
-        $('#btnSaveDossier').prop('disabled', true).html('<i class="ri-loader-4-line ri-spin me-1"></i> Saving...');
-
-        $.ajax({
-            url: SITEURL + '/dashboard/applications/status/' + id,
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                status: status,
-                admin_remarks: remarks
-            },
-            success: function(response) {
-                $('#btnSaveDossier').prop('disabled', false).html('<i class="ri-save-line me-1"></i> Save Changes & Update Status');
-                var modalElement = document.getElementById('reviewModal');
-                var modal = bootstrap.Modal.getInstance(modalElement);
-                if(modal) modal.hide();
-                table.ajax.reload(null, false);
-                showToast('Candidate dossier and status updated successfully.');
-            },
-            error: function() {
-                $('#btnSaveDossier').prop('disabled', false).html('<i class="ri-save-line me-1"></i> Save Changes & Update Status');
-                showToast('Error updating dossier. Please check your input.', true);
             }
         });
     }

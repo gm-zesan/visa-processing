@@ -1,6 +1,6 @@
 @extends('admin.app')
 @section('title')
-    Register Walk-in Application
+    Edit Candidate Application
 @endsection
 
 @push('custom-style')
@@ -39,7 +39,7 @@
 
 @section('content')
 <div class="container-fluid my-4">
-    <form action="{{ route('applications.adminStore') }}" method="POST" autocomplete="off" id="walkinAppForm">
+    <form action="{{ route('applications.update', $application->id) }}" method="POST" autocomplete="off" id="editAppForm">
         @csrf
         <div class="row g-4">
             <!-- Left Main Form Area -->
@@ -47,12 +47,12 @@
                 <div class="card table-card mb-4">
                     <div class="card-header table-header d-flex justify-content-between align-items-center">
                         <div class="title-with-breadcrumb">
-                            <div class="table-title">Walk-in Candidate Application</div>
+                            <div class="table-title">Edit Candidate Application</div>
                             <nav aria-label="breadcrumb"> 
                                 <ol class="breadcrumb mb-0"> 
                                     <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li> 
                                     <li class="breadcrumb-item"><a href="{{ route('applications.index') }}">Candidate Applications</a></li> 
-                                    <li class="breadcrumb-item active" aria-current="page">New Walk-in</li> 
+                                    <li class="breadcrumb-item active" aria-current="page">Edit Application</li> 
                                 </ol> 
                             </nav>
                         </div>
@@ -62,6 +62,12 @@
                     </div>
 
                     <div class="card-body custom-form p-4">
+                        @if(session('success'))
+                            <div class="alert alert-success alert-dismissible fade show" role="alert" style="font-size: 13px;">
+                                {{ session('success') }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" style="font-size: 10px;"></button>
+                            </div>
+                        @endif
                         @if($errors->any())
                             <div class="alert alert-danger alert-dismissible fade show" role="alert" style="font-size: 13px;">
                                 <ul class="mb-0 ps-3">
@@ -81,7 +87,7 @@
                         <div class="row g-3 mb-4">
                             <div class="col-md-6 col-12">
                                 <label for="name" class="form-label custom-label">Full Name (As in Passport) <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control custom-input @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="e.g. MOHAMMED ALAM HOSSAIN" required autofocus>
+                                <input type="text" class="form-control custom-input @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $application->name) }}" placeholder="e.g. MOHAMMED ALAM HOSSAIN" required autofocus>
                                 @error('name')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -89,7 +95,7 @@
 
                             <div class="col-md-6 col-12">
                                 <label for="passport_number" class="form-label custom-label">Passport Number <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control custom-input font-monospace text-uppercase @error('passport_number') is-invalid @enderror" id="passport_number" name="passport_number" value="{{ old('passport_number') }}" placeholder="e.g. A01234567" required style="letter-spacing: 0.5px;">
+                                <input type="text" class="form-control custom-input font-monospace text-uppercase @error('passport_number') is-invalid @enderror" id="passport_number" name="passport_number" value="{{ old('passport_number', $application->passport_number) }}" placeholder="e.g. A01234567" required style="letter-spacing: 0.5px;">
                                 @error('passport_number')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -97,7 +103,7 @@
 
                             <div class="col-md-6 col-12">
                                 <label for="phone" class="form-label custom-label">Candidate Contact / WhatsApp No <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control custom-input @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone') }}" placeholder="e.g. +880 1712 345678" required>
+                                <input type="text" class="form-control custom-input @error('phone') is-invalid @enderror" id="phone" name="phone" value="{{ old('phone', $application->phone) }}" placeholder="e.g. +880 1712 345678" required>
                                 @error('phone')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
@@ -105,26 +111,26 @@
 
                             <div class="col-md-6 col-12">
                                 <label for="email" class="form-label custom-label">Candidate Email Address <span class="text-muted fw-normal">(Optional)</span></label>
-                                <input type="email" class="form-control custom-input @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="e.g. candidate@example.com">
+                                <input type="email" class="form-control custom-input @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $application->email) }}" placeholder="e.g. candidate@example.com">
                                 @error('email')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
                         </div>
 
-                        <!-- Section 2: Destination & Profession -->
+                        <!-- Section 2: Destination -->
                         <div class="section-divider">
-                            <i class="ri-flight-takeoff-line text-primary"></i> 2. Target Destination & Trade / Category
+                            <i class="ri-flight-takeoff-line text-primary"></i> 2. Target Destination
                         </div>
 
                         <div class="row g-3 mb-4">
-                            <div class="col-md-6 col-12">
-                                <label for="destination_country" class="form-label custom-label">Destination Country <span class="text-danger">*</span></label>
-                                <select class="form-select custom-input @error('destination_country') is-invalid @enderror" id="destination_country" name="destination_country" required>
+                            <div class="col-md-12 col-12">
+                                <label for="destination_country" class="form-label custom-label">Destination Country (Optional)</label>
+                                <select class="form-select custom-input @error('destination_country') is-invalid @enderror" id="destination_country" name="destination_country">
                                     <option value="">-- Select Destination Country --</option>
                                     @foreach($countries as $c)
                                         @if($c->country)
-                                            <option value="{{ $c->country->name }}" {{ old('destination_country') == $c->country->name ? 'selected' : '' }}>
+                                            <option value="{{ $c->country->name }}" {{ old('destination_country', $application->destination_country) == $c->country->name ? 'selected' : '' }}>
                                                 {{ $c->country->name }}
                                             </option>
                                         @endif
@@ -134,8 +140,24 @@
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
 
+                        <!-- Section 3: Official Status -->
+                        <div class="section-divider">
+                            <i class="ri-shield-check-line text-success"></i> 3. Official Status
+                        </div>
 
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-12 col-12">
+                                <label class="form-label custom-label">Status <span class="text-danger">*</span></label>
+                                <select class="form-select custom-input" name="status" required>
+                                    @foreach(\App\Enums\ApplicationStatus::cases() as $appStatus)
+                                        <option value="{{ $appStatus->value }}" {{ old('status', $application->status->value ?? $application->status) == $appStatus->value ? 'selected' : '' }}>
+                                            {{ $appStatus->label() }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                     </div>
@@ -155,9 +177,9 @@
                         </p>
                         <div class="d-grid gap-2">
                             <button type="submit" class="btn submit-button" style="background-color: #845adf; color: #fff; padding: 9px; font-weight: 500; font-size: 13.5px; border-radius: 4px;">
-                                <i class="ri-check-line me-1"></i> Register Application
+                                <i class="ri-save-line me-1"></i> Update Application
                             </button>
-                            <a href="{{ route('applications.index') }}" class="btn leave-button" style="font-size: 13px; font-weight: 500;">
+                            <a href="{{ route('applications.index') }}" class="btn leave-button" style="font-size: 13px; font-weight: 500; background-color: #f8f9fa; border: 1px solid #dee2e6; color: #333; padding: 9px; border-radius: 4px; text-align: center; text-decoration: none;">
                                 Cancel & Leave
                             </a>
                         </div>
@@ -167,7 +189,7 @@
                 <!-- Guidance Info Card -->
                 <div class="card table-card">
                     <div class="table-header">
-                        <div class="table-title">Walk-in Checklist</div>
+                        <div class="table-title">Update Checklist</div>
                     </div>
                     <div class="card-body p-3">
                         <ul class="list-unstyled mb-0" style="font-size: 12.5px;">
@@ -194,9 +216,9 @@
 
 @push('custom-scripts')
 <script>
-    $('#walkinAppForm').on('submit', function() {
+    $('#editAppForm').on('submit', function() {
         var btn = $(this).find('button[type="submit"]');
-        btn.prop('disabled', true).html('<i class="ri-loader-4-line ri-spin me-1"></i> Registering...');
+        btn.prop('disabled', true).html('<i class="ri-loader-4-line ri-spin me-1"></i> Updating...');
     });
 </script>
 @endpush

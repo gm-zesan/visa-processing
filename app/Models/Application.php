@@ -11,16 +11,12 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'tracking_no',
         'name',
         'passport_number',
         'phone',
         'email',
         'destination_country',
-        'profession',
-        'notes',
         'status',
-        'admin_remarks',
     ];
 
     /**
@@ -31,14 +27,10 @@ class Application extends Model
     ];
 
     /**
-     * Generate unique tracking code before creation
+     * Get the documents for the application.
      */
-    protected static function booted()
+    public function documents()
     {
-        static::creating(function ($application) {
-            if (empty($application->tracking_no)) {
-                $application->tracking_no = 'AFI-' . date('Y') . '-' . strtoupper(substr(uniqid(), -5));
-            }
-        });
+        return $this->hasMany(ApplicationDocument::class);
     }
 }

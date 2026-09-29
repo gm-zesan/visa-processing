@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Application;
+use App\Models\ApplicationDocument;
 use App\Models\CountryDetails;
 use App\Models\VisaType;
 use App\Enums\ApplicationStatus;
@@ -45,15 +46,10 @@ class ApplicationController extends Controller
             'phone' => 'required|string|max:30',
             'email' => 'nullable|email|max:100',
             'destination_country' => 'nullable|string|max:100',
-            'profession' => 'nullable|string|max:150',
-            'status' => ['required', new Enum(ApplicationStatus::class)],
-            'notes' => 'nullable|string|max:2000',
-            'admin_remarks' => 'nullable|string|max:2000',
         ], [
             'name.required' => 'Candidate Full Name (as per Passport) is required.',
             'passport_number.required' => 'Candidate Passport Number is required.',
             'phone.required' => 'Candidate Contact / WhatsApp number is mandatory.',
-            'status.required' => 'Initial application status is required.',
         ]);
 
         $passport = strtoupper(trim($request->passport_number));
@@ -64,13 +60,10 @@ class ApplicationController extends Controller
             'phone' => $request->phone ? trim($request->phone) : null,
             'email' => $request->email ? trim($request->email) : null,
             'destination_country' => $request->destination_country ? trim($request->destination_country) : null,
-            'profession' => $request->profession ? trim($request->profession) : null,
-            'status' => $request->status,
-            'notes' => $request->notes ? trim($request->notes) : null,
-            'admin_remarks' => $request->admin_remarks ? trim($request->admin_remarks) : null,
+            'status' => ApplicationStatus::PENDING,
         ]);
 
-        return redirect()->route('applications.index')->with('success', 'Walk-in candidate application registered successfully! Tracking ID: ' . $application->tracking_no);
+        return redirect()->route('applications.index')->with('success', 'Walk-in candidate application registered successfully!');
     }
 
     /**
@@ -86,10 +79,7 @@ class ApplicationController extends Controller
 
         if ($searchPassport) {
             $cleanPassport = strtoupper(trim($searchPassport));
-            $trackedApplication = Application::where('passport_number', $cleanPassport)
-                ->orWhere('tracking_no', $cleanPassport)
-                ->latest()
-                ->first();
+            $trackedApplication = Application::with('documents')->where('passport_number', $cleanPassport)->first();
         }
 
         return view('frontend.apply', [
@@ -112,10 +102,18 @@ class ApplicationController extends Controller
         ]);
 
         $passport = strtoupper(trim($request->passport_number));
-        $application = Application::where('passport_number', $passport)
-            ->orWhere('tracking_no', $passport)
-            ->latest()
-            ->first();
+        $application = Application::with('documents')->where('passport_number', $passport)->first();
+
+        if ($request->ajax() || $request->wantsJson()) {
+            if ($application) {
+                $html = view('frontend.partials.tracking_result', compact('application'))->render();
+                return response()->json(['success' => true, 'html' => $html]);
+            }
+            return response()->json([
+                'success' => false, 
+                'message' => 'No application record found for Passport Number: "' . $passport . '". Please verify your passport number.'
+            ]);
+        }
 
         if ($application) {
             return redirect()->route('apply', ['passport' => $passport])
@@ -137,7 +135,6 @@ class ApplicationController extends Controller
             'phone' => 'required|string|max:30',
             'email' => 'nullable|email|max:100',
             'destination_country' => 'nullable|string|max:100',
-            'notes' => 'nullable|string|max:1000',
         ], [
             'name.required' => 'Full Name (as in Passport) is required.',
             'passport_number.required' => 'Valid Passport Number is required.',
@@ -150,13 +147,11 @@ class ApplicationController extends Controller
             'phone' => $request->phone ? trim($request->phone) : null,
             'email' => $request->email ? trim($request->email) : null,
             'destination_country' => $request->destination_country ? trim($request->destination_country) : null,
-            'notes' => $request->notes ? trim($request->notes) : null,
             'status' => ApplicationStatus::PENDING->value,
         ]);
 
         return redirect()->route('apply', ['passport' => $application->passport_number])->with([
-            'success' => 'Your application has been registered successfully! Your tracking file is generated below.',
-            'tracking_no' => $application->tracking_no,
+            'success' => 'Your application has been registered successfully!',
             'applicant_name' => $application->name,
             'passport_number' => $application->passport_number,
         ]);
@@ -199,14 +194,19 @@ class ApplicationController extends Controller
     {
         $request->validate([
             'status' => ['required', new Enum(ApplicationStatus::class)],
-            'admin_remarks' => 'nullable|string|max:2000',
+            'name' => 'nullable|string|max:255',
+            'phone' => 'nullable|string|max:30',
+            'email' => 'nullable|email|max:100',
+            'destination_country' => 'nullable|string|max:100',
         ]);
 
         $application = Application::findOrFail($id);
         $application->status = $request->status;
-        if ($request->has('admin_remarks')) {
-            $application->admin_remarks = $request->admin_remarks;
-        }
+        if ($request->has('name')) $application->name = $request->name;
+        if ($request->has('phone')) $application->phone = $request->phone;
+        if ($request->has('email')) $application->email = $request->email;
+        if ($request->has('destination_country')) $application->destination_country = $request->destination_country;
+        
         $application->save();
 
         $statusLabel = $application->status instanceof ApplicationStatus ? $application->status->shortLabel() : strtoupper($application->status);
@@ -225,6 +225,62 @@ class ApplicationController extends Controller
     /**
      * Admin delete application
      */
+    public function edit($id) { 
+        $application = Application::findOrFail($id); 
+        $countries = CountryDetails::with('country')->get(); 
+        return view('admin.application.edit', compact('application', 'countries')); 
+    } 
+
+    public function update(Request $request, $id) { 
+        $request->validate(['name'=>'required', 'passport_number'=>'required', 'phone'=>'required']); 
+        $application = Application::findOrFail($id); 
+        $application->update($request->only('name','passport_number','phone','email','destination_country','status')); 
+        return redirect()->back()->with('success', 'Application updated successfully'); 
+    } 
+
+    public function documents($id) {
+        $application = Application::with('documents')->findOrFail($id);
+        return view('admin.application.documents', compact('application'));
+    }
+
+    public function uploadDocuments(Request $request, $id) { 
+        $request->validate([
+            'documents' => 'required|array',
+            'documents.*.title' => 'required|string|max:255',
+            'documents.*.file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:5120'
+        ]); 
+        
+        $application = Application::findOrFail($id); 
+        
+        foreach ($request->documents as $doc) {
+            $file = $doc['file']; 
+            $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName(); 
+            $file->move(public_path('upload/documents'), $filename); 
+            
+            ApplicationDocument::create([
+                'application_id' => $id, 
+                'document_title' => $doc['title'], 
+                'file_path' => 'upload/documents/' . $filename
+            ]); 
+        }
+
+        if ($application->status === 'pending') {
+            $application->status = 'processing';
+            $application->save();
+        }
+
+        return redirect()->back()->with('success', 'Documents uploaded successfully'); 
+    } 
+
+    public function deleteDocument($id) { 
+        $doc = ApplicationDocument::findOrFail($id); 
+        if(file_exists(public_path($doc->file_path))) { 
+            unlink(public_path($doc->file_path)); 
+        } 
+        $doc->delete(); 
+        return redirect()->back()->with('success', 'Document deleted successfully'); 
+    } 
+
     public function delete($id)
     {
         Application::findOrFail($id)->delete();
