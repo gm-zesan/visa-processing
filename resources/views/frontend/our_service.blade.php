@@ -1,7 +1,7 @@
 @extends('frontend.layouts.app')
 
 @section('title')
-    Our Work Permit Services - Licensed Manpower Agency
+    Our Work Permit Services - Manpower Agency
 @endsection
 
 @push("styles")
@@ -39,7 +39,7 @@
                     <div class="choose_top">
                         <h3>{{ getSettingsData('41', 'title') ?? __('frontend.services.overseas_recruitment') }}</h3>
                         <h2><span>{{ getSettingsData('41', 'subtitle') ?? __('frontend.services.end_to_end') }}</span>
-                            {{ getSettingsData('41', 'button_text') ?? __('frontend.services.licensed_specialists') }}</h2>
+                            {{ getSettingsData('41', 'button_text') ?? __('frontend.services.specialists') ?? 'Specialists' }}</h2>
                         <div class="em_bar_bg"></div>
                     </div>
                     {!! getSettingsData('41', 'description') !!}
@@ -154,7 +154,7 @@
         <div class="container">
             <div class="choose_top text-center mb_40">
                 <h3>{{ getSettingsData('42', 'title') ?? __('frontend.services.target_work_permit') }}</h3>
-                <h2><span>{{ __('frontend.services.official_govt_approved') }}</span> {{ __('frontend.services.work_permit_programs') }}</h2>
+                <h2><span>{{ __('frontend.services.official_programs') ?? 'Official' }}</span> {{ __('frontend.services.work_permit_programs') }}</h2>
                 <div class="em_bar_bg mx-auto"></div>
                 @if(getSettingsData('42', 'description'))
                     <div class="service_desc_intro">
@@ -211,7 +211,7 @@
                 <div class="free_content">
 <<<<<<< HEAD
                     <h2>{{ getSettingsData('25', 'title') ?? 'Free Overseas Job Assessment & Trade Verification' }}</h2>
-                    <p>{!! getSettingsData('25', 'description') ?? 'Consult our licensed consular specialists to verify your eligibility for active employer quotas across Saudi Arabia, UAE, Maldives, Malaysia, and Romania.' !!}
+                    <p>{!! getSettingsData('25', 'description') ?? 'Consult our consular specialists to verify your eligibility for active employer quotas across Saudi Arabia, UAE, Maldives, Malaysia, and Romania.' !!}
                     </p>
 =======
                     <h2>{{ getSettingsData('25', 'title') ?? __('frontend.services.free_assessment') }}</h2>

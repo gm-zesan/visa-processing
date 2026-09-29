@@ -145,7 +145,7 @@
 
                             <div class="col-12">
                                 <label for="notes" class="form-label custom-label">Physical Application Intake Notes / Experience</label>
-                                <textarea class="form-control custom-input" id="notes" name="notes" rows="3" style="height: auto; resize: vertical;" placeholder="Candidate walked in with original passport, medical fitness card, GCC driving license, educational documents, etc.">{{ old('notes') }}</textarea>
+                                <textarea class="form-control custom-input" id="notes" name="notes" rows="3" style="height: auto; resize: vertical;" placeholder="Candidate walked in with original passport, medical fitness card, educational documents, etc.">{{ old('notes') }}</textarea>
                                 @error('notes')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror

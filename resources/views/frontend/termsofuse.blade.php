@@ -62,7 +62,7 @@
                             <ul style="list-style: none; padding-left: 0; margin: 0;">
                                 <li style="padding: 0.8rem 0; border-bottom: 1px solid #F1F5F9; font-size: 1.35rem; color: #334155; display: flex; align-items: center; gap: 0.8rem;">
                                     <i class="fa-solid fa-certificate" style="color: #C59A27;"></i>
-                                    <span>Govt. Approved Recruiting License</span>
+                                    <span>Recruiting Agency</span>
                                 </li>
                                 <li style="padding: 0.8rem 0; border-bottom: 1px solid #F1F5F9; font-size: 1.35rem; color: #334155; display: flex; align-items: center; gap: 0.8rem;">
                                     <i class="fa-solid fa-handshake" style="color: #C59A27;"></i>

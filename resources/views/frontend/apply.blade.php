@@ -505,7 +505,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                     <div class="apply_card_main">
                         <div class="apply_card_header">
                             <div class="badge_trust">
-                                <i class="fa-solid fa-shield-halved"></i> Government Approved Recruitment Agency
+                                <i class="fa-solid fa-shield-halved"></i> Recruitment Agency
                             </div>
                             <h2>Direct Candidate Application</h2>
                             <p>Enter your legal name and passport number below to register for overseas employment and visa processing.</p>
@@ -596,7 +596,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                             <div class="form_group">
                                 <label for="notes">Additional Remarks / Experience <span class="optional_mark">(Optional)</span></label>
                                 <div class="input_field_wrapper">
-                                    <textarea id="notes" name="notes" placeholder="Mention any previous overseas work experience, licenses, or language skills...">{{ old('notes') }}</textarea>
+                                    <textarea id="notes" name="notes" placeholder="Mention any previous overseas work experience or language skills...">{{ old('notes') }}</textarea>
                                 </div>
                             </div>
 
@@ -690,7 +690,7 @@ Apply Online & Track Passport Status - Manpower Recruitment
                             </ul>
                         </div>
 
-                        <!-- Government Licensed Trust Guarantee -->
+                        <!-- Government Trust Guarantee -->
                         <div class="sidebar_card guarantee_box">
                             <div class="guarantee_item">
                                 <i class="fa-solid fa-shield-check"></i>

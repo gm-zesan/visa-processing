@@ -102,7 +102,7 @@
                   </div>
                   <div class="fact_item">
                     <span class="fact_label"><i class="fa-solid fa-passport"></i> Emigration:</span>
-                    <span class="fact_value fact_highlight">BMET Approved</span>
+                    <span class="fact_value fact_highlight">BMET Processing</span>
                   </div>
                 </div>
               </div>

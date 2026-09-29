@@ -80,7 +80,7 @@ class CountryDetailsSeeder extends Seeder
                     ],
                     [
                         'title' => 'Employer-Provided Housing & Healthcare',
-                        'description' => 'Employers must provide approved island accommodation, nutritious meals, and comprehensive expat health insurance.',
+                        'description' => 'Employers must provide standard island accommodation, nutritious meals, and comprehensive expat health insurance.',
                         'icon' => 'fa-shield-heart'
                     ],
                     [
@@ -266,7 +266,7 @@ class CountryDetailsSeeder extends Seeder
                     ],
                     [
                         'title' => 'Comprehensive UAE Health Insurance',
-                        'description' => 'Employers must provide health insurance cards and approved worker accommodations adhering to Dubai municipality standards.',
+                        'description' => 'Employers must provide health insurance cards and standard worker accommodations adhering to Dubai municipality standards.',
                         'icon' => 'fa-notes-medical'
                     ],
                     [

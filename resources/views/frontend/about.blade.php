@@ -32,13 +32,13 @@
                 <div class="col-lg-5" data-aos="flip-left">
                     <div class="provider_img">
                         <img src="{{ asset(getSettingsData('about-company-info', 'image') ?? 'frontend/images/about.png') }}"
-                            alt="Licensed Manpower Agency" class="w-100" loading="lazy" decoding="async">
+                            alt="Manpower Agency" class="w-100" loading="lazy" decoding="async">
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="flip-right">
                     <div class="choose_top">
                         <h3>{{ getSettingsData('11', 'title') ?? __('frontend.about.about_our_agency') }}</h3>
-                        <h2><span>{{ getSettingsData('11', 'subtitle') ?? __('frontend.about.govt_approved') }}</span>{{ getSettingsData('11', 'button_text') ?? __('frontend.about.recruitment_agency') }}
+                        <h2><span>{{ getSettingsData('11', 'subtitle') ?? __('frontend.about.leading') ?? 'Leading ' }}</span>{{ getSettingsData('11', 'button_text') ?? __('frontend.about.recruitment_agency') }}
                         </h2>
                         <div class="em_bar_bg"></div>
                     </div>
@@ -133,59 +133,9 @@
                         <div class="sign_details">
                             <h5>{{ getSettingsData('about-ceo-speech', 'subtitle') ?? 'Hasibur Rahman Fahim' }}</h5>
                             <p>{{ __('frontend.about.md') }} &bull; Al Fahim International</p>
-                            <span class="licence_num">Govt. Approved Recruiting Agency RL-XXXX</span>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- licence_certifications_area: Licences & Official Accreditations -->
-    <div class="licence_certifications_area">
-        <div class="container">
-            <div class="choose_top text-center mb_40">
-                <h3>{{ getSettingsData('about-licence-cert', 'title') ?? __('frontend.about.official_recognitions') }}</h3>
-                <h2><span>{{ getSettingsData('about-licence-cert', 'subtitle') ?? __('frontend.about.govt_licences') }}</span>
-                </h2>
-                <div class="em_bar_bg mx-auto"></div>
-                @if(getSettingsData('about-licence-cert', 'description'))
-                    <div class="licence_intro_text">
-                        {!! getSettingsData('about-licence-cert', 'description') !!}
-                    </div>
-                @else
-                    <p class="licence_intro_text">{{ __('frontend.about.operating_with_full') }}</p>
-                @endif
-            </div>
-
-            <div class="row row_gutters_sm">
-                @foreach(getSettingsList('about-licence-card') as $item)
-                    <div class="col-lg-6 col-md-12 mt_30" data-aos="fade-up">
-                        <div class="accurate_guidance licence_item">
-                            <div class="licence_icon">
-                                @if(!empty($item->button_link))
-                                    <i class="{{ $item->button_link }}"></i>
-                                @elseif(!empty($item->image))
-                                    <img src="{{ asset($item->image) }}" alt="{{ $item->title }}" class="licence_img">
-                                @else
-                                    <i class="fa-solid fa-certificate"></i>
-                                @endif
-                            </div>
-                            <div class="guidance_cont">
-                                <div class="licence_title_row">
-                                    <h3>{{ $item->title }}</h3>
-                                    @if(!empty($item->button_text))
-                                        <span class="licence_tag">{{ $item->button_text }}</span>
-                                    @endif
-                                </div>
-                                @if(!empty($item->subtitle))
-                                    <h4>{!! $item->subtitle !!}</h4>
-                                @endif
-                                <p>{!! $item->description !!}</p>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
             </div>
         </div>
     </div>
@@ -211,7 +161,7 @@
         <div class="container">
             <div class="choose_top text-center mb_40">
                 <h3>{{ __('frontend.about.registered_experts') }}</h3>
-                <h2><span>{{ __('frontend.about.meet_licensed') }}</span> {{ __('frontend.about.manpower_specialists') }}</h2>
+                <h2><span>{{ __('frontend.about.meet_our') ?? 'Meet Our' }}</span> {{ __('frontend.about.manpower_specialists') }}</h2>
                 <div class="em_bar_bg mx-auto"></div>
             </div>
             <div class="row row_gutters_sm">

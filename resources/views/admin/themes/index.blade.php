@@ -318,7 +318,7 @@
                                                 {{-- Hero Banner --}}
                                                 <div class="showcase-hero" style="background: linear-gradient(135deg, {{ $theme->secondary_color }} 0%, rgba({{ hexToRgb($theme->secondary_color) }}, 0.88) 100%);">
                                                     <span class="showcase-tag" style="background-color: {{ $theme->primary_color }};">
-                                                        GOVERNMENT APPROVED
+                                                        MANPOWER AGENCY
                                                     </span>
                                                     <div class="showcase-title">
                                                         Overseas Manpower & Work Permits

@@ -36,7 +36,7 @@ class VisaTypeSeeder extends Seeder
                     [
                         'step' => '01',
                         'title' => 'Employer Demand & Quota Verification',
-                        'description' => 'Verification of the Maldivian resort or company demand letter, approved government quota, and employment agreement.'
+                        'description' => 'Verification of the Maldivian resort or company demand letter, government quota, and employment agreement.'
                     ],
                     [
                         'step' => '02',
@@ -193,7 +193,7 @@ class VisaTypeSeeder extends Seeder
                 'description' => '<p>The Saudi Arabia Work Permit Visa (Employment Visa) provides official legal work authorization in the Kingdom under the Qiwa and Musaned systems. We connect job seekers with verified Saudi employers and manage the entire visa lifecycle smoothly and efficiently.</p>
                 <h3>Key Features & Facilities:</h3>
                 <ul>
-                    <li>Verified electronic work visa approval and government-approved contract.</li>
+                    <li>Verified electronic work visa approval and official contract.</li>
                     <li>Fixed monthly basic salary plus overtime benefits according to Saudi Labor Law.</li>
                     <li>Employer-sponsored Iqama (Resident Identity), medical insurance, and accommodation.</li>
                     <li>GAMCA medical test assistance, Saudi embassy visa endorsement, and BMET smart card processing.</li>
@@ -297,7 +297,7 @@ class VisaTypeSeeder extends Seeder
                 'description' => '<p>The Dubai (UAE) Work Permit Visa is issued in collaboration with the Ministry of Human Resources and Emiratisation (MOHRE) and the General Directorate of Residency and Foreigners Affairs (GDRFA). We provide verified overseas employment visas for Dubai, Abu Dhabi, and other Emirates.</p>
                 <h3>Key Features & Facilities:</h3>
                 <ul>
-                    <li>MOHRE approved electronic employment entry permit.</li>
+                    <li>MOHRE issued electronic employment entry permit.</li>
                     <li>Comprehensive package including Emirates ID issuance, medical residency screening, and labor card.</li>
                     <li>Accommodation, transport allowance, health insurance, and end-of-service gratuity.</li>
                     <li>Fast processing time with complete transparency and BMET immigration clearance.</li>
@@ -401,7 +401,7 @@ class VisaTypeSeeder extends Seeder
                 'description' => '<p>The Malaysia Work Permit Visa (Calling Visa / Visa with Reference - VDR) authorizes foreign workers to be legally employed across designated economic sectors in Malaysia. Our agency strictly complies with the bilateral manpower agreements and Malaysian Immigration protocols.</p>
                 <h3>Key Features & Facilities:</h3>
                 <ul>
-                    <li>Approved Malaysian Calling Visa (VDR) issued by Malaysian Immigration.</li>
+                    <li>Malaysian Calling Visa (VDR) issued by Malaysian Immigration.</li>
                     <li>Official contract with structured wages, standard working hours, and medical protection.</li>
                     <li>Employer-provided accommodation complying with housing standards (Act 446).</li>
                     <li>Comprehensive support covering biometric medical checkups, visa stamping, and flight clearance.</li>

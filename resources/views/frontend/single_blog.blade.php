@@ -109,7 +109,7 @@
                 <div class="agency_notice">
                   <div class="notice_icon"><i class="fa-solid fa-shield-halved"></i></div>
                   <div class="notice_text">
-                    <h5>Government Approved Recruitment Advisory</h5>
+                    <h5>Recruitment Advisory</h5>
                     <p>AL FAHIM INTERNATIONAL is a certified Overseas Manpower Agency. All work permits, bio-medical
                       clearances, and employer agreements are processed through official government portals with
                       guaranteed BMET Emigration Smart Card issuance. Protect your future from unaccredited middlemen.</p>

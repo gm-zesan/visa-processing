@@ -11,7 +11,7 @@
         <!-- Meta data & SEO -->
         <meta name="author" content="AL FAHIM INTERNATIONAL" />
         @php
-            $defaultDescription = "AL FAHIM INTERNATIONAL is a government-approved overseas manpower recruitment agency providing authentic work permit processing, legal foreign employment, and overseas placement solutions.";
+            $defaultDescription = "AL FAHIM INTERNATIONAL is an established overseas manpower recruitment agency providing authentic work permit processing, legal foreign employment, and overseas placement solutions.";
             $defaultKeywords = "overseas manpower recruitment, work permit visa, foreign employment agency, saudi arabia visa, dubai uae jobs, malaysia calling visa, maldives hospitality jobs, romania work permit, al fahim international";
             $defaultImage = asset(getSettingsData('5', 'image') ?: 'images/favicon/android-chrome-512x512.png');
         @endphp

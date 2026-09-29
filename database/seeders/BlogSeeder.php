@@ -127,7 +127,7 @@ class BlogSeeder extends Seeder
     <div class="callout-icon"><i class="fa-solid fa-triangle-exclamation"></i></div>
     <div class="callout-content">
         <h5>Crucial Anti-Fraud Advisory</h5>
-        <p>Always verify that your recruitment partner holds an authentic Government Recruiting License (RL). At AL FAHIM INTERNATIONAL, each candidate receives an official computerized receipt and can trace their visa file status online 24/7.</p>
+        <p>Always verify that your recruitment partner holds an authentic Government Registration. At AL FAHIM INTERNATIONAL, each candidate receives an official computerized receipt and can trace their visa file status online 24/7.</p>
     </div>
 </div>
 HTML;
@@ -138,7 +138,7 @@ HTML;
 <h2>1. MoHRE Electronic Quota & Standardized Job Offer Letter</h2>
 <p>Recruitment into the UAE follows a highly structured, digitized methodology designed to eliminate contract substitution and protect employee rights from the very first interaction.</p>
 
-<p>The recruitment process initiates when a licensed UAE enterprise submits an electronic quota application. Once approved by MoHRE, the ministry generates a <strong>Standardized Job Offer Letter</strong> formatted in both English and the candidate's native language. Key legal safeguards include:</p>
+<p>The recruitment process initiates when a UAE enterprise submits an electronic quota application. Once processed by MoHRE, the ministry generates a <strong>Standardized Job Offer Letter</strong> formatted in both English and the candidate's native language. Key legal safeguards include:</p>
 <ul>
     <li><strong>Binding Compensation Breakdown:</strong> Clear segregation of basic wage, housing allowance, transportation allowance, and monthly utilities.</li>
     <li><strong>Working Hours & Rest Days:</strong> Standard 8-hour workday, 48 hours maximum per week, with one mandatory paid rest day.</li>
@@ -240,7 +240,7 @@ HTML;
 
 <p>The prerequisite for any foreign worker travelling to the Maldives is the <strong>Employment Approval (EA)</strong>. This official government document is generated electronically and validates:</p>
 <ul>
-    <li><strong>Approved Employer Quota:</strong> Verifying that the island resort or construction conglomerate possesses authorized foreign worker vacancies.</li>
+    <li><strong>Employer Quota:</strong> Verifying that the island resort or construction conglomerate possesses authorized foreign worker vacancies.</li>
     <li><strong>Designated Island Location:</strong> Confirming the specific resort island, atoll, or construction site of assignment.</li>
     <li><strong>Salary In US Dollars (USD):</strong> Direct monthly earnings benchmarked in USD, with minimum basic wage compliance.</li>
     <li><strong>All-Inclusive Island Provisions:</strong> Mandatory provision of air-conditioned staff quarters, daily gourmet dining, laundry services, and healthcare facilities.</li>
@@ -341,7 +341,7 @@ HTML;
 HTML;
 
         $descMalaysia = <<<'HTML'
-<p class="lead">As one of Southeast Asia's foremost manufacturing, electronics, and agro-industrial powerhouses, Malaysia continues to offer high-volume, reliable employment for overseas workers. Governed jointly by the <strong>Ministry of Human Resources (KESUMA)</strong> and the <strong>Immigration Department of Malaysia (JIM)</strong>, legal recruitment is operated through the government-approved <strong>Visa With Reference (VDR)</strong> system, universally known as the <strong>Calling Visa</strong>.</p>
+<p class="lead">As one of Southeast Asia's foremost manufacturing, electronics, and agro-industrial powerhouses, Malaysia continues to offer high-volume, reliable employment for overseas workers. Governed jointly by the <strong>Ministry of Human Resources (KESUMA)</strong> and the <strong>Immigration Department of Malaysia (JIM)</strong>, legal recruitment is operated through the <strong>Visa With Reference (VDR)</strong> system, universally known as the <strong>Calling Visa</strong>.</p>
 
 <h2>1. The FWCMS Centralized Digital Pipeline</h2>
 <p>The entire recruitment process into Malaysia is fully digitized via the <strong>Foreign Workers Centralized Management System (FWCMS)</strong>. This state-of-the-art framework prevents document forgery and enforces complete accountability across both employers and recruitment agencies.</p>
@@ -444,7 +444,7 @@ HTML;
 HTML;
 
         $descRomania = <<<'HTML'
-<p class="lead">As one of the fastest-growing industrial economies in Eastern Europe—and now an integral member of the <strong>European Schengen Zone</strong>—Romania represents the premier legal gateway for overseas skilled and general workers seeking dignified, Euro-standard careers within the European Union. With an annual government-approved foreign worker quota exceeding <strong>100,000 work permits</strong>, Romanian enterprises actively recruit dedicated international talent.</p>
+<p class="lead">As one of the fastest-growing industrial economies in Eastern Europe—and now an integral member of the <strong>European Schengen Zone</strong>—Romania represents the premier legal gateway for overseas skilled and general workers seeking dignified, Euro-standard careers within the European Union. With an annual foreign worker quota exceeding <strong>100,000 work permits</strong>, Romanian enterprises actively recruit dedicated international talent.</p>
 
 <h2>1. The Official Work Authorization: Aviz de Munca</h2>
 <p>The Romanian foreign employment pipeline begins in Bucharest through the <strong>General Inspectorate for Immigration (IGI - Inspectoratul General pentru Imigrări)</strong>. Before any visa can be requested at a Romanian embassy, the sponsoring employer must obtain an official <strong>Work Notice (Aviz de Munca)</strong>.</p>
@@ -622,7 +622,7 @@ HTML;
 <p>To protect your hard-earned finances and ensure complete legal security, always adhere to these five non-negotiable standards:</p>
 
 <ol>
-    <li><strong>Verify Government Recruitment Licensing:</strong> Never deal with unregistered intermediaries. Always confirm that the recruiting agency holds an active license (RL) recognized by the Ministry of Expatriates' Welfare.</li>
+    <li><strong>Verify Government Recruitment Registration:</strong> Never deal with unregistered intermediaries. Always confirm that the recruiting agency holds an active registration recognized by the Ministry of Expatriates' Welfare.</li>
     <li><strong>Insist on Official Bank Receipts:</strong> Never pay cash without an authenticated computerized receipt clearly displaying the company's official seal.</li>
     <li><strong>Demand Electronic Contract Verification:</strong> Ensure your employment contract is visible on the destination country's government portal (Qiwa for Saudi, MoHRE for UAE, Xpat for Maldives, FWCMS for Malaysia, IGI for Romania).</li>
     <li><strong>Complete Mandatory Bio-Medical Screenings:</strong> Always undergo diagnostic testing exclusively at government-accredited centers (Wafid / GAMCA, FWCMS, etc.).</li>

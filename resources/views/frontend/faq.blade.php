@@ -74,7 +74,7 @@
                             Still Have Questions?</h3>
                         <p
                             style="color: rgba(255,255,255,0.75); font-size: 1.45rem; line-height: 1.6; text-align: center; margin-bottom: 2.5rem;">
-                            Our licensed overseas placement counselors and visa specialists are ready to guide you through
+                            Our overseas placement counselors and visa specialists are ready to guide you through
                             trade tests, medical clearances, and job contracts.
                         </p>
 
@@ -99,7 +99,7 @@
                         <div class="mt-4 pt-3 text-center" style="border-top: 1px solid rgba(255,255,255,0.1);">
                             <span style="color: rgba(255,255,255,0.6); font-size: 1.25rem;">
                                 <i class="fa-solid fa-shield-halved" style="color: #22C55E; margin-right: 0.5rem;"></i> BMET
-                                Govt. Approved Agency
+                                Recruiting Agency
                             </span>
                         </div>
                     </div>
