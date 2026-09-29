@@ -83,10 +83,14 @@
                 @foreach($application->documents as $doc)
                     <div class="col-12 col-md-6 col-lg-4">
                         <div class="document_item p-3 text-center" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; transition: all 0.2s ease;">
-                            <a href="{{ asset($doc->file_path) }}" data-fancybox="gallery" data-caption="{{ $doc->document_title }}" class="d-block text-decoration-none">
-                                @if(Str::endsWith(strtolower($doc->file_path), ['.jpg', '.jpeg', '.png']))
+                            @php 
+                                $extTracker = strtolower(pathinfo($doc->file_path, PATHINFO_EXTENSION));
+                                $isPdfTracker = $extTracker === 'pdf'; 
+                            @endphp
+                            <a href="{{ route('applications.publicViewDocument', $doc->id) }}" target="_blank" download="{{ $doc->document_title }}.{{ $extTracker }}" class="d-block text-decoration-none">
+                                @if(!$isPdfTracker)
                                     <div class="doc-preview mb-2" style="height: 120px; overflow: hidden; border-radius: 4px; border: 1px solid #e2e8f0;">
-                                        <img src="{{ asset($doc->file_path) }}" alt="{{ $doc->document_title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                        <img src="{{ route('applications.publicViewDocument', $doc->id) }}" alt="{{ $doc->document_title }}" style="width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                 @else
                                     <div class="doc-preview mb-2 d-flex align-items-center justify-content-center" style="height: 120px; background: #e2e8f0; border-radius: 4px;">
@@ -94,7 +98,7 @@
                                     </div>
                                 @endif
                                 <strong class="d-block text-dark text-truncate" style="font-size: 1.1rem;">{{ $doc->document_title }}</strong>
-                                <small class="text-muted" style="font-size: 0.9rem;">View File</small>
+                                <small class="text-muted" style="font-size: 0.9rem;">Download File</small>
                             </a>
                         </div>
                     </div>

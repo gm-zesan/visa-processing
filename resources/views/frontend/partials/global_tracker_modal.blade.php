@@ -2,9 +2,9 @@
 <div class="modal fade" id="globalTrackerModal" tabindex="-1" aria-labelledby="globalTrackerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content border-0" style="border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(17, 26, 58, 0.25);">
-            <div class="modal-header" style="background: #111A3A; color: #fff; padding: 1.5rem 2rem; border-bottom: none;">
-                <h5 class="modal-title" id="globalTrackerModalLabel" style="font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.5rem;">
-                    <i class="fa-solid fa-passport me-2" style="color: #C59A27;"></i> Track Your Application
+            <div class="modal-header d-flex align-items-center justify-content-between" style="background: #111A3A; color: #ffffff; padding: 1.5rem 2rem; border-bottom: none;">
+                <h5 class="modal-title m-0 text-white" id="globalTrackerModalLabel" style="font-weight: 700; font-size: 1.5rem; color: #ffffff !important; display: inline-block;">
+                    <i class="fa-solid fa-passport me-2" style="color: #C59A27;"></i> <span style="color: #ffffff;">Track Your Application</span>
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" style="opacity: 0.8;"></button>
             </div>

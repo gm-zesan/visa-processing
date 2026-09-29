@@ -334,12 +334,20 @@
                     data: 'action-btn',
                     orderable: false,
                     render: function (data, type, row) {
+                        var isFlight = (row.status === 'flight');
+                        var targetStatus = isFlight ? 'processing' : 'flight';
+                        var icon = isFlight ? 'ri-arrow-go-back-line' : 'ri-flight-takeoff-line';
+                        var title = isFlight ? 'Revert to Processing' : 'Mark as Flight Ready';
+                        var color = isFlight ? '#fd7e14' : '#198754';
+                        var bg = isFlight ? 'rgba(253,126,20,0.1)' : 'rgba(25,135,84,0.1)';
+                        var safeName = (row.name || 'this candidate').replace(/'/g, "\\'");
+
                         var btn1 = '';
                         btn1 += '<div class="action-btn">';
-                        btn1 += '<a href="javascript:void(0)" onclick="markAsFlight(' + row.id + ', this)" class="btn-success" title="Mark as Flight Ready" style="color: #198754; background: rgba(25,135,84,0.1); padding: 5px 8px; border-radius: 4px; margin-right: 5px;"><i class="ri-checkbox-circle-line"></i></a>';
+                        btn1 += '<a href="javascript:void(0)" onclick="toggleStatus(' + row.id + ', \'' + targetStatus + '\', \'' + safeName + '\', this)" class="btn-success" title="' + title + '" style="color: ' + color + '; background: ' + bg + '; padding: 5px 8px; border-radius: 4px; margin-right: 5px;"><i class="' + icon + '"></i></a>';
                         btn1 += '<a href="' + SITEURL + '/dashboard/applications/documents/' + data + '" class="btn-info" title="Manage Documents" style="color: #0dcaf0; background: rgba(13,202,240,0.1); padding: 5px 8px; border-radius: 4px; margin-right: 5px;"><i class="ri-folder-upload-line"></i></a>';
                         btn1 += '<a href="' + SITEURL + '/dashboard/applications/edit/' + data + '" class="btn-view" title="Edit Application"><i class="ri-edit-line"></i></a>';
-                        btn1 += '<a href="' + SITEURL + '/dashboard/applications/delete/' + data + '" class="btn-delete" onclick="return confirm(\'Are you sure you want to delete this application record?\')" title="Delete"><i class="ri-delete-bin-2-line"></i></a>';
+                        btn1 += '<a href="javascript:void(0)" onclick="confirmDeleteApplication(\'' + SITEURL + '/dashboard/applications/delete/' + data + '\', \'' + safeName + '\')" class="btn-delete" title="Delete"><i class="ri-delete-bin-2-line"></i></a>';
                         btn1 += '</div>';
                         return btn1;
                     }
@@ -349,29 +357,67 @@
         });
     });
 
-    // Mark application as flight ready
-    function markAsFlight(id, btnElement) {
-        if(!confirm('Are you sure you want to mark this application as Flight Ready?')) return;
-        
-        var $btn = $(btnElement);
-        var originalHtml = $btn.html();
-        $btn.html('<i class="ri-loader-4-line ri-spin"></i>').addClass('disabled');
+    // Confirmation for deleting application
+    function confirmDeleteApplication(deleteUrl, candidateName) {
+        confirmAction({
+            title: 'Delete Application Record?',
+            message: 'Are you sure you want to delete application for <strong>' + candidateName + '</strong>? This will permanently delete this record and all associated documents.',
+            icon: 'ri-delete-bin-2-line',
+            iconColor: '#e6533c',
+            iconBg: 'rgba(230, 83, 60, 0.12)',
+            confirmText: 'Yes, Delete',
+            confirmBtnClass: 'btn-danger',
+            onConfirm: function() {
+                window.location.href = deleteUrl;
+            }
+        });
+    }
 
-        $.ajax({
-            url: SITEURL + '/dashboard/applications/status/' + id,
-            type: 'POST',
-            data: {
-                _token: '{{ csrf_token() }}',
-                status: 'flight'
-            },
-            success: function(response) {
-                $btn.html(originalHtml).removeClass('disabled');
-                showToast(response.message || 'Application marked as flight ready.');
-                table.ajax.reload(null, false);
-            },
-            error: function(xhr) {
-                $btn.html(originalHtml).removeClass('disabled');
-                showToast('Failed to update status. Please try again.', true);
+    // Toggle application status
+    function toggleStatus(id, newStatus, candidateName, btnElement) {
+        var isFlight = (newStatus === 'flight');
+        var title = isFlight ? 'Mark as Flight Ready?' : 'Revert to Processing?';
+        var actionText = isFlight 
+            ? 'Are you sure you want to change the status for <strong>' + (candidateName || 'this candidate') + '</strong> to <span class="badge bg-success">Flight Ready</span>?'
+            : 'Are you sure you want to revert the status for <strong>' + (candidateName || 'this candidate') + '</strong> back to <span class="badge bg-info text-dark">Processing</span>?';
+        var icon = isFlight ? 'ri-flight-takeoff-line' : 'ri-arrow-go-back-line';
+        var iconColor = isFlight ? '#16a34a' : '#ea580c';
+        var iconBg = isFlight ? 'rgba(22, 163, 74, 0.12)' : 'rgba(234, 88, 12, 0.12)';
+        var confirmText = isFlight ? 'Yes, Mark Flight' : 'Yes, Revert to Processing';
+        var btnClass = isFlight ? 'btn-success' : 'btn-warning text-white';
+
+        confirmAction({
+            title: title,
+            message: actionText,
+            icon: icon,
+            iconColor: iconColor,
+            iconBg: iconBg,
+            confirmText: confirmText,
+            confirmBtnClass: btnClass,
+            onConfirm: function() {
+                var $btn = $(btnElement);
+                var originalHtml = $btn.html();
+                $btn.html('<i class="ri-loader-4-line ri-spin"></i>').addClass('disabled');
+
+                $.ajax({
+                    url: SITEURL + '/dashboard/applications/status/' + id,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        status: newStatus
+                    },
+                    success: function(response) {
+                        $btn.html(originalHtml).removeClass('disabled');
+                        showToast(response.message || 'Application status updated.');
+                        table.ajax.reload(null, false);
+                    },
+                    error: function(xhr) {
+                        $btn.html(originalHtml).removeClass('disabled');
+                        var errorMsg = 'Failed to update status.';
+                        if(xhr.responseJSON && xhr.responseJSON.message) errorMsg = xhr.responseJSON.message;
+                        showToast(errorMsg, true);
+                    }
+                });
             }
         });
     }

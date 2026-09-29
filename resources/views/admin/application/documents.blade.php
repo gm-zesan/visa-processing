@@ -135,18 +135,6 @@
     .btn-action-primary { background: var(--primary-gradient); color: #fff; border: none; padding: 10px 24px; border-radius: 6px; font-weight: 600; font-size: 13px; box-shadow: 0 4px 15px rgba(132, 90, 223, 0.3); transition: all 0.3s; }
     .btn-action-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(132, 90, 223, 0.4); color: #fff; }
 
-    /* Lightbox Modal */
-    #lightboxModal {
-        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(15, 23, 42, 0.95);
-        z-index: 9999; display: none; flex-direction: column; align-items: center; justify-content: center;
-        opacity: 0; transition: opacity 0.3s ease;
-    }
-    #lightboxModal.show { display: flex; opacity: 1; }
-    #lightboxClose { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 40px; cursor: pointer; transition: 0.2s; }
-    #lightboxClose:hover { color: #ef4444; transform: scale(1.1); }
-    #lightboxContent { max-width: 90%; max-height: 85vh; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-    .lightbox-title { position: absolute; bottom: 30px; color: #fff; font-size: 18px; font-weight: 600; text-align: center; }
-
 </style>
 @endpush
 
@@ -236,20 +224,24 @@
                                     @endphp
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-6 col-xl-6">
                                         <div class="vault-item h-100">
-                                            <a href="{{ route('applications.deleteDocument', $doc->id) }}" class="btn-delete-vault" title="Delete Document" onclick="return confirm('Delete this document permanently?')">
+                                            <a href="javascript:void(0)" onclick="confirmDeleteDocument('{{ route('applications.deleteDocument', $doc->id) }}', '{{ addslashes($doc->document_title) }}')" class="btn-delete-vault" title="Delete Document">
                                                 <i class="ri-delete-bin-line"></i>
                                             </a>
                                             
-                                            <div class="vault-item-preview" onclick="openLightbox('{{ asset($doc->file_path) }}', '{{ $isPdf ? 'pdf' : 'image' }}', '{{ $doc->document_title }}')">
-                                                @if($isPdf)
-                                                    <div class="pdf-box"><i class="ri-file-pdf-2-fill"></i></div>
-                                                @else
-                                                    <img src="{{ asset($doc->file_path) }}" alt="{{ $doc->document_title }}">
-                                                @endif
-                                            </div>
-                                            <div class="vault-item-details" onclick="openLightbox('{{ asset($doc->file_path) }}', '{{ $isPdf ? 'pdf' : 'image' }}', '{{ $doc->document_title }}')">
-                                                <div class="vault-item-title" title="{{ $doc->document_title }}">{{ $doc->document_title }}</div>
-                                            </div>
+                                            <a href="{{ route('applications.viewDocument', $doc->id) }}" download="{{ $doc->document_title }}.{{ $ext }}" style="text-decoration: none; color: inherit;" class="d-block" title="Download {{ $doc->document_title }}">
+                                                <div class="vault-item-preview">
+                                                    @if($isPdf)
+                                                        <div class="pdf-box"><i class="ri-file-pdf-2-fill"></i></div>
+                                                    @else
+                                                        <img src="{{ route('applications.viewDocument', $doc->id) }}" alt="{{ $doc->document_title }}">
+                                                    @endif
+                                                </div>
+                                                <div class="vault-item-details">
+                                                    <div class="vault-item-title" title="Download {{ $doc->document_title }}">
+                                                        <i class="ri-download-2-line text-primary me-1"></i>{{ $doc->document_title }}
+                                                    </div>
+                                                </div>
+                                            </a>
                                         </div>
                                     </div>
                                 @endforeach
@@ -266,15 +258,6 @@
             </div>
         </div>
     </div>
-</div>
-
-<!-- Lightbox Modal -->
-<div id="lightboxModal">
-    <i class="ri-close-line" id="lightboxClose"></i>
-    <div id="lightboxContentWrapper" style="width: 80%; height: 80%; display: flex; justify-content: center; align-items: center; position: relative;">
-        <!-- Dynamic content goes here -->
-    </div>
-    <div class="lightbox-title" id="lightboxTitle"></div>
 </div>
 
 @endsection
@@ -338,25 +321,20 @@
         }
     }
 
-    // Lightbox Logic
-    function openLightbox(fileUrl, type, title) {
-        let content = '';
-        if(type === 'image') {
-            content = `<img src="${fileUrl}" id="lightboxContent" style="object-fit: contain;">`;
-        } else if(type === 'pdf') {
-            content = `<iframe src="${fileUrl}" id="lightboxContent" style="width:100%; height:100%; border:none; background: #fff;"></iframe>`;
-        }
-        
-        $('#lightboxContentWrapper').html(content);
-        $('#lightboxTitle').text(title);
-        $('#lightboxModal').addClass('show');
+    // Custom Modal Confirmation for Document Delete
+    function confirmDeleteDocument(deleteUrl, documentTitle) {
+        confirmAction({
+            title: 'Delete Document?',
+            message: 'Are you sure you want to permanently delete <strong>' + (documentTitle || 'this document') + '</strong> from the vault?',
+            icon: 'ri-delete-bin-line',
+            iconColor: '#ef4444',
+            iconBg: 'rgba(239, 68, 68, 0.12)',
+            confirmText: 'Yes, Delete',
+            confirmBtnClass: 'btn-danger',
+            onConfirm: function() {
+                window.location.href = deleteUrl;
+            }
+        });
     }
-
-    $('#lightboxClose, #lightboxModal').click(function(e) {
-        if(e.target.id === 'lightboxModal' || e.target.id === 'lightboxClose') {
-            $('#lightboxModal').removeClass('show');
-            setTimeout(() => { $('#lightboxContentWrapper').empty(); }, 300);
-        }
-    });
 </script>
 @endpush

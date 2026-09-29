@@ -48,6 +48,7 @@ Route::get('/visa/{slug}', [PageController::class, 'visa'])->name('visa');
 Route::get('/apply', [ApplicationController::class, 'create'])->name('apply');
 Route::post('/apply/store', [ApplicationController::class, 'store'])->name('apply.store');
 Route::post('/apply/track', [ApplicationController::class, 'track'])->name('apply.track');
+Route::get('/document/preview/{id}', [ApplicationController::class, 'viewDocument'])->name('applications.publicViewDocument');
 
 // message send route
 Route::post('/message/store', [ContactFormController::class, 'store'])->name('message.store');
@@ -161,10 +162,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard/applications/delete/{id}', [ApplicationController::class, 'delete'])->name('applications.delete');
     Route::get('/dashboard/applications/edit/{id}', [ApplicationController::class, 'edit'])->name('applications.edit');
     Route::post('/dashboard/applications/update/{id}', [ApplicationController::class, 'update'])->name('applications.update');
+    Route::post('/dashboard/applications/status/{id}', [ApplicationController::class, 'updateStatus'])->name('applications.updateStatus');
     
     Route::get('/dashboard/applications/documents/{id}', [ApplicationController::class, 'documents'])->name('applications.documents');
     Route::post('/dashboard/applications/documents/{id}', [ApplicationController::class, 'uploadDocuments'])->name('applications.uploadDocuments');
     Route::get('/dashboard/applications/document/delete/{id}', [ApplicationController::class, 'deleteDocument'])->name('applications.deleteDocument');
+    Route::get('/dashboard/applications/document/view/{id}', [ApplicationController::class, 'viewDocument'])->name('applications.viewDocument');
 });
 
 require __DIR__ . '/auth.php';

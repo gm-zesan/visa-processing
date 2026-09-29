@@ -264,8 +264,8 @@ class ApplicationController extends Controller
             ]); 
         }
 
-        if ($application->status === 'pending') {
-            $application->status = 'processing';
+        if ($application->status === ApplicationStatus::PENDING) {
+            $application->status = ApplicationStatus::PROCESSING;
             $application->save();
         }
 
@@ -285,5 +285,28 @@ class ApplicationController extends Controller
     {
         Application::findOrFail($id)->delete();
         return redirect()->back()->with('success', 'Application deleted successfully.');
+    }
+
+    public function viewDocument($id) {
+        $doc = ApplicationDocument::findOrFail($id);
+        $path = public_path($doc->file_path);
+        if (!file_exists($path)) {
+            abort(404);
+        }
+        
+        $mime = mime_content_type($path);
+        
+        // Force correct mime types for common files
+        $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+        if ($ext === 'pdf') {
+            $mime = 'application/pdf';
+        }
+        
+        $filename = preg_replace('/[^A-Za-z0-9_\-]/', '_', $doc->document_title) . '.' . $ext;
+        
+        return response()->make(file_get_contents($path), 200, [
+            'Content-Type' => $mime,
+            'Content-Disposition' => 'inline; filename="' . $filename . '"'
+        ]);
     }
 }

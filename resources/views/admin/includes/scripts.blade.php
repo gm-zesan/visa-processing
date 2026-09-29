@@ -242,3 +242,78 @@
         @endif
     });
 </script>
+
+<!-- Universal Admin Confirmation Modal -->
+<div class="modal fade" id="adminConfirmModal" tabindex="-1" aria-labelledby="confirmModalTitle" aria-hidden="true" style="z-index: 1060;">
+    <div class="modal-dialog modal-dialog-centered" style="max-width: 420px;">
+        <div class="modal-content" style="border: none; border-radius: 14px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); overflow: hidden;">
+            <div class="modal-body text-center p-4">
+                <div id="confirmModalIconWrapper" style="width: 64px; height: 64px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; background-color: rgba(230, 83, 60, 0.12); color: #e6533c; transition: all 0.3s ease;">
+                    <i id="confirmModalIcon" class="ri-delete-bin-2-line" style="font-size: 30px;"></i>
+                </div>
+                <h5 id="confirmModalTitle" class="fw-bold mb-2 text-dark" style="font-size: 18px; letter-spacing: -0.01em;">Confirm Action</h5>
+                <div id="confirmModalMessage" class="text-muted mb-4" style="font-size: 13.5px; line-height: 1.55;">Are you sure you want to proceed?</div>
+                
+                <div class="d-flex justify-content-center gap-2">
+                    <button type="button" class="btn" id="confirmModalCancelBtn" data-bs-dismiss="modal" style="background-color: #f1f5f9; color: #475569; font-weight: 500; font-size: 13.5px; padding: 9px 22px; border-radius: 6px; border: 1px solid #e2e8f0; min-width: 100px;">
+                        Cancel
+                    </button>
+                    <button type="button" class="btn btn-danger" id="confirmModalSubmitBtn" style="font-weight: 500; font-size: 13.5px; padding: 9px 22px; border-radius: 6px; min-width: 110px;">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Universal Admin Confirmation Modal Helper
+    window.confirmAction = function(options) {
+        options = options || {};
+        var modalEl = document.getElementById('adminConfirmModal');
+        if (!modalEl) {
+            if (typeof options.onConfirm === 'function') options.onConfirm();
+            return;
+        }
+
+        var title = options.title || 'Are you sure?';
+        var message = options.message || 'Do you want to proceed with this action?';
+        var icon = options.icon || 'ri-error-warning-line';
+        var iconColor = options.iconColor || '#e6533c';
+        var iconBg = options.iconBg || 'rgba(230, 83, 60, 0.12)';
+        var confirmText = options.confirmText || 'Confirm';
+        var confirmBtnClass = options.confirmBtnClass || 'btn-danger';
+        var cancelText = options.cancelText || 'Cancel';
+
+        $('#confirmModalTitle').text(title);
+        $('#confirmModalMessage').html(message);
+        $('#confirmModalIcon').attr('class', icon);
+        $('#confirmModalIconWrapper').css({
+            'color': iconColor,
+            'background-color': iconBg
+        });
+
+        var $submitBtn = $('#confirmModalSubmitBtn');
+        $submitBtn.attr('class', 'btn ' + confirmBtnClass).text(confirmText);
+        $('#confirmModalCancelBtn').text(cancelText);
+
+        // Reset click event
+        $submitBtn.off('click');
+
+        var bsModal = bootstrap.Modal.getInstance(modalEl);
+        if (!bsModal) {
+            bsModal = new bootstrap.Modal(modalEl);
+        }
+
+        $submitBtn.on('click', function() {
+            bsModal.hide();
+            if (typeof options.onConfirm === 'function') {
+                options.onConfirm();
+            }
+        });
+
+        bsModal.show();
+    };
+</script>
+
