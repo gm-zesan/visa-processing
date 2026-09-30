@@ -15,28 +15,7 @@ class OurTeamSeeder extends Seeder
     {
         $ourTeams = array(
             array(
-                'id' => 1,
-                'name' => 'Jannat Alam Sneha',
-                'name_bn' => 'জান্নাত আলম স্নেহা',
-                'email' => 'alfahiminternational944@gmail.com',
-                'phone' => '+8801349656021',
-                'phone_bn' => '+৮৮০১৩৪৯৬৫৬০২১',
-                'designation' => 'Manager',
-                'designation_bn' => 'ম্যানেজার',
-                'facebook' => 'https://www.facebook.com/share/196jqwbpyM/',
-                'twitter' => 'https://twitter.com/',
-                'instagram' => 'https://www.instagram.com/',
-                'youtube' => 'https://www.youtube.com/',
-                'experience' => '8 years',
-                'experience_bn' => '৮ বছর',
-                'biography' => '<p>Jannat Alam Sneha serves as the Manager at AL FAHIM INTERNATIONAL. With over 8 years of proven leadership in foreign manpower recruitment and operational management, she supervises daily agency workflows, recruitment teams, and candidate placement procedures.</p><p>She is committed to maintaining strict compliance with government regulatory bodies, BMET protocols, and foreign employer standards, ensuring transparent, ethical, and hassle-free overseas employment for thousands of candidates.</p>',
-                'biography_bn' => '<p>জান্নাত আলম স্নেহা আল ফাহিম ইন্টারন্যাশনালের ম্যানেজার হিসেবে দায়িত্ব পালন করছেন। জনশক্তি নিয়োগ এবং পরিচালনায় ৮ বছরেরও বেশি অভিজ্ঞতার সাথে, তিনি সংস্থার দৈনন্দিন কার্যক্রম এবং নিয়োগ পদ্ধতি তত্ত্বাবধান করেন।</p><p>তিনি সরকারি বিধিবিধান এবং বিদেশী নিয়োগকর্তার মান বজায় রাখতে প্রতিশ্রুতিবদ্ধ, যাতে প্রার্থীদের জন্য স্বচ্ছ এবং ঝামেলামুক্ত বিদেশী কর্মসংস্থান নিশ্চিত করা যায়।</p>',
-                'image' => 'upload/our_team/jannat_alam_sneha.jpeg',
-                'created_at' => now(),
-                'updated_at' => now()
-            ),
-            array(
-                'id' => 2,
+                
                 'name' => 'Sohani',
                 'name_bn' => 'সোহানী',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -57,28 +36,28 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 3,
+                
                 'name' => 'Rafsan Jani',
-                'name_bn' => 'রাফসান জানি',
+                'name_bn' => 'রাফসান জনি',
                 'email' => 'alfahiminternational944@gmail.com',
                 'phone' => '+8801349656028',
                 'phone_bn' => '+৮৮০১৩৪৯৬৫৬০২৮',
-                'designation' => 'Marketing Officer',
-                'designation_bn' => 'মার্কেটিং অফিসার',
+                'designation' => 'General Manager',
+                'designation_bn' => 'জেনারেল ম্যানেজার',
                 'facebook' => 'https://www.facebook.com/share/196jqwbpyM/',
                 'twitter' => 'https://twitter.com/',
                 'instagram' => 'https://www.instagram.com/',
                 'youtube' => 'https://www.youtube.com/',
                 'experience' => '4 years',
                 'experience_bn' => '৪ বছর',
-                'biography' => '<p>Rafsan Jani works as a dedicated Marketing Officer at AL FAHIM INTERNATIONAL. He specializes in candidate engagement, technical trade test coordination, and professional skill assessment for international recruitment.</p><p>He works closely with job seekers targeting construction, heavy industry, and hospitality vacancies in Saudi Arabia, the UAE, and Europe, guiding them through every step from registration to departure.</p>',
-                'biography_bn' => '<p>রাফসান জানি আল ফাহিম ইন্টারন্যাশনালের একজন নিবেদিত মার্কেটিং অফিসার। তিনি আন্তর্জাতিক নিয়োগের জন্য প্রার্থী সম্পৃক্ততা এবং দক্ষতা মূল্যায়নে বিশেষজ্ঞ।</p><p>তিনি সৌদি আরব, সংযুক্ত আরব আমিরাত এবং ইউরোপে চাকরিরত প্রার্থীদের সাথে ঘনিষ্ঠভাবে কাজ করেন, নিবন্ধন থেকে প্রস্থান পর্যন্ত প্রতিটি পদক্ষেপে তাদের গাইড করেন।</p>',
+                'biography' => '<p>Rafsan Jani works as a dedicated General Manager at AL FAHIM INTERNATIONAL. He specializes in candidate engagement, technical trade test coordination, and professional skill assessment for international recruitment.</p><p>He works closely with job seekers targeting construction, heavy industry, and hospitality vacancies in Saudi Arabia, the UAE, and Europe, guiding them through every step from registration to departure.</p>',
+                'biography_bn' => '<p>রাফসান জানি আল ফাহিম ইন্টারন্যাশনালের একজন নিবেদিত জেনারেল ম্যানেজার। তিনি আন্তর্জাতিক নিয়োগের জন্য প্রার্থী সম্পৃক্ততা এবং দক্ষতা মূল্যায়নে বিশেষজ্ঞ।</p><p>তিনি সৌদি আরব, সংযুক্ত আরব আমিরাত এবং ইউরোপে চাকরিরত প্রার্থীদের সাথে ঘনিষ্ঠভাবে কাজ করেন, নিবন্ধন থেকে প্রস্থান পর্যন্ত প্রতিটি পদক্ষেপে তাদের গাইড করেন।</p>',
                 'image' => 'upload/our_team/rafsan_jani.jpeg',
                 'created_at' => now(),
                 'updated_at' => now()
             ),
             array(
-                'id' => 4,
+                
                 'name' => 'Nadim',
                 'name_bn' => 'নাদিম',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -99,7 +78,7 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 5,
+                
                 'name' => 'Mizanur Rahman',
                 'name_bn' => 'মিজানুর রহমান',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -120,7 +99,7 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 6,
+                
                 'name' => 'Suchona',
                 'name_bn' => 'সূচনা',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -141,7 +120,7 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 7,
+                
                 'name' => 'Suyab Khan',
                 'name_bn' => 'সুয়াব খান',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -162,7 +141,7 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 8,
+                
                 'name' => 'Ornob Ahmed',
                 'name_bn' => 'অর্ণব আহমেদ',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -183,7 +162,7 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 9,
+                
                 'name' => 'Hasnain Ahmed',
                 'name_bn' => 'হাসনাইন আহমেদ',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -204,7 +183,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 10,
                 'name' => 'Nayon Tara',
                 'name_bn' => 'নয়ন তারা',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -225,7 +203,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 11,
                 'name' => 'Shihab',
                 'name_bn' => 'শিহাব',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -246,7 +223,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 12,
                 'name' => 'Sajib',
                 'name_bn' => 'সজিব',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -267,7 +243,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 13,
                 'name' => 'Ashik',
                 'name_bn' => 'আশিক',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -288,7 +263,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 14,
                 'name' => 'Muntaha',
                 'name_bn' => 'মুনতাহা',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -309,7 +283,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 15,
                 'name' => 'Lima Sultana',
                 'name_bn' => 'লিমা সুলতানা',
                 'email' => 'alfahiminternational944@gmail.com',
@@ -330,7 +303,6 @@ class OurTeamSeeder extends Seeder
                 'updated_at' => now()
             ),
             array(
-                'id' => 16,
                 'name' => 'Sohag',
                 'name_bn' => 'সোহাগ',
                 'email' => 'alfahiminternational944@gmail.com',
