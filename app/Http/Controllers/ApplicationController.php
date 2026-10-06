@@ -8,6 +8,7 @@ use App\Models\CountryDetails;
 use App\Models\VisaType;
 use App\Enums\ApplicationStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\Enum;
 use DataTables;
 
@@ -254,13 +255,16 @@ class ApplicationController extends Controller
         
         foreach ($request->documents as $doc) {
             $file = $doc['file']; 
-            $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName(); 
-            $file->move(public_path('upload/documents'), $filename); 
+            $origName = preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $file->getClientOriginalName());
+            $filename = time() . '_' . uniqid() . '_' . $origName; 
+            
+            // Store securely in storage/app/documents/
+            $storedPath = $file->storeAs('documents', $filename, 'local'); 
             
             ApplicationDocument::create([
                 'application_id' => $id, 
                 'document_title' => $doc['title'], 
-                'file_path' => 'upload/documents/' . $filename
+                'file_path' => $storedPath
             ]); 
         }
 
@@ -274,39 +278,92 @@ class ApplicationController extends Controller
 
     public function deleteDocument($id) { 
         $doc = ApplicationDocument::findOrFail($id); 
-        if(file_exists(public_path($doc->file_path))) { 
-            unlink(public_path($doc->file_path)); 
-        } 
+        if ($doc->file_path && Storage::disk('local')->exists($doc->file_path)) {
+            Storage::disk('local')->delete($doc->file_path);
+        }
         $doc->delete(); 
         return redirect()->back()->with('success', 'Document deleted successfully'); 
     } 
 
     public function delete($id)
     {
-        Application::findOrFail($id)->delete();
+        $application = Application::with('documents')->findOrFail($id);
+        foreach ($application->documents as $doc) {
+            if ($doc->file_path && Storage::disk('local')->exists($doc->file_path)) {
+                Storage::disk('local')->delete($doc->file_path);
+            }
+            $doc->delete();
+        }
+        $application->delete();
         return redirect()->back()->with('success', 'Application deleted successfully.');
     }
 
-    public function viewDocument($id) {
-        $doc = ApplicationDocument::findOrFail($id);
-        $path = public_path($doc->file_path);
-        if (!file_exists($path)) {
-            abort(404);
+    public function viewDocument(Request $request, $id) {
+        if ($request->has('download') || $request->query('download') == '1') {
+            return $this->downloadDocument($id);
         }
-        
-        $mime = mime_content_type($path);
-        
-        // Force correct mime types for common files
-        $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+
+        $doc = ApplicationDocument::findOrFail($id);
+
+        if (!$doc->file_path || !Storage::disk('local')->exists($doc->file_path)) {
+            abort(404, 'Document file not found.');
+        }
+
+        $fullPath = Storage::disk('local')->path($doc->file_path);
+        $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+        $cleanTitle = trim(preg_replace('/[\/\\:\*\?"<>\|]/', '_', $doc->document_title));
+        if (empty($cleanTitle) || $cleanTitle === '_') {
+            $cleanTitle = 'document_' . $doc->id;
+        }
+        $filename = $cleanTitle . '.' . $ext;
+
+        $mime = 'application/octet-stream';
+        if (function_exists('mime_content_type')) {
+            $mime = @mime_content_type($fullPath) ?: 'application/octet-stream';
+        }
         if ($ext === 'pdf') {
             $mime = 'application/pdf';
+        } elseif (in_array($ext, ['jpg', 'jpeg'])) {
+            $mime = 'image/jpeg';
+        } elseif ($ext === 'png') {
+            $mime = 'image/png';
         }
-        
-        $filename = preg_replace('/[^A-Za-z0-9_\-]/', '_', $doc->document_title) . '.' . $ext;
-        
-        return response()->make(file_get_contents($path), 200, [
+
+        return response()->file($fullPath, [
             'Content-Type' => $mime,
-            'Content-Disposition' => 'inline; filename="' . $filename . '"'
+            'Content-Disposition' => 'inline; filename="' . $filename . '"',
+        ]);
+    }
+
+    public function downloadDocument($id) {
+        $doc = ApplicationDocument::findOrFail($id);
+
+        if (!$doc->file_path || !Storage::disk('local')->exists($doc->file_path)) {
+            abort(404, 'Document file not found.');
+        }
+
+        $fullPath = Storage::disk('local')->path($doc->file_path);
+        $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
+        $cleanTitle = trim(preg_replace('/[\/\\:\*\?"<>\|]/', '_', $doc->document_title));
+        if (empty($cleanTitle) || $cleanTitle === '_') {
+            $cleanTitle = 'document_' . $doc->id;
+        }
+        $downloadFilename = $cleanTitle . '.' . $ext;
+
+        $mime = 'application/octet-stream';
+        if (function_exists('mime_content_type')) {
+            $mime = @mime_content_type($fullPath) ?: 'application/octet-stream';
+        }
+        if ($ext === 'pdf') {
+            $mime = 'application/pdf';
+        } elseif (in_array($ext, ['jpg', 'jpeg'])) {
+            $mime = 'image/jpeg';
+        } elseif ($ext === 'png') {
+            $mime = 'image/png';
+        }
+
+        return response()->download($fullPath, $downloadFilename, [
+            'Content-Type' => $mime,
         ]);
     }
 }

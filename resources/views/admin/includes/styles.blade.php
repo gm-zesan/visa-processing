@@ -89,7 +89,7 @@
 </style>
 
 {{-- Toastr CSS & Modern Admin Styling --}}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+<link rel="stylesheet" href="{{ asset('vendor/toastr/toastr.min.css') }}">
 <style>
     /* Modern Enterprise Toastr Styling */
     #toast-container {

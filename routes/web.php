@@ -49,6 +49,7 @@ Route::get('/apply', [ApplicationController::class, 'create'])->name('apply');
 Route::post('/apply/store', [ApplicationController::class, 'store'])->name('apply.store');
 Route::post('/apply/track', [ApplicationController::class, 'track'])->name('apply.track');
 Route::get('/document/preview/{id}', [ApplicationController::class, 'viewDocument'])->name('applications.publicViewDocument');
+Route::get('/document/download/{id}', [ApplicationController::class, 'downloadDocument'])->name('applications.publicDownloadDocument');
 
 // message send route
 Route::post('/message/store', [ContactFormController::class, 'store'])->name('message.store');
@@ -168,6 +169,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/dashboard/applications/documents/{id}', [ApplicationController::class, 'uploadDocuments'])->name('applications.uploadDocuments');
     Route::get('/dashboard/applications/document/delete/{id}', [ApplicationController::class, 'deleteDocument'])->name('applications.deleteDocument');
     Route::get('/dashboard/applications/document/view/{id}', [ApplicationController::class, 'viewDocument'])->name('applications.viewDocument');
+    Route::get('/dashboard/applications/document/download/{id}', [ApplicationController::class, 'downloadDocument'])->name('applications.downloadDocument');
 });
 
 require __DIR__ . '/auth.php';

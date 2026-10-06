@@ -224,7 +224,7 @@ Our Team
                                         <input type="hidden" id="cover_image_data" class="form-control custom-input" name="cover_image_data">
                                         <input type="file" id="cover_image" class="form-file-input form-control custom-input d-none" onchange="imageUpload(this)" name="image">
                                         <div class="user-image">
-                                            <img id="cover_imagePreview" src="{{ $ourTeam->image ? asset($ourTeam->image) : asset('admin/assets/images/default.jpg') }}" alt="image" class="image-preview">
+                                            <img id="cover_imagePreview" src="{{ $ourTeam->image ? asset($ourTeam->image) : asset('images/admin/default.jpg') }}" alt="image" class="image-preview">
                                             <span class="formate-error cover_imageerror"></span>
                                         </div>
                                         <span class="upload-btn">Upload Image</span>

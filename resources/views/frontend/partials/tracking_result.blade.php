@@ -81,25 +81,35 @@
             </h5>
             <div class="row g-3">
                 @foreach($application->documents as $doc)
+                    @php 
+                        $extTracker = strtolower(pathinfo($doc->file_path, PATHINFO_EXTENSION));
+                        $isPdfTracker = $extTracker === 'pdf'; 
+                    @endphp
                     <div class="col-12 col-md-6 col-lg-4">
-                        <div class="document_item p-3 text-center" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; transition: all 0.2s ease;">
-                            @php 
-                                $extTracker = strtolower(pathinfo($doc->file_path, PATHINFO_EXTENSION));
-                                $isPdfTracker = $extTracker === 'pdf'; 
-                            @endphp
-                            <a href="{{ route('applications.publicViewDocument', $doc->id) }}" target="_blank" download="{{ $doc->document_title }}.{{ $extTracker }}" class="d-block text-decoration-none">
-                                @if(!$isPdfTracker)
-                                    <div class="doc-preview mb-2" style="height: 120px; overflow: hidden; border-radius: 4px; border: 1px solid #e2e8f0;">
-                                        <img src="{{ route('applications.publicViewDocument', $doc->id) }}" alt="{{ $doc->document_title }}" style="width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                @else
-                                    <div class="doc-preview mb-2 d-flex align-items-center justify-content-center" style="height: 120px; background: #e2e8f0; border-radius: 4px;">
-                                        <i class="fa-solid fa-file-pdf fs-1 text-danger"></i>
-                                    </div>
-                                @endif
-                                <strong class="d-block text-dark text-truncate" style="font-size: 1.1rem;">{{ $doc->document_title }}</strong>
-                                <small class="text-muted" style="font-size: 0.9rem;">Download File</small>
-                            </a>
+                        <div class="document_item p-3 d-flex flex-column justify-content-between h-100" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s;">
+                            <div>
+                                <a href="{{ route('applications.publicViewDocument', $doc->id) }}" target="_blank" class="d-block text-decoration-none" title="Click to view {{ $doc->document_title }}">
+                                    @if(!$isPdfTracker)
+                                        <div class="doc-preview mb-2 position-relative" style="height: 130px; overflow: hidden; border-radius: 6px; border: 1px solid #e2e8f0; background: #f8fafc; cursor: pointer;">
+                                            <img src="{{ route('applications.publicViewDocument', $doc->id) }}" alt="{{ $doc->document_title }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                        </div>
+                                    @else
+                                        <div class="doc-preview mb-2 d-flex flex-column align-items-center justify-content-center" style="height: 130px; background: #fff1f2; border: 1px solid #ffe4e6; border-radius: 6px; cursor: pointer;">
+                                            <i class="fa-solid fa-file-pdf fs-1 text-danger mb-1"></i>
+                                            <span class="badge bg-danger text-white" style="font-size: 10px; text-transform: uppercase;">PDF Document</span>
+                                        </div>
+                                    @endif
+                                </a>
+                                <strong class="d-block text-dark text-truncate mb-2 text-center" title="{{ $doc->document_title }}" style="font-size: 1.05rem;">
+                                    {{ $doc->document_title }}
+                                </strong>
+                            </div>
+
+                            <div class="text-center pt-2 mt-2 border-top">
+                                <a href="{{ route('applications.publicDownloadDocument', $doc->id) }}" class="text-primary text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="font-size: 0.92rem;">
+                                    <i class="fa-solid fa-download"></i> Download
+                                </a>
+                            </div>
                         </div>
                     </div>
                 @endforeach

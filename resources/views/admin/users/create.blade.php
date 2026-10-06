@@ -134,7 +134,7 @@
                                             <input type="file" id="cover_image" class="form-file-input form-control custom-input d-none" onchange="imageUpload(this)" name="image">
                                             <div class="user-image">
                                                 <i id="cover_imagePreviewNo" class="ri-user-3-line no-image-preview"></i>
-                                                <img id="cover_imagePreview" src="{{asset('admin/assets/images/default.jpg')}}" alt="" class="image-preview d-none">
+                                                <img id="cover_imagePreview" src="{{asset('images/admin/default.jpg')}}" alt="" class="image-preview d-none">
                                                 <span class="formate-error cover_imageerror"></span>
                                                 <div class="user-info">
                                                     <h5 id="setName">Your Name</h5>

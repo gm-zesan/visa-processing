@@ -6,7 +6,6 @@
 @push('custom-style')
    {{-- Datatable css  --}}
    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.semanticui.min.css">
 @endpush
 
 @section('content')
@@ -92,7 +91,6 @@
 @push('custom-scripts')
     {{-- Data table --}}
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.min.js" defer></script>
 
 
 

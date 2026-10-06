@@ -167,7 +167,7 @@
 </script>
 
 {{-- Toastr JS & Global Flash Message Handler --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
 <script>
     // Toastr Global Settings
     toastr.options = {
@@ -190,27 +190,37 @@
 
     // Universal Helper for Toast Notifications
     window.showToast = function(message, isError = false, title = '') {
-        if (isError) {
-            toastr.error(message, title || 'Error');
+        if (typeof toastr !== 'undefined') {
+            if (isError) {
+                toastr.error(message, title || 'Error');
+            } else {
+                toastr.success(message, title || 'Success');
+            }
         } else {
-            toastr.success(message, title || 'Success');
+            console.log((isError ? '[Error] ' : '[Success] ') + (title ? title + ': ' : '') + message);
         }
     };
 
     window.notify = function(type, message, title = '') {
-        if (type === 'error' || type === 'danger') {
-            toastr.error(message, title || 'Error');
-        } else if (type === 'warning') {
-            toastr.warning(message, title || 'Warning');
-        } else if (type === 'info') {
-            toastr.info(message, title || 'Notice');
+        if (typeof toastr !== 'undefined') {
+            if (type === 'error' || type === 'danger') {
+                toastr.error(message, title || 'Error');
+            } else if (type === 'warning') {
+                toastr.warning(message, title || 'Warning');
+            } else if (type === 'info') {
+                toastr.info(message, title || 'Notice');
+            } else {
+                toastr.success(message, title || 'Success');
+            }
         } else {
-            toastr.success(message, title || 'Success');
+            console.log('[' + type + '] ' + (title ? title + ': ' : '') + message);
         }
     };
 
     // Trigger Laravel Session Flash Messages
     $(document).ready(function() {
+        if (typeof toastr === 'undefined') return;
+
         @if(Session::has('success'))
             toastr.success("{!! addslashes(Session::get('success')) !!}", "Success");
         @endif

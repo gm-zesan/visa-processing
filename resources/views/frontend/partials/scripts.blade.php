@@ -9,8 +9,8 @@
   <!-- Template Main JS File -->
   <script src="{{asset('frontend/js/main.js')}}"></script>
 
-  <!-- Toastr JS CDN & Global Handlers -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <!-- Toastr JS Local & Global Handlers -->
+  <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
   <script>
       Fancybox.bind('[data-fancybox="gallery"]', {});

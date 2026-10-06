@@ -172,7 +172,7 @@
     <div class="profile_content">
         <div class="profile">
             <div class="profile_details">
-                <img class="d-none" id="sidebarImage" src="{{ asset('/admin') }}/assets/images/user.jpg" alt="">
+                <img class="d-none" id="sidebarImage" src="{{ asset('images/admin/user.jpeg') }}" alt="">
 
                 @if(Auth::user()->image)
                     <img id="sidebarImageDB" src="{{ asset(Auth::user()->image) }}" alt="img" width="30" height="30"

@@ -228,7 +228,7 @@
                                                 <i class="ri-delete-bin-line"></i>
                                             </a>
                                             
-                                            <a href="{{ route('applications.viewDocument', $doc->id) }}" download="{{ $doc->document_title }}.{{ $ext }}" style="text-decoration: none; color: inherit;" class="d-block" title="Download {{ $doc->document_title }}">
+                                            <a href="{{ route('applications.viewDocument', $doc->id) }}" target="_blank" style="text-decoration: none; color: inherit;" class="d-block" title="Click to view {{ $doc->document_title }}">
                                                 <div class="vault-item-preview">
                                                     @if($isPdf)
                                                         <div class="pdf-box"><i class="ri-file-pdf-2-fill"></i></div>
@@ -237,11 +237,16 @@
                                                     @endif
                                                 </div>
                                                 <div class="vault-item-details">
-                                                    <div class="vault-item-title" title="Download {{ $doc->document_title }}">
-                                                        <i class="ri-download-2-line text-primary me-1"></i>{{ $doc->document_title }}
+                                                    <div class="vault-item-title mb-1" title="{{ $doc->document_title }}">
+                                                        {{ $doc->document_title }}
                                                     </div>
                                                 </div>
                                             </a>
+                                            <div class="text-center pb-2 pt-1 border-top bg-light">
+                                                <a href="{{ route('applications.downloadDocument', $doc->id) }}" class="text-primary text-decoration-none fw-semibold d-inline-flex align-items-center gap-1" style="font-size: 11.5px;">
+                                                    <i class="ri-download-2-line"></i> Download
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 @endforeach
