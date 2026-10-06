@@ -1,8 +1,9 @@
 
 
 
-{{-- Jquery CDN --}}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+{{-- Jquery Local & Fallback CDN --}}
+<script src="{{ asset('frontend/vendor/jquery/jquery.min.js') }}"></script>
+<script>window.jQuery || document.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"><\/script>')</script>
 
 {{-- bootstrap script  --}}
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
@@ -167,26 +168,26 @@
 </script>
 
 {{-- Toastr JS & Global Flash Message Handler --}}
+{{-- Toastr JS & Global Flash Message Handler --}}
 <script src="{{ asset('vendor/toastr/toastr.min.js') }}"></script>
 <script>
     // Toastr Global Settings
-    toastr.options = {
-        "closeButton": true,
-        "debug": false,
-        "newestOnTop": true,
-        "progressBar": true,
-        "positionClass": "toast-top-right",
-        "preventDuplicates": false,
-        "onclick": null,
-        "showDuration": "300",
-        "hideDuration": "600",
-        "timeOut": "4500",
-        "extendedTimeOut": "1500",
-        "showEasing": "swing",
-        "hideEasing": "linear",
-        "showMethod": "fadeIn",
-        "hideMethod": "fadeOut"
-    };
+    if (typeof toastr !== 'undefined') {
+        toastr.options = toastr.options || {};
+        toastr.options.closeButton = true;
+        toastr.options.progressBar = true;
+        toastr.options.newestOnTop = true;
+        toastr.options.positionClass = "toast-top-right";
+        toastr.options.preventDuplicates = false;
+        toastr.options.showDuration = "300";
+        toastr.options.hideDuration = "600";
+        toastr.options.timeOut = "5000";
+        toastr.options.extendedTimeOut = "2000";
+        toastr.options.showEasing = "swing";
+        toastr.options.hideEasing = "linear";
+        toastr.options.showMethod = "fadeIn";
+        toastr.options.hideMethod = "fadeOut";
+    }
 
     // Universal Helper for Toast Notifications
     window.showToast = function(message, isError = false, title = '') {
@@ -218,39 +219,68 @@
     };
 
     // Trigger Laravel Session Flash Messages
-    $(document).ready(function() {
-        if (typeof toastr === 'undefined') return;
+    (function() {
+        var successMsg = "{{ addslashes(session('success') ?? session('message') ?? '') }}";
+        var errorMsg = "{{ addslashes(session('error') ?? '') }}";
+        var warningMsg = "{{ addslashes(session('warning') ?? '') }}";
+        var infoMsg = "{{ addslashes(session('info') ?? session('status') ?? '') }}";
+        var validationErrors = [
+            @if(isset($errors) && $errors->any())
+                @foreach($errors->all() as $err)
+                    "{{ addslashes($err) }}",
+                @endforeach
+            @endif
+        ];
 
-        @if(Session::has('success'))
-            toastr.success("{!! addslashes(Session::get('success')) !!}", "Success");
-        @endif
+        function triggerFlashMessages() {
+            if (typeof toastr !== 'undefined') {
+                if (successMsg) toastr.success(successMsg, "Success");
+                if (errorMsg) toastr.error(errorMsg, "Error");
+                if (warningMsg) toastr.warning(warningMsg, "Warning");
+                if (infoMsg) toastr.info(infoMsg, "Notice");
+                validationErrors.forEach(function(msg) {
+                    toastr.error(msg, "Validation Error");
+                });
+            } else {
+                // Fallback notification if Toastr is not yet initialized
+                if (successMsg || errorMsg || warningMsg || infoMsg || validationErrors.length > 0) {
+                    var container = document.getElementById('native-toast-fallback');
+                    if (!container) {
+                        container = document.createElement('div');
+                        container.id = 'native-toast-fallback';
+                        container.style.cssText = 'position:fixed;top:24px;right:24px;z-index:9999999;display:flex;flex-direction:column;gap:10px;pointer-events:none;font-family:inherit;';
+                        document.body.appendChild(container);
+                    }
 
-        @if(Session::has('message'))
-            toastr.success("{!! addslashes(Session::get('message')) !!}", "Success");
-        @endif
+                    function showNativeToast(text, bg, icon, title) {
+                        var t = document.createElement('div');
+                        t.style.cssText = 'background:#ffffff;color:#0f172a;border-left:4px solid ' + bg + ';padding:14px 18px;border-radius:10px;box-shadow:0 15px 30px rgba(0,0,0,0.12);font-size:13px;display:flex;align-items:center;gap:10px;pointer-events:auto;min-width:280px;max-width:380px;transition:all 0.3s ease;';
+                        t.innerHTML = '<span style="font-weight:700;color:' + bg + ';">' + icon + '</span><div><div style="font-weight:600;font-size:13.5px;color:#0f172a;">' + title + '</div><div style="color:#475569;margin-top:2px;">' + text + '</div></div>';
+                        container.appendChild(t);
+                        setTimeout(function() {
+                            t.style.opacity = '0';
+                            t.style.transform = 'translateY(-10px)';
+                            setTimeout(function() { t.remove(); }, 300);
+                        }, 5000);
+                    }
 
-        @if(Session::has('error'))
-            toastr.error("{!! addslashes(Session::get('error')) !!}", "Error");
-        @endif
+                    if (successMsg) showNativeToast(successMsg, '#10b981', '✓', 'Success');
+                    if (errorMsg) showNativeToast(errorMsg, '#ef4444', '✕', 'Error');
+                    if (warningMsg) showNativeToast(warningMsg, '#f59e0b', '⚠', 'Warning');
+                    if (infoMsg) showNativeToast(infoMsg, '#3b82f6', 'ℹ', 'Notice');
+                    validationErrors.forEach(function(msg) {
+                        showNativeToast(msg, '#ef4444', '✕', 'Validation Error');
+                    });
+                }
+            }
+        }
 
-        @if(Session::has('warning'))
-            toastr.warning("{!! addslashes(Session::get('warning')) !!}", "Warning");
-        @endif
-
-        @if(Session::has('info'))
-            toastr.info("{!! addslashes(Session::get('info')) !!}", "Notice");
-        @endif
-
-        @if(Session::has('status'))
-            toastr.info("{!! addslashes(Session::get('status')) !!}", "Status");
-        @endif
-
-        @if(isset($errors) && $errors->any())
-            @foreach($errors->all() as $error)
-                toastr.error("{!! addslashes($error) !!}", "Validation Error");
-            @endforeach
-        @endif
-    });
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', triggerFlashMessages);
+        } else {
+            triggerFlashMessages();
+        }
+    })();
 </script>
 
 <!-- Universal Admin Confirmation Modal -->

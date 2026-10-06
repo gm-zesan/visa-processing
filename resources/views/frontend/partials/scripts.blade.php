@@ -14,23 +14,22 @@
   <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
   <script>
       Fancybox.bind('[data-fancybox="gallery"]', {});
-      toastr.options = {
-          "closeButton": true,
-          "debug": false,
-          "newestOnTop": true,
-          "progressBar": true,
-          "positionClass": "toast-top-right",
-          "preventDuplicates": false,
-          "onclick": null,
-          "showDuration": "300",
-          "hideDuration": "600",
-          "timeOut": "5500",
-          "extendedTimeOut": "2000",
-          "showEasing": "swing",
-          "hideEasing": "linear",
-          "showMethod": "fadeIn",
-          "hideMethod": "fadeOut"
-      };
+      if (typeof toastr !== 'undefined') {
+          toastr.options = toastr.options || {};
+          toastr.options.closeButton = true;
+          toastr.options.progressBar = true;
+          toastr.options.newestOnTop = true;
+          toastr.options.positionClass = "toast-top-right";
+          toastr.options.preventDuplicates = false;
+          toastr.options.showDuration = "300";
+          toastr.options.hideDuration = "600";
+          toastr.options.timeOut = "5500";
+          toastr.options.extendedTimeOut = "2000";
+          toastr.options.showEasing = "swing";
+          toastr.options.hideEasing = "linear";
+          toastr.options.showMethod = "fadeIn";
+          toastr.options.hideMethod = "fadeOut";
+      }
 
       // Universal Website Helper for Toast Notifications
       window.showToast = function(message, isError = false, title = '') {

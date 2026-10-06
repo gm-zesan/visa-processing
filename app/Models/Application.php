@@ -20,11 +20,33 @@ class Application extends Model
     ];
 
     /**
-     * Cast attributes to native types / Enums
+     * Get the status safely as an ApplicationStatus enum or fallback
      */
-    protected $casts = [
-        'status' => ApplicationStatus::class,
-    ];
+    public function getStatusAttribute($value): ApplicationStatus
+    {
+        if ($value instanceof ApplicationStatus) {
+            return $value;
+        }
+        if ($value === null || $value === '') {
+            return ApplicationStatus::PENDING;
+        }
+        $normalized = strtolower(trim((string)$value));
+        return ApplicationStatus::tryFrom($normalized) ?? ApplicationStatus::PENDING;
+    }
+
+    /**
+     * Set the status attribute
+     */
+    public function setStatusAttribute($value): void
+    {
+        if ($value instanceof ApplicationStatus) {
+            $this->attributes['status'] = $value->value;
+        } elseif ($value !== null && $value !== '') {
+            $this->attributes['status'] = strtolower(trim((string)$value));
+        } else {
+            $this->attributes['status'] = 'pending';
+        }
+    }
 
     /**
      * Get the documents for the application.

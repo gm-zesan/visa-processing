@@ -253,17 +253,27 @@ class ApplicationController extends Controller
         
         $application = Application::findOrFail($id); 
         
+        // Target storage directory: storage/app/documents
+        $targetDir = storage_path('app/documents');
+        if (!is_dir($targetDir)) {
+            @mkdir($targetDir, 0755, true);
+        }
+
         foreach ($request->documents as $doc) {
+            if (!isset($doc['file']) || !$doc['file']->isValid()) {
+                continue;
+            }
             $file = $doc['file']; 
             $origName = preg_replace('/[^a-zA-Z0-9_\.-]/', '_', $file->getClientOriginalName());
             $filename = time() . '_' . uniqid() . '_' . $origName; 
             
-            // Store securely in storage/app/documents/
-            $storedPath = $file->storeAs('documents', $filename, 'local'); 
+            // Move file directly using native PHP - zero dependency on finfo / Flysystem
+            $file->move($targetDir, $filename);
+            $storedPath = 'documents/' . $filename; 
             
             ApplicationDocument::create([
                 'application_id' => $id, 
-                'document_title' => $doc['title'], 
+                'document_title' => $doc['title'] ?? 'Document', 
                 'file_path' => $storedPath
             ]); 
         }
@@ -278,9 +288,12 @@ class ApplicationController extends Controller
 
     public function deleteDocument($id) { 
         $doc = ApplicationDocument::findOrFail($id); 
-        if ($doc->file_path && Storage::disk('local')->exists($doc->file_path)) {
-            Storage::disk('local')->delete($doc->file_path);
+        
+        $fullPath = $this->resolveDocumentFullPath($doc->file_path);
+        if ($fullPath && file_exists($fullPath)) {
+            @unlink($fullPath);
         }
+        
         $doc->delete(); 
         return redirect()->back()->with('success', 'Document deleted successfully'); 
     } 
@@ -289,13 +302,49 @@ class ApplicationController extends Controller
     {
         $application = Application::with('documents')->findOrFail($id);
         foreach ($application->documents as $doc) {
-            if ($doc->file_path && Storage::disk('local')->exists($doc->file_path)) {
-                Storage::disk('local')->delete($doc->file_path);
+            $fullPath = $this->resolveDocumentFullPath($doc->file_path);
+            if ($fullPath && file_exists($fullPath)) {
+                @unlink($fullPath);
             }
             $doc->delete();
         }
         $application->delete();
         return redirect()->back()->with('success', 'Application deleted successfully.');
+    }
+
+    /**
+     * Resolve full server filesystem path for a document
+     */
+    private function resolveDocumentFullPath(?string $filePath): ?string
+    {
+        if (empty($filePath)) {
+            return null;
+        }
+
+        // 1. Direct check in storage/app/
+        $inApp = storage_path('app/' . ltrim($filePath, '/'));
+        if (file_exists($inApp)) {
+            return $inApp;
+        }
+
+        // 2. Check storage/app/documents/
+        $inDocs = storage_path('app/documents/' . basename($filePath));
+        if (file_exists($inDocs)) {
+            return $inDocs;
+        }
+
+        // 3. Legacy public path
+        $pubPath = public_path(ltrim($filePath, '/'));
+        if (file_exists($pubPath)) {
+            return $pubPath;
+        }
+
+        $pubDocsPath = public_path('upload/documents/' . basename($filePath));
+        if (file_exists($pubDocsPath)) {
+            return $pubDocsPath;
+        }
+
+        return null;
     }
 
     public function viewDocument(Request $request, $id) {
@@ -304,30 +353,27 @@ class ApplicationController extends Controller
         }
 
         $doc = ApplicationDocument::findOrFail($id);
+        $fullPath = $this->resolveDocumentFullPath($doc->file_path);
 
-        if (!$doc->file_path || !Storage::disk('local')->exists($doc->file_path)) {
+        if (!$fullPath || !file_exists($fullPath)) {
             abort(404, 'Document file not found.');
         }
 
-        $fullPath = Storage::disk('local')->path($doc->file_path);
         $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
-        $cleanTitle = trim(preg_replace('/[\/\\:\*\?"<>\|]/', '_', $doc->document_title));
+        $cleanTitle = trim(preg_replace('/[\/\\:\*\?"<>\|]/', '_', $doc->document_title ?? 'document'));
         if (empty($cleanTitle) || $cleanTitle === '_') {
             $cleanTitle = 'document_' . $doc->id;
         }
         $filename = $cleanTitle . '.' . $ext;
 
-        $mime = 'application/octet-stream';
-        if (function_exists('mime_content_type')) {
-            $mime = @mime_content_type($fullPath) ?: 'application/octet-stream';
-        }
-        if ($ext === 'pdf') {
-            $mime = 'application/pdf';
-        } elseif (in_array($ext, ['jpg', 'jpeg'])) {
-            $mime = 'image/jpeg';
-        } elseif ($ext === 'png') {
-            $mime = 'image/png';
-        }
+        $mime = match ($ext) {
+            'pdf' => 'application/pdf',
+            'jpg', 'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+            'webp' => 'image/webp',
+            default => 'application/octet-stream',
+        };
 
         return response()->file($fullPath, [
             'Content-Type' => $mime,
@@ -337,30 +383,27 @@ class ApplicationController extends Controller
 
     public function downloadDocument($id) {
         $doc = ApplicationDocument::findOrFail($id);
+        $fullPath = $this->resolveDocumentFullPath($doc->file_path);
 
-        if (!$doc->file_path || !Storage::disk('local')->exists($doc->file_path)) {
+        if (!$fullPath || !file_exists($fullPath)) {
             abort(404, 'Document file not found.');
         }
 
-        $fullPath = Storage::disk('local')->path($doc->file_path);
         $ext = strtolower(pathinfo($fullPath, PATHINFO_EXTENSION));
-        $cleanTitle = trim(preg_replace('/[\/\\:\*\?"<>\|]/', '_', $doc->document_title));
+        $cleanTitle = trim(preg_replace('/[\/\\:\*\?"<>\|]/', '_', $doc->document_title ?? 'document'));
         if (empty($cleanTitle) || $cleanTitle === '_') {
             $cleanTitle = 'document_' . $doc->id;
         }
         $downloadFilename = $cleanTitle . '.' . $ext;
 
-        $mime = 'application/octet-stream';
-        if (function_exists('mime_content_type')) {
-            $mime = @mime_content_type($fullPath) ?: 'application/octet-stream';
-        }
-        if ($ext === 'pdf') {
-            $mime = 'application/pdf';
-        } elseif (in_array($ext, ['jpg', 'jpeg'])) {
-            $mime = 'image/jpeg';
-        } elseif ($ext === 'png') {
-            $mime = 'image/png';
-        }
+        $mime = match ($ext) {
+            'pdf' => 'application/pdf',
+            'jpg', 'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'gif' => 'image/gif',
+            'webp' => 'image/webp',
+            default => 'application/octet-stream',
+        };
 
         return response()->download($fullPath, $downloadFilename, [
             'Content-Type' => $mime,

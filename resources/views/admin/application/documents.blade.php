@@ -140,17 +140,6 @@
 
 @section('content')
 <div class="container-fluid my-4 pb-5">
-    
-    @if($errors->any())
-        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm mb-4" style="border-radius: 10px;">
-            <ul class="mb-0 ps-3">
-                @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <div class="row g-4">
         <!-- Left: Upload Section -->
         <div class="col-lg-8 col-12">
@@ -219,12 +208,12 @@
                             <div class="row g-2">
                                 @foreach($application->documents as $doc)
                                     @php
-                                        $ext = strtolower(pathinfo($doc->file_path, PATHINFO_EXTENSION));
+                                        $ext = strtolower(pathinfo($doc->file_path ?? '', PATHINFO_EXTENSION));
                                         $isPdf = $ext === 'pdf';
                                     @endphp
                                     <div class="col-6 col-sm-4 col-md-3 col-lg-6 col-xl-6">
                                         <div class="vault-item h-100">
-                                            <a href="javascript:void(0)" onclick="confirmDeleteDocument('{{ route('applications.deleteDocument', $doc->id) }}', '{{ addslashes($doc->document_title) }}')" class="btn-delete-vault" title="Delete Document">
+                                            <a href="javascript:void(0)" onclick="confirmDeleteDocument('{{ route('applications.deleteDocument', $doc->id) }}', '{{ addslashes($doc->document_title ?? 'Document') }}')" class="btn-delete-vault" title="Delete Document">
                                                 <i class="ri-delete-bin-line"></i>
                                             </a>
                                             
@@ -233,7 +222,7 @@
                                                     @if($isPdf)
                                                         <div class="pdf-box"><i class="ri-file-pdf-2-fill"></i></div>
                                                     @else
-                                                        <img src="{{ route('applications.viewDocument', $doc->id) }}" alt="{{ $doc->document_title }}">
+                                                        <img src="{{ route('applications.viewDocument', $doc->id) }}" alt="{{ $doc->document_title }}" onerror="this.parentElement.innerHTML='<div class=\'pdf-box text-primary\'><i class=\'ri-file-text-line\'></i></div>'">
                                                     @endif
                                                 </div>
                                                 <div class="vault-item-details">
@@ -328,18 +317,24 @@
 
     // Custom Modal Confirmation for Document Delete
     function confirmDeleteDocument(deleteUrl, documentTitle) {
-        confirmAction({
-            title: 'Delete Document?',
-            message: 'Are you sure you want to permanently delete <strong>' + (documentTitle || 'this document') + '</strong> from the vault?',
-            icon: 'ri-delete-bin-line',
-            iconColor: '#ef4444',
-            iconBg: 'rgba(239, 68, 68, 0.12)',
-            confirmText: 'Yes, Delete',
-            confirmBtnClass: 'btn-danger',
-            onConfirm: function() {
+        if (typeof confirmAction === 'function') {
+            confirmAction({
+                title: 'Delete Document?',
+                message: 'Are you sure you want to permanently delete <strong>' + (documentTitle || 'this document') + '</strong> from the vault?',
+                icon: 'ri-delete-bin-line',
+                iconColor: '#ef4444',
+                iconBg: 'rgba(239, 68, 68, 0.12)',
+                confirmText: 'Yes, Delete',
+                confirmBtnClass: 'btn-danger',
+                onConfirm: function() {
+                    window.location.href = deleteUrl;
+                }
+            });
+        } else {
+            if (confirm('Are you sure you want to permanently delete "' + (documentTitle || 'this document') + '"?')) {
                 window.location.href = deleteUrl;
             }
-        });
+        }
     }
 </script>
 @endpush
