@@ -259,6 +259,8 @@
 @push('custom-scripts')
 <script>
     let docIndex = 1;
+    const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024; // 10MB per file
+    const MAX_BATCH_SIZE_BYTES = 75 * 1024 * 1024; // 75MB total batch limit
 
     $('#add-document-btn').click(function() {
         let colHtml = `
@@ -290,30 +292,92 @@
         $(this).closest('.dynamic-item').fadeOut(300, function(){ $(this).remove(); });
     });
 
-    // File Preview Logic for Upload Boxes
+    // File Preview & Size Validation Logic for Upload Boxes
     function previewFile(input) {
         var wrapper = $(input).closest('.file-upload-wrapper');
         var previewContainer = wrapper.find('.file-preview');
         
         if (input.files && input.files[0]) {
             var file = input.files[0];
+            
+            // Validate individual file size
+            if (file.size > MAX_FILE_SIZE_BYTES) {
+                var sizeMb = (file.size / (1024 * 1024)).toFixed(1);
+                if (typeof toastr !== 'undefined') {
+                    toastr.error('"' + file.name + '" is ' + sizeMb + 'MB. Maximum allowed size is 10MB per file.', 'File Too Large');
+                } else {
+                    alert('"' + file.name + '" is ' + sizeMb + 'MB. Maximum allowed size is 10MB per file.');
+                }
+                input.value = '';
+                previewContainer.empty().hide();
+                return;
+            }
+
             var fileType = file.type;
             var reader = new FileReader();
+            var sizeText = (file.size / (1024 * 1024) >= 1) 
+                ? (file.size / (1024 * 1024)).toFixed(1) + ' MB' 
+                : Math.round(file.size / 1024) + ' KB';
             
             reader.onload = function(e) {
                 if (fileType.match('image.*')) {
-                    previewContainer.html('<img src="' + e.target.result + '" alt="Preview">').fadeIn(200).css('display', 'flex');
+                    previewContainer.html('<img src="' + e.target.result + '" alt="Preview"><span class="badge bg-dark bg-opacity-75 position-absolute bottom-0 start-50 translate-middle-x mb-1 text-white" style="font-size:10px;">' + sizeText + '</span>').fadeIn(200).css('display', 'flex');
                 } else if (fileType === 'application/pdf') {
-                    previewContainer.html('<div style="text-align:center;"><i class="ri-file-pdf-2-fill text-danger fs-1"></i><div class="fw-bold mt-2 text-dark">PDF Selected</div></div>').fadeIn(200).css('display', 'flex');
+                    previewContainer.html('<div style="text-align:center;"><i class="ri-file-pdf-2-fill text-danger fs-2"></i><div class="fw-bold mt-1 text-dark" style="font-size:11px;">PDF Selected</div><div class="text-muted" style="font-size:10px;">' + sizeText + '</div></div>').fadeIn(200).css('display', 'flex');
                 } else {
-                    previewContainer.html('<div style="text-align:center;"><i class="ri-file-text-fill text-primary fs-1"></i><div class="fw-bold mt-2 text-dark">File Selected</div></div>').fadeIn(200).css('display', 'flex');
+                    previewContainer.html('<div style="text-align:center;"><i class="ri-file-text-fill text-primary fs-2"></i><div class="fw-bold mt-1 text-dark" style="font-size:11px;">File Selected</div><div class="text-muted" style="font-size:10px;">' + sizeText + '</div></div>').fadeIn(200).css('display', 'flex');
                 }
-            }
+            };
             reader.readAsDataURL(file);
         } else {
             previewContainer.fadeOut(200);
         }
     }
+
+    // Form Submit Interceptor: Total Batch Size Validation & Loading State
+    $('#uploadForm').on('submit', function(e) {
+        let totalBytes = 0;
+        let fileCount = 0;
+        let missingFile = false;
+
+        $(this).find('input[type="file"]').each(function() {
+            if (this.files && this.files[0]) {
+                totalBytes += this.files[0].size;
+                fileCount++;
+            } else if ($(this).prop('required')) {
+                missingFile = true;
+            }
+        });
+
+        if (missingFile) {
+            return true; // Let browser HTML5 validation handle missing required fields
+        }
+
+        if (fileCount === 0) {
+            e.preventDefault();
+            if (typeof toastr !== 'undefined') {
+                toastr.warning('Please select at least one document file to upload.', 'No File Selected');
+            } else {
+                alert('Please select at least one document file to upload.');
+            }
+            return false;
+        }
+
+        if (totalBytes > MAX_BATCH_SIZE_BYTES) {
+            e.preventDefault();
+            var totalMb = (totalBytes / (1024 * 1024)).toFixed(1);
+            if (typeof toastr !== 'undefined') {
+                toastr.warning('Total upload batch size is ' + totalMb + 'MB (server batch limit is 75MB). Please upload files in smaller batches (e.g. 4-5 files).', 'Upload Batch Too Large');
+            } else {
+                alert('Total upload batch size is ' + totalMb + 'MB. Please upload files in smaller batches.');
+            }
+            return false;
+        }
+
+        // Show loading state on submit button
+        var $btn = $(this).find('button[type="submit"]');
+        $btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span> Uploading ' + fileCount + ' Document' + (fileCount > 1 ? 's' : '') + '...');
+    });
 
     // Custom Modal Confirmation for Document Delete
     function confirmDeleteDocument(deleteUrl, documentTitle) {

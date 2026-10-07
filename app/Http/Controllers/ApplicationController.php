@@ -245,10 +245,24 @@ class ApplicationController extends Controller
     }
 
     public function uploadDocuments(Request $request, $id) { 
+        @ini_set('max_execution_time', 300);
+        @ini_set('memory_limit', '256M');
+
+        // Check if POST payload exceeded server post_max_size (which results in empty post/files)
+        if ($request->isMethod('post') && empty($request->all()) && empty($request->files->all())) {
+            return redirect()->back()->with('error', 'The uploaded batch exceeded server limit. Please upload fewer or smaller files at once.');
+        }
+
         $request->validate([
-            'documents' => 'required|array',
+            'documents' => 'required|array|min:1',
             'documents.*.title' => 'required|string|max:255',
-            'documents.*.file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:5120'
+            'documents.*.file' => 'required|file|mimes:pdf,jpg,jpeg,png|max:10240'
+        ], [
+            'documents.required' => 'Please add at least one document box.',
+            'documents.*.title.required' => 'Each document must have a title.',
+            'documents.*.file.required' => 'Please select a file for each document box.',
+            'documents.*.file.max' => 'Each file must not exceed 10MB.',
+            'documents.*.file.mimes' => 'Only PDF, JPG, JPEG, and PNG files are allowed.'
         ]); 
         
         $application = Application::findOrFail($id); 
@@ -259,6 +273,7 @@ class ApplicationController extends Controller
             @mkdir($targetDir, 0755, true);
         }
 
+        $uploadedCount = 0;
         foreach ($request->documents as $doc) {
             if (!isset($doc['file']) || !$doc['file']->isValid()) {
                 continue;
@@ -276,14 +291,15 @@ class ApplicationController extends Controller
                 'document_title' => $doc['title'] ?? 'Document', 
                 'file_path' => $storedPath
             ]); 
+            $uploadedCount++;
         }
 
-        if ($application->status === ApplicationStatus::PENDING) {
+        if ($application->status === ApplicationStatus::PENDING && $uploadedCount > 0) {
             $application->status = ApplicationStatus::PROCESSING;
             $application->save();
         }
 
-        return redirect()->back()->with('success', 'Documents uploaded successfully'); 
+        return redirect()->back()->with('success', $uploadedCount . ' document(s) uploaded successfully'); 
     } 
 
     public function deleteDocument($id) { 
